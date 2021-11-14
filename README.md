@@ -9,3 +9,6 @@ Generates JSON-LD for various types CSVs, it adopts the Vocabulary provided by w
 5. Click the process button, it will try to determine encoding and column seperator automatically. If that fails, choose appropiate values from the drop downs in the widgets and press the process button again. 
 6. If successful the json-ld created will be printed to the cell as output. Click the download button to download the code in the proper filename acoording to https://www.w3.org/ns/csvw.
 7. Place the file in the same folder then the csv it describes.
+
+# Docker
+Start the container with 'docker-compose up'
