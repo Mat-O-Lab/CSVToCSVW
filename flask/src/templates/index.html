@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Index</title>
+{% endblock %}
+
+
+{% block body %}
+<form method="post" enctype="multipart/form-data" action="/">
+      <input type="file" name="file">
+      <input type="submit" value="Upload">
+
+      <label for="separator">choose a separator:</label>
+      <select name="separator" id="separator">
+            <option value=";">;</option>
+            <option value=",">,</option>
+            <option value="\t">\\t</option>
+            <option selected value="auto">auto</option>
+      </select>
+
+
+      <label for="encoding">choose an encoding:</label>
+      <select name="encoding" id="encoding">
+            <option value="ISO-8859-1">ISO-8859-1</option>
+            <option value="UTF-8">UTF-8</option>
+            <option value="ascii">ascii</option>
+            <option value="latin-1">latin-1</option>
+            <option value="cp273">cp273</option>
+            <option selected value="auto">auto</option>
+      </select>
+</form>
+
+
+
+
+
+
+
+
+{% endblock %}
