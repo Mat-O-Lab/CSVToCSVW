@@ -3,7 +3,7 @@ Generates JSON-LD for various types CSVs, it adopts the Vocabulary provided by w
 
 # how to use
 1. Open the notebook in [google colab](https://colab.research.google.com) or any other jupyter instance.
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Mat-O-Lab/CSVToCSVW/csv_parser.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Mat-O-Lab/CSVToCSVW/blob/main/csv_parser.ipynb)
 3. Run the first cell of the notebook. It will install the necesary python packages and definitions.
 4. Run the second cell
 5. Upload a csv file or paste in a url pointing at one in the provided widgets.
