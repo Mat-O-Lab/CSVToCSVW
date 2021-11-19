@@ -22,9 +22,8 @@ qudt= get_ontology('http://www.qudt.org/qudt/owl/1.0.0/unit.owl').load()
 
 
 class CSV_Annotator():
-    def __init__(self, file, separator : str, encoding : str):
+    def __init__(self, separator : str, encoding : str):
         print("creating annotator")
-        self.file = file
         self.separator = separator
         self.encoding = encoding
 
@@ -47,24 +46,25 @@ class CSV_Annotator():
             '\u00df': 'ss',  # U+00DF	   \xc3\x9f
         }
 
-    def process(self) -> (str, str):
+    def process(self, file) -> (str, str):
         '''
-        TODO: find out wtf this does
-        :return: json string?
+        :return: returns a filename and content(json string dump) of a metafile in the json format.
         '''
-        file_name = self.file.name.split('/')[-1]
-        self.file_data = self.file.read()
+
+        file_name = file.filename.split('/')[-1]
+        file_data = file.read()
+
 
         if self.encoding == 'auto':
-            self.encoding = self.get_encoding(self.file_data)
+            self.encoding = self.get_encoding(file_data)
 
         if self.separator == 'auto':
             try:
-                self.separator = self.get_column_separator(self.file_data)
+                self.separator = self.get_column_separator(file_data)
             except:
                 return "error", 'cant find separator, pls manualy select'
 
-        metafile_name, result = self.process_file(file_name, self.file_data, self.separator,
+        metafile_name, result = self.process_file(file_name, file_data, self.separator,
                                                   self.encoding)
         print(metafile_name, result)
 
@@ -382,4 +382,9 @@ class CSV_Annotator():
         meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
         return meta_file_name, result
 
+    def set_encoding(self, new_encoding : str):
+        self.encoding = new_encoding
+
+    def set_separator(self, new_separator : str):
+        self.separator = new_separator
 
