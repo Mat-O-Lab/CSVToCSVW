@@ -1,4 +1,4 @@
-from src.csv_to_csvw.annotator import CSV_Annotator
+from annotator import CSV_Annotator
 
 import zipfile
 from io import BytesIO
