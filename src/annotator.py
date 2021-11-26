@@ -3,6 +3,8 @@ import pandas as pd
 import io
 import ast
 import json
+from urllib.request import urlopen
+from urllib.parse import urlparse, unquote
 from dateutil.parser import parse
 from contextlib import redirect_stderr
 from csv import Sniffer
@@ -23,7 +25,9 @@ qudt= get_ontology('http://www.qudt.org/qudt/owl/1.0.0/unit.owl').load()
 
 class CSV_Annotator():
     def __init__(self, separator : str, encoding : str):
-        print("creating annotator")
+
+
+
         self.separator = separator
         self.encoding = encoding
 
@@ -46,14 +50,33 @@ class CSV_Annotator():
             '\u00df': 'ss',  # U+00DF	   \xc3\x9f
         }
 
-    def process(self, file) -> (str, str):
+    def open_file(self, uri=''):
+        try:
+            uri_parsed = urlparse(uri)
+        except:
+            print('not an uri - if local file add file:// as prefix')
+            return None
+        else:
+            filename = unquote(uri_parsed.path).split('/')[-1]
+            if uri_parsed.scheme in ['https', 'http']:
+                filedata = urlopen(uri).read()
+
+            elif uri_parsed.scheme == 'file':
+                filedata = open(unquote(uri_parsed.path), 'rb').read()
+            else:
+                print('unknown scheme {}'.format(uri_parsed.scheme))
+                return None
+            return filedata, filename
+
+    def process(self, url) -> (str, str):
         '''
         :return: returns a filename and content(json string dump) of a metafile in the json format.
         '''
 
-        file_name = file.filename.split('/')[-1]
-        file_data = file.read()
+        file_data, file_name = self.open_file(url)
 
+        if file_name is None or file_data is None:
+            return "error", "cannot parse url"
 
         if self.encoding == 'auto':
             self.encoding = self.get_encoding(file_data)
@@ -66,8 +89,6 @@ class CSV_Annotator():
 
         metafile_name, result = self.process_file(file_name, file_data, self.separator,
                                                   self.encoding)
-        print(metafile_name, result)
-
 
         return metafile_name, result
 
@@ -387,3 +408,4 @@ class CSV_Annotator():
 
     def set_separator(self, new_separator : str):
         self.separator = new_separator
+

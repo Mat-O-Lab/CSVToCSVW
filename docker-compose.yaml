@@ -1,9 +1,40 @@
 version: "3.7"
 
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_flask
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/src
+      - ./config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - flask
+    restart: always
+    networks:
+      CSVToCSVW:
+        ipv4_address: 10.4.0.2
+
   flask:
     build:
       context: ./
+    container_name: flask
+    volumes:
+      - ./src:/src
+    expose:
+      - "5000"
     ports:
       - 5000:5000
     restart: always
+    networks:
+      CSVToCSVW:
+        ipv4_address: 10.4.0.3
+
+networks:
+  CSVToCSVW:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.4.0.0/16
