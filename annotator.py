@@ -12,6 +12,10 @@ from csv import Sniffer
 import chardet
 from owlready2 import *
 
+##disable ssl verification
+#import ssl
+#ssl._create_default_https_context = ssl._create_unverified_context
+
 # there is a bug in Owlready2 when having imports in turtle in a owl file
 # if the error is thrown, load again and it is fine
 try:
@@ -322,7 +326,7 @@ class CSV_Annotator():
         info_line_iri = "cco:InformationLine"
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
-            para_dict = {'@id': self.make_id(parm_name, file_namespace), 'label': parm_name, '@type': info_line_iri}
+            para_dict = {'@id': self.make_id(parm_name, file_namespace)+str(data['row']), 'label': parm_name, '@type': info_line_iri}
             for col_name, value in data.items():
                 # print(parm_name,col_name, value)
                 if col_name == 'row':
@@ -408,4 +412,3 @@ class CSV_Annotator():
 
     def set_separator(self, new_separator : str):
         self.separator = new_separator
-
