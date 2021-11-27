@@ -1,0 +1,87 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "CSVtoCSVW API",
+    "version": "1.0.0",
+    "title": "CSVtoCSVW API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "a@a.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "petstore.swagger.io",
+  "basePath": "/v2",
+  "tags": [
+    {
+      "name": "conversion services",
+      "externalDocs": {
+        "description": "",
+        "url": "https://github.com/Mat-O-Lab/CSVToCSVW"
+      }
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/meta_jsonld": {
+      "post": {
+        "tags": [
+          "generate json ld"
+        ],
+        "summary": "Convert files of formats csv, TRA, txt to JSON-LD metadata files",
+        "description": "",
+        "operationId": "addPet",
+        "consumes": [
+          "text/csv",
+          "text/TRA",
+          "text/plain"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "File for which to generate json-ld",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "meta_file_name": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
