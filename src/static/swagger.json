@@ -1,28 +1,22 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "description": "CSVtoCSVW API",
-    "version": "1.0.0",
-    "title": "CSVtoCSVW API",
-    "termsOfService": "http://swagger.io/terms/",
-    "contact": {
-      "email": "a@a.com"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    }
-  },
-  "host": "petstore.swagger.io",
-  "basePath": "/v2",
-  "tags": [
-    {
-      "name": "conversion services",
-      "externalDocs": {
-        "description": "",
-        "url": "https://github.com/Mat-O-Lab/CSVToCSVW"
+  "openapi": "3.0.0",
+  "info":{
+      "description": "CSVtoCSVW",
+      "version": "1.0.0",
+      "title": "CSVtoCSVW",
+      "contact": {
+          "name": "Thomas Hanke",
+          "email": "thomas.hanke@imws.fraunhofer.de"
+      },
+      "license": {
+          "name": "Apache 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
       }
-    }
+  },
+  "servers":[
+      {
+          "url": "/"
+      }
   ],
   "schemes": [
     "https",
