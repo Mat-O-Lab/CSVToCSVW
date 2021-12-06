@@ -1,22 +1,40 @@
-version: "3.7"
-
+version: "3"
 services:
-  nginx:
-    image: nginx:latest
-    container_name: nginx_flask
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+    environment:
+      DB_MYSQL_HOST: "db"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "npm"
+      DB_MYSQL_PASSWORD: "npm"
+      DB_MYSQL_NAME: "npm"
     volumes:
-      - ./src:/src
-      - ./config/nginx:/etc/nginx/conf.d
-      - /etc/ssl/certs:/etc/nginx/certs
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
     depends_on:
-      - flask
-    restart: always
+      - db
     networks:
       CSVToCSVW:
         ipv4_address: 10.4.0.2
+
+  db:
+    image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 'npm'
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'npm'
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      CSVToCSVW:
+        ipv4_address: 10.4.0.3
 
   flask:
     build: .
@@ -30,7 +48,7 @@ services:
     restart: always
     networks:
       CSVToCSVW:
-        ipv4_address: 10.4.0.3
+        ipv4_address: 10.4.0.4
 
 networks:
   CSVToCSVW:
