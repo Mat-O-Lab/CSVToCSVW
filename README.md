@@ -19,8 +19,19 @@ cd into the cloned folder
 ```bash
 cd CSVToCSVW
 ```
-Start the container with 'docker-compose up'
+Username and password in docker-compose.yml should be edited for security reasons.
+
+Build the container once with 'docker-compose build' and start the container with 'docker-compose up'
 cd into the cloned folder
 ```bash
+docker-compose build
 docker-compose up
 ```
+
+Log into Nginx Proxy Manager on port 81:
+```
+Email address: admin@example.com
+Password: changeme
+```
+
+You can add a Proxy Host and SSL in this GUI
