@@ -10,9 +10,9 @@ services:
     environment:
       DB_MYSQL_HOST: "db"
       DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: "npm"
-      DB_MYSQL_PASSWORD: "npm"
-      DB_MYSQL_NAME: "npm"
+      DB_MYSQL_USER: "db_user"
+      DB_MYSQL_PASSWORD: "db_password"
+      DB_MYSQL_NAME: "db_name"
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
@@ -26,10 +26,10 @@ services:
     image: 'jc21/mariadb-aria:latest'
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: 'npm'
-      MYSQL_DATABASE: 'npm'
-      MYSQL_USER: 'npm'
-      MYSQL_PASSWORD: 'npm'
+      MYSQL_ROOT_PASSWORD: 'db_rootpassword'
+      MYSQL_DATABASE: 'database'
+      MYSQL_USER: 'db_user'
+      MYSQL_PASSWORD: 'db_password'
     volumes:
       - ./data/mysql:/var/lib/mysql
     networks:
