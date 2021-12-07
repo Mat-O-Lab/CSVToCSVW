@@ -33,5 +33,10 @@ Log into Nginx Proxy Manager on port 81:
 Email address: admin@example.com
 Password: changeme
 ```
-
-You can add a Proxy Host and SSL in this GUI
+If you want to create a Proxy host:
+```
+Domain Names: *your domain name*
+Forward Hostname/IP: flask
+Forward Port: 5000
+```
+You can also add SSL in this GUI.
