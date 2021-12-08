@@ -91,6 +91,8 @@ class CSV_Annotator():
             except:
                 return "error", 'cant find separator, pls manualy select'
 
+        self.sep_regex = re.compile(self.separator.__str__())
+
         metafile_name, result = self.process_file(file_name, file_data, self.separator,
                                                   self.encoding)
 
@@ -117,12 +119,23 @@ class CSV_Annotator():
         dialect = sniffer.sniff(file_string.read(512))
         return dialect.delimiter
 
-    def get_header_length(self, file_data : bytes , sep : str, enc : str) -> (int, int):
+    # define generator, which yields the next count of
+    # occurrences of separator in row
+    def generate_col_counts(self, file_data, encoding):
+        with io.StringIO(file_data.decode(encoding)) as f:
+            row = f.readline()
+            while (row != ""):
+                # match with re instead of count() function!
+                yield len(self.sep_regex.findall(row)) + 1
+                row = f.readline()
+            return
+
+    def get_header_length(self, file_data : bytes, encoding : str) -> (int, int):
         """
         This method finds the beginning of a header line inside a csv file,
         aswell as the number of columns of the datatable
         :param file_data: content of the file we want to parse as bytes
-        :param separator_string: csv-separator
+        :param separator_string: csv-separator, will be interpretet as a regex
         :param encoding: text encoding
         :return: a 2-tuple of (counter, num_cols)
                       where
@@ -152,21 +165,13 @@ class CSV_Annotator():
                 f.seek(-2, os.SEEK_CUR)
                 cur_char = f.read(1)
 
-            num_cols = last_line.decode(enc).count(sep) + 1
+            num_cols = len(self.sep_regex.findall(last_line.decode(encoding))) + 1
 
-        # define generator, which yields the next count of
-        # occurrences of separator in row
-        def generate_sep_counts(file_data, sep, enc):
-            with io.StringIO(file_data.decode(enc)) as f:
-                row = f.readline()
-                while (row != ""):
-                    yield row.count(sep)
-                    row = f.readline()
-                return
+
 
         counter = 0
-        for sep_count in generate_sep_counts(file_data, sep, enc):
-            if(sep_count == num_cols - 1):
+        for col_count in self.generate_col_counts(file_data=file_data, encoding=encoding):
+            if(col_count == num_cols):
                 break
             else:
                 counter += 1
@@ -364,7 +369,7 @@ class CSV_Annotator():
         """
 
         # get length of additional header
-        header_length, max_columns_additional_header = self.get_header_length(file_data, separator, encoding)
+        header_length, max_columns_additional_header = self.get_header_length(file_data, encoding)
 
         if header_length:
             file_string = io.StringIO(file_data.decode(encoding))

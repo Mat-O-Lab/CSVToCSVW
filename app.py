@@ -39,7 +39,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
-separators = ["auto", ";", ",", "\t", "|", "\s+", "\s+|\t+|\s+\t+|\t+\s+"]
+separators = ["auto", ";", ",", "\\t","\\t+", "|", "\s+", "\s+|\\t+|\s+\\t+|\\t+\s+"]
 encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
 
 def allowed_file(filename):
@@ -70,7 +70,6 @@ def create_annotator():
     if start_form.validate_on_submit():
 
         annotator = CSV_Annotator(separator=start_form.separator_sel.data, encoding=start_form.encoding_sel.data)
-
 
         try:
             meta_file_name, result = annotator.process(start_form.data_url.data)
