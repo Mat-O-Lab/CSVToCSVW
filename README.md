@@ -21,8 +21,7 @@ cd CSVToCSVW
 ```
 Username and password in docker-compose.yml should be edited for security reasons.
 
-Build the container once with 'docker-compose build' and start the container with 'docker-compose up'
-cd into the cloned folder
+Build and start the container.
 ```bash
 docker-compose build
 docker-compose up

@@ -7,6 +7,6 @@ RUN pip install -r config/requirements.txt
 
 WORKDIR /src
 
-COPY /src .
+COPY . .
 
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app", "--workers=3"]

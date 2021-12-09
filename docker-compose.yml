@@ -1,14 +1,15 @@
 version: "3"
 services:
-  app:
+  nginx_proxy_manager:
     image: 'jc21/nginx-proxy-manager:latest'
+    container_name: Nginx_Proxy_Manager
     restart: unless-stopped
     ports:
       - '80:80' # Public HTTP Port
       - '443:443' # Public HTTPS Port
       - '81:81' # Admin Web Port
     environment:
-      DB_MYSQL_HOST: "db"
+      DB_MYSQL_HOST: "nginx_db"
       DB_MYSQL_PORT: 3306
       DB_MYSQL_USER: "db_user"
       DB_MYSQL_PASSWORD: "db_password"
@@ -17,13 +18,14 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
     depends_on:
-      - db
+      - nginx_db
     networks:
       CSVToCSVW:
         ipv4_address: 10.4.0.2
 
-  db:
+  nginx_db:
     image: 'jc21/mariadb-aria:latest'
+    container_name: Nginx_DB
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: 'db_rootpassword'
@@ -40,7 +42,7 @@ services:
     build: .
     container_name: flask
     volumes:
-      - ./src:/src
+      - .:/src
     expose:
       - "5000"
     ports:
