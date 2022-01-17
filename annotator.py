@@ -19,9 +19,9 @@ from owlready2 import *
 # there is a bug in Owlready2 when having imports in turtle in a owl file
 # if the error is thrown, load again and it is fine
 try:
-    mseo= get_ontology("https://purl.matolab.org/mseo/mid").load()
+    mseo= get_ontology("https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl").load()
 except:
-    mseo= get_ontology("https://purl.matolab.org/mseo/mid").load()
+    mseo= get_ontology("https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl").load()
 
 cco_mu= get_ontology("http://www.ontologyrepository.com/CommonCoreOntologies/Mid/UnitsOfMeasureOntology/").load()
 qudt= get_ontology('http://www.qudt.org/qudt/owl/1.0.0/unit.owl').load()
