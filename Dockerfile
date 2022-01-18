@@ -1,11 +1,12 @@
 FROM python:3.8
 
-WORKDIR /app
+RUN mkdir /config
+ADD /requirements.txt /config
 
-COPY requirements.txt .
+RUN pip install -r config/requirements.txt
 
-RUN pip3 install -r requirements.txt
+WORKDIR /src
 
-COPY ./app ./app
+COPY . .
 
-CMD ["python", "./app/main.py"]
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app", "--workers=3"]

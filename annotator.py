@@ -180,6 +180,7 @@ class CSV_Annotator():
 
     ## DEPRECATED
     def get_header_length_deprecated(self, file_data, separator_string, encoding):
+
         """
         This method finds the beginning of a header line inside a csv file.
         Some csv files begin with additional information before

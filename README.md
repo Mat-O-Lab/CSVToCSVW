@@ -19,8 +19,23 @@ cd into the cloned folder
 ```bash
 cd CSVToCSVW
 ```
-Start the container with 'docker-compose up'
-cd into the cloned folder
+Username and password in docker-compose.yml should be edited for security reasons.
+
+Build and start the container.
 ```bash
+docker-compose build
 docker-compose up
 ```
+
+Log into Nginx Proxy Manager on port 81:
+```
+Email address: admin@example.com
+Password: changeme
+```
+If you want to create a Proxy host:
+```
+Domain Names: *your domain name*
+Forward Hostname/IP: flask
+Forward Port: 5000
+```
+You can also add SSL in this GUI.
