@@ -39,17 +39,22 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
-separators = ["auto", ";", ",", "\t", "|", "\s+", "\s+|\t+|\s+\t+|\t+\s+"]
+separators = ["auto", ";", ",", "\\t","\\t+", "|", "\s+", "\s+|\\t+|\s+\\t+|\\t+\s+"]
 encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
+
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 class StartForm(FlaskForm):
-    data_url = URLField('URL Meta Data', validators=[DataRequired()], description='Paste URL to a data file, e.g. csv, TRA')
-    separator_sel = SelectField('Choose Separator, default: auto detect', choices=separators, description='select a separator for your data manually', default='auto')
-    encoding_sel = SelectField('Choose Encoding, default: auto detect', choices=encodings, description='select an encoding for your data manually', default='auto')
+    data_url = URLField('URL Meta Data', validators=[
+                        DataRequired()], description='Paste URL to a data file, e.g. csv, TRA')
+    separator_sel = SelectField('Choose Separator, default: auto detect', choices=separators,
+                                description='select a separator for your data manually', default='auto')
+    encoding_sel = SelectField('Choose Encoding, default: auto detect', choices=encodings,
+                               description='select an encoding for your data manually', default='auto')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -57,33 +62,34 @@ def index():
     logo = './static/resources/MatOLab-Logo.svg'
     start_form = StartForm()
     message = ''
-    result= ''
+    result = ''
     return render_template("index.html", logo=logo, start_form=start_form, message=message, result=result)
+
 
 @app.route('/create_annotator', methods=['POST'])
 def create_annotator():
     logo = './static/resources/MatOLab-Logo.svg'
     start_form = StartForm()
     message = ''
-    result= ''
+    result = ''
 
     if start_form.validate_on_submit():
 
-        annotator = CSV_Annotator(separator=start_form.separator_sel.data, encoding=start_form.encoding_sel.data)
-
+        annotator = CSV_Annotator(
+            separator=start_form.separator_sel.data, encoding=start_form.encoding_sel.data)
 
         try:
-            meta_file_name, result = annotator.process(start_form.data_url.data)
+            meta_file_name, result = annotator.process(
+                start_form.data_url.data)
         except (ValueError, TypeError) as error:
             flash(str(error))
         else:
             b64 = base64.b64encode(result.encode())
             payload = b64.decode()
 
-            return render_template("index.html", logo=logo, start_form=start_form, message=message, result=result, payload=payload, filename = meta_file_name)
+            return render_template("index.html", logo=logo, start_form=start_form, message=message, result=result, payload=payload, filename=meta_file_name)
 
     return render_template("index.html", logo=logo, start_form=start_form, message=message, result=result)
-
 
 
 @app.route('/multinput', methods=['GET', 'POST'])
@@ -93,7 +99,6 @@ def multinput():
         if 'files' not in request.files:
             flash('No file part')
             return redirect(request.url)
-
 
         files = request.files.getlist("files")
 
@@ -142,4 +147,9 @@ def api():
 
         meta_file_name, result = annotator.process(file)
 
-        return {"meta_file_name" : meta_file_name, "result" : result}
+        return {"meta_file_name": meta_file_name, "result": result}
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=app.config["DEBUG"])
