@@ -23,36 +23,84 @@
     "http"
   ],
   "paths": {
-    "/meta_jsonld": {
-      "post": {
-        "tags": [
-          "generate json ld"
-        ],
-        "summary": "Convert files of formats csv, TRA, txt to JSON-LD metadata files",
-        "description": "",
-        "operationId": "addPet",
-        "consumes": [
-          "text/csv",
-          "text/TRA",
-          "text/plain"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "File for which to generate json-ld",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ApiResponse"
+    "/api/create_metafile": {
+            "post": {
+                "tags": [
+                    "JSON-LD"
+                ],
+                "summary": "Create Meta JSON-LD",
+                "description": "Create a metafile for a csv file.",
+                "requestBody": {
+                  "required": "true",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Converter"
+                      }
+                    }
+                  }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                        "200": {
+                            "description": "converted csv-like file into JSON-LD metafile.",
+                            "content": {
+                              "application/json": {
+                                "schema": {
+                                  "$ref": "#/components/schemas/JSON-LD"
+                                }
+                              }
+                            }
+                          },
+                        "404": {
+                            "description": "File not found."
+                            },
+
+                        "500":{
+                            "description": "Internal server error"
+                        }
+
+                    }
+                }
             }
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
+  },
+
+  "components" : {
+    "schemas" : {
+      "Converter":{
+              "description": "Conversion object handling parsing of csv and metafile return",
+              "required": "true",
+              "type": "object",
+              "properties": {
+                "data_url":{
+                  "type": "string",
+                  "format": "uri",
+                  "description": "Url to raw csv"
+                },
+                "separator" : {
+                  "type" : "string",
+                  "default" : "auto"
+                },
+                "encoding" : {
+                  "type" : "string",
+                  "default" : "auto"
+                }
+              }
+
+              },
+      "JSON-LD": {
+        "description": "contains metadata about one csv file",
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "Suggested file name."
+          },
+          "filedata": {
+            "type": "string",
+            "description": "File content string."
           }
         }
       }
@@ -69,10 +117,10 @@
     "ApiResponse": {
       "type": "object",
       "properties": {
-        "meta_file_name": {
+        "filename": {
           "type": "string"
         },
-        "result": {
+        "filedata": {
           "type": "string"
         }
       }

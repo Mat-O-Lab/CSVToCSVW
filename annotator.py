@@ -90,6 +90,8 @@ class CSV_Annotator():
             except:
                 return "error", 'cant find separator, pls manualy select'
 
+        self.sep_regex = re.compile(self.separator.__str__())
+
         metafile_name, result = self.process_file(file_name, file_data, self.separator,
                                                   self.encoding)
 
@@ -115,15 +117,75 @@ class CSV_Annotator():
         dialect = sniffer.sniff(file_string.read(512))
         return dialect.delimiter
 
-    def get_header_length(self, file_data, separator_string, encoding):
+    # define generator, which yields the next count of
+    # occurrences of separator in row
+    def generate_col_counts(self, file_data, encoding):
+        with io.StringIO(file_data.decode(encoding)) as f:
+            row = f.readline()
+            while (row != ""):
+                # match with re instead of count() function!
+                yield len(self.sep_regex.findall(row)) + 1
+                row = f.readline()
+            return
+
+    def get_header_length(self, file_data : bytes, encoding : str) -> (int, int):
+        """
+        This method finds the beginning of a header line inside a csv file,
+        aswell as the number of columns of the datatable
+        :param file_data: content of the file we want to parse as bytes
+        :param separator_string: csv-separator, will be interpretet as a regex
+        :param encoding: text encoding
+        :return: a 2-tuple of (counter, num_cols)
+                      where
+                          counter : index of the header line in the csv file
+                          num_cols : number of columns in the data-table
+        """
+        last_line = b''
+        num_cols = 0
+        first_head_line = 0
+
+        with io.BytesIO(file_data) as f:
+
+            f.seek(-2, os.SEEK_END)
+
+            cur_char = f.read(1)
+
+            # edgecase that there is no \n at the end of file
+            if(cur_char != b'\n'):
+                cur_char = f.read(1)
+
+            while(cur_char == b'\n' or cur_char == b'\r'):
+                f.seek(-2, os.SEEK_CUR)
+                cur_char = f.read(1)
+
+            while cur_char != b'\n':
+                last_line = cur_char + last_line
+                f.seek(-2, os.SEEK_CUR)
+                cur_char = f.read(1)
+
+            num_cols = len(self.sep_regex.findall(last_line.decode(encoding))) + 1
+
+
+
+        counter = 0
+        for col_count in self.generate_col_counts(file_data=file_data, encoding=encoding):
+            if(col_count == num_cols):
+                break
+            else:
+                counter += 1
+
+        return counter, num_cols
+
+
+
+    ## DEPRECATED
+    def get_header_length_deprecated(self, file_data, separator_string, encoding):
         """
         This method finds the beginning of a header line inside a csv file.
         Some csv files begin with additional information before
         displaying the actual data-table.
-
         We want to solve this problem by finding the beginning of the header-line
         (column-descriptors) and read the metainfo and data-table separately.
-
         :param file_data: content of the file we want to parse
         :param separator_string: csv-separator
         :param encoding: text encoding
@@ -137,6 +199,8 @@ class CSV_Annotator():
         # encountering a csv-file with changing column-count for example), we can
         # redirect the error to file_string. Then, we can read and analyze the error-message.
         # This is helpful since we can see in which line the parser expected n columns, but got m instead.
+
+        #self.get_header_length2(file_data=file_data, sep=separator_string, enc=encoding)
 
         file_string = io.StringIO(file_data.decode(encoding))
         f = io.StringIO()

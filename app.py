@@ -39,7 +39,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
-separators = ["auto", ";", ",", "\t", "|", "\s+", "\s+|\t+|\s+\t+|\t+\s+"]
+separators = ["auto", ";", ",", "\\t","\\t+", "|", "\s+", "\s+|\\t+|\s+\\t+|\\t+\s+"]
 encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
 
 
