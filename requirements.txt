@@ -1,3 +1,5 @@
+gunicorn
+chardet
 rdflib
 flask
 flask-bootstrap
