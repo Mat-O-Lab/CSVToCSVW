@@ -1,6 +1,7 @@
-
 import pandas as pd
 import io
+import os
+import re
 import ast
 import json
 from urllib.request import urlopen
@@ -10,24 +11,52 @@ from contextlib import redirect_stderr
 from csv import Sniffer
 
 import chardet
-from owlready2 import *
 
-#disable ssl verification
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
+from rdflib import Graph, URIRef, Literal, Namespace
+from rdflib.namespace import RDF, RDFS
+from rdflib.plugins.sparql import prepareQuery
 
-# there is a bug in Owlready2 when having imports in turtle in a owl file
-# if the error is thrown, load again and it is fine
-#mseo = get_ontology("https://purl.matolab.org/mseo/mid").load()
-try:
-    mseo = get_ontology("https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl").load()
-except:
-    mseo = get_ontology(
-        "https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl").load()
+MSEO_URL = 'https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl'
+CCO_URL = 'https://github.com/CommonCoreOntology/CommonCoreOntologies/raw/master/cco-merged/MergedAllCoreOntology-v1.3-2021-03-01.ttl'
+#CCOMU_URL = 'https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/master/UnitsOfMeasureOntology.ttl'
+#QUDT_URL = 'http://www.qudt.org/qudt/owl/1.0.0/unit.owl'
+QUDT_UNIT_URL = 'http://qudt.org/2.1/vocab/unit'
+QUDT = Namespace("http://qudt.org/schema/qudt/")
 
-cco_mu = get_ontology(
-    "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/UnitsOfMeasureOntology/").load()
-qudt = get_ontology('http://www.qudt.org/qudt/owl/1.0.0/unit.owl').load()
+sub_classes = prepareQuery(
+    "SELECT ?entity WHERE {?entity rdfs:subClassOf* ?parent}",
+    initNs={"rdf": RDF, "rdsf": RDFS},
+    )
+
+
+def get_entities_with_property_with_value(graph, property, value):
+    return [s for s, p, o in graph.triples((None,  property, value))]
+
+
+mseo_graph = Graph()
+mseo_graph.parse(CCO_URL, format='turtle')
+mseo_graph.parse(MSEO_URL, format='xml')
+
+units_graph = Graph()
+units_graph.parse(QUDT_UNIT_URL, format='turtle')
+# will not use CCO Units anymore QUDT is more mature
+#units_graph.parse(CCOMU_URL, format='turtle')
+#units_graph.parse(MSEO_URL, format='xml')
+
+
+cco_SI_unit_symbol = URIRef(
+    "http://www.ontologyrepository.com/CommonCoreOntologies/SI_unit_symbol")
+cco_alternative_label = URIRef(
+    "http://www.ontologyrepository.com/CommonCoreOntologies/alternative_label")
+
+# print(get_entities_with_property_with_value(
+#     units_graph, SI_unit_symbol, Literal('min')))
+#
+# print(get_entities_with_property_with_value(
+#     units_graph, alternative_label, Literal('mm', lang='en')))
+#
+#print(get_entities_with_property_with_value(
+#    units_graph, QUDT.ucumCode, Literal('mm', datatype=QUDT.UCUMcs)))
 
 
 class CSV_Annotator():
@@ -39,7 +68,7 @@ class CSV_Annotator():
         self.json_ld_context = [
             "http://www.w3.org/ns/csvw", {
                 "cco": "http://www.ontologyrepository.com/CommonCoreOntologies/",
-                "mseo": mseo.base_iri,
+                "mseo": "https://purl.matolab.org/mseo/mid/",
                 "label": "http://www.w3.org/2000/01/rdf-schema#label",
                 "xsd": "http://www.w3.org/2001/XMLSchema#"}
         ]
@@ -128,7 +157,7 @@ class CSV_Annotator():
                 row = f.readline()
             return
 
-    def get_header_length(self, file_data : bytes, encoding : str) -> (int, int):
+    def get_header_length(self, file_data: bytes, encoding: str) -> (int, int):
         """
         This method finds the beginning of a header line inside a csv file,
         aswell as the number of columns of the datatable
@@ -163,9 +192,8 @@ class CSV_Annotator():
                 f.seek(-2, os.SEEK_CUR)
                 cur_char = f.read(1)
 
-            num_cols = len(self.sep_regex.findall(last_line.decode(encoding))) + 1
-
-
+            num_cols = len(self.sep_regex.findall(
+                last_line.decode(encoding))) + 1
 
         counter = 0
         for col_count in self.generate_col_counts(file_data=file_data, encoding=encoding):
@@ -176,11 +204,9 @@ class CSV_Annotator():
 
         return counter, num_cols
 
-
-
     ## DEPRECATED
-    def get_header_length_deprecated(self, file_data, separator_string, encoding):
 
+    def get_header_length_deprecated(self, file_data, separator_string, encoding):
         """
         This method finds the beginning of a header line inside a csv file.
         Some csv files begin with additional information before
@@ -288,17 +314,17 @@ class CSV_Annotator():
         return num_header_rows, table_data
 
     def get_unit(self, string):
-        found = list(cco_mu.search(alternative_label=string)) \
-                + list(cco_mu.search(SI_unit_symbol=string)) \
-                + list(mseo.search(alternative_label=string)) \
-                + list(mseo.search(SI_unit_symbol=string)) \
-                + list(qudt.search(symbol=string)) \
-                + list(qudt.search(abbreviation=string)) \
-                + list(qudt.search(ucumCode=string))
+        found = get_entities_with_property_with_value(
+                units_graph, QUDT.Symbol, Literal(string)) \
+                + get_entities_with_property_with_value(
+                    units_graph, QUDT.ucumCode,
+                    Literal(string, datatype=QUDT.UCUMcs)
+                    )
+        # will only look up qudt now, seams more mature
+        # + get_entities_with_property_with_value(units_graph, cco_SI_unit_symbol, Literal(string)) \
+        # + get_entities_with_property_with_value(units_graph, cco_alternative_label, Literal(string, lang='en')) \
         if found:
-            return {"cco:uses_measurement_unit": {"@id": str(found[0].iri), "@type": str(found[0].is_a)}}
-        else:
-            return {}
+            return {"cco:uses_measurement_unit": {"@id": str(found[0]), "@type": units_graph.value(found[0], RDF.type)}}
 
     def is_date(self, string, fuzzy=False):
         try:
@@ -372,7 +398,7 @@ class CSV_Annotator():
 
         # get length of additional header
         header_length, max_columns_additional_header = self.get_header_length(
-            file_data, separator, encoding)
+            file_data, encoding)
 
         if header_length:
             file_string = io.StringIO(file_data.decode(encoding))

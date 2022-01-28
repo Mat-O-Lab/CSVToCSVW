@@ -23,7 +23,7 @@
     "http"
   ],
   "paths": {
-    "/api/create_metafile": {
+    "/api": {
             "post": {
                 "tags": [
                     "JSON-LD"

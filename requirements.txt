@@ -1,0 +1,7 @@
+rdflib
+flask
+flask-bootstrap
+flask_wtf
+flask_swagger_ui
+wtforms
+pandas
