@@ -38,7 +38,7 @@ encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
 
 class StartForm(FlaskForm):
     data_url = URLField(
-        'URL Meta Data',
+        'URL Data File',
         validators=[DataRequired()],
         description='Paste URL to a data file, e.g. csv, TRA'
     )
