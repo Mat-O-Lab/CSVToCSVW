@@ -1,60 +1,17 @@
 version: "3"
 services:
-  nginx_proxy_manager:
-    image: 'jc21/nginx-proxy-manager:latest'
-    container_name: Nginx_Proxy_Manager
-    restart: unless-stopped
-    ports:
-      - '80:80' # Public HTTP Port
-      - '443:443' # Public HTTPS Port
-      - '81:81' # Admin Web Port
-    environment:
-      DB_MYSQL_HOST: "nginx_db"
-      DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: "db_user"
-      DB_MYSQL_PASSWORD: "db_password"
-      DB_MYSQL_NAME: "db_name"
-    volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
-    depends_on:
-      - nginx_db
-    networks:
-      CSVToCSVW:
-        ipv4_address: 10.4.0.2
-
-  nginx_db:
-    image: 'jc21/mariadb-aria:latest'
-    container_name: Nginx_DB
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: 'db_rootpassword'
-      MYSQL_DATABASE: 'db_name'
-      MYSQL_USER: 'db_user'
-      MYSQL_PASSWORD: 'db_password'
-    volumes:
-      - ./data/mysql:/var/lib/mysql
-    networks:
-      CSVToCSVW:
-        ipv4_address: 10.4.0.3
-
-  flask:
+  csvtocsvw_flask:
     build: .
-    container_name: flask
+    container_name: CSVToCSVW_with_Flask
     volumes:
       - .:/src
-    expose:
-      - "5000"
     ports:
       - 5000:5000
     restart: always
     networks:
-      CSVToCSVW:
-        ipv4_address: 10.4.0.4
+      - CSVToCSVW
 
 networks:
   CSVToCSVW:
+    name: CSVToCSVW
     driver: bridge
-    ipam:
-      config:
-        - subnet: 10.4.0.0/16
