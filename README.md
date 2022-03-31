@@ -21,6 +21,5 @@ cd CSVToCSVW
 ```
 Build and start the container.
 ```bash
-docker-compose build
 docker-compose up
 ```
