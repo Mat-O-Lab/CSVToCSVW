@@ -3,7 +3,7 @@ services:
   csvtocsvw_flask:
     build: .
     container_name: CSVToCSVW_with_Flask
-    volumes:
+    #volumes:
       #- .:/src
     ports:
       - 5001:5000
