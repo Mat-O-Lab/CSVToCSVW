@@ -16,8 +16,8 @@ from rdflib import Graph, URIRef, Literal, Namespace
 from rdflib.namespace import RDF, RDFS
 from rdflib.plugins.sparql import prepareQuery
 
-MSEO_URL = 'https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl'
-CCO_URL = 'https://github.com/CommonCoreOntology/CommonCoreOntologies/raw/master/cco-merged/MergedAllCoreOntology-v1.3-2021-03-01.ttl'
+#MSEO_URL = 'https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl'
+#CCO_URL = 'https://github.com/CommonCoreOntology/CommonCoreOntologies/raw/master/cco-merged/MergedAllCoreOntology-v1.3-2021-03-01.ttl'
 #CCOMU_URL = 'https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/master/UnitsOfMeasureOntology.ttl'
 #QUDT_URL = 'http://www.qudt.org/qudt/owl/1.0.0/unit.owl'
 QUDT_UNIT_URL = 'http://qudt.org/2.1/vocab/unit'
@@ -33,9 +33,9 @@ def get_entities_with_property_with_value(graph, property, value):
     return [s for s, p, o in graph.triples((None,  property, value))]
 
 
-mseo_graph = Graph()
-mseo_graph.parse(CCO_URL, format='turtle')
-mseo_graph.parse(MSEO_URL, format='xml')
+#mseo_graph = Graph()
+#mseo_graph.parse(CCO_URL, format='turtle')
+#mseo_graph.parse(MSEO_URL, format='xml')
 
 units_graph = Graph()
 units_graph.parse(QUDT_UNIT_URL, format='turtle')
@@ -43,11 +43,6 @@ units_graph.parse(QUDT_UNIT_URL, format='turtle')
 #units_graph.parse(CCOMU_URL, format='turtle')
 #units_graph.parse(MSEO_URL, format='xml')
 
-
-cco_SI_unit_symbol = URIRef(
-    "http://www.ontologyrepository.com/CommonCoreOntologies/SI_unit_symbol")
-cco_alternative_label = URIRef(
-    "http://www.ontologyrepository.com/CommonCoreOntologies/alternative_label")
 
 # print(get_entities_with_property_with_value(
 #     units_graph, SI_unit_symbol, Literal('min')))
@@ -67,10 +62,13 @@ class CSV_Annotator():
 
         self.json_ld_context = [
             "http://www.w3.org/ns/csvw", {
-                "cco": "http://www.ontologyrepository.com/CommonCoreOntologies/",
-                "mseo": "https://purl.matolab.org/mseo/mid/",
+                #"cco": "http://www.ontologyrepository.com/CommonCoreOntologies/",
+                #"mseo": "https://purl.matolab.org/mseo/mid/",
+                "oa": "http://www.w3.org/ns/oa#",
                 "label": "http://www.w3.org/2000/01/rdf-schema#label",
-                "xsd": "http://www.w3.org/2001/XMLSchema#"}
+                "xsd": "http://www.w3.org/2001/XMLSchema#",
+                "qudt": "http://qudt.org/schema/qudt/"
+                }
         ]
         self.umlaute_dict = {
             '\u00e4': 'ae',  # U+00E4	   \xc3\xa4
@@ -81,7 +79,6 @@ class CSV_Annotator():
             '\u00dc': 'Ue',  # U+00DC	   \xc3\x9c
             '\u00df': 'ss',  # U+00DF	   \xc3\x9f
         }
-
     def open_file(self, uri=''):
         try:
             uri_parsed = urlparse(uri)
@@ -314,6 +311,8 @@ class CSV_Annotator():
         return num_header_rows, table_data
 
     def get_unit(self, string):
+        #get rid of superscripts
+        string=string.replace('N/mm\u00b2','N.m.m-2')
         found = get_entities_with_property_with_value(
                 units_graph, QUDT.Symbol, Literal(string)) \
                 + get_entities_with_property_with_value(
@@ -321,10 +320,8 @@ class CSV_Annotator():
                     Literal(string, datatype=QUDT.UCUMcs)
                     )
         # will only look up qudt now, seams more mature
-        # + get_entities_with_property_with_value(units_graph, cco_SI_unit_symbol, Literal(string)) \
-        # + get_entities_with_property_with_value(units_graph, cco_alternative_label, Literal(string, lang='en')) \
         if found:
-            return {"cco:uses_measurement_unit": {"@id": str(found[0]), "@type": units_graph.value(found[0], RDF.type)}}
+            return {"qudt:unit": {"@id": str(found[0]), "@type": units_graph.value(found[0], RDF.type)}}
 
     def is_date(self, string, fuzzy=False):
         try:
@@ -364,20 +361,20 @@ class CSV_Annotator():
         if pd.isna(value_string):
             return {}
         elif self.get_value_type(value_string) == 'INT':
-            return {'cco:has_integer_value': {'@value': value_string, '@type': 'xsd:integer'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:integer'}}
         elif self.get_value_type(value_string) == 'BOOL':
-            return {'cco:has_bolean_value': {'@value': value_string, '@type': 'xsd:boolean'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:boolean'}}
         elif self.get_value_type(value_string) == 'FLOAT':
-            return {'cco:has_decimal_value': {'@value': value_string, '@type': 'xsd:decimal'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:decimal'}}
         elif self.get_value_type(value_string) == 'DATE':
-            return {'cco:has_datetime_value': {'@value': str(parse(value_string)), '@type': 'xsd:dateTime'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string)), '@type': 'xsd:dateTime'}}
         else:
             # check if its a unit
             unit_dict = self.get_unit(value_string)
             if unit_dict:
                 return unit_dict
             else:
-                return {'cco:has_text_value': {'@value': value_string, '@type': 'xsd:string'}}
+                return {'@value': value_string, '@type': 'xsd:string'}
 
     def make_id(self, string, namespace=None):
         for k in self.umlaute_dict.keys():
@@ -418,18 +415,20 @@ class CSV_Annotator():
     def serialize_header(self, header_data, file_namespace=None):
 
         params = list()
-        info_line_iri = "cco:InformationLine"
+        info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
             para_dict = {'@id': self.make_id(parm_name, file_namespace)+str(
                 data['row']), 'label': parm_name, '@type': info_line_iri}
+            body={}
             for col_name, value in data.items():
                 # print(parm_name,col_name, value)
                 if col_name == 'row':
-                    para_dict['mseo:has_row_index'] = {
+                    para_dict['rownum'] = {
                         "@value": data['row'], "@type": "xsd:integer"}
                 else:
-                    para_dict = {**para_dict, **self.describe_value(value)}
+                    body = {**body, **self.describe_value(value)}
+            para_dict['oa:hasBody']=body
             params.append(para_dict)
         # print(params)
         return params
