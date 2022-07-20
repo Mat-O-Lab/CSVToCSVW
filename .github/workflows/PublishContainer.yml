@@ -20,5 +20,5 @@ jobs:
           registry: ghcr.io
           username: "ThHanke"
           password: ${{ secrets.GITHUB_TOKEN }}
-          repository: ThHanke/csv2csvw
+          repository: thhanke/csv2csvw
           tags: latest
