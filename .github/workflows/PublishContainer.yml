@@ -14,9 +14,14 @@ jobs:
     steps:
       - name: "Build:checkout"
         uses: actions/checkout@v2
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: latest
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          #context: "{{defaultContext}}:mysubdir"
           push: true
-          tags: thhanke/csvtocsvw:latest
+          tags: ${{ steps.meta.outputs.tags }}
