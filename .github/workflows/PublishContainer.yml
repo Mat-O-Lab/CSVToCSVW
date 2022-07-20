@@ -18,7 +18,7 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           registry: ghcr.io
-          username: "ThHanke"
+          username: "thhanke"
           password: ${{ secrets.GITHUB_TOKEN }}
           repository: thhanke/csv2csvw
           tags: latest
