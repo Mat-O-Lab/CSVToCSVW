@@ -18,7 +18,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/thhanke/csvtocsvw
+          images: ghcr.io/${{ github.repository }}
           tags: latest
       - name: Build and push
         uses: docker/build-push-action@v3
