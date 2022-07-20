@@ -1,6 +1,6 @@
 name: TestExamples
 
-on: [push]
+on: [workflow_dispatch]
 jobs:
   CSV2CSVW:
     runs-on: ubuntu-latest
