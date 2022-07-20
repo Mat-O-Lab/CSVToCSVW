@@ -9,16 +9,14 @@ on: [workflow_dispatch]
 
 jobs:
   build:
-    name: 'Build'
+    name: 'Build and push to ghcr.io'
     runs-on: ubuntu-latest
     steps:
       - name: "Build:checkout"
         uses: actions/checkout@v2
-      - name: 'Build:dockerimage'
-        uses: docker/build-push-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v3
         with:
-          registry: ghcr.io
-          username: "thhanke"
-          password: ${{ secrets.GITHUB_TOKEN }}
-          repository: thhanke/csv2csvw
-          tags: latest
+          #context: "{{defaultContext}}:mysubdir"
+          push: true
+          tags: thhanke/csvtocsvw:latest
