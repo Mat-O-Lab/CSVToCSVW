@@ -21,6 +21,7 @@ jobs:
         run: |
           echo "${{ steps.diff.outputs.diff }}"
           docker-compose up
+          sleep 10
       - name: create csvw json-ld
         #if: ${{ steps.diff.outputs.diff }}
         run: |
