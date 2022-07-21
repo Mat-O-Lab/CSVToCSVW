@@ -22,11 +22,12 @@ jobs:
         run: |
           for file in *.csv 
             do
-              echo "@$file"
+              echo "$file"
               RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/$file\"}")
               FILEDATA=$RESULT" | jq -r '.filedata'
               FILENAME=$RESULT" | jq -r '.filename'
-              echo "$FILEDATA" > "$FILENAME"
+              echo "$FILENAME"
+              echo "$FILEDATA" > "./$FILENAME"
             done
       - name: Commit files # commit the output folder
         run: |
