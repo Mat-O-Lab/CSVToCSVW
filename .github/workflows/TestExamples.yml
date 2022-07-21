@@ -10,7 +10,7 @@ jobs:
           fetch-depth: 0        
       - name: run app
         run: |
-          docker-compose up
+          docker-compose up -d
           sleep 10
       - name: create csvw json-ld
         run: |
@@ -26,9 +26,7 @@ jobs:
           git add examples/\*
           git commit -m "created example json-ld files"  
       - name: Push changes # push the output folder to your repo
-        if: ${{ steps.diff.outputs.diff }}
         uses: ad-m/github-push-action@master
         with:
-          #branch: main #ignore if your branch is master
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
