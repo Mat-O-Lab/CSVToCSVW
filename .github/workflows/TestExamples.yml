@@ -1,6 +1,10 @@
 name: TestExamples
 
-on: [workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 env:
   WORKING_DIR: ./examples/
