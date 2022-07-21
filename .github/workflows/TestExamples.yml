@@ -17,7 +17,7 @@ jobs:
         run: |
           for file in examples/rdf/*.csv 
             do 
-              RESULT=$(curl -X POST "http://localhost:5000/api" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"@$file\"}");
+              RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"@$file\"}");
               echo "$RESULT";
               echo "$RESULT" | jq -r '.filename';
             done
