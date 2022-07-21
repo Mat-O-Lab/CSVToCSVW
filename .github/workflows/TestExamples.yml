@@ -19,8 +19,9 @@ jobs:
             do
               echo "@$file"
               RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/$file\"}")
-              echo "$RESULT"
-              echo "$RESULT" | jq -r '.filename'
+              FILEDATA=$RESULT" | jq -r '.filedata'
+              FILENAME=$RESULT" | jq -r '.filename'
+              echo $FILEDATA > examples/$FILENAME
             done
       - name: Commit files # commit the output folder
         run: |
