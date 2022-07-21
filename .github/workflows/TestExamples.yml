@@ -34,13 +34,8 @@ jobs:
               echo $FILEDATA > $FILENAME
             done
       - name: Commit files # commit the output folder
-        run: |
-          git config --local user.email "csvtocsvw.action@github.com";
-          git config --local user.name "Test Examples Action";
-          git add examples/\*;
-          git commit -m "created example json-ld files";  
-      - name: Push changes # push the output folder to your repo
-        uses: ad-m/github-push-action@master
+        uses: EndBug/add-and-commit@v9
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
+          message: 'updated example output'
+          add: '*.* --force'
+          cwd: './examples/'
