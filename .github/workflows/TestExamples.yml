@@ -16,8 +16,9 @@ jobs:
       - name: create csvw json-ld
         run: |
           for file in examples/rdf/*.csv 
-            do 
-              RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"@$file\"}");
+            do
+              echo "@file";
+              RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/@file\"}");
               echo "$RESULT";
               echo "$RESULT" | jq -r '.filename';
             done
