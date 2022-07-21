@@ -18,7 +18,7 @@ jobs:
           for file in examples/*.csv 
             do
               echo "@$file"
-              RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"@$file\"}")
+              RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/$file\"}")
               echo "$RESULT"
               echo "$RESULT" | jq -r '.filename'
             done
