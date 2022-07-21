@@ -8,30 +8,18 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0        
-      - name: Check changed files
-        id: diff
-        run: |
-          # See https://github.community/t/check-pushed-file-changes-with-git-diff-tree-in-github-actions/17220/10
-          export DIFF=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }} examples/*.csv)
-          echo "$DIFF"
-          # Escape newlines (replace \n with %0A)
-          echo "::set-output name=diff::$( echo "$DIFF" | sed ':a;N;$!ba;s/\n/%0A/g' )"
       - name: run app
-        #if: ${{ steps.diff.outputs.diff }}
         run: |
-          echo "${{ steps.diff.outputs.diff }}"
           docker-compose up
           sleep 10
       - name: create csvw json-ld
-        #if: ${{ steps.diff.outputs.diff }}
         run: |
-          for file in ${{ steps.diff.outputs.diff }}; 
+          for file in examples/rdf/*.csv 
             do 
-              RESULT=$(curl -X POST "http://localhost:5000/api" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"@$file",\"separator\":\"auto\",\"encoding\":\"auto\"}");
+              RESULT=$(curl -X POST "http://localhost:5000/api" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"@$file"}");
               echo "$RESULT"
             done
       - name: Commit files # commit the output folder
-        if: ${{ steps.diff.outputs.diff }}
         run: |
           git config --local user.email "csvtocsvw.action@github.com";
           git config --local user.name "Test Examples Action"
