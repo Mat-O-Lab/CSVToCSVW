@@ -1,8 +1,12 @@
 name: TestExamples
 
 on: [workflow_dispatch]
+
+env:
+  WORKING_DIR: ./examples/
+
 jobs:
-  CSV2CSVW:
+  TestExamples:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,14 +18,15 @@ jobs:
           sleep 10
           docker ps -a
       - name: create csvw json-ld
+        working-directory: ${{env.WORKING_DIR}}
         run: |
-          for file in examples/*.csv 
+          for file in *.csv 
             do
               echo "@$file"
-              RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/$file\"}")
+              RESULT=$(curl -X POST "http://localhost:5001/api" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/$file\"}")
               FILEDATA=$RESULT" | jq -r '.filedata'
               FILENAME=$RESULT" | jq -r '.filename'
-              echo $FILEDATA > examples/$FILENAME
+              echo $FILEDATA > $FILENAME
             done
       - name: Commit files # commit the output folder
         run: |
