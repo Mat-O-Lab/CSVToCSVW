@@ -1,5 +1,5 @@
 # CSVToCSVW
-[![Publish Docker image](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml/badge.svg?branch=main&event=release)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml)
+[![Publish Docker image](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml/badge.svg)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml)
 [![Test Examples](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/TestExamples.yml/badge.svg?branch=main&event=push)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/TestExamples.yml)
 
 Generates JSON-LD for various types CSVs, it adopts the Vocabulary provided by w3c at https://www.w3.org/ns/csvw to describe structure and information.
