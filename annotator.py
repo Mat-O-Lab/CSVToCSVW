@@ -20,7 +20,8 @@ from rdflib.plugins.sparql import prepareQuery
 #CCO_URL = 'https://github.com/CommonCoreOntology/CommonCoreOntologies/raw/master/cco-merged/MergedAllCoreOntology-v1.3-2021-03-01.ttl'
 #CCOMU_URL = 'https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/master/UnitsOfMeasureOntology.ttl'
 #QUDT_URL = 'http://www.qudt.org/qudt/owl/1.0.0/unit.owl'
-QUDT_UNIT_URL = 'http://qudt.org/2.1/vocab/unit'
+#QUDT_UNIT_URL = 'http://qudt.org/2.1/vocab/unit'
+QUDT_UNIT_URL = 'https://github.com/qudt/qudt-public-repo/raw/master/vocab/unit/VOCAB_QUDT-UNITS-ALL-v2.1.ttl'
 QUDT = Namespace("http://qudt.org/schema/qudt/")
 
 sub_classes = prepareQuery(

@@ -1,3 +1,4 @@
+from distutils.dir_util import copy_tree
 import os
 import base64
 
@@ -115,6 +116,10 @@ def create_annotator():
 def api():
     if request.method == "POST":
         content = request.get_json()
+        if 'encoding' not in content.keys():
+            content['encoding']='auto'
+        if 'separator' not in content.keys():
+            content['separator']='auto'
         annotator = CSV_Annotator(
             encoding=content['encoding'], separator=content['separator'])
         filename, file_data = annotator.process(content['data_url'])

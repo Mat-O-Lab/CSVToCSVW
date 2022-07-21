@@ -71,21 +71,25 @@
     "schemas" : {
       "Converter":{
               "description": "Conversion object handling parsing of csv and metafile return",
-              "required": "true",
+              "required": {"data_url"},
               "type": "object",
               "properties": {
                 "data_url":{
                   "type": "string",
                   "format": "uri",
-                  "description": "Url to raw csv"
+                  "description": "Url to raw csv",
+                  "example": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"
                 },
                 "separator" : {
                   "type" : "string",
-                  "default" : "auto"
+                  "default" : "auto",
+                  "example": "auto"
+
                 },
                 "encoding" : {
                   "type" : "string",
-                  "default" : "auto"
+                  "default" : "auto",
+                  "example": "auto"
                 }
               }
 
