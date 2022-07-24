@@ -31,7 +31,7 @@ jobs:
               FILEDATA=$(echo $RESULT | jq -r '.filedata')
               FILENAME=$(echo $RESULT | jq -r '.filename')
               echo $FILENAME
-              echo -e $FILEDATA > $FILENAME
+              echo -e $FILEDATA | jq . > $FILENAME
             done
       - name: Commit files # commit the output folder
         uses: EndBug/add-and-commit@v9
