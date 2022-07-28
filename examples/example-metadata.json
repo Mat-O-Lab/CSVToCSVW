@@ -11,7 +11,7 @@
   "url": "example.csv",
   "notes": [
     {
-      "@id": "./AktuelleProbe0",
+      "@id": "AktuelleProbe0",
       "label": "aktuelle Probe",
       "@type": "oa:Annotation",
       "rownum": {
@@ -27,7 +27,7 @@
       }
     },
     {
-      "@id": "./Einspannlaenge1",
+      "@id": "Einspannlaenge1",
       "label": "Einspannlänge",
       "@type": "oa:Annotation",
       "rownum": {
@@ -47,7 +47,7 @@
       }
     },
     {
-      "@id": "./Messlaenge2",
+      "@id": "Messlaenge2",
       "label": "Messlänge",
       "@type": "oa:Annotation",
       "rownum": {
@@ -60,7 +60,7 @@
       }
     },
     {
-      "@id": "./ProbenbreiteB03",
+      "@id": "ProbenbreiteB03",
       "label": "Probenbreite b0",
       "@type": "oa:Annotation",
       "rownum": {
@@ -80,7 +80,7 @@
       }
     },
     {
-      "@id": "./ProbendickeA04",
+      "@id": "ProbendickeA04",
       "label": "Probendicke a0",
       "@type": "oa:Annotation",
       "rownum": {
@@ -100,7 +100,7 @@
       }
     },
     {
-      "@id": "./Pruefgeschwindigkeit5",
+      "@id": "Pruefgeschwindigkeit5",
       "label": "Prüfgeschwindigkeit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -120,7 +120,7 @@
       }
     },
     {
-      "@id": "./Vorkraft6",
+      "@id": "Vorkraft6",
       "label": "Vorkraft",
       "@type": "oa:Annotation",
       "rownum": {
@@ -140,7 +140,7 @@
       }
     },
     {
-      "@id": "./WegNachBruch7",
+      "@id": "WegNachBruch7",
       "label": "Weg nach Bruch",
       "@type": "oa:Annotation",
       "rownum": {
@@ -160,7 +160,7 @@
       }
     },
     {
-      "@id": "./EModul8",
+      "@id": "EModul8",
       "label": "E-Modul",
       "@type": "oa:Annotation",
       "rownum": {
@@ -180,7 +180,7 @@
       }
     },
     {
-      "@id": "./DehnungBeiFmax9",
+      "@id": "DehnungBeiFmax9",
       "label": "Dehnung bei Fmax",
       "@type": "oa:Annotation",
       "rownum": {
@@ -200,7 +200,7 @@
       }
     },
     {
-      "@id": "./DehnungBeiBruch10",
+      "@id": "DehnungBeiBruch10",
       "label": "Dehnung bei Bruch",
       "@type": "oa:Annotation",
       "rownum": {
@@ -220,7 +220,7 @@
       }
     },
     {
-      "@id": "./ObereStreckgrenze11",
+      "@id": "ObereStreckgrenze11",
       "label": "obere Streckgrenze",
       "@type": "oa:Annotation",
       "rownum": {
@@ -233,7 +233,7 @@
       }
     },
     {
-      "@id": "./Kraftmaximum12",
+      "@id": "Kraftmaximum12",
       "label": "Kraftmaximum",
       "@type": "oa:Annotation",
       "rownum": {
@@ -253,7 +253,7 @@
       }
     },
     {
-      "@id": "./Bruchkraft13",
+      "@id": "Bruchkraft13",
       "label": "Bruchkraft",
       "@type": "oa:Annotation",
       "rownum": {
@@ -266,7 +266,7 @@
       }
     },
     {
-      "@id": "./GeschwindigkeitEModul14",
+      "@id": "GeschwindigkeitEModul14",
       "label": "Geschwindigkeit E-Modul",
       "@type": "oa:Annotation",
       "rownum": {
@@ -283,7 +283,7 @@
       }
     },
     {
-      "@id": "./Datum15",
+      "@id": "Datum15",
       "label": "Datum",
       "@type": "oa:Annotation",
       "rownum": {
@@ -309,7 +309,7 @@
     "columns": [
       {
         "titles": "Prüfzeit",
-        "@id": "./Pruefzeit",
+        "@id": "Pruefzeit",
         "@type": "Column",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/SEC",
@@ -318,7 +318,7 @@
       },
       {
         "titles": "Standardweg",
-        "@id": "./Standardweg",
+        "@id": "Standardweg",
         "@type": "Column",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -327,7 +327,7 @@
       },
       {
         "titles": "Standardkraft",
-        "@id": "./Standardkraft",
+        "@id": "Standardkraft",
         "@type": "Column",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/N",
@@ -336,7 +336,7 @@
       },
       {
         "titles": "Dehnung",
-        "@id": "./Dehnung",
+        "@id": "Dehnung",
         "@type": "Column",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/PERCENT",
@@ -345,7 +345,7 @@
       },
       {
         "titles": "Traverse abs.",
-        "@id": "./TraverseAbs",
+        "@id": "TraverseAbs",
         "@type": "Column",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/MilliM",
