@@ -451,7 +451,8 @@ class CSV_Annotator():
         # init results dict
         data_root_url = "https://github.com/Mat-O-Lab/resources/"
 
-        file_namespace = ''
+        if not file_namespace:
+            file_namespace = ''
         metadata_csvw = dict()
         metadata_csvw["@context"] = self.json_ld_context        
 
@@ -465,7 +466,7 @@ class CSV_Annotator():
         if header_length:
             # print("serialze additinal header")
             metadata_csvw["notes"] = self.serialize_header(
-                header_data, file_namespace)
+                header_data, file_namespace=file_name)
 
         # read tabular data structure, and determine number of header lines for column description used
         header_lines, table_data = self.get_num_header_rows_and_dataframe(
