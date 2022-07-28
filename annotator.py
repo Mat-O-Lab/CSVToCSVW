@@ -451,11 +451,11 @@ class CSV_Annotator():
         # init results dict
         data_root_url = "https://github.com/Mat-O-Lab/resources/"
 
-        file_namespace = None
+        file_namespace = ""
         metadata_csvw = dict()
         metadata_csvw["@context"] = self.json_ld_context
 
-        # metadata_csvw["@id"]=file_namespace
+        metadata_csvw["@id"]=file_namespace
         metadata_csvw["url"] = file_name
 
         # read additional header lines and provide as meta in results dict
