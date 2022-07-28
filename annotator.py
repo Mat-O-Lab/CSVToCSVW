@@ -383,7 +383,7 @@ class CSV_Annotator():
         if namespace:
             return namespace + ':' + re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
         else:
-            return './' + re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
+            return re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
 
     def get_additional_header(self, file_data, separator, encoding):
         """
