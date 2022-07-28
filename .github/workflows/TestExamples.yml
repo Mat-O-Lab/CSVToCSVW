@@ -19,7 +19,7 @@ jobs:
       - name: run app
         run: |
           docker-compose up -d
-          sleep 10
+          sleep 20
           docker ps -a
       - name: create csvw json-ld
         working-directory: ${{env.WORKING_DIR}}
