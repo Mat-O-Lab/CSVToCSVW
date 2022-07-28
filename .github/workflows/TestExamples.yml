@@ -19,11 +19,12 @@ jobs:
       - name: run app
         run: |
           docker-compose up -d
-          sleep 20
+          sleep 5
           docker ps -a
       - name: create csvw json-ld
         working-directory: ${{env.WORKING_DIR}}
         run: |
+          docker logs csvtocsvw
           for file in *.csv 
             do
               echo "$file"
@@ -33,6 +34,7 @@ jobs:
               echo $FILENAME
               jq . <<< "$FILEDATA" > $FILENAME
             done
+          docker logs csvtocsvw
       - name: Commit files # commit the output folder
         uses: EndBug/add-and-commit@v9
         with:
