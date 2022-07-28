@@ -7,3 +7,4 @@ flask_wtf
 flask_swagger_ui
 wtforms
 pandas
+html5lib
