@@ -376,11 +376,11 @@ class CSV_Annotator():
             else:
                 return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
 
-    def make_id(self, string, namespace=None):
+    def make_id(self, string, filename=None):
         for k in self.umlaute_dict.keys():
             string = string.replace(k, self.umlaute_dict[k])
-        if namespace:
-            return namespace + ':' + re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
+        if filename:
+            return filename + '/' + re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
         else:
             return re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
 
@@ -412,13 +412,13 @@ class CSV_Annotator():
         else:
             return None, 0
 
-    def serialize_header(self, header_data, file_namespace=None):
+    def serialize_header(self, header_data, filename=None):
 
         params = list()
         info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
-            para_dict = {'@id': self.make_id(parm_name, file_namespace)+str(
+            para_dict = {'@id': self.make_id(parm_name, filename)+str(
                 data['row']), 'label': parm_name, '@type': info_line_iri}
             body={}
             for col_name, value in data.items():
@@ -466,7 +466,7 @@ class CSV_Annotator():
         if header_length:
             # print("serialze additinal header")
             metadata_csvw["notes"] = self.serialize_header(
-                header_data, file_namespace=file_name)
+                header_data, filename=file_name)
 
         # read tabular data structure, and determine number of header lines for column description used
         header_lines, table_data = self.get_num_header_rows_and_dataframe(
