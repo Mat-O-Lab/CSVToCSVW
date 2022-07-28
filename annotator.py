@@ -433,7 +433,7 @@ class CSV_Annotator():
         # print(params)
         return params
 
-    def process_file(self, file_name, file_data, separator, encoding):
+    def process_file(self, file_name, file_data, separator, encoding, file_namespace=None):
         """
 
         :param file_name: name of the file we want to process

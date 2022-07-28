@@ -3,8 +3,8 @@ services:
   csvtocsvw:
     build: .
     container_name: csvtocsvw
-    #volumes:
-      #- .:/src
+    volumes:
+      - .:/src
     ports:
       - 5001:5000
     restart: always
