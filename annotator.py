@@ -374,7 +374,7 @@ class CSV_Annotator():
             if unit_dict:
                 return unit_dict
             else:
-                return {"@type": "qudt:Quantity",'qudt:value', {'@value': value_string, '@type': 'xsd:string'}}
+                return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
 
     def make_id(self, string, namespace=None):
         for k in self.umlaute_dict.keys():
