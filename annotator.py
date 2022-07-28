@@ -453,9 +453,7 @@ class CSV_Annotator():
 
         file_namespace = ''
         metadata_csvw = dict()
-        metadata_csvw["@context"] = [self.json_ld_context,
-            "@base": "http://example.com/document.jsonld"]
-        
+        metadata_csvw["@context"] = self.json_ld_context        
 
         metadata_csvw["@id"]=file_namespace
         metadata_csvw["url"] = file_name
