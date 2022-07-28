@@ -25,8 +25,7 @@ QUDT_UNIT_URL = 'https://github.com/qudt/qudt-public-repo/raw/master/vocab/unit/
 QUDT = Namespace("http://qudt.org/schema/qudt/")
 
 sub_classes = prepareQuery(
-    "SELECT ?entity WHERE {?entity rdfs:subClassOf* ?parent}",
-    initNs={"rdf": RDF, "rdsf": RDFS},
+    "SELECT ?entity WHERE {?entity rdfs:subClassOf* ?parent}"
     )
 
 
