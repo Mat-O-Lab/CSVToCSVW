@@ -418,9 +418,8 @@ class CSV_Annotator():
         info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
-            #para_dict = {'@id': self.make_id(parm_name)+str(
-            #    data['row']), 'label': parm_name, '@type': info_line_iri}
-            para_dict = {'label': parm_name, '@type': info_line_iri}
+            para_dict = {'@id': self.make_id(parm_name)+str(
+                data['row']), 'label': parm_name, '@type': info_line_iri}
             body={}
             for col_name, value in data.items():
                 # print(parm_name,col_name, value)
@@ -493,17 +492,14 @@ class CSV_Annotator():
                 else:
                     unit_json = {}
                 json_str = {
-                    #**{'titles': title, '@id': self.make_id(title), "@type": "Column"}, **unit_json}
-                    **{'titles': title, "@type": "Column"}, **unit_json}
+                    **{'titles': title, '@id': self.make_id(title), "@type": "Column"}, **unit_json}
                 column_json.append(json_str)
             metadata_csvw["tableSchema"] = {"columns": column_json}
 
         else:
             column_json = list()
             for index, (title, unit_str) in enumerate(table_data.columns):
-                #json_str = {**{'titles': title, '@id': self.make_id(title), "@type": "Column"},
-                #            **self.get_unit(unit_str)}
-                json_str = {**{'titles': title, "@type": "Column"},
+                json_str = {**{'titles': title, '@id': self.make_id(title), "@type": "Column"},
                             **self.get_unit(unit_str)}
                 column_json.append(json_str)
             metadata_csvw["tableSchema"] = {"columns": column_json}
