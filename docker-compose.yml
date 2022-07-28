@@ -1,17 +1,17 @@
 version: "3"
 services:
-  csvtocsvw_flask:
+  csvtocsvw:
     build: .
-    container_name: CSVToCSVW_with_Flask
+    container_name: csvtocsvw
     #volumes:
       #- .:/src
     ports:
       - 5001:5000
     restart: always
     networks:
-      - CSVToCSVW
+      - csvtocsvw_net
 
 networks:
-  CSVToCSVW:
-    name: CSVToCSVW
+  csvtocsvw_net:
+    name: csvtocsvw_net
     driver: bridge
