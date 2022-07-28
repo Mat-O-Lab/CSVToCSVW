@@ -382,7 +382,7 @@ class CSV_Annotator():
         if namespace:
             return namespace + ':' + re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
         else:
-            return '/'+re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
+            return re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
 
     def get_additional_header(self, file_data, separator, encoding):
         """
@@ -451,7 +451,7 @@ class CSV_Annotator():
         # init results dict
         data_root_url = "https://github.com/Mat-O-Lab/resources/"
 
-        file_namespace = None
+        file_namespace = ''
         metadata_csvw = dict()
         metadata_csvw["@context"] = [self.json_ld_context,
             "@base": "http://example.com/document.jsonld"]
