@@ -492,7 +492,7 @@ class CSV_Annotator():
                 else:
                     unit_json = {}
                 json_str = {
-                    **{'titles': title, '@id': self.make_id(title), "@type": "Column"}, **unit_json}
+                    **{'titles': title, '@id': self.make_id(title,filename=file_name), "@type": "Column"}, **unit_json}
                 column_json.append(json_str)
             metadata_csvw["tableSchema"] = {"columns": column_json}
 
