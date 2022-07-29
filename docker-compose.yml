@@ -1,10 +1,10 @@
 version: "3"
 services:
   csvtocsvw:
-    build: .
+    image: ghcr.io/mat-o-lab/csvtocsvw:latest
     container_name: csvtocsvw
-    volumes:
-      - .:/src
+    #volumes:
+    #  - .:/src
     ports:
       - 5001:5000
     restart: always
