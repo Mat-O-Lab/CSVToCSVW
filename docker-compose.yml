@@ -1,17 +1,12 @@
 version: "3"
 services:
   csvtocsvw:
-    image: ghcr.io/mat-o-lab/csvtocsvw:latest
-    container_name: csvtocsvw
-<<<<<<< HEAD
+    image: "ghcr.io/mat-o-lab/csvtocsvw:latest"
+    container_name: "csvtocsvw"
     environment:
-      APP_MODE: development
+      APP_MODE: "development"
     volumes:
       - ./:/src
-=======
-    #volumes:
-    #  - .:/src
->>>>>>> 55ee734be919d94c16d9ea1c1f785ad0a5cc9bab
     ports:
       - 5004:5000
     restart: always
