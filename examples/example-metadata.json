@@ -12,7 +12,7 @@
   "url": "example.csv",
   "notes": [
     {
-      "@id": "example.csv/AktuelleProbe0",
+      "@id": "AktuelleProbe0",
       "label": "aktuelle Probe",
       "@type": "oa:Annotation",
       "rownum": {
@@ -28,7 +28,7 @@
       }
     },
     {
-      "@id": "example.csv/Einspannlaenge1",
+      "@id": "Einspannlaenge1",
       "label": "Einspannlänge",
       "@type": "oa:Annotation",
       "rownum": {
@@ -48,7 +48,7 @@
       }
     },
     {
-      "@id": "example.csv/Messlaenge2",
+      "@id": "Messlaenge2",
       "label": "Messlänge",
       "@type": "oa:Annotation",
       "rownum": {
@@ -64,7 +64,7 @@
       }
     },
     {
-      "@id": "example.csv/ProbenbreiteB03",
+      "@id": "ProbenbreiteB03",
       "label": "Probenbreite b0",
       "@type": "oa:Annotation",
       "rownum": {
@@ -84,7 +84,7 @@
       }
     },
     {
-      "@id": "example.csv/ProbendickeA04",
+      "@id": "ProbendickeA04",
       "label": "Probendicke a0",
       "@type": "oa:Annotation",
       "rownum": {
@@ -104,7 +104,7 @@
       }
     },
     {
-      "@id": "example.csv/Pruefgeschwindigkeit5",
+      "@id": "Pruefgeschwindigkeit5",
       "label": "Prüfgeschwindigkeit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -124,7 +124,7 @@
       }
     },
     {
-      "@id": "example.csv/Vorkraft6",
+      "@id": "Vorkraft6",
       "label": "Vorkraft",
       "@type": "oa:Annotation",
       "rownum": {
@@ -144,7 +144,7 @@
       }
     },
     {
-      "@id": "example.csv/WegNachBruch7",
+      "@id": "WegNachBruch7",
       "label": "Weg nach Bruch",
       "@type": "oa:Annotation",
       "rownum": {
@@ -164,7 +164,7 @@
       }
     },
     {
-      "@id": "example.csv/EModul8",
+      "@id": "EModul8",
       "label": "E-Modul",
       "@type": "oa:Annotation",
       "rownum": {
@@ -184,7 +184,7 @@
       }
     },
     {
-      "@id": "example.csv/DehnungBeiFmax9",
+      "@id": "DehnungBeiFmax9",
       "label": "Dehnung bei Fmax",
       "@type": "oa:Annotation",
       "rownum": {
@@ -204,7 +204,7 @@
       }
     },
     {
-      "@id": "example.csv/DehnungBeiBruch10",
+      "@id": "DehnungBeiBruch10",
       "label": "Dehnung bei Bruch",
       "@type": "oa:Annotation",
       "rownum": {
@@ -224,7 +224,7 @@
       }
     },
     {
-      "@id": "example.csv/ObereStreckgrenze11",
+      "@id": "ObereStreckgrenze11",
       "label": "obere Streckgrenze",
       "@type": "oa:Annotation",
       "rownum": {
@@ -240,7 +240,7 @@
       }
     },
     {
-      "@id": "example.csv/Kraftmaximum12",
+      "@id": "Kraftmaximum12",
       "label": "Kraftmaximum",
       "@type": "oa:Annotation",
       "rownum": {
@@ -260,7 +260,7 @@
       }
     },
     {
-      "@id": "example.csv/Bruchkraft13",
+      "@id": "Bruchkraft13",
       "label": "Bruchkraft",
       "@type": "oa:Annotation",
       "rownum": {
@@ -276,7 +276,7 @@
       }
     },
     {
-      "@id": "example.csv/GeschwindigkeitEModul14",
+      "@id": "GeschwindigkeitEModul14",
       "label": "Geschwindigkeit E-Modul",
       "@type": "oa:Annotation",
       "rownum": {
@@ -292,7 +292,7 @@
       }
     },
     {
-      "@id": "example.csv/Datum15",
+      "@id": "Datum15",
       "label": "Datum",
       "@type": "oa:Annotation",
       "rownum": {

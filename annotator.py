@@ -420,7 +420,7 @@ class CSV_Annotator():
         info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
-            para_dict = {'@id': self.make_id(parm_name, filename)+str(
+            para_dict = {'@id': self.make_id(parm_name)+str(
                 data['row']), 'label': parm_name, '@type': info_line_iri}
             body={}
             for col_name, value in data.items():
@@ -492,7 +492,7 @@ class CSV_Annotator():
                 else:
                     unit_json = {}
                 json_str = {
-                    **{'titles': title, '@id': self.make_id(title,filename=file_name), "@type": "Column"}, **unit_json}
+                    **{'titles': title, '@id': self.make_id(title), "@type": "Column"}, **unit_json}
                 column_json.append(json_str)
             metadata_csvw["tableSchema"] = {"columns": column_json}
 
