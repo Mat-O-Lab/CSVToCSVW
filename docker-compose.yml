@@ -3,10 +3,12 @@ services:
   csvtocsvw:
     build: .
     container_name: csvtocsvw
+    environment:
+      APP_MODE: development
     volumes:
-      - .:/src
+      - ./:/src
     ports:
-      - 5001:5000
+      - 5004:5000
     restart: always
     networks:
       - csvtocsvw_net

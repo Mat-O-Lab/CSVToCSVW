@@ -10,6 +10,8 @@ from flask_bootstrap import Bootstrap
 from wtforms import URLField, SelectField
 from wtforms.validators import DataRequired
 
+import logging
+
 from config import config
 from annotator import CSV_Annotator
 
@@ -20,6 +22,7 @@ app.config.from_object(config[config_name])
 
 bootstrap = Bootstrap(app)
 
+logging.basicConfig(level=logging.DEBUG)
 
 SWAGGER_URL = "/api/docs"
 API_URL = "/static/swagger.json"

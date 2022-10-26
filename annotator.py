@@ -322,6 +322,8 @@ class CSV_Annotator():
         # will only look up qudt now, seams more mature
         if found:
             return {"qudt:unit": {"@id": str(found[0]), "@type": units_graph.value(found[0], RDF.type)}}
+        else:
+            return {}
 
     def is_date(self, string, fuzzy=False):
         try:
@@ -462,7 +464,6 @@ class CSV_Annotator():
         # read additional header lines and provide as meta in results dict
         header_data, header_length = self.get_additional_header(
             file_data, separator, encoding)
-
         if header_length:
             # print("serialze additinal header")
             metadata_csvw["notes"] = self.serialize_header(
@@ -471,7 +472,6 @@ class CSV_Annotator():
         # read tabular data structure, and determine number of header lines for column description used
         header_lines, table_data = self.get_num_header_rows_and_dataframe(
             file_data, separator, header_length, encoding)
-
         # describe dialect
         metadata_csvw["dialect"] = {"delimiter": separator,
                                     "skipRows": header_length, "headerRowCount": header_lines, "encoding": encoding}
@@ -503,7 +503,6 @@ class CSV_Annotator():
                             **self.get_unit(unit_str)}
                 column_json.append(json_str)
             metadata_csvw["tableSchema"] = {"columns": column_json}
-
         result = json.dumps(metadata_csvw, indent=4)
         meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
         return meta_file_name, result
