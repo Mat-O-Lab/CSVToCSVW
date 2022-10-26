@@ -8,7 +8,7 @@ services:
     volumes:
       - ./:/src
     ports:
-      - 5004:5000
+      - 5001:5000
     restart: always
     networks:
       - csvtocsvw_net
