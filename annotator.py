@@ -138,9 +138,10 @@ class CSV_Annotator():
         :param file_data: data of the file we want to parse
         :return:          the seperator of the specified data, e.g. ";" or ","
         """
-        file_string = io.StringIO(file_data.decode(self.encoding))
+        file_io = io.StringIO(file_data.decode(self.encoding))
         sniffer = Sniffer()
-        dialect = sniffer.sniff(file_string.read(512))
+        #dialect = sniffer.sniff(file_io.read(512))
+        dialect = sniffer.sniff(file_io.readline())
         return dialect.delimiter
 
     # define generator, which yields the next count of
