@@ -19,13 +19,16 @@
         "@value": 0,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "17",
-          "@type": "xsd:integer"
-        }
-      }
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "17",
+            "@type": "xsd:integer"
+          }
+        },
+        {}
+      ]
     },
     {
       "@id": "Einspannlaenge1",
@@ -35,17 +38,19 @@
         "@value": 1,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "832.756",
-          "@type": "xsd:decimal"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/MilliM",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "832.756",
+            "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "Messlaenge2",
@@ -55,13 +60,14 @@
         "@value": 2,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "nicht bekannt",
-          "@type": "xsd:string"
-        }
-      }
+      "oa:hasBody": [
+        {
+          "@type": "TextualBody",
+          "@purpose": "tagging",
+          "@value": "nicht bekannt"
+        },
+        {}
+      ]
     },
     {
       "@id": "ProbenbreiteB03",
@@ -71,17 +77,19 @@
         "@value": 3,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "11.4",
-          "@type": "xsd:decimal"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/MilliM",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "11.4",
+            "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "ProbendickeA04",
@@ -91,17 +99,19 @@
         "@value": 4,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "0.2",
-          "@type": "xsd:decimal"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/MilliM",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "0.2",
+            "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "Pruefgeschwindigkeit5",
@@ -111,17 +121,19 @@
         "@value": 5,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "150",
-          "@type": "xsd:integer"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/MilliM-PER-MIN",
-          "@type": "http://qudt.org/schema/qudt/Unit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "150",
+            "@type": "xsd:integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM-PER-MIN",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "Vorkraft6",
@@ -131,17 +143,19 @@
         "@value": 6,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "0.2",
-          "@type": "xsd:decimal"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/N",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "0.2",
+            "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/N",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "WegNachBruch7",
@@ -151,17 +165,19 @@
         "@value": 7,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "5",
-          "@type": "xsd:integer"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/MilliM",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "5",
+            "@type": "xsd:integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "EModul8",
@@ -171,17 +187,19 @@
         "@value": 8,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "1127.12",
-          "@type": "xsd:decimal"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/N-M-PER-M2",
-          "@type": "http://qudt.org/schema/qudt/Unit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "1127.12",
+            "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/N-M-PER-M2",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "DehnungBeiFmax9",
@@ -191,17 +209,19 @@
         "@value": 9,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "306.402",
-          "@type": "xsd:decimal"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/PERCENT",
-          "@type": "http://qudt.org/schema/qudt/Unit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "306.402",
+            "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/PERCENT",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "DehnungBeiBruch10",
@@ -211,17 +231,19 @@
         "@value": 10,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "309.236",
-          "@type": "xsd:decimal"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/PERCENT",
-          "@type": "http://qudt.org/schema/qudt/Unit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "309.236",
+            "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/PERCENT",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "ObereStreckgrenze11",
@@ -231,13 +253,14 @@
         "@value": 11,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "nicht bekannt",
-          "@type": "xsd:string"
-        }
-      }
+      "oa:hasBody": [
+        {
+          "@type": "TextualBody",
+          "@purpose": "tagging",
+          "@value": "nicht bekannt"
+        },
+        {}
+      ]
     },
     {
       "@id": "Kraftmaximum12",
@@ -247,17 +270,19 @@
         "@value": 12,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "37.9483",
-          "@type": "xsd:decimal"
-        },
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/N-M-PER-M2",
-          "@type": "http://qudt.org/schema/qudt/Unit"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "37.9483",
+            "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/N-M-PER-M2",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "Bruchkraft13",
@@ -267,13 +292,14 @@
         "@value": 13,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "nicht bekannt",
-          "@type": "xsd:string"
-        }
-      }
+      "oa:hasBody": [
+        {
+          "@type": "TextualBody",
+          "@purpose": "tagging",
+          "@value": "nicht bekannt"
+        },
+        {}
+      ]
     },
     {
       "@id": "GeschwindigkeitEModul14",
@@ -283,13 +309,15 @@
         "@value": 14,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "%L0/min",
-          "@type": "xsd:string"
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "1",
+            "@type": "xsd:integer"
+          }
         }
-      }
+      ]
     },
     {
       "@id": "Datum15",
@@ -299,13 +327,16 @@
         "@value": 15,
         "@type": "xsd:integer"
       },
-      "oa:hasBody": {
-        "@type": "qudt:Quantity",
-        "qudt:value": {
-          "@value": "2008-02-20 00:00:00",
-          "@type": "xsd:dateTime"
-        }
-      }
+      "oa:hasBody": [
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": "2008-02-20 00:00:00",
+            "@type": "xsd:dateTime"
+          }
+        },
+        {}
+      ]
     }
   ],
   "dialect": {

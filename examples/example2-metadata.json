@@ -1,0 +1,159 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "oa": "http://www.w3.org/ns/oa#",
+      "label": "http://www.w3.org/2000/01/rdf-schema#label",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "qudt": "http://qudt.org/schema/qudt/"
+    }
+  ],
+  "@id": "",
+  "url": "example2.csv",
+  "notes": [
+    {
+      "@id": "Probe0",
+      "label": "Probe",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 0,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "TextualBody",
+          "@purpose": "tagging",
+          "@value": "AWA_3_03_Rz"
+        },
+        {
+          "@type": "qudt:Quantity",
+          "qudt:value": {
+            "@value": 840749,
+            "@type": "xsd:integer"
+          }
+        }
+      ]
+    }
+  ],
+  "dialect": {
+    "delimiter": "\t",
+    "skipRows": 1,
+    "headerRowCount": 1,
+    "encoding": "utf-8"
+  },
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "Maschine",
+        "@id": "Maschine",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/MilliM",
+          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+        }
+      },
+      {
+        "titles": "Kraft",
+        "@id": "Kraft",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/KiloN",
+          "@type": "http://qudt.org/schema/qudt/Unit"
+        }
+      },
+      {
+        "titles": "Clip-Gauge",
+        "@id": "ClipGauge",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/MilliM",
+          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+        }
+      },
+      {
+        "titles": "Drehmoment",
+        "@id": "Drehmoment",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/N-M",
+          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+        }
+      },
+      {
+        "titles": "MX840A_0_CH 5",
+        "@id": "Mx840A0Ch5",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/DEG_C",
+          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+        }
+      },
+      {
+        "titles": "MX840A_0_CH 6",
+        "@id": "Mx840A0Ch6",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/MilliM",
+          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+        }
+      },
+      {
+        "titles": "MX840A_0_CH 7",
+        "@id": "Mx840A0Ch7",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/V",
+          "@type": "http://qudt.org/schema/qudt/Unit"
+        }
+      },
+      {
+        "titles": "MX840A_0_CH 8",
+        "@id": "Mx840A0Ch8",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/DEG_C",
+          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+        }
+      },
+      {
+        "titles": "Zeit",
+        "@id": "Zeit",
+        "@type": "Column",
+        "qudt:unit": {
+          "@id": "http://qudt.org/vocab/unit/SEC",
+          "@type": "http://qudt.org/schema/qudt/Unit"
+        }
+      },
+      {
+        "titles": "Kanal 10",
+        "@id": "Kanal10",
+        "@type": "Column"
+      },
+      {
+        "titles": "Kanal 11",
+        "@id": "Kanal11",
+        "@type": "Column"
+      },
+      {
+        "titles": "Kanal 12",
+        "@id": "Kanal12",
+        "@type": "Column"
+      },
+      {
+        "titles": "Kanal 13",
+        "@id": "Kanal13",
+        "@type": "Column"
+      },
+      {
+        "titles": "Kanal 14",
+        "@id": "Kanal14",
+        "@type": "Column"
+      },
+      {
+        "titles": "Kanal 15",
+        "@id": "Kanal15",
+        "@type": "Column"
+      }
+    ]
+  }
+}
