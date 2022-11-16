@@ -423,6 +423,8 @@ class CSV_Annotator():
                 elif isinstance(value, str) and body:
                     if unit_dict := self.get_unit(value):
                         body[-1] = {**body[-1],**unit_dict}
+                    else:
+                        body.append(self.describe_value(value))
                 else:
                     body.append(self.describe_value(value))
             para_dict['oa:hasBody']=body
