@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+from email import header
+from email.base64mime import header_length
+from tkinter.ttk import Separator
 import pandas as pd
 import io
 import os
@@ -111,13 +115,12 @@ class CSV_Annotator():
             self.encoding = self.get_encoding(file_data)
 
         if self.separator == 'auto':
-            try:
-                self.separator = self.get_column_separator(file_data)
-            except:
-                return "error", 'cant find separator, pls manualy select'
-
-        self.sep_regex = re.compile(self.separator.__str__())
-
+            self.separator = self.get_column_separator(file_data)
+            # try:
+            #     self.separator = self.get_column_separator(file_data)
+            # except:
+            #     return "error", 'cant find separator, pls manualy select'
+        print(self.encoding,self.separator)
         metafile_name, result = self.process_file(file_name, file_data, self.separator,
                                                   self.encoding)
 
@@ -132,35 +135,42 @@ class CSV_Annotator():
         result = chardet.detect(file_data)
         return result['encoding']
 
-    def get_column_separator(self, file_data):
+    def get_column_separator(self, file_data: bytes, rownum = None):
         """
 
         :param file_data: data of the file we want to parse
+        :param rownum: index of row ind data to test, if None uses last one by default
         :return:          the seperator of the specified data, e.g. ";" or ","
         """
-        file_io = io.StringIO(file_data.decode(self.encoding))
+        file_io = io.BytesIO(file_data)
+        if rownum != None:
+            test_line=file_io.readlines()[rownum]
+        else:
+            file_io.seek(-2048,os.SEEK_END)
+            test_line=file_io.readlines()[-1]
+        print(test_line.decode(self.encoding))
         sniffer = Sniffer()
-        #dialect = sniffer.sniff(file_io.read(512))
-        dialect = sniffer.sniff(file_io.readline())
+        dialect = sniffer.sniff(test_line.decode(self.encoding))
         return dialect.delimiter
 
     # define generator, which yields the next count of
     # occurrences of separator in row
-    def generate_col_counts(self, file_data, encoding):
+    def generate_col_counts(self, file_data, separator, encoding):
+        sep_regex = re.compile(separator.__str__())
         with io.StringIO(file_data.decode(encoding)) as f:
             row = f.readline()
             while (row != ""):
                 # match with re instead of count() function!
-                yield len(self.sep_regex.findall(row)) + 1
+                yield len(sep_regex.findall(row)) + 1
                 row = f.readline()
             return
 
-    def get_header_length(self, file_data: bytes, encoding: str) -> (int, int):
+    def get_header_length(self, file_data: bytes, separator: str, encoding: str) -> (int, int):
         """
         This method finds the beginning of a header line inside a csv file,
         aswell as the number of columns of the datatable
         :param file_data: content of the file we want to parse as bytes
-        :param separator_string: csv-separator, will be interpretet as a regex
+        :param separator: csv-separator, will be interpretet as a regex
         :param encoding: text encoding
         :return: a 2-tuple of (counter, num_cols)
                       where
@@ -193,8 +203,9 @@ class CSV_Annotator():
             num_cols = len(self.sep_regex.findall(
                 last_line.decode(encoding))) + 1
 
+        #find first column where num_cols is true
         counter = 0
-        for col_count in self.generate_col_counts(file_data=file_data, encoding=encoding):
+        for col_count in self.generate_col_counts(file_data=file_data, separator=separator,encoding=encoding):
             if(col_count == num_cols):
                 break
             else:
@@ -202,82 +213,53 @@ class CSV_Annotator():
 
         return counter, num_cols
 
-    ## DEPRECATED
-
-    def get_header_length_deprecated(self, file_data, separator_string, encoding):
+    def get_table_charateristics(self, file_data: bytes, separator: str, encoding: str) -> (int, int):
         """
-        This method finds the beginning of a header line inside a csv file.
-        Some csv files begin with additional information before
-        displaying the actual data-table.
-        We want to solve this problem by finding the beginning of the header-line
-        (column-descriptors) and read the metainfo and data-table separately.
-        :param file_data: content of the file we want to parse
-        :param separator_string: csv-separator
+        This method finds the beginning of a header line inside a csv file,
+        aswell as the number of columns of the datatable
+        :param file_data: content of the file we want to parse as bytes
+        :param separator_string: csv-separator, will be interpretet as a regex
         :param encoding: text encoding
-        :return: a 2-tuple of (first_head_line, max_columns_additional_header)
+        :return: a 2-tuple of (counter, num_cols)
                       where
-                          first_head_line : index of the header line in the csv file
-                          max_columns_additional_header : number of columns in the data-table
+                          counter : index of the header line in the csv file
+                          num_cols : number of columns in the data-table
         """
+        last_line = b''
+        num_cols = 0
+        first_head_line = 0
+        sep_regex = re.compile(separator.__str__())
 
-        # since pandas throws errormessages when encountering a parseerror (meaning when
-        # encountering a csv-file with changing column-count for example), we can
-        # redirect the error to file_string. Then, we can read and analyze the error-message.
-        # This is helpful since we can see in which line the parser expected n columns, but got m instead.
+        with io.BytesIO(file_data) as f:
 
-        #self.get_header_length2(file_data=file_data, sep=separator_string, enc=encoding)
+            f.seek(-2, os.SEEK_END)
 
-        file_string = io.StringIO(file_data.decode(encoding))
-        f = io.StringIO()
-        with redirect_stderr(f):
-            df = pd.read_csv(file_string, sep=separator_string,
-                             error_bad_lines=False, warn_bad_lines=True, header=None)
-        f.seek(0)
-        # without utf string code b'
-        warn_str = f.read()[2:-2]
+            cur_char = f.read(1)
 
-        # split the warnings up
-        warnlist = warn_str.split('\\n')[:-1]
+            # edgecase that there is no \n at the end of file
+            if(cur_char != b'\n'):
+                cur_char = f.read(1)
 
-        # The warnings we care about are of form 'Skipping line x: expected n columns, got m'
-        # readout row index and column count in warnings
-        line_numbers = [
-            int(re.search('Skipping line (.+?):', line).group(1)) for line in warnlist]
+            while(cur_char == b'\n' or cur_char == b'\r'):
+                f.seek(-2, os.SEEK_CUR)
+                cur_char = f.read(1)
 
-        # get the found number of columns
-        column_numbers = [int(line[-1]) for line in warnlist]
-        column_numbersm1 = column_numbers.copy()
-        if not column_numbersm1:
-            # no additional header
-            return 0, 0
+            while cur_char != b'\n':
+                last_line = cur_char + last_line
+                f.seek(-2, os.SEEK_CUR)
+                cur_char = f.read(1)
 
-        # pop last element, so column_numbers is always lenght +1
-        column_numbersm1.pop(-1)
+            num_cols = len(sep_regex.findall(
+                last_line.decode(encoding))) + 1
 
-        # assumes that the file ends with a uniform table with constant column count
-        # determine changes in counted columns starting from the last line of file
-        changed_column_count_line = [line_numbers[index + 1] for index in reversed(range(len(column_numbersm1))) if
-                                     column_numbersm1[index] != column_numbers[index + 1]]
+        counter = 0
+        for col_count in self.generate_col_counts(file_data=file_data, separator=separator, encoding=encoding):
+            if(col_count == num_cols):
+                break
+            else:
+                counter += 1
 
-        # if there are column count - changes, then the first head-line is the the index
-        # of the row of the last change of column count minus 1.
-        if changed_column_count_line:
-
-            # additional header has ends in line before the last change of column count
-            first_head_line = changed_column_count_line[0] - 1
-        elif line_numbers:
-
-            # edgecase is that we only have one column-count change, in this case,
-            # changed_column_count_line is empty, thus, first_head_line is just the first change
-            first_head_line = line_numbers[0] - 1
-        else:
-            first_head_line = 0
-
-        # starting from first_head_line, max_columns_additional_header is the
-        # maximum number of columns
-        max_columns_additional_header = (
-            max(column_numbers[:line_numbers.index(first_head_line + 1) - 1]))
-        return first_head_line, max_columns_additional_header
+        return counter, num_cols
 
     def get_num_header_rows_and_dataframe(self, file_data, separator_string, header_length, encoding):
         """
@@ -312,8 +294,12 @@ class CSV_Annotator():
         return num_header_rows, table_data
 
     def get_unit(self, string):
+        # remove possible braces
+        string=string.strip("[]").strip("()")
         #get rid of superscripts
         string=string.replace('N/mm\u00b2','N.m.m-2')
+        string=string.replace('Nm','N.m')
+        string=string.replace('\u00b0C','Cel')
         found = get_entities_with_property_with_value(
                 units_graph, QUDT.Symbol, Literal(string)) \
                 + get_entities_with_property_with_value(
@@ -372,12 +358,12 @@ class CSV_Annotator():
         elif self.get_value_type(value_string) == 'DATE':
             return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string)), '@type': 'xsd:dateTime'}}
         else:
-            # check if its a unit
-            unit_dict = self.get_unit(value_string)
-            if unit_dict:
-                return unit_dict
-            else:
-                return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
+            return {
+                "@type": "TextualBody",
+                "@purpose": "tagging",
+                "@value": value_string
+            }
+                #return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
 
     def make_id(self, string, filename=None):
         for k in self.umlaute_dict.keys():
@@ -387,33 +373,37 @@ class CSV_Annotator():
         else:
             return re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
 
-    def get_additional_header(self, file_data, separator, encoding):
+    def get_additional_header(self, file_data: bytes, header_lenght: int = 0, encoding: str = 'utf-8') -> pd.DataFrame: 
         """
 
         :param file_data: content of the file we want to parse
-        :param separator: csv-separator
+        :param header_lenght: lenght of the additional header at start of csv file in count of rows
         :param encoding: text encoding
         :return:
         """
-
-        # get length of additional header
-        header_length, max_columns_additional_header = self.get_header_length(
-            file_data, encoding)
-
-        if header_length:
+        if header_lenght:
+            #test the last additional header line for the separator
+            header_separator = self.get_column_separator(file_data, rownum=header_lenght-1)
+            #find max colum count
+            gen=self.generate_col_counts(file_data=file_data, separator=header_separator, encoding=encoding)
+            col_count=list(next(gen) for rows in range(header_lenght))
+            #print(col_count)
+            #print(header_lenght, header_separator)
             file_string = io.StringIO(file_data.decode(encoding))
-            header_data = pd.read_csv(file_string, header=None, sep=separator, nrows=header_length,
-                                      names=range(max_columns_additional_header), encoding=encoding,
+            header_df = pd.read_csv(file_string, header=None, sep=header_separator, nrows=header_lenght,
+                                      names=range(max(col_count)),
+                                      encoding=encoding,
                                       skip_blank_lines=False)
-            header_data['row'] = header_data.index
-            header_data.rename(columns={0: 'param'}, inplace=True)
-            header_data.set_index('param', inplace=True)
-            header_data = header_data[~header_data.index.duplicated()]
-            header_data.dropna(thresh=2, inplace=True)
-            return header_data, header_length
+            header_df['row'] = header_df.index
+            header_df.rename(columns={0: 'param'}, inplace=True)
+            header_df.set_index('param', inplace=True)
+            header_df = header_df[~header_df.index.duplicated()]
+            header_df.dropna(thresh=2, inplace=True)
+            #print(header_df)
+            return header_df
 
         else:
-            return None, 0
+            return None
 
     def serialize_header(self, header_data, filename=None):
 
@@ -423,14 +413,18 @@ class CSV_Annotator():
             # describe_value(data['value'])
             para_dict = {'@id': self.make_id(parm_name)+str(
                 data['row']), 'label': parm_name, '@type': info_line_iri}
-            body={}
+            body=list()
             for col_name, value in data.items():
-                # print(parm_name,col_name, value)
+                print(parm_name,col_name, value)
                 if col_name == 'row':
                     para_dict['rownum'] = {
                         "@value": data['row'], "@type": "xsd:integer"}
+                # check if its a unit
+                elif isinstance(value, str) and body:
+                    if unit_dict := self.get_unit(value):
+                        body[-1] = {**body[-1],**unit_dict}
                 else:
-                    body = {**body, **self.describe_value(value)}
+                    body.append(self.describe_value(value))
             para_dict['oa:hasBody']=body
             params.append(para_dict)
         # print(params)
@@ -461,21 +455,25 @@ class CSV_Annotator():
 
         metadata_csvw["@id"]=file_namespace
         metadata_csvw["url"] = file_name
-
-        # read additional header lines and provide as meta in results dict
-        header_data, header_length = self.get_additional_header(
+        data_table_header_row_index, data_table_column_count = self.get_table_charateristics(
             file_data, separator, encoding)
-        if header_length:
-            # print("serialze additinal header")
-            metadata_csvw["notes"] = self.serialize_header(
-                header_data, filename=file_name)
+        print(data_table_header_row_index, data_table_column_count)
+        # read additional header lines and provide as meta in results dict
+        if data_table_header_row_index != 0:
+            header_data = self.get_additional_header(
+                file_data, data_table_header_row_index, encoding)
+            print(header_data)
+            if not header_data.empty:
+                # print("serialze additinal header")
+                metadata_csvw["notes"] = self.serialize_header(
+                    header_data, filename=file_name)
 
         # read tabular data structure, and determine number of header lines for column description used
         header_lines, table_data = self.get_num_header_rows_and_dataframe(
-            file_data, separator, header_length, encoding)
+            file_data, separator, data_table_header_row_index, encoding)
         # describe dialect
         metadata_csvw["dialect"] = {"delimiter": separator,
-                                    "skipRows": header_length, "headerRowCount": header_lines, "encoding": encoding}
+                                    "skipRows": data_table_header_row_index, "headerRowCount": header_lines, "encoding": encoding}
 
         # describe columns
         if header_lines == 1:
@@ -487,11 +485,13 @@ class CSV_Annotator():
                 # skip Unnamed cols
                 if "Unnamed" in title:
                     continue
-
+                # try to find unit if its last part and separated by space in title
                 if len(title.split(' ')) > 1:
-                    unit_json = self.get_unit(title.split(' ')[-1])
+                    unit_json = self.get_unit(title.rsplit(' ',1)[-1])
                 else:
                     unit_json = {}
+                if unit_json:
+                    title=title.rsplit(' ', 1)[0]
                 json_str = {
                     **{'titles': title, '@id': self.make_id(title), "@type": "Column"}, **unit_json}
                 column_json.append(json_str)

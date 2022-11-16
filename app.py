@@ -1,4 +1,5 @@
 from distutils.dir_util import copy_tree
+from email.policy import default
 import os
 import base64
 
@@ -44,7 +45,8 @@ class StartForm(FlaskForm):
     data_url = URLField(
         'URL Data File',
         validators=[DataRequired()],
-        description='Paste URL to a data file, e.g. csv, TRA'
+        description='Paste URL to a data file, e.g. csv, TRA',
+        default='https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv'
     )
     separator_sel = SelectField(
         'Choose Separator, default: auto detect',
