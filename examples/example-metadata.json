@@ -316,6 +316,11 @@
             "@value": "1",
             "@type": "xsd:integer"
           }
+        },
+        {
+          "@type": "TextualBody",
+          "@purpose": "tagging",
+          "@value": "%L0/min"
         }
       ]
     },
