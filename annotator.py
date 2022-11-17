@@ -115,11 +115,11 @@ class CSV_Annotator():
             self.encoding = self.get_encoding(file_data)
 
         if self.separator == 'auto':
-            self.separator = self.get_column_separator(file_data)
-            # try:
-            #     self.separator = self.get_column_separator(file_data)
-            # except:
-            #     return "error", 'cant find separator, pls manualy select'
+            separator = self.get_column_separator(file_data)
+            if not separator:
+                return "error", 'cant find separator, pls manualy select'
+            else:
+                self.separator=separator
         print(self.encoding,self.separator)
         metafile_name, result = self.process_file(file_name, file_data, self.separator,
                                                   self.encoding)
@@ -150,8 +150,16 @@ class CSV_Annotator():
             test_line=file_io.readlines()[-1]
         print(test_line.decode(self.encoding))
         sniffer = Sniffer()
-        dialect = sniffer.sniff(test_line.decode(self.encoding))
-        return dialect.delimiter
+        try:
+            dialect = sniffer.sniff(test_line.decode(self.encoding),delimiters=[";","\t","|"])
+            return dialect.delimiter
+        except:
+            try:
+                dialect = sniffer.sniff(test_line.decode(self.encoding))
+                return dialect.delimiter
+            except: 
+                return None
+        
 
     # define generator, which yields the next count of
     # occurrences of separator in row
@@ -164,54 +172,6 @@ class CSV_Annotator():
                 yield len(sep_regex.findall(row)) + 1
                 row = f.readline()
             return
-
-    def get_header_length(self, file_data: bytes, separator: str, encoding: str) -> (int, int):
-        """
-        This method finds the beginning of a header line inside a csv file,
-        aswell as the number of columns of the datatable
-        :param file_data: content of the file we want to parse as bytes
-        :param separator: csv-separator, will be interpretet as a regex
-        :param encoding: text encoding
-        :return: a 2-tuple of (counter, num_cols)
-                      where
-                          counter : index of the header line in the csv file
-                          num_cols : number of columns in the data-table
-        """
-        last_line = b''
-        num_cols = 0
-        first_head_line = 0
-
-        with io.BytesIO(file_data) as f:
-
-            f.seek(-2, os.SEEK_END)
-
-            cur_char = f.read(1)
-
-            # edgecase that there is no \n at the end of file
-            if(cur_char != b'\n'):
-                cur_char = f.read(1)
-
-            while(cur_char == b'\n' or cur_char == b'\r'):
-                f.seek(-2, os.SEEK_CUR)
-                cur_char = f.read(1)
-
-            while cur_char != b'\n':
-                last_line = cur_char + last_line
-                f.seek(-2, os.SEEK_CUR)
-                cur_char = f.read(1)
-
-            num_cols = len(self.sep_regex.findall(
-                last_line.decode(encoding))) + 1
-
-        #find first column where num_cols is true
-        counter = 0
-        for col_count in self.generate_col_counts(file_data=file_data, separator=separator,encoding=encoding):
-            if(col_count == num_cols):
-                break
-            else:
-                counter += 1
-
-        return counter, num_cols
 
     def get_table_charateristics(self, file_data: bytes, separator: str, encoding: str) -> (int, int):
         """
@@ -254,6 +214,7 @@ class CSV_Annotator():
 
         counter = 0
         for col_count in self.generate_col_counts(file_data=file_data, separator=separator, encoding=encoding):
+            print(counter, col_count)
             if(col_count == num_cols):
                 break
             else:
@@ -469,14 +430,14 @@ class CSV_Annotator():
                 # print("serialze additinal header")
                 metadata_csvw["notes"] = self.serialize_header(
                     header_data, filename=file_name)
-
+        print(metadata_csvw["notes"])
         # read tabular data structure, and determine number of header lines for column description used
         header_lines, table_data = self.get_num_header_rows_and_dataframe(
             file_data, separator, data_table_header_row_index, encoding)
         # describe dialect
         metadata_csvw["dialect"] = {"delimiter": separator,
                                     "skipRows": data_table_header_row_index, "headerRowCount": header_lines, "encoding": encoding}
-
+        print(metadata_csvw["dialect"])
         # describe columns
         if header_lines == 1:
             # see if there might be a unit string at the end of each title
