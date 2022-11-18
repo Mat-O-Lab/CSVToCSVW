@@ -26,8 +26,7 @@
             "@value": "17",
             "@type": "xsd:integer"
           }
-        },
-        {}
+        }
       ]
     },
     {
@@ -65,8 +64,7 @@
           "@type": "TextualBody",
           "@purpose": "tagging",
           "@value": "nicht bekannt"
-        },
-        {}
+        }
       ]
     },
     {
@@ -189,15 +187,13 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
+          "@type": "TextualBody",
           "qudt:value": {
             "@value": "1127.12",
             "@type": "xsd:decimal"
           },
-          "qudt:unit": {
-            "@id": "http://qudt.org/vocab/unit/N-M-PER-M2",
-            "@type": "http://qudt.org/schema/qudt/Unit"
-          }
+          "@purpose": "tagging",
+          "@value": "N/mm²"
         }
       ]
     },
@@ -258,8 +254,7 @@
           "@type": "TextualBody",
           "@purpose": "tagging",
           "@value": "nicht bekannt"
-        },
-        {}
+        }
       ]
     },
     {
@@ -272,15 +267,13 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
+          "@type": "TextualBody",
           "qudt:value": {
             "@value": "37.9483",
             "@type": "xsd:decimal"
           },
-          "qudt:unit": {
-            "@id": "http://qudt.org/vocab/unit/N-M-PER-M2",
-            "@type": "http://qudt.org/schema/qudt/Unit"
-          }
+          "@purpose": "tagging",
+          "@value": "N/mm²"
         }
       ]
     },
@@ -297,8 +290,7 @@
           "@type": "TextualBody",
           "@purpose": "tagging",
           "@value": "nicht bekannt"
-        },
-        {}
+        }
       ]
     },
     {
@@ -311,13 +303,10 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
-          "qudt:value": {
-            "@value": "1",
-            "@type": "xsd:integer"
-          }
-        },
-        {
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/NUM",
+            "@type": "http://qudt.org/schema/qudt/CountingUnit"
+          },
           "@type": "TextualBody",
           "@purpose": "tagging",
           "@value": "%L0/min"
@@ -339,8 +328,7 @@
             "@value": "2008-02-20 00:00:00",
             "@type": "xsd:dateTime"
           }
-        },
-        {}
+        }
       ]
     }
   ],
