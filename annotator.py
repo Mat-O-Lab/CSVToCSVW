@@ -59,9 +59,10 @@ units_graph.parse(QUDT_UNIT_URL, format='turtle')
 
 
 class CSV_Annotator():
-    def __init__(self, separator: str, encoding: str):
+    def __init__(self, separator: str, header_separator: str, encoding: str):
 
         self.separator = separator
+        self.header_separator = header_separator
         self.encoding = encoding
 
         self.json_ld_context = [
@@ -82,6 +83,19 @@ class CSV_Annotator():
             '\u00d6': 'Oe',  # U+00D6	   \xc3\x96
             '\u00dc': 'Ue',  # U+00DC	   \xc3\x9c
             '\u00df': 'ss',  # U+00DF	   \xc3\x9f
+        }
+        self.superscripts_replace = {
+            #'\u2070':°,
+            '\u00b9':'',
+            '\u00b2':'2',
+            '\u00b3':'3',
+            '\u2074':'4',
+            '\u2075':'5',
+            '\u2076':'6',
+            '\u2077':'7',
+            '\u2078':'8',
+            '\u2079':'9',
+            '\u00b0C':'Cel', #for °C
         }
     def open_file(self, uri=''):
         try:
@@ -121,8 +135,7 @@ class CSV_Annotator():
             else:
                 self.separator=separator
         print(self.encoding,self.separator)
-        metafile_name, result = self.process_file(file_name, file_data, self.separator,
-                                                  self.encoding)
+        metafile_name, result = self.process_file(file_name, file_data, self.separator, self.header_separator, self.encoding)
 
         return metafile_name, result
 
@@ -148,7 +161,7 @@ class CSV_Annotator():
         else:
             file_io.seek(-2048,os.SEEK_END)
             test_line=file_io.readlines()[-1]
-        print(test_line.decode(self.encoding))
+        #print(test_line.decode(self.encoding))
         sniffer = Sniffer()
         try:
             dialect = sniffer.sniff(test_line.decode(self.encoding),delimiters=[";","\t","|"])
@@ -187,7 +200,6 @@ class CSV_Annotator():
         """
         last_line = b''
         num_cols = 0
-        first_head_line = 0
         sep_regex = re.compile(separator.__str__())
 
         with io.BytesIO(file_data) as f:
@@ -213,14 +225,18 @@ class CSV_Annotator():
                 last_line.decode(encoding))) + 1
 
         counter = 0
-        for col_count in self.generate_col_counts(file_data=file_data, separator=separator, encoding=encoding):
-            print(counter, col_count)
-            if(col_count == num_cols):
-                break
-            else:
-                counter += 1
-
-        return counter, num_cols
+        # iter over column counts from end of file, if column count changes start of data table reached
+        col_counts=list(enumerate(self.generate_col_counts(file_data=file_data, separator=separator, encoding=encoding)))
+        #max_cols=col_counts[-1][1]
+        runs=0
+        col_counts.reverse()
+        for rownum, count in col_counts:
+            if runs==0:
+                max_cols=count
+            if count!=max_cols:
+                return rownum+1, max_cols
+            runs+=1
+        return 0, max_cols
 
     def get_num_header_rows_and_dataframe(self, file_data, separator_string, header_length, encoding):
         """
@@ -258,9 +274,11 @@ class CSV_Annotator():
         # remove possible braces
         string=string.strip("[]").strip("()")
         #get rid of superscripts
+        for k in self.superscripts_replace.keys():
+            string = string.replace(k, self.superscripts_replace[k])
         string=string.replace('N/mm\u00b2','N.m.m-2')
         string=string.replace('Nm','N.m')
-        string=string.replace('\u00b0C','Cel')
+        
         found = get_entities_with_property_with_value(
                 units_graph, QUDT.Symbol, Literal(string)) \
                 + get_entities_with_property_with_value(
@@ -308,6 +326,7 @@ class CSV_Annotator():
                 return 'TEXT'
 
     def describe_value(self, value_string):
+        #remove leading and trailing white spaces
         if pd.isna(value_string):
             return {}
         elif self.get_value_type(value_string) == 'INT':
@@ -334,7 +353,7 @@ class CSV_Annotator():
         else:
             return re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
 
-    def get_additional_header(self, file_data: bytes, header_lenght: int = 0, encoding: str = 'utf-8') -> pd.DataFrame: 
+    def get_additional_header(self, file_data: bytes, header_lenght: int = 0, header_separator='auto', encoding: str = 'utf-8') -> pd.DataFrame: 
         """
 
         :param file_data: content of the file we want to parse
@@ -344,7 +363,8 @@ class CSV_Annotator():
         """
         if header_lenght:
             #test the last additional header line for the separator
-            header_separator = self.get_column_separator(file_data, rownum=header_lenght-1)
+            if header_separator=='auto':
+                header_separator = self.get_column_separator(file_data, rownum=header_lenght-1)
             #find max colum count
             gen=self.generate_col_counts(file_data=file_data, separator=header_separator, encoding=encoding)
             col_count=list(next(gen) for rows in range(header_lenght))
@@ -376,29 +396,40 @@ class CSV_Annotator():
                 data['row']), 'label': parm_name, '@type': info_line_iri}
             body=list()
             for col_name, value in data.items():
-                print(parm_name,col_name, value)
+                #print(parm_name,col_name, value,type(value))
                 if col_name == 'row':
                     para_dict['rownum'] = {
                         "@value": data['row'], "@type": "xsd:integer"}
                 # check if its a unit
-                elif isinstance(value, str) and body:
-                    if unit_dict := self.get_unit(value):
-                        body[-1] = {**body[-1],**unit_dict}
+                # if unit occurres before values in the line
+                elif isinstance(value, str):
+                    unit_dict = self.get_unit(value.strip())
+                    if unit_dict:
+                        toadd=unit_dict
                     else:
-                        body.append(self.describe_value(value))
+                        toadd=self.describe_value(value)
+                    if toadd:
+                        if body and (any(entry.get('@type') == 'qudt:Quantity') for entry in body):
+                            body[-1] = {**body[-1],**toadd}
+                        else:
+                            body.append(toadd)
+                    #print(any(entry.get('@type') == 'qudt:Quantity') for entry in body)
                 else:
-                    body.append(self.describe_value(value))
+                    toadd=self.describe_value(value)
+                    if toadd:
+                        body.append(toadd)
             para_dict['oa:hasBody']=body
             params.append(para_dict)
         # print(params)
         return params
 
-    def process_file(self, file_name, file_data, separator, encoding, file_namespace=None):
+    def process_file(self, file_name, file_data, separator, header_separator, encoding, file_namespace=None):
         """
 
         :param file_name: name of the file we want to process
         :param file_data: content of the file
-        :param separator: csv-seperator /delimiter
+        :param separator: csv-seperator /delimiter of the data table part
+        :param header_separator: csv-seperator /delimiter of the additianl header that might occure before
         :param encoding:  text-encoding (e.g. utf-8..)
         :return: a 2-tuple (meta_filename,result)
                       where
@@ -420,12 +451,12 @@ class CSV_Annotator():
         metadata_csvw["url"] = file_name
         data_table_header_row_index, data_table_column_count = self.get_table_charateristics(
             file_data, separator, encoding)
-        print(data_table_header_row_index, data_table_column_count)
+        # print(data_table_header_row_index, data_table_column_count)
         # read additional header lines and provide as meta in results dict
         if data_table_header_row_index != 0:
             header_data = self.get_additional_header(
-                file_data, data_table_header_row_index, encoding)
-            print(header_data)
+                file_data, data_table_header_row_index, header_separator,encoding)
+            #print(header_data)
             if not header_data.empty:
                 # print("serialze additinal header")
                 metadata_csvw["notes"] = self.serialize_header(

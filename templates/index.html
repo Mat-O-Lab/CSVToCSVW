@@ -46,6 +46,10 @@
             {{ start_form.separator_sel.label }}
             {{ start_form.separator_sel(class="form-control", **{'aria-describedby': 'sep_help'}) }}
           <div id="sep_help" class="form-text">{{ start_form.separator_sel.description }}</div>
+          </div>
+            {{ start_form.header_separator_sel.label }}
+            {{ start_form.header_separator_sel(class="form-control", **{'aria-describedby': 'sep_help'}) }}
+          <div id="header_sep_help" class="form-text">{{ start_form.header_separator_sel.description }}</div>
 
             {{ start_form.encoding_sel.label }}
             {{ start_form.encoding_sel(class="form-control", **{'aria-describedby': 'enc_help'}) }}

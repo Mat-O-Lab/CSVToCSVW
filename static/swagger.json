@@ -81,12 +81,19 @@
                   "example": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"
                 },
                 "separator" : {
+                  "description": "column separator of the data table part",
                   "type" : "string",
                   "default" : "auto",
                   "example": "auto"
-
+                },
+                "header_separator" : {
+                  "description": "column separator of the additional header that might occure before the data table",
+                  "type" : "string",
+                  "default" : "auto",
+                  "example": "auto"
                 },
                 "encoding" : {
+                  "description": "the encoding of the file",
                   "type" : "string",
                   "default" : "auto",
                   "example": "auto"

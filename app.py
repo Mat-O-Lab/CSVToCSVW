@@ -49,9 +49,15 @@ class StartForm(FlaskForm):
         default='https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv'
     )
     separator_sel = SelectField(
-        'Choose Separator, default: auto detect',
+        'Choose Data Table Separator, default: auto detect',
         choices=separators,
-        description='select a separator for your data manually',
+        description='select a separator for your data table manually',
+        default='auto'
+        )
+    header_separator_sel = SelectField(
+        'Choose Additional Header Separator, default: auto detect',
+        choices=separators,
+        description='select a separator for the additional header manually',
         default='auto'
         )
     encoding_sel = SelectField(
@@ -87,6 +93,7 @@ def create_annotator():
     if start_form.validate_on_submit():
         annotator = CSV_Annotator(
             separator=start_form.separator_sel.data,
+            header_separator=start_form.header_separator_sel.data,
             encoding=start_form.encoding_sel.data
         )
 
@@ -125,8 +132,10 @@ def api():
             content['encoding']='auto'
         if 'separator' not in content.keys():
             content['separator']='auto'
+        if 'header_separator' not in content.keys():
+            content['header_separator']='auto'
         annotator = CSV_Annotator(
-            encoding=content['encoding'], separator=content['separator'])
+            encoding=content['encoding'], separator=content['separator'], header_separator=content['header_separator'])
         filename, file_data = annotator.process(content['data_url'])
     return jsonify({"filename": filename, "filedata": file_data})
 
