@@ -23,26 +23,6 @@
         {
           "@type": "TextualBody",
           "@purpose": "tagging",
-          "@value": "AWA_3_03_Rz"
-        },
-        {
-          "@type": "TextualBody",
-          "@purpose": "tagging",
-          "@value": "INSTRON 8852TT"
-        },
-        {
-          "@type": "TextualBody",
-          "@purpose": "tagging",
-          "@value": "1605F"
-        },
-        {
-          "@type": "TextualBody",
-          "@purpose": "tagging",
-          "@value": "46NTA5-1-1-2"
-        },
-        {
-          "@type": "TextualBody",
-          "@purpose": "tagging",
           "@value": "PMD"
         },
         {
