@@ -339,8 +339,8 @@ class CSV_Annotator():
             return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string)), '@type': 'xsd:dateTime'}}
         else:
             return {
-                "@type": "TextualBody",
-                "@purpose": "tagging",
+                "@type": "oa:TextualBody",
+                "@purpose": "oa:tagging",
                 "@value": value_string
             }
                 #return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
@@ -393,9 +393,10 @@ class CSV_Annotator():
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
             para_dict = {'@id': self.make_id(parm_name)+str(
-                data['row']), 'label': parm_name, '@type': info_line_iri}
+                data['row']), 'label': parm_name.strip(), '@type': info_line_iri}
             body=list()
             for col_name, value in data.items():
+                print(body)
                 #print(parm_name,col_name, value,type(value))
                 if col_name == 'row':
                     para_dict['rownum'] = {
@@ -409,11 +410,16 @@ class CSV_Annotator():
                     else:
                         toadd=self.describe_value(value)
                     if toadd:
-                        if body and (any(entry.get('@type') == 'qudt:Quantity') for entry in body):
-                            body[-1] = {**body[-1],**toadd}
+                        if toadd.get('@type') == 'qudt:Quantity':
+                            if any(entry.get('@type') == 'qudt:Quantity' for entry in body):
+                                for entry in body:
+                                    if entry.get('@type') == 'qudt:Quantity':
+                                        entry={**entry,**toadd}
+                                        break
+                            else:
+                                body.append(toadd)
                         else:
                             body.append(toadd)
-                    #print(any(entry.get('@type') == 'qudt:Quantity') for entry in body)
                 else:
                     toadd=self.describe_value(value)
                     if toadd:
