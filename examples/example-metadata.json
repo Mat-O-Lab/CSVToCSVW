@@ -43,7 +43,9 @@
           "qudt:value": {
             "@value": "832.756",
             "@type": "xsd:decimal"
-          },
+          }
+        },
+        {
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM",
             "@type": "http://qudt.org/schema/qudt/DerivedUnit"
@@ -61,8 +63,8 @@
       },
       "oa:hasBody": [
         {
-          "@type": "TextualBody",
-          "@purpose": "tagging",
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
           "@value": "nicht bekannt"
         }
       ]
@@ -81,7 +83,9 @@
           "qudt:value": {
             "@value": "11.4",
             "@type": "xsd:decimal"
-          },
+          }
+        },
+        {
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM",
             "@type": "http://qudt.org/schema/qudt/DerivedUnit"
@@ -103,7 +107,9 @@
           "qudt:value": {
             "@value": "0.2",
             "@type": "xsd:decimal"
-          },
+          }
+        },
+        {
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM",
             "@type": "http://qudt.org/schema/qudt/DerivedUnit"
@@ -125,7 +131,9 @@
           "qudt:value": {
             "@value": "150",
             "@type": "xsd:integer"
-          },
+          }
+        },
+        {
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM-PER-MIN",
             "@type": "http://qudt.org/schema/qudt/Unit"
@@ -147,7 +155,9 @@
           "qudt:value": {
             "@value": "0.2",
             "@type": "xsd:decimal"
-          },
+          }
+        },
+        {
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/N",
             "@type": "http://qudt.org/schema/qudt/DerivedUnit"
@@ -169,7 +179,9 @@
           "qudt:value": {
             "@value": "5",
             "@type": "xsd:integer"
-          },
+          }
+        },
+        {
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM",
             "@type": "http://qudt.org/schema/qudt/DerivedUnit"
@@ -187,12 +199,15 @@
       },
       "oa:hasBody": [
         {
-          "@type": "TextualBody",
+          "@type": "qudt:Quantity",
           "qudt:value": {
             "@value": "1127.12",
             "@type": "xsd:decimal"
-          },
-          "@purpose": "tagging",
+          }
+        },
+        {
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
           "@value": "N/mm²"
         }
       ]
@@ -211,7 +226,9 @@
           "qudt:value": {
             "@value": "306.402",
             "@type": "xsd:decimal"
-          },
+          }
+        },
+        {
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/PERCENT",
             "@type": "http://qudt.org/schema/qudt/Unit"
@@ -233,7 +250,9 @@
           "qudt:value": {
             "@value": "309.236",
             "@type": "xsd:decimal"
-          },
+          }
+        },
+        {
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/PERCENT",
             "@type": "http://qudt.org/schema/qudt/Unit"
@@ -251,8 +270,8 @@
       },
       "oa:hasBody": [
         {
-          "@type": "TextualBody",
-          "@purpose": "tagging",
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
           "@value": "nicht bekannt"
         }
       ]
@@ -267,12 +286,15 @@
       },
       "oa:hasBody": [
         {
-          "@type": "TextualBody",
+          "@type": "qudt:Quantity",
           "qudt:value": {
             "@value": "37.9483",
             "@type": "xsd:decimal"
-          },
-          "@purpose": "tagging",
+          }
+        },
+        {
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
           "@value": "N/mm²"
         }
       ]
@@ -287,8 +309,8 @@
       },
       "oa:hasBody": [
         {
-          "@type": "TextualBody",
-          "@purpose": "tagging",
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
           "@value": "nicht bekannt"
         }
       ]
@@ -306,9 +328,11 @@
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/NUM",
             "@type": "http://qudt.org/schema/qudt/CountingUnit"
-          },
-          "@type": "TextualBody",
-          "@purpose": "tagging",
+          }
+        },
+        {
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
           "@value": "%L0/min"
         }
       ]

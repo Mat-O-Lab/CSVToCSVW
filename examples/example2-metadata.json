@@ -21,8 +21,28 @@
       },
       "oa:hasBody": [
         {
-          "@type": "TextualBody",
-          "@purpose": "tagging",
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
+          "@value": "AWA_3_03_Rz"
+        },
+        {
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
+          "@value": "INSTRON 8852TT"
+        },
+        {
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
+          "@value": "1605F"
+        },
+        {
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
+          "@value": "46NTA5-1-1-2"
+        },
+        {
+          "@type": "oa:TextualBody",
+          "@purpose": "oa:tagging",
           "@value": "PMD"
         },
         {
