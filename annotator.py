@@ -393,7 +393,7 @@ class CSV_Annotator():
             gen=self.generate_col_counts(file_data=file_data, separator=header_separator, encoding=encoding)
             col_count=list(next(gen) for rows in range(header_lenght))
             #print(col_count)
-            #print(header_lenght, header_separator)
+            print(header_lenght, header_separator)
             file_string = io.StringIO(file_data.decode(encoding))
             header_df = pd.read_csv(file_string, header=None, sep=header_separator, nrows=header_lenght,
                                       names=range(max(col_count)),
@@ -404,7 +404,7 @@ class CSV_Annotator():
             header_df.set_index('param', inplace=True)
             header_df = header_df[~header_df.index.duplicated()]
             header_df.dropna(thresh=2, inplace=True)
-            #print(header_df)
+            print(header_df)
             return header_df
 
         else:
@@ -419,6 +419,8 @@ class CSV_Annotator():
             # try to find unit if its last part and separated by space in label
             #print(parm_name)
             body=list()
+            if parm_name[-1]==":":
+                parm_name=parm_name[:-1]
             if len(parm_name.split(' ')) > 1:
                 unit_json = self.get_unit(parm_name.rsplit(' ',1)[-1])
             else:
