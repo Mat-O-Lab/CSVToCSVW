@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from email import header
 from email.base64mime import header_length
+from itertools import count
 from tkinter.ttk import Separator
 import pandas as pd
 import io
@@ -250,24 +251,47 @@ class CSV_Annotator():
                           num_header_rows : number of header rows
                           table_data : pandas DataFrame object containing the tabular information
         """
-
+        print(separator_string, header_length, encoding)
         file_string = io.StringIO(file_data.decode(encoding))
-        num_header_rows = 1
-
-        good_readout = False
-        while not good_readout:
-            file_string.seek(0)
-            table_data = pd.read_csv(file_string, header=list(range(num_header_rows)), sep=separator_string,
-                                     skiprows=header_length, encoding=encoding)
-
-            # test if all text values in first table row -> is a second header row
-            all_text = all([self.get_value_type(
-                value) == 'TEXT' for column, value in table_data.iloc[0].items()])
+        #skip lines already processed
+        num_header_rows=0
+        counter=0
+        for row in range(header_length):
+            file_string.readline()
+        for line in file_string:
+            #print(line)
+            tests=[self.get_value_type(
+                string) == 'TEXT' for string in line.split(separator_string)]
+            #print(tests)
+            all_text = all(tests)
             if all_text:
-                num_header_rows += 1
+                counter += 1
                 continue
             else:
-                good_readout = True
+                num_header_rows=counter
+                break
+        print(num_header_rows,list(range(num_header_rows)))
+        file_string.seek(0)
+        try: 
+            table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=separator_string,
+            skiprows=header_length, encoding=encoding)
+        except:
+            table_data=pd.DataFrame()
+        #print(table_data)
+        # good_readout = False
+        # while not good_readout:
+        #     file_string.seek(0)
+        #     # table_data = pd.read_csv(file_string, header=list(range(num_header_rows)), sep=separator_string,
+        #                              skiprows=header_length, encoding=encoding)
+
+        #     # test if all text values in first table row -> is a second header row
+        #     all_text = all([self.get_value_type(
+        #         value) == 'TEXT' for column, value in table_data.iloc[0].items()])
+        #     if all_text:
+        #         num_header_rows += 1
+        #         continue
+        #     else:
+        #         good_readout = True
         return num_header_rows, table_data
 
     def get_unit(self, string):
@@ -330,18 +354,18 @@ class CSV_Annotator():
         if pd.isna(value_string):
             return {}
         elif self.get_value_type(value_string) == 'INT':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:integer'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': int(value_string), '@type': 'xsd:integer'}}
         elif self.get_value_type(value_string) == 'BOOL':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:boolean'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': bool(value_string), '@type': 'xsd:boolean'}}
         elif self.get_value_type(value_string) == 'FLOAT':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:decimal'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': float(value_string), '@type': 'xsd:decimal'}}
         elif self.get_value_type(value_string) == 'DATE':
             return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string)), '@type': 'xsd:dateTime'}}
         else:
             return {
                 "@type": "oa:TextualBody",
                 "@purpose": "oa:tagging",
-                "@value": value_string
+                "@value": value_string.strip()
             }
                 #return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
 
@@ -392,11 +416,21 @@ class CSV_Annotator():
         info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
+            # try to find unit if its last part and separated by space in label
+            #print(parm_name)
+            body=list()
+            if len(parm_name.split(' ')) > 1:
+                unit_json = self.get_unit(parm_name.rsplit(' ',1)[-1])
+            else:
+                unit_json = {}
+            if unit_json:
+                parm_name=parm_name.rsplit(' ', 1)[0]
+                body.append({**{"@type": "qudt:Quantity",},**unit_json})
+
             para_dict = {'@id': self.make_id(parm_name)+str(
                 data['row']), 'label': parm_name.strip(), '@type': info_line_iri}
-            body=list()
             for col_name, value in data.items():
-                print(body)
+                #print(body)
                 #print(parm_name,col_name, value,type(value))
                 if col_name == 'row':
                     para_dict['rownum'] = {
@@ -404,17 +438,20 @@ class CSV_Annotator():
                 # check if its a unit
                 # if unit occurres before values in the line
                 elif isinstance(value, str):
-                    unit_dict = self.get_unit(value.strip())
-                    if unit_dict:
+                    #if unit found in label no need to test further
+                    toadd={}
+                    if not unit_json:
+                        unit_dict = self.get_unit(value.strip())
                         toadd=unit_dict
-                    else:
+                    if not toadd:
                         toadd=self.describe_value(value)
                     if toadd:
+                        #print(toadd)
                         if toadd.get('@type') == 'qudt:Quantity':
                             if any(entry.get('@type') == 'qudt:Quantity' for entry in body):
                                 for entry in body:
                                     if entry.get('@type') == 'qudt:Quantity':
-                                        entry={**entry,**toadd}
+                                        entry.update({**entry,**toadd})
                                         break
                             else:
                                 body.append(toadd)
@@ -424,6 +461,7 @@ class CSV_Annotator():
                     toadd=self.describe_value(value)
                     if toadd:
                         body.append(toadd)
+            #print(body)
             para_dict['oa:hasBody']=body
             params.append(para_dict)
         # print(params)
@@ -457,6 +495,7 @@ class CSV_Annotator():
         metadata_csvw["url"] = file_name
         data_table_header_row_index, data_table_column_count = self.get_table_charateristics(
             file_data, separator, encoding)
+        print(data_table_header_row_index)
         # print(data_table_header_row_index, data_table_column_count)
         # read additional header lines and provide as meta in results dict
         if data_table_header_row_index != 0:
@@ -467,7 +506,7 @@ class CSV_Annotator():
                 # print("serialze additinal header")
                 metadata_csvw["notes"] = self.serialize_header(
                     header_data, filename=file_name)
-        print(metadata_csvw["notes"])
+        #print(metadata_csvw["notes"])
         # read tabular data structure, and determine number of header lines for column description used
         header_lines, table_data = self.get_num_header_rows_and_dataframe(
             file_data, separator, data_table_header_row_index, encoding)
@@ -476,34 +515,35 @@ class CSV_Annotator():
                                     "skipRows": data_table_header_row_index, "headerRowCount": header_lines, "encoding": encoding}
         print(metadata_csvw["dialect"])
         # describe columns
-        if header_lines == 1:
-            # see if there might be a unit string at the end of each title
-            # e.g. "E_y (MPa)"
-            column_json = list()
-            for index, title in enumerate(table_data.columns):
+        if not table_data.empty:
+            if header_lines == 1:
+                # see if there might be a unit string at the end of each title
+                # e.g. "E_y (MPa)"
+                column_json = list()
+                for index, title in enumerate(table_data.columns):
 
-                # skip Unnamed cols
-                if "Unnamed" in title:
-                    continue
-                # try to find unit if its last part and separated by space in title
-                if len(title.split(' ')) > 1:
-                    unit_json = self.get_unit(title.rsplit(' ',1)[-1])
-                else:
-                    unit_json = {}
-                if unit_json:
-                    title=title.rsplit(' ', 1)[0]
-                json_str = {
-                    **{'titles': title, '@id': self.make_id(title), "@type": "Column"}, **unit_json}
-                column_json.append(json_str)
-            metadata_csvw["tableSchema"] = {"columns": column_json}
+                    # skip Unnamed cols
+                    if "Unnamed" in title:
+                        continue
+                    # try to find unit if its last part and separated by space in title
+                    if len(title.split(' ')) > 1:
+                        unit_json = self.get_unit(title.rsplit(' ',1)[-1])
+                    else:
+                        unit_json = {}
+                    if unit_json:
+                        title=title.rsplit(' ', 1)[0]
+                    json_str = {
+                        **{'titles': title, '@id': self.make_id(title), "@type": "Column"}, **unit_json}
+                    column_json.append(json_str)
+                metadata_csvw["tableSchema"] = {"columns": column_json}
 
-        else:
-            column_json = list()
-            for index, (title, unit_str) in enumerate(table_data.columns):
-                json_str = {**{'titles': title, '@id': self.make_id(title), "@type": "Column"},
-                            **self.get_unit(unit_str)}
-                column_json.append(json_str)
-            metadata_csvw["tableSchema"] = {"columns": column_json}
+            else:
+                column_json = list()
+                for index, (title, unit_str) in enumerate(table_data.columns):
+                    json_str = {**{'titles': title, '@id': self.make_id(title), "@type": "Column"},
+                                **self.get_unit(unit_str)}
+                    column_json.append(json_str)
+                metadata_csvw["tableSchema"] = {"columns": column_json}
         result = json.dumps(metadata_csvw, indent=4)
         meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
         return meta_file_name, result
