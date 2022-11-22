@@ -360,7 +360,7 @@ class CSV_Annotator():
         elif self.get_value_type(value_string) == 'FLOAT':
             return {"@type": "qudt:Quantity",'qudt:value': {'@value': float(value_string), '@type': 'xsd:decimal'}}
         elif self.get_value_type(value_string) == 'DATE':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string)), '@type': 'xsd:dateTime'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string).isoformat()), '@type': 'xsd:dateTime'}}
         else:
             return {
                 "@type": "oa:TextualBody",
