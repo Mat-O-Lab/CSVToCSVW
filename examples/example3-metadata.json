@@ -87,7 +87,7 @@
     },
     {
       "@id": "Dateiname8",
-      "label": "Dateiname:",
+      "label": "Dateiname",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 8,
@@ -125,7 +125,7 @@
     },
     {
       "@id": "Probenname16",
-      "label": "Probenname:",
+      "label": "Probenname",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 16,
@@ -141,7 +141,7 @@
     },
     {
       "@id": "Probentyp17",
-      "label": "Probentyp:",
+      "label": "Probentyp",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 17,
@@ -250,7 +250,7 @@
     },
     {
       "@id": "Bemerkungen22",
-      "label": "Bemerkungen:",
+      "label": "Bemerkungen",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 22,
@@ -322,7 +322,7 @@
     },
     {
       "@id": "Pruefmaschine37",
-      "label": "Prüfmaschine:",
+      "label": "Prüfmaschine",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 37,
@@ -389,7 +389,7 @@
     },
     {
       "@id": "Durchmessermessung48",
-      "label": "Durchmessermessung:",
+      "label": "Durchmessermessung",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 48,
@@ -430,7 +430,7 @@
     },
     {
       "@id": "Abstandsmessung50",
-      "label": "Abstandsmessung:",
+      "label": "Abstandsmessung",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 50,
@@ -494,7 +494,7 @@
     },
     {
       "@id": "Darstellung65",
-      "label": "Darstellung:",
+      "label": "Darstellung",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 65,
@@ -512,7 +512,7 @@
     },
     {
       "@id": "XAchse66",
-      "label": "X-Achse:",
+      "label": "X-Achse",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 66,
@@ -529,7 +529,7 @@
     },
     {
       "@id": "YAchse67",
-      "label": "y-Achse:",
+      "label": "y-Achse",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 67,
@@ -597,7 +597,7 @@
     },
     {
       "@id": "Verstaerkertyp110",
-      "label": "VerstaerkerTyp:",
+      "label": "VerstaerkerTyp",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 110,
@@ -613,7 +613,7 @@
     },
     {
       "@id": "Kameratyp111",
-      "label": "KameraTyp:",
+      "label": "KameraTyp",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 111,
@@ -629,7 +629,7 @@
     },
     {
       "@id": "Comport112",
-      "label": "ComPort:",
+      "label": "ComPort",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 112,
