@@ -135,7 +135,7 @@ class CSV_Annotator():
                 return "error", 'cant find separator, pls manualy select'
             else:
                 self.separator=separator
-        print(self.encoding,self.separator)
+        #print(self.encoding,self.separator)
         metafile_name, result = self.process_file(file_name, file_data, self.separator, self.header_separator, self.encoding)
 
         return metafile_name, result
@@ -251,7 +251,7 @@ class CSV_Annotator():
                           num_header_rows : number of header rows
                           table_data : pandas DataFrame object containing the tabular information
         """
-        print(separator_string, header_length, encoding)
+        #print(separator_string, header_length, encoding)
         file_string = io.StringIO(file_data.decode(encoding))
         #skip lines already processed
         num_header_rows=0
@@ -270,7 +270,7 @@ class CSV_Annotator():
             else:
                 num_header_rows=counter
                 break
-        print(num_header_rows,list(range(num_header_rows)))
+        #print(num_header_rows,list(range(num_header_rows)))
         file_string.seek(0)
         try: 
             table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=separator_string,
@@ -393,7 +393,7 @@ class CSV_Annotator():
             gen=self.generate_col_counts(file_data=file_data, separator=header_separator, encoding=encoding)
             col_count=list(next(gen) for rows in range(header_lenght))
             #print(col_count)
-            print(header_lenght, header_separator)
+            #print(header_lenght, header_separator)
             file_string = io.StringIO(file_data.decode(encoding))
             header_df = pd.read_csv(file_string, header=None, sep=header_separator, nrows=header_lenght,
                                       names=range(max(col_count)),
@@ -404,7 +404,7 @@ class CSV_Annotator():
             header_df.set_index('param', inplace=True)
             header_df = header_df[~header_df.index.duplicated()]
             header_df.dropna(thresh=2, inplace=True)
-            print(header_df)
+            #print(header_df)
             return header_df
 
         else:
@@ -497,7 +497,7 @@ class CSV_Annotator():
         metadata_csvw["url"] = file_name
         data_table_header_row_index, data_table_column_count = self.get_table_charateristics(
             file_data, separator, encoding)
-        print(data_table_header_row_index)
+        #print(data_table_header_row_index)
         # print(data_table_header_row_index, data_table_column_count)
         # read additional header lines and provide as meta in results dict
         if data_table_header_row_index != 0:
@@ -515,7 +515,7 @@ class CSV_Annotator():
         # describe dialect
         metadata_csvw["dialect"] = {"delimiter": separator,
                                     "skipRows": data_table_header_row_index, "headerRowCount": header_lines, "encoding": encoding}
-        print(metadata_csvw["dialect"])
+        #print(metadata_csvw["dialect"])
         # describe columns
         if not table_data.empty:
             if header_lines == 1:
