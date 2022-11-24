@@ -349,7 +349,7 @@
         {
           "@type": "qudt:Quantity",
           "qudt:value": {
-            "@value": "2008-02-20 00:00:00",
+            "@value": "2008-02-20T00:00:00",
             "@type": "xsd:dateTime"
           }
         }
