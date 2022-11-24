@@ -44,9 +44,10 @@ encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
 class StartForm(FlaskForm):
     data_url = URLField(
         'URL Data File',
-        validators=[DataRequired()],
+        #validators=[DataRequired()],
         description='Paste URL to a data file, e.g. csv, TRA',
-        default='https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv'
+        render_kw={"placeholder": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"},
+        #default='https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv'
     )
     separator_sel = SelectField(
         'Choose Data Table Separator, default: auto detect',
@@ -96,6 +97,9 @@ def create_annotator():
             header_separator=start_form.header_separator_sel.data,
             encoding=start_form.encoding_sel.data
         )
+        if not start_form.data_url.data:
+            start_form.data_url.data='https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv'
+            flash('URL Data File empty: using placeholder value for demonstration')
 
         try:
             meta_file_name, result = annotator.process(
