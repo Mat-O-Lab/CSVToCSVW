@@ -359,7 +359,10 @@ class CSV_Annotator():
         elif self.get_value_type(value_string) == 'BOOL':
             return {"@type": "qudt:Quantity",'qudt:value': {'@value': bool(value_string), '@type': 'xsd:boolean'}}
         elif self.get_value_type(value_string) == 'FLOAT':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': float(value_string.replace(',','.')), '@type': 'xsd:decimal'}}
+            if isinstance(value_string,str):
+                #replace , with . as decimal separator
+                value_string = value_string.strip().replace(',', '.')
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': float(value_string), '@type': 'xsd:decimal'}}
         elif self.get_value_type(value_string) == 'DATE':
             return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string).isoformat()), '@type': 'xsd:dateTime'}}
         else:
