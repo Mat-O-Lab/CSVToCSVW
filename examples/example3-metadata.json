@@ -23,7 +23,7 @@
         {
           "@type": "qudt:Quantity",
           "qudt:value": {
-            "@value": "2022-11-22T11:55:02",
+            "@value": "2022-11-24T11:55:02",
             "@type": "xsd:dateTime"
           }
         },
