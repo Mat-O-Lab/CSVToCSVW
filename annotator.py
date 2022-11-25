@@ -302,6 +302,7 @@ class CSV_Annotator():
             string = string.replace(k, self.superscripts_replace[k])
         string=string.replace('N/mm\u00b2','N.m.m-2')
         string=string.replace('Nm','N.m')
+        string=string.replace('sec','s')
         
         found = get_entities_with_property_with_value(
                 units_graph, QUDT.Symbol, Literal(string)) \
@@ -358,7 +359,7 @@ class CSV_Annotator():
         elif self.get_value_type(value_string) == 'BOOL':
             return {"@type": "qudt:Quantity",'qudt:value': {'@value': bool(value_string), '@type': 'xsd:boolean'}}
         elif self.get_value_type(value_string) == 'FLOAT':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': float(value_string), '@type': 'xsd:decimal'}}
+            return {"@type": "qudt:Quantity",'qudt:value': {'@value': float(value_string.replace(',','.')), '@type': 'xsd:decimal'}}
         elif self.get_value_type(value_string) == 'DATE':
             return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string).isoformat()), '@type': 'xsd:dateTime'}}
         else:

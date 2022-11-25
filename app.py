@@ -7,6 +7,7 @@ from flask import Flask, flash, request, jsonify, render_template
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask_wtf import FlaskForm
 from flask_bootstrap import Bootstrap
+from flask_cors import CORS, cross_origin
 
 from wtforms import URLField, SelectField
 from wtforms.validators import DataRequired
@@ -20,6 +21,8 @@ config_name = os.environ.get("APP_MODE") or "development"
 
 app = Flask(__name__)
 app.config.from_object(config[config_name])
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 bootstrap = Bootstrap(app)
 
@@ -70,6 +73,7 @@ class StartForm(FlaskForm):
 
 
 @app.route('/', methods=['GET', 'POST'])
+@cross_origin()
 def index():
     logo = './static/resources/MatOLab-Logo.svg'
     start_form = StartForm()
@@ -84,7 +88,7 @@ def index():
         )
 
 
-@app.route('/create_annotator', methods=['POST'])
+@app.route('/annotate', methods=['GET','POST'])
 def create_annotator():
     logo = './static/resources/MatOLab-Logo.svg'
     start_form = StartForm()
@@ -98,9 +102,8 @@ def create_annotator():
             encoding=start_form.encoding_sel.data
         )
         if not start_form.data_url.data:
-            start_form.data_url.data='https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv'
+            start_form.data_url.data=start_form.data_url.render_kw['placeholder']
             flash('URL Data File empty: using placeholder value for demonstration')
-
         try:
             meta_file_name, result = annotator.process(
                 start_form.data_url.data)
@@ -129,6 +132,7 @@ def create_annotator():
 
 
 @app.route("/api", methods=["GET", "POST"])
+@cross_origin()
 def api():
     if request.method == "POST":
         content = request.get_json()
