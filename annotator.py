@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cmath import nan
 from email import header
 from email.base64mime import header_length
 from itertools import count
@@ -300,7 +301,8 @@ class CSV_Annotator():
         #get rid of superscripts
         for k in self.superscripts_replace.keys():
             string = string.replace(k, self.superscripts_replace[k])
-        string=string.replace('N/mm\u00b2','N.m.m-2')
+        print(string)
+        string=string.replace('N/mm2','MPa')
         string=string.replace('Nm','N.m')
         string=string.replace('sec','s')
         
@@ -355,23 +357,23 @@ class CSV_Annotator():
         if pd.isna(value_string):
             return {}
         elif self.get_value_type(value_string) == 'INT':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': int(value_string), '@type': 'xsd:integer'}}
+            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': int(value_string), '@type': 'xsd:integer'}}
         elif self.get_value_type(value_string) == 'BOOL':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': bool(value_string), '@type': 'xsd:boolean'}}
+            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': bool(value_string), '@type': 'xsd:boolean'}}
         elif self.get_value_type(value_string) == 'FLOAT':
             if isinstance(value_string,str):
                 #replace , with . as decimal separator
                 value_string = value_string.strip().replace(',', '.')
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': float(value_string), '@type': 'xsd:decimal'}}
+            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': float(value_string), '@type': 'xsd:decimal'}}
         elif self.get_value_type(value_string) == 'DATE':
-            return {"@type": "qudt:Quantity",'qudt:value': {'@value': str(parse(value_string).isoformat()), '@type': 'xsd:dateTime'}}
+            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': str(parse(value_string).isoformat()), '@type': 'xsd:dateTime'}}
         else:
             return {
                 "@type": "oa:TextualBody",
                 "@purpose": "oa:tagging",
                 "@value": value_string.strip()
             }
-                #return {"@type": "qudt:Quantity",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
+                #return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
 
     def make_id(self, string, filename=None):
         for k in self.umlaute_dict.keys():
@@ -423,15 +425,17 @@ class CSV_Annotator():
             # try to find unit if its last part and separated by space in label
             #print(parm_name)
             body=list()
+            #print(parm_name)
             if parm_name[-1]==":":
                 parm_name=parm_name[:-1]
             if len(parm_name.split(' ')) > 1:
                 unit_json = self.get_unit(parm_name.rsplit(' ',1)[-1])
             else:
                 unit_json = {}
-            if unit_json:
-                parm_name=parm_name.rsplit(' ', 1)[0]
-                body.append({**{"@type": "qudt:Quantity",},**unit_json})
+            # if unit_json:
+            #     print('unit in param name',unit_json)
+            #     parm_name=parm_name.rsplit(' ', 1)[0]
+            #     body.append({**{"@type": "qudt:QuantityValue",},**unit_json})
 
             para_dict = {'@id': self.make_id(parm_name)+str(
                 data['row']), 'label': parm_name.strip(), '@type': info_line_iri}
@@ -443,30 +447,36 @@ class CSV_Annotator():
                         "@value": data['row'], "@type": "xsd:integer"}
                 # check if its a unit
                 # if unit occurres before values in the line
-                elif isinstance(value, str):
-                    #if unit found in label no need to test further
-                    toadd={}
-                    if not unit_json:
-                        unit_dict = self.get_unit(value.strip())
-                        toadd=unit_dict
-                    if not toadd:
-                        toadd=self.describe_value(value)
-                    if toadd:
-                        #print(toadd)
-                        if toadd.get('@type') == 'qudt:Quantity':
-                            if any(entry.get('@type') == 'qudt:Quantity' for entry in body):
-                                for entry in body:
-                                    if entry.get('@type') == 'qudt:Quantity':
-                                        entry.update({**entry,**toadd})
-                                        break
-                            else:
-                                body.append(toadd)
-                        else:
-                            body.append(toadd)
                 else:
+                    value=str(value)
+                    if value in ['nan','None']:
+                        continue
                     toadd=self.describe_value(value)
-                    if toadd:
+                    #print('1',toadd)
+                    #print(unit_json)
+                    if unit_json:
+                        if toadd.get('@type') == 'qudt:QuantityValue':
+                            toadd={**toadd,**unit_json}
+                    else:
+                        unit_dict = self.get_unit(value.strip())
+                        #print('2',unit_dict)
+                        if unit_dict!={} and toadd.get('@type') == 'oa:TextualBody':
+                            # need to add unit to body of type QuantityValue if possible
+                            #print('3',unit_dict)
+                            if any(entry.get('@type') == 'qudt:QuantityValue' for entry in body):
+                                for entry in body:
+                                    #print('updating entry')
+                                    if entry.get('@type') == 'qudt:QuantityValue':
+                                        entry.update({**entry,**unit_dict})
+                                        toadd={}
+                                        continue
+                            else:
+                                unit_json=unit_dict
+                                toadd={}
+                    #print('descibe dict',toadd)
+                if toadd:
                         body.append(toadd)
+                        toadd={}
             #print(body)
             para_dict['oa:hasBody']=body
             params.append(para_dict)
