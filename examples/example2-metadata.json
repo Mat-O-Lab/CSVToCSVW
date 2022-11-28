@@ -46,7 +46,7 @@
           "@value": "PMD"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 840749,
             "@type": "xsd:integer"
