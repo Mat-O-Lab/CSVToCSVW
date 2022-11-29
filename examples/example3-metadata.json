@@ -21,16 +21,23 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
-            "@value": "2022-11-25T11:55:02",
-            "@type": "xsd:dateTime"
+            "@value": 4,
+            "@type": "xsd:decimal"
           }
         },
         {
           "@type": "oa:TextualBody",
           "@purpose": "oa:tagging",
           "@value": "Version"
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 4,
+            "@type": "xsd:decimal"
+          }
         },
         {
           "@type": "oa:TextualBody",
@@ -61,6 +68,20 @@
           "@type": "oa:TextualBody",
           "@purpose": "oa:tagging",
           "@value": "PCLAB-P009:"
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": "2022-08-24T00:00:00",
+            "@type": "xsd:dateTime"
+          }
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": "2022-11-28T11:55:02",
+            "@type": "xsd:dateTime"
+          }
         }
       ]
     },
@@ -116,9 +137,10 @@
           "@value": "erstellen:"
         },
         {
-          "qudt:unit": {
-            "@id": "http://qudt.org/vocab/unit/NUM",
-            "@type": "http://qudt.org/schema/qudt/CountingUnit"
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 1,
+            "@type": "xsd:integer"
           }
         }
       ]
@@ -149,9 +171,10 @@
       },
       "oa:hasBody": [
         {
-          "qudt:unit": {
-            "@id": "http://qudt.org/vocab/unit/NUM",
-            "@type": "http://qudt.org/schema/qudt/CountingUnit"
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 1,
+            "@type": "xsd:integer"
           }
         }
       ]
@@ -171,7 +194,7 @@
           "@value": "[mm]:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0.05,
             "@type": "xsd:decimal"
@@ -194,7 +217,7 @@
           "@value": "[mm]:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0.03,
             "@type": "xsd:decimal"
@@ -217,7 +240,7 @@
           "@value": "[mm]:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 10,
             "@type": "xsd:integer"
@@ -240,7 +263,7 @@
           "@value": "[mm]:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 15,
             "@type": "xsd:decimal"
@@ -268,7 +291,7 @@
           "@value": "B5x25;46NT31-Rohling;T"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 1000,
             "@type": "xsd:integer"
@@ -312,7 +335,7 @@
           "@value": "[°C]:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
@@ -356,7 +379,7 @@
           "@value": "[mm/s]:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
@@ -379,7 +402,7 @@
           "@value": "1:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
@@ -397,9 +420,9 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
-            "@value": false,
+            "@value": true,
             "@type": "xsd:boolean"
           }
         }
@@ -420,7 +443,7 @@
           "@value": "MinMax:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
@@ -438,7 +461,7 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
@@ -461,7 +484,7 @@
           "@value": "MinMax:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
@@ -484,7 +507,7 @@
           "@value": "abspeichern:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
@@ -502,7 +525,7 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 5,
             "@type": "xsd:integer"
@@ -520,9 +543,10 @@
       },
       "oa:hasBody": [
         {
-          "qudt:unit": {
-            "@id": "http://qudt.org/vocab/unit/NUM",
-            "@type": "http://qudt.org/schema/qudt/CountingUnit"
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 1,
+            "@type": "xsd:integer"
           }
         }
       ]
@@ -537,7 +561,7 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 2,
             "@type": "xsd:integer"
@@ -560,7 +584,7 @@
           "@value": "1:"
         },
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 2,
             "@type": "xsd:decimal"
@@ -578,9 +602,10 @@
       },
       "oa:hasBody": [
         {
-          "qudt:unit": {
-            "@id": "http://qudt.org/vocab/unit/NUM",
-            "@type": "http://qudt.org/schema/qudt/CountingUnit"
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 1,
+            "@type": "xsd:integer"
           }
         },
         {
@@ -637,7 +662,7 @@
       },
       "oa:hasBody": [
         {
-          "@type": "qudt:Quantity",
+          "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 3,
             "@type": "xsd:integer"
