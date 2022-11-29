@@ -301,7 +301,7 @@ class CSV_Annotator():
         #get rid of superscripts
         for k in self.superscripts_replace.keys():
             string = string.replace(k, self.superscripts_replace[k])
-        print(string)
+        #print(string)
         string=string.replace('N/mm2','MPa')
         string=string.replace('Nm','N.m')
         string=string.replace('sec','s')
@@ -423,7 +423,7 @@ class CSV_Annotator():
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
             # try to find unit if its last part and separated by space in label
-            #print(parm_name)
+            print(parm_name)
             body=list()
             #print(parm_name)
             if parm_name[-1]==":":
@@ -432,11 +432,9 @@ class CSV_Annotator():
                 unit_json = self.get_unit(parm_name.rsplit(' ',1)[-1])
             else:
                 unit_json = {}
-            # if unit_json:
-            #     print('unit in param name',unit_json)
-            #     parm_name=parm_name.rsplit(' ', 1)[0]
-            #     body.append({**{"@type": "qudt:QuantityValue",},**unit_json})
-
+            if unit_json:
+                print('unit in param name',unit_json)
+                parm_name=parm_name.rsplit(' ', 1)[0]
             para_dict = {'@id': self.make_id(parm_name)+str(
                 data['row']), 'label': parm_name.strip(), '@type': info_line_iri}
             for col_name, value in data.items():
