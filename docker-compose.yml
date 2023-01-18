@@ -5,7 +5,7 @@ services:
     container_name: "csvtocsvw"
     environment:
       APP_MODE: "development"
-    volumes:
+    #volumes:
     #  - ./:/src
     ports:
       - ${APP_PORT}:5000
