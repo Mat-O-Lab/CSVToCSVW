@@ -3,7 +3,6 @@ FROM docker.io/python:3.8
 RUN apt-get -y update && apt-get install -y apt-utils gcc g++
 RUN apt-get -y upgrade
 #RUN git clone https://github.com/Mat-O-Lab/CSVtoCSVW.git /src
-RUN mkdir  /ontologies
 ADD . /src
 RUN pip install --no-cache-dir -r /src/requirements.txt
 WORKDIR /src
