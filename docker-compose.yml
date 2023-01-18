@@ -6,7 +6,7 @@ services:
     environment:
       APP_MODE: "development"
     volumes:
-      - ./:/src
+    #  - ./:/src
     ports:
       - ${APP_PORT}:5000
     restart: always
