@@ -19,7 +19,7 @@
     <div class="container-fluid mb-3">
       <h1 class="display-5 fw-bold">CSVtoCSVW</h1>
       <p class="col-md-12 ps-0 fs-4">
-          Tool for mapping data files to json-ld metadata.
+        Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at <a href="https://www.w3.org/ns/csvw">CSVW</a> to describe structure and information within. Also uses <a href="https://github.com/qudt/qudt-public-repo/tree/main/vocab/unit">QUDT units ontology </a> to lookup and describe units.
       </p>
       <form class='pb-3' method="post" action="{{ url_for('create_annotator') }}">
         <div class="mb-3">
