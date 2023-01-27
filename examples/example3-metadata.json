@@ -79,7 +79,7 @@
         {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
-            "@value": "2023-01-20T11:55:02",
+            "@value": "2023-01-27T11:55:02",
             "@type": "xsd:dateTime"
           }
         }
