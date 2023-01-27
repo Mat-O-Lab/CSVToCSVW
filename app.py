@@ -103,12 +103,12 @@ def create_annotator():
         )
         if not start_form.data_url.data:
             start_form.data_url.data=start_form.data_url.render_kw['placeholder']
-            flash('URL Data File empty: using placeholder value for demonstration')
+            flash('URL Data File empty: using placeholder value for demonstration','info')
         try:
             meta_file_name, result = annotator.process(
                 start_form.data_url.data)
         except (ValueError, TypeError) as error:
-            flash(str(error))
+            flash(str(error),'error')
         else:
             b64 = base64.b64encode(result.encode())
             payload = b64.decode()

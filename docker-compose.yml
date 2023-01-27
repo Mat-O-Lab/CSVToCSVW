@@ -5,8 +5,8 @@ services:
     container_name: "csvtocsvw"
     environment:
       APP_MODE: "development"
-    #volumes:
-    #  - ./:/src
+    # volumes:
+    #   - ./:/src
     ports:
       - ${APP_PORT}:5000
     restart: always
