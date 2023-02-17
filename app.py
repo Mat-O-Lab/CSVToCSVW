@@ -9,7 +9,7 @@ from flask_wtf import FlaskForm
 from flask_bootstrap import Bootstrap
 from flask_cors import CORS, cross_origin
 
-from wtforms import URLField, SelectField
+from wtforms import URLField, SelectField, BooleanField
 from wtforms.validators import DataRequired
 
 import logging
@@ -69,6 +69,11 @@ class StartForm(FlaskForm):
         choices=encodings,
         description='select an encoding for your data manually',
         default='auto'
+        )
+    include_table_data = BooleanField(
+        'Include Table Data',
+        description='Should the table data be included?',
+        default=''
         )
 
 

@@ -4,9 +4,7 @@ services:
     image: "ghcr.io/mat-o-lab/csvtocsvw:latest"
     container_name: "csvtocsvw"
     environment:
-      APP_MODE: "development"
-    # volumes:
-    #   - ./:/src
+      APP_MODE: "production"
     ports:
       - ${APP_PORT}:5000
     restart: always
