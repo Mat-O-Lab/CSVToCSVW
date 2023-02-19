@@ -61,12 +61,11 @@ units_graph.parse(QUDT_UNIT_URL, format='turtle')
 
 
 class CSV_Annotator():
-    def __init__(self, separator: str, header_separator: str, encoding: str):
-
+    def __init__(self, separator: str='auto', header_separator: str= 'auto', encoding: str='auto', include_table_data: bool=False) -> (str, json) : 
         self.separator = separator
         self.header_separator = header_separator
         self.encoding = encoding
-
+        self.include_table_data = include_table_data
         self.json_ld_context = [
             "http://www.w3.org/ns/csvw", {
                 #"cco": "http://www.ontologyrepository.com/CommonCoreOntologies/",
@@ -530,10 +529,23 @@ class CSV_Annotator():
         #print(metadata_csvw["dialect"])
         # describe columns
         if not table_data.empty:
+            column_json = list()
+            #adding an index identifier
+            json_str={"name": "GID",
+                "titles": [
+                    "GID",
+                    "Generic Identifier"
+                ],
+                #"dc:description": "An identifier as index of a table.",
+                "datatype": "string",
+                "required": True,
+                "suppressOutput": True
+            }
+            column_json.append(json_str)
+            print(column_json)
             if header_lines == 1:
                 # see if there might be a unit string at the end of each title
                 # e.g. "E_y (MPa)"
-                column_json = list()
                 for index, title in enumerate(table_data.columns):
 
                     # skip Unnamed cols
@@ -547,17 +559,37 @@ class CSV_Annotator():
                     if unit_json:
                         title=title.rsplit(' ', 1)[0]
                     json_str = {
-                        **{'titles': title, '@id': self.make_id(title), "@type": "Column"}, **unit_json}
+                        **{'titles': title, '@id': self.make_id(title), "@type": "Column", 'name': self.make_id(title)}, **unit_json}
                     column_json.append(json_str)
                 metadata_csvw["tableSchema"] = {"columns": column_json}
-
             else:
-                column_json = list()
                 for index, (title, unit_str) in enumerate(table_data.columns):
-                    json_str = {**{'titles': title, '@id': self.make_id(title), "@type": "Column"},
+                    json_str = {**{'titles': title, '@id': self.make_id(title), "@type": "Column", 'name': self.make_id(title)},
                                 **self.get_unit(unit_str)}
                     column_json.append(json_str)
                 metadata_csvw["tableSchema"] = {"columns": column_json}
+            metadata_csvw["primaryKey"] = column_json[0]['name']
+            metadata_csvw["aboutUrl"] = "gid-{GID}"
+
+            if self.include_table_data:
+                #serialize row of the table data
+                #print(metadata_csvw["tableSchema"]["columns"][0]['name'])
+                columns_names=[item['name'] for item in metadata_csvw["tableSchema"]["columns"] if item['name']!='GID']
+                #set names of colums same as in mteadata
+                table_data.columns=columns_names
+                #table_data.insert(0,'@id',data_table_header_row_index+header_lines+table_data.index)
+                table_data.insert(0,'@id',table_data.index)
+                #table_data.insert(1,'rownum',table_data.index)
+                #table_data['@id']=file_name+'#row='+table_data['@id'].astype(str)
+                table_data['@id']='gid-'+table_data['@id'].astype(str)
+                table_entrys=list()
+                for index, record in enumerate(table_data.to_dict('records')):
+                    record_dict=dict()
+                    record_dict['url']=file_name+'#row='+str(data_table_header_row_index+header_lines+int(record['@id'][4:]))
+                    record_dict['rownum']=index
+                    record_dict['describes']=[record]
+                    table_entrys.append(record_dict)
+                metadata_csvw["row"] =table_entrys
         result = json.dumps(metadata_csvw, indent=4)
         meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
         return meta_file_name, result
