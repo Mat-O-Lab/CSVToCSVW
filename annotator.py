@@ -61,8 +61,7 @@ units_graph.parse(QUDT_UNIT_URL, format='turtle')
 
 
 class CSV_Annotator():
-    def __init__(self, separator: str, header_separator: str, encoding: str, include_table_data: bool):
-
+    def __init__(self, separator: str='auto', header_separator: str= 'auto', encoding: str='auto', include_table_data: bool=False) -> (str, json) : 
         self.separator = separator
         self.header_separator = header_separator
         self.encoding = encoding
