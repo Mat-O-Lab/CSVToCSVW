@@ -104,7 +104,8 @@ def create_annotator():
         annotator = CSV_Annotator(
             separator=start_form.separator_sel.data,
             header_separator=start_form.header_separator_sel.data,
-            encoding=start_form.encoding_sel.data
+            encoding=start_form.encoding_sel.data,
+            include_table_data=start_form.include_table_data.data
         )
         if not start_form.data_url.data:
             start_form.data_url.data=start_form.data_url.render_kw['placeholder']
@@ -147,8 +148,10 @@ def api():
             content['separator']='auto'
         if 'header_separator' not in content.keys():
             content['header_separator']='auto'
+        if 'include_table_data' not in content.keys():
+            content['include_table_data']=False
         annotator = CSV_Annotator(
-            encoding=content['encoding'], separator=content['separator'], header_separator=content['header_separator'])
+            encoding=content['encoding'], separator=content['separator'], header_separator=content['header_separator'], include_table_data=content['include_table_data'])
         filename, file_data = annotator.process(content['data_url'])
     return jsonify({"filename": filename, "filedata": file_data})
 
