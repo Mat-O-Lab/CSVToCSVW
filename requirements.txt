@@ -1,11 +1,10 @@
-gunicorn
 chardet
 rdflib
-flask
-flask-bootstrap
-flask_wtf
-flask_swagger_ui
-flask_cors
 wtforms
 pandas
 html5lib
+starlette
+starlette-wtf
+jinja2
+fastapi
+uvicorn

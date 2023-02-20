@@ -5,6 +5,7 @@ services:
     container_name: "csvtocsvw"
     environment:
       APP_MODE: "production"
+      ADMIN_MAIL: ${ADMIN_MAIL}
     ports:
       - ${APP_PORT}:5000
     restart: always
