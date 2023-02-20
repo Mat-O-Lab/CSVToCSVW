@@ -23,13 +23,14 @@ import logging
 
 from annotator import CSV_Annotator
 
-class Settings(BaseSettings):g
+class Settings(BaseSettings):
     app_name: str = "CSVtoCSVW"
     admin_email: str = os.environ.get("ADMIN_MAIL") or "csvtocsvw@matolab.org"
     items_per_user: int = 50
     version: str = "v1.3.1"
     config_name: str = os.environ.get("APP_MODE") or "development"
-
+    openapi_url: str ="/api/openapi.json"
+    docs_url: str = "/api/docs"
 settings = Settings()
 
 #flash integration flike flask flash
@@ -54,6 +55,9 @@ app = FastAPI(
         "name": "Apache 2.0",
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     },
+    openapi_url=settings.openapi_url,
+    docs_url=settings.docs_url,
+    redoc_url=None,
     middleware=middleware
 )
 

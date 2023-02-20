@@ -31,6 +31,9 @@ Build and start the container.
 docker-compose up
 ```
 
+A simple UI can be found at at the index page '/'
+The API documentation at 'api/docs'
+
 ## jupyter notebook
 1. Open the notebook in or any other jupyter instance.[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Mat-O-Lab/CSVToCSVW/blob/main/csv_parser.ipynb)
 2. Run the first cell of the notebook. It will install the necesary python packages and definitions.
