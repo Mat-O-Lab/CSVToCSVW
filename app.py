@@ -8,6 +8,7 @@ from starlette_wtf import StarletteForm
 from starlette.responses import HTMLResponse
 from starlette.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
+from starlette.middleware.cors import CORSMiddleware
 from typing import Optional, Any
 
 from pydantic import BaseSettings, BaseModel, AnyUrl, Field
@@ -43,9 +44,7 @@ def get_flashed_messages(request: Request):
     print(request.session)
     return request.session.pop("_messages") if "_messages" in request.session else []
 
-middleware = [
-    Middleware(SessionMiddleware, secret_key='super-secret')
-]
+middleware = [Middleware(SessionMiddleware, secret_key='super-secret')]
 app = FastAPI(
     title="CSVtoCSVW",
     description="Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at CSVW to describe structure and information within. Also uses QUDT units ontology to lookup and describe units.",
@@ -60,6 +59,14 @@ app = FastAPI(
     redoc_url=None,
     middleware=middleware
 )
+app.add_middleware(
+CORSMiddleware,
+allow_origins=["*"], # Allows all origins
+allow_credentials=True,
+allow_methods=["*"], # Allows all methods
+allow_headers=["*"], # Allows all headers
+)
+app.add_middleware(uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware, trusted_hosts="*")
 
 app.mount("/static/", StaticFiles(directory='static', html=True), name="static")
 templates= Jinja2Templates(directory="templates")
