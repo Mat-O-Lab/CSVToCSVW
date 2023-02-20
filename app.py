@@ -9,6 +9,7 @@ from starlette.responses import HTMLResponse
 from starlette.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.middleware.cors import CORSMiddleware
+from starlette.concurrency import run_in_threadpool
 from typing import Optional, Any
 
 from pydantic import BaseSettings, BaseModel, AnyUrl, Field
@@ -161,10 +162,11 @@ async def index(request: Request):
             start_form.data_url.data=start_form.data_url.render_kw['placeholder']
             flash(request,'URL Data File empty: using placeholder value for demonstration','info')
         try:
-            meta_file_name, result = annotator.process(
-                start_form.data_url.data)
+            meta_file_name, result = await run_in_threadpool(annotator.process, start_form.data_url.data)
         except (ValueError, TypeError) as error:
             flash(request,str(error),'error')
+            meta_file_name=''
+            payload=''
         else:
             b64 = base64.b64encode(result.encode())
             payload = b64.decode()
@@ -195,6 +197,16 @@ async def api(annotate: AnnotateRequest) -> dict:
 @app.get("/info", response_model=Settings)
 async def info() -> dict:
     return settings
+
+#time http calls
+from time import time
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    start_time = time()
+    response = await call_next(request)
+    process_time = time() - start_time
+    response.headers["X-Process-Time"] = str(process_time)
+    return response
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

@@ -277,21 +277,6 @@ class CSV_Annotator():
             skiprows=header_length, encoding=encoding)
         except:
             table_data=pd.DataFrame()
-        #print(table_data)
-        # good_readout = False
-        # while not good_readout:
-        #     file_string.seek(0)
-        #     # table_data = pd.read_csv(file_string, header=list(range(num_header_rows)), sep=separator_string,
-        #                              skiprows=header_length, encoding=encoding)
-
-        #     # test if all text values in first table row -> is a second header row
-        #     all_text = all([self.get_value_type(
-        #         value) == 'TEXT' for column, value in table_data.iloc[0].items()])
-        #     if all_text:
-        #         num_header_rows += 1
-        #         continue
-        #     else:
-        #         good_readout = True
         return num_header_rows, table_data
 
     def get_unit(self, string):
@@ -508,8 +493,6 @@ class CSV_Annotator():
         metadata_csvw["url"] = file_name
         data_table_header_row_index, data_table_column_count = self.get_table_charateristics(
             file_data, separator, encoding)
-        #print(data_table_header_row_index)
-        # print(data_table_header_row_index, data_table_column_count)
         # read additional header lines and provide as meta in results dict
         if data_table_header_row_index != 0:
             header_data = self.get_additional_header(
@@ -519,14 +502,12 @@ class CSV_Annotator():
                 # print("serialze additinal header")
                 metadata_csvw["notes"] = self.serialize_header(
                     header_data, filename=file_name)
-        #print(metadata_csvw["notes"])
         # read tabular data structure, and determine number of header lines for column description used
         header_lines, table_data = self.get_num_header_rows_and_dataframe(
             file_data, separator, data_table_header_row_index, encoding)
         # describe dialect
         metadata_csvw["dialect"] = {"delimiter": separator,
                                     "skipRows": data_table_header_row_index, "headerRowCount": header_lines, "encoding": encoding}
-        #print(metadata_csvw["dialect"])
         # describe columns
         if not table_data.empty:
             column_json = list()
@@ -573,22 +554,16 @@ class CSV_Annotator():
 
             if self.include_table_data:
                 #serialize row of the table data
-                #print(metadata_csvw["tableSchema"]["columns"][0]['name'])
                 columns_names=[item['name'] for item in metadata_csvw["tableSchema"]["columns"] if item['name']!='GID']
                 #set names of colums same as in mteadata
                 table_data.columns=columns_names
-                #table_data.insert(0,'@id',data_table_header_row_index+header_lines+table_data.index)
-                table_data.insert(0,'@id',table_data.index)
-                #table_data.insert(1,'rownum',table_data.index)
-                #table_data['@id']=file_name+'#row='+table_data['@id'].astype(str)
+                table_data.insert(0,'url',data_table_header_row_index+header_lines+table_data.index)
+                table_data.insert(1,'rownum',table_data.index)
+                table_data.insert(2,'@id',table_data.index)
                 table_data['@id']='gid-'+table_data['@id'].astype(str)
-                table_entrys=list()
-                for index, record in enumerate(table_data.to_dict('records')):
-                    record_dict=dict()
-                    record_dict['url']=file_name+'#row='+str(data_table_header_row_index+header_lines+int(record['@id'][4:]))
-                    record_dict['rownum']=index
-                    record_dict['describes']=[record]
-                    table_entrys.append(record_dict)
+                table_data['url']=file_name+'#row='+table_data['url'].astype(str)
+                table_entrys=[{'url': record.pop('url'), 'rownum': record.pop('rownum'), 'discribes':record} 
+                for record in table_data.to_dict('records')]
                 metadata_csvw["row"] =table_entrys
         result = json.dumps(metadata_csvw, indent=4)
         meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
