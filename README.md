@@ -5,6 +5,12 @@
 Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at [CSVW](https://www.w3.org/ns/csvw) to describe structure and information within. Also uses [QUDT units ontology](https://github.com/qudt/qudt-public-repo/tree/main/vocab/unit) to lookup and describe units.
 # how to use
 
+## create a .env file with
+```bash
+APP_PORT=<80>
+ADMIN_MAIL=<email_of_admin>
+```
+
 ## docker
 Just pull the docker container from the github container registry
 ```bash
@@ -24,6 +30,9 @@ Build and start the container.
 ```bash
 docker-compose up
 ```
+
+A simple UI can be found at at the index page '/'
+The API documentation at 'api/docs'
 
 ## jupyter notebook
 1. Open the notebook in or any other jupyter instance.[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Mat-O-Lab/CSVToCSVW/blob/main/csv_parser.ipynb)

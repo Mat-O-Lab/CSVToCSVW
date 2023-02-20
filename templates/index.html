@@ -1,4 +1,4 @@
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 {% block title %}CSVtoCSVW{% endblock %}
 
 {% block head %}
@@ -12,7 +12,7 @@
 {% block content %}
 <header class="pb-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center text-dark text-decoration-none m-3 pb-1">
-        <img class='me-3' src="{{ logo }}" height="30" alt="mat-o-lab-logo"/>
+        <img class='me-3' src="{{ url_for('static', path='/resources/MatOLab-Logo.svg') }}" height="30" alt="mat-o-lab-logo"/>
       </a>
 </header>
 <main class="bg-light rounded-3 px-3">
@@ -21,7 +21,7 @@
       <p class="col-md-12 ps-0 fs-4">
         Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at <a href="https://www.w3.org/ns/csvw">CSVW</a> to describe structure and information within. Also uses <a href="https://github.com/qudt/qudt-public-repo/tree/main/vocab/unit">QUDT units ontology </a> to lookup and describe units.
       </p>
-      <form class='pb-3' method="post" action="{{ url_for('create_annotator') }}">
+      <form class='pb-3' method="post" action="{{ url_for('index') }}">
         <div class="mb-3">
           {{ start_form.csrf_token }}
           {{ start_form.data_url.label }}
@@ -62,13 +62,13 @@
         </div>
       </form>
     </div>
-    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% with messages = get_flashed_messages(request) %}
     <div class="container-fluid collapse p-0 pb-3 {% if messages %} show {% endif %}" id="messages">
       <div class="card card-body">
         <h5 class="card-title">Messages</h5>
         {% if messages %}
-          {% for category, message in messages %}
-          <div class="alert alert-{{'danger' if category=='error' else category}}" role="alert">{{ message }}</div>
+          {% for message in messages %}
+          <div class="alert alert-{{'danger' if message.category=='error' else message.category}}" role="alert">{{ message.message }}</div>
           {% endfor %}
         {% endif %}
       </div>
