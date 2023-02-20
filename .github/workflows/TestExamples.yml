@@ -19,8 +19,7 @@ jobs:
           fetch-depth: 0        
       - name: run app
         run: |
-          docker-compose up -d
-          sleep 10
+          docker-compose up --wait
           docker ps -a
       - name: create csvw json-ld
         working-directory: ${{env.WORKING_DIR}}
