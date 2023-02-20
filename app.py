@@ -74,10 +74,10 @@ encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
 
 class AnnotateRequest(BaseModel):
     data_url: AnyUrl = Field('', title='Raw CSV Url', description='Url to raw csv')
-    separator: Optional[str] = Field('auto', title='Table Column Separator', description='Column separator of the data table part.')
-    header_separator: Optional[str] = Field('', title='Additional Header Column Separator', description='Column separator of additional header that might occure before the data table.')
-    encoding: Optional[str] = Field('auto', title='Encoding', description='Encoding of the file')
-    include_table_data: Optional[bool] = Field(False, title='Include Table Data', description='If to include the also the table data.')
+    separator: Optional[str] = Field('auto', title='Table Column Separator', description='Column separator of the data table part.',omit_default=True)
+    header_separator: Optional[str] = Field('auto', title='Additional Header Column Separator', description='Column separator of additional header that might occure before the data table.',omit_default=True)
+    encoding: Optional[str] = Field('auto', title='Encoding', description='Encoding of the file',omit_default=True)
+    include_table_data: Optional[bool] = Field(False, title='Include Table Data', description='If to include the also the table data.',omit_default=True)
     class Config:
         schema_extra = {
             "example": {
