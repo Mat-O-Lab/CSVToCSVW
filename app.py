@@ -10,7 +10,7 @@ from starlette.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
 from typing import Optional, Any
 
-from pydantic import BaseSettings, BaseModel, AnyUrl
+from pydantic import BaseSettings, BaseModel, AnyUrl, Field
 
 from fastapi import Request, FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -73,11 +73,11 @@ separators = ["auto", ";", ",", "\\t", "\\t+",
 encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
 
 class AnnotateRequest(BaseModel):
-    data_url: AnyUrl
-    separator: Optional[str] = 'auto'
-    header_separator: Optional[str] = 'auto'
-    encoding: Optional[str] = 'auto'
-    include_table_data: Optional[bool] = False
+    data_url: AnyUrl = Field('', title='Raw CSV Url', description='Url to raw csv')
+    separator: Optional[str] = Field('auto', title='Table Column Separator', description='Column separator of the data table part.')
+    header_separator: Optional[str] = Field('', title='Additional Header Column Separator', description='Column separator of additional header that might occure before the data table.')
+    encoding: Optional[str] = Field('auto', title='Encoding', description='Encoding of the file')
+    include_table_data: Optional[bool] = Field(False, title='Include Table Data', description='If to include the also the table data.')
     class Config:
         schema_extra = {
             "example": {
@@ -89,8 +89,8 @@ class AnnotateRequest(BaseModel):
             }
         }
 class AnnotateResponse(BaseModel):
-    filename: str
-    filedata: str
+    filename:  str = Field('example-metadata.json', title='Resulting File Name', description='Suggested filename of the generated json-ld')
+    filedata: str = Field('', title='Generated JSON-LD', description='The generated jdon-ld for the given raw csv file as string in utf-8.')
 
 
 class StartForm(StarletteForm):
