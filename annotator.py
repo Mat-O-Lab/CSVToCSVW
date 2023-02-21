@@ -136,9 +136,9 @@ class CSV_Annotator():
             else:
                 self.separator=separator
         #print(self.encoding,self.separator)
-        metafile_name, result = self.process_file(file_name, file_data, self.separator, self.header_separator, self.encoding)
+        result = self.process_file(file_name, file_data, self.separator, self.header_separator, self.encoding)
 
-        return metafile_name, result
+        return result
 
     def get_encoding(self, file_data):
         """
@@ -465,7 +465,7 @@ class CSV_Annotator():
         # print(params)
         return params
 
-    def process_file(self, file_name, file_data, separator, header_separator, encoding, file_namespace=None):
+    def process_file(self, file_name, file_data, separator, header_separator, encoding, file_namespace=None) -> dict:
         """
 
         :param file_name: name of the file we want to process
@@ -563,11 +563,11 @@ class CSV_Annotator():
                 table_data['@id']='gid-'+table_data['@id'].astype(str)
                 table_data['url']=file_name+'#row='+table_data['url'].astype(str)
                 table_entrys=[{'url': record.pop('url'), 'rownum': record.pop('rownum'), 'discribes':record} 
-                for record in table_data.to_dict('records')]
+                    for record in table_data.to_dict('records')]
                 metadata_csvw["row"] =table_entrys
-        result = json.dumps(metadata_csvw, indent=4)
+        result = metadata_csvw #,indent=4)
         meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
-        return meta_file_name, result
+        return {'filename':meta_file_name, 'filedata': result}
 
     def set_encoding(self, new_encoding: str):
         self.encoding = new_encoding
