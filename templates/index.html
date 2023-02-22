@@ -5,7 +5,8 @@
 {{ super() }}
 
 <link rel="shortcut icon" href="#">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 {% endblock %}
 
 {% block html_attribs %} lang="en"{% endblock %}
@@ -37,17 +38,17 @@
                 </ul>
             {% endif %}
           </div>
-          {{ start_form.separator_sel.label }}
-          {{ start_form.separator_sel(class="form-control", **{'aria-describedby': 'sep_help'}) }}
-          <div id="sep_help" class="form-text">{{ start_form.separator_sel.description }}</div>
+          {{ start_form.separator.label }}
+          {{ start_form.separator(class="form-control", **{'aria-describedby': 'sep_help'}) }}
+          <div id="sep_help" class="form-text">{{ start_form.separator.description }}</div>
 
-          {{ start_form.header_separator_sel.label }}
-          {{ start_form.header_separator_sel(class="form-control", **{'aria-describedby': 'sep_help'}) }}
-          <div id="header_sep_help" class="form-text">{{ start_form.header_separator_sel.description }}</div>
+          {{ start_form.header_separator.label }}
+          {{ start_form.header_separator(class="form-control", **{'aria-describedby': 'sep_help'}) }}
+          <div id="header_sep_help" class="form-text">{{ start_form.header_separator.description }}</div>
 
-          {{ start_form.encoding_sel.label }}
-          {{ start_form.encoding_sel(class="form-control", **{'aria-describedby': 'enc_help'}) }}
-          <div id="enc_help" class="form-text">{{ start_form.encoding_sel.description }}</div>
+          {{ start_form.encoding.label }}
+          {{ start_form.encoding(class="form-control", **{'aria-describedby': 'enc_help'}) }}
+          <div id="enc_help" class="form-text">{{ start_form.encoding.description }}</div>
 
           <div class="form-group mb-3 mt-3">
               <label>Options</label>
@@ -65,7 +66,7 @@
     </div>
     {% with messages = get_flashed_messages(request) %}
     <div class="container-fluid collapse p-0 pb-3 {% if messages %} show {% endif %}" id="messages">
-      <div class="card card-body">
+      <div id="messages-body" class="card card-body">
         <h5 class="card-title">Messages</h5>
         {% if messages %}
           {% for message in messages %}
@@ -93,6 +94,9 @@
 {% endblock %}
 
 {% block scripts %}
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
 <script>
 // Function to hide the Spinner
 function hideSpinner() {
@@ -101,7 +105,11 @@ function hideSpinner() {
 function showSpinner() {
     document.getElementById('spinner').style.removeProperty("display");
 }
-
+function addMessage(message, category) {
+  var message_div=document.getElementById('messages-body');
+  message_div.insertAdjacentHTML('beforeend', '<div class="alert alert-'+category+'" role="alert">'+message+'</div>'); 
+  document.getElementById('messages').classList.add('show');
+}
 function getCookie(name) {
   if (!document.cookie) {
     return null;
@@ -119,7 +127,8 @@ function formDataAsJson({ formData }) {
   const plainFormData = Object.fromEntries(formData.entries());
   console.log(plainFormData.data_url);
   if (plainFormData.data_url=='') {
-    plainFormData.data_url=document.getElementById('data_url').placeholder
+    plainFormData.data_url=document.getElementById('data_url').placeholder;
+    addMessage('URL Data File empty: using placeholder value for demonstration.','info');
   }
   const formDataJsonString = JSON.stringify(plainFormData);
   var csrf = getCookie('csrftoken');
@@ -148,18 +157,21 @@ async function postForm({ url, request }) {
 async function handleFormSubmit(event) {
   // $('#result').collapse('show');
 	event.preventDefault();
+  document.getElementById("messages-body").innerText = '';
   document.getElementById("data").innerText = '';
   showSpinner();
   document.getElementById('results').classList.add('show');
 	const form = event.currentTarget;
 	const url = form.action;
   try {
-		const formData = new FormData(form);
+		const formData = new FormData(document.getElementById('input-form'))
     const request = await formDataAsJson({formData});
+    console.log(request)
     const responseData = await postForm({ url, request });
     localStorage.setItem("responseData", JSON.stringify(responseData));
 	} catch (error) {
 		console.error(error);
+    addMessage(error,'danger');
 	}
   finally{
     let text = localStorage.getItem("responseData");
@@ -180,7 +192,5 @@ async function handleFormSubmit(event) {
 const exampleForm = document.getElementById("input-form");
 exampleForm.addEventListener("submit", handleFormSubmit);
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
 {{super()}}
 {% endblock %}

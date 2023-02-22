@@ -16,7 +16,7 @@ from typing import Optional, Any
 
 from pydantic import BaseSettings, BaseModel, AnyUrl, Field, Json
 
-from fastapi import Request, FastAPI
+from fastapi import Request, FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.encoders import jsonable_encoder
@@ -112,19 +112,19 @@ class StartForm(StarletteForm):
         description='Paste URL to a data file, e.g. csv, TRA',
         render_kw={"placeholder": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"},
     )
-    separator_sel = SelectField(
+    separator = SelectField(
         'Choose Data Table Separator, default: auto detect',
         choices=separators,
         description='select a separator for your data table manually',
         default='auto'
         )
-    header_separator_sel = SelectField(
+    header_separator = SelectField(
         'Choose Additional Header Separator, default: auto detect',
         choices=separators,
         description='select a separator for the additional header manually',
         default='auto'
         )
-    encoding_sel = SelectField(
+    encoding = SelectField(
         'Choose Encoding, default: auto detect',
         choices=encodings,
         description='select an encoding for your data manually',
@@ -149,52 +149,53 @@ async def index(request: Request):
         }
     )
 
-@app.post("/", response_class=HTMLResponse)
-async def index(request: Request):
-    """POST /: form handler
-    """
-    start_form = await StartForm.from_formdata(request)
-    result = ''
-    if await start_form.validate_on_submit():
-        if not start_form.data_url.data:
-            start_form.data_url.data=start_form.data_url.render_kw['placeholder']
-            flash(request,'URL Data File empty: using placeholder value for demonstration','info')
-        try:
-            annotator = AnnotateRequest(data_url=start_form.data_url.data)
-            response = await api(annotate=annotator)
-            meta_file_name=response['filename']
-            result=response['filedata']
-            b64 = base64.b64encode(response['filedata'].encode())
-            payload = payload = b64.decode()
-        except Exception as error:
-            flash(request,str(error),'error')
-            meta_file_name=''
-            payload=''
-        else:
-            b64 = base64.b64encode(response['filedata'].encode())
-            payload = b64.decode()
-        return templates.TemplateResponse("index.html",
-            {"request": request,
-            "start_form": start_form,
-            "result": result,
-            "payload": payload,
-            "filename": meta_file_name  
-            }
-        )
-    return templates.TemplateResponse("index.html",
-        {"request": request,
-        "start_form": start_form,
-        "result": result
-        }
-    )
-
-import json
+# @app.post("/", response_class=HTMLResponse)
+# async def index(request: Request):
+#     """POST /: form handler
+#     """
+#     start_form = await StartForm.from_formdata(request)
+#     result = ''
+#     if await start_form.validate_on_submit():
+#         if not start_form.data_url.data:
+#             start_form.data_url.data=start_form.data_url.render_kw['placeholder']
+#             flash(request,'URL Data File empty: using placeholder value for demonstration','info')
+#         try:
+#             annotator = AnnotateRequest(data_url=start_form.data_url.data)
+#             response = await api(annotate=annotator)
+#             meta_file_name=response['filename']
+#             result=response['filedata']
+#             b64 = base64.b64encode(response['filedata'].encode())
+#             payload = payload = b64.decode()
+#         except Exception as error:
+#             flash(request,str(error),'error')
+#             meta_file_name=''
+#             payload=''
+#         else:
+#             b64 = base64.b64encode(response['filedata'].encode())
+#             payload = b64.decode()
+#         return templates.TemplateResponse("index.html",
+#             {"request": request,
+#             "start_form": start_form,
+#             "result": result,
+#             "payload": payload,
+#             "filename": meta_file_name  
+#             }
+#         )
+#     return templates.TemplateResponse("index.html",
+#         {"request": request,
+#         "start_form": start_form,
+#         "result": result
+#         }
+#     )
 
 @app.post("/api")
 async def api(annotate: AnnotateRequest) -> dict:
-    annotator = CSV_Annotator(
-        annotate.encoding, annotate.separator, annotate.header_separator, annotate.include_table_data)
-    result = annotator.process(annotate.data_url)
+    try:
+        annotator = CSV_Annotator(
+            encoding=annotate.encoding, separator=annotate.separator, header_separator=annotate.header_separator, include_table_data=annotate.include_table_data)
+        result = annotator.process(annotate.data_url)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
     return JSONResponse(content=jsonable_encoder(result))
 
 

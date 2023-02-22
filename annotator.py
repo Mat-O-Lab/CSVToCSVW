@@ -66,6 +66,7 @@ class CSV_Annotator():
         self.header_separator = header_separator
         self.encoding = encoding
         self.include_table_data = include_table_data
+        #print(self.separator, self.header_separator, self.encoding,self.include_table_data)
         self.json_ld_context = [
             "http://www.w3.org/ns/csvw", {
                 #"cco": "http://www.ontologyrepository.com/CommonCoreOntologies/",
@@ -116,7 +117,7 @@ class CSV_Annotator():
                 return None
             return filedata, filename
 
-    def process(self, url) -> (str, str):
+    def process(self, url) -> dict:
         '''
         :return: returns a filename and content(json string dump) of a metafile in the json format.
         '''
@@ -135,7 +136,7 @@ class CSV_Annotator():
                 return "error", 'cant find separator, pls manualy select'
             else:
                 self.separator=separator
-        #print(self.encoding,self.separator)
+        #print(url,self.separator, self.header_separator, self.encoding, self.include_table_data)
         result = self.process_file(file_name, file_data, self.separator, self.header_separator, self.encoding)
 
         return result
@@ -407,7 +408,7 @@ class CSV_Annotator():
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
             # try to find unit if its last part and separated by space in label
-            print(parm_name)
+            #print(parm_name)
             body=list()
             #print(parm_name)
             if parm_name[-1]==":":
@@ -417,7 +418,7 @@ class CSV_Annotator():
             else:
                 unit_json = {}
             if unit_json:
-                print('unit in param name',unit_json)
+                #print('unit in param name',unit_json)
                 parm_name=parm_name.rsplit(' ', 1)[0]
             para_dict = {'@id': self.make_id(parm_name)+str(
                 data['row']), 'label': parm_name.strip(), '@type': info_line_iri}
@@ -523,7 +524,7 @@ class CSV_Annotator():
                 "suppressOutput": True
             }
             column_json.append(json_str)
-            print(column_json)
+            #print(column_json)
             if header_lines == 1:
                 # see if there might be a unit string at the end of each title
                 # e.g. "E_y (MPa)"
