@@ -566,9 +566,11 @@ class CSV_Annotator():
                 table_entrys=[{'url': record.pop('url'), 'rownum': record.pop('rownum'), 'discribes':record} 
                     for record in table_data.to_dict('records')]
                 metadata_csvw["row"] =table_entrys
+                
+        if self.include_table_data:
                 meta_file_name = file_name.split(sep='.')[0] + '-detailed-metadata.json'
-            else:
-                meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
+        else:
+            meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
         return {'filename':meta_file_name, 'filedata': metadata_csvw}
 
     def set_encoding(self, new_encoding: str):
