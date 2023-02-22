@@ -100,11 +100,11 @@ class AnnotateRequest(BaseModel):
                 "include_table_data": False
             }
         }
-# class AnnotateResponse(BaseModel):
-#     # filename:  str = Field('example-metadata.json', title='Resulting File Name', description='Suggested filename of the generated json-ld')
-#     # filedata: str = Field('', title='Generated JSON-LD', description='The generated jdon-ld for the given raw csv file as string in utf-8.')
-#     result: Json
 
+class AnnotateResponse(BaseModel):
+    filename:  str = Field('example-metadata.json', title='Resulting File Name', description='Suggested filename of the generated json-ld')
+    filedata: dict = Field( title='Generated JSON-LD', description='The generated jdon-ld for the given raw csv file as string in utf-8.')
+    
 class StartForm(StarletteForm):
     data_url = URLField(
         'URL Data File',
@@ -188,7 +188,7 @@ async def index(request: Request):
 #         }
 #     )
 
-@app.post("/api")
+@app.post("/api",response_model=AnnotateResponse)
 async def api(annotate: AnnotateRequest) -> dict:
     try:
         annotator = CSV_Annotator(
@@ -196,7 +196,7 @@ async def api(annotate: AnnotateRequest) -> dict:
         result = annotator.process(annotate.data_url)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    return JSONResponse(content=jsonable_encoder(result))
+    return result
 
 
 @app.get("/info", response_model=Settings)
