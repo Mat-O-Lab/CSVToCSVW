@@ -171,12 +171,13 @@ async function handleFormSubmit(event) {
     localStorage.setItem("responseData", JSON.stringify(responseData));
 	} catch (error) {
 		console.error(error);
+    localStorage.setItem("responseData", "");
     addMessage(error,'danger');
 	}
   finally{
+    hideSpinner();
     let text = localStorage.getItem("responseData");
     if (text) {
-      hideSpinner();
       const result_json=JSON.parse(text);
       var dlButton = document.getElementById("download");
       var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(result_json.filedata), null, 2);
