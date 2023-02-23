@@ -63,7 +63,8 @@
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "nicht bekannt"
+          "oa:format": "text/plain",
+          "oa:value": "nicht bekannt"
         }
       ]
     },
@@ -255,7 +256,8 @@
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "nicht bekannt"
+          "oa:format": "text/plain",
+          "oa:value": "nicht bekannt"
         }
       ]
     },
@@ -293,7 +295,8 @@
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "nicht bekannt"
+          "oa:format": "text/plain",
+          "oa:value": "nicht bekannt"
         }
       ]
     },
@@ -316,7 +319,8 @@
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "%L0/min"
+          "oa:format": "text/plain",
+          "oa:value": "%L0/min"
         }
       ]
     },

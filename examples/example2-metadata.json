@@ -23,27 +23,32 @@
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "AWA_3_03_Rz"
+          "oa:format": "text/plain",
+          "oa:value": "AWA_3_03_Rz"
         },
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "INSTRON 8852TT"
+          "oa:format": "text/plain",
+          "oa:value": "INSTRON 8852TT"
         },
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "1605F"
+          "oa:format": "text/plain",
+          "oa:value": "1605F"
         },
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "46NTA5-1-1-2"
+          "oa:format": "text/plain",
+          "oa:value": "46NTA5-1-1-2"
         },
         {
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
-          "@value": "PMD"
+          "oa:format": "text/plain",
+          "oa:value": "PMD"
         },
         {
           "@type": "qudt:QuantityValue",
