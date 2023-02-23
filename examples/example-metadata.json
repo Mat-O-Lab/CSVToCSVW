@@ -62,7 +62,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "nicht bekannt"
         }
       ]
@@ -254,7 +254,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "nicht bekannt"
         }
       ]
@@ -292,7 +292,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "nicht bekannt"
         }
       ]
@@ -315,7 +315,7 @@
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "%L0/min"
         }
       ]
