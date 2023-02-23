@@ -355,7 +355,7 @@ class CSV_Annotator():
         else:
             return {
                 "@type": "oa:TextualBody",
-                "@purpose": "oa:tagging",
+                "oa:purpose": "oa:tagging",
                 "@value": value_string.strip()
             }
                 #return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
