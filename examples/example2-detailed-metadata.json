@@ -212,7 +212,7 @@
     {
       "url": "example2.csv#row=2",
       "rownum": 0,
-      "discribes": {
+      "describes": {
         "@id": "gid-0",
         "Maschine": 0,
         "Kraft": 0.164994,
@@ -234,7 +234,7 @@
     {
       "url": "example2.csv#row=3",
       "rownum": 1,
-      "discribes": {
+      "describes": {
         "@id": "gid-1",
         "Maschine": -0.000907898,
         "Kraft": 0.160204,
@@ -256,7 +256,7 @@
     {
       "url": "example2.csv#row=4",
       "rownum": 2,
-      "discribes": {
+      "describes": {
         "@id": "gid-2",
         "Maschine": -0.0018692,
         "Kraft": 0.155527,
@@ -278,7 +278,7 @@
     {
       "url": "example2.csv#row=5",
       "rownum": 3,
-      "discribes": {
+      "describes": {
         "@id": "gid-3",
         "Maschine": -0.000770569,
         "Kraft": 0.159511,
@@ -300,7 +300,7 @@
     {
       "url": "example2.csv#row=6",
       "rownum": 4,
-      "discribes": {
+      "describes": {
         "@id": "gid-4",
         "Maschine": -0.001091,
         "Kraft": 0.163501,
@@ -322,7 +322,7 @@
     {
       "url": "example2.csv#row=7",
       "rownum": 5,
-      "discribes": {
+      "describes": {
         "@id": "gid-5",
         "Maschine": -0.00162506,
         "Kraft": 0.151982,
@@ -344,7 +344,7 @@
     {
       "url": "example2.csv#row=8",
       "rownum": 6,
-      "discribes": {
+      "describes": {
         "@id": "gid-6",
         "Maschine": -0.00147247,
         "Kraft": 0.155641,
@@ -366,7 +366,7 @@
     {
       "url": "example2.csv#row=9",
       "rownum": 7,
-      "discribes": {
+      "describes": {
         "@id": "gid-7",
         "Maschine": 0.00279999,
         "Kraft": 0.218359,
@@ -388,7 +388,7 @@
     {
       "url": "example2.csv#row=10",
       "rownum": 8,
-      "discribes": {
+      "describes": {
         "@id": "gid-8",
         "Maschine": 0.0093689,
         "Kraft": 0.295713,
@@ -410,7 +410,7 @@
     {
       "url": "example2.csv#row=11",
       "rownum": 9,
-      "discribes": {
+      "describes": {
         "@id": "gid-9",
         "Maschine": 0.0154724,
         "Kraft": 0.385434,
@@ -432,7 +432,7 @@
     {
       "url": "example2.csv#row=12",
       "rownum": 10,
-      "discribes": {
+      "describes": {
         "@id": "gid-10",
         "Maschine": 0.0215683,
         "Kraft": 0.47874,
@@ -454,7 +454,7 @@
     {
       "url": "example2.csv#row=13",
       "rownum": 11,
-      "discribes": {
+      "describes": {
         "@id": "gid-11",
         "Maschine": 0.0275879,
         "Kraft": 0.569197,
@@ -476,7 +476,7 @@
     {
       "url": "example2.csv#row=14",
       "rownum": 12,
-      "discribes": {
+      "describes": {
         "@id": "gid-12",
         "Maschine": 0.033844,
         "Kraft": 0.672174,
@@ -498,7 +498,7 @@
     {
       "url": "example2.csv#row=15",
       "rownum": 13,
-      "discribes": {
+      "describes": {
         "@id": "gid-13",
         "Maschine": 0.0395966,
         "Kraft": 0.777833,
@@ -520,7 +520,7 @@
     {
       "url": "example2.csv#row=16",
       "rownum": 14,
-      "discribes": {
+      "describes": {
         "@id": "gid-14",
         "Maschine": 0.0460663,
         "Kraft": 0.909016,
@@ -542,7 +542,7 @@
     {
       "url": "example2.csv#row=17",
       "rownum": 15,
-      "discribes": {
+      "describes": {
         "@id": "gid-15",
         "Maschine": 0.0523071,
         "Kraft": 1.04076,
@@ -564,7 +564,7 @@
     {
       "url": "example2.csv#row=18",
       "rownum": 16,
-      "discribes": {
+      "describes": {
         "@id": "gid-16",
         "Maschine": 0.057991,
         "Kraft": 1.16136,
@@ -586,7 +586,7 @@
     {
       "url": "example2.csv#row=19",
       "rownum": 17,
-      "discribes": {
+      "describes": {
         "@id": "gid-17",
         "Maschine": 0.0644455,
         "Kraft": 1.29074,
@@ -608,7 +608,7 @@
     {
       "url": "example2.csv#row=20",
       "rownum": 18,
-      "discribes": {
+      "describes": {
         "@id": "gid-18",
         "Maschine": 0.0698547,
         "Kraft": 1.41941,
@@ -630,7 +630,7 @@
     {
       "url": "example2.csv#row=21",
       "rownum": 19,
-      "discribes": {
+      "describes": {
         "@id": "gid-19",
         "Maschine": 0.0767899,
         "Kraft": 1.55983,
@@ -652,7 +652,7 @@
     {
       "url": "example2.csv#row=22",
       "rownum": 20,
-      "discribes": {
+      "describes": {
         "@id": "gid-20",
         "Maschine": 0.0823364,
         "Kraft": 1.69778,
@@ -674,7 +674,7 @@
     {
       "url": "example2.csv#row=23",
       "rownum": 21,
-      "discribes": {
+      "describes": {
         "@id": "gid-21",
         "Maschine": 0.0891266,
         "Kraft": 1.86003,
@@ -696,7 +696,7 @@
     {
       "url": "example2.csv#row=24",
       "rownum": 22,
-      "discribes": {
+      "describes": {
         "@id": "gid-22",
         "Maschine": 0.0954971,
         "Kraft": 2.02088,
@@ -718,7 +718,7 @@
     {
       "url": "example2.csv#row=25",
       "rownum": 23,
-      "discribes": {
+      "describes": {
         "@id": "gid-23",
         "Maschine": 0.101669,
         "Kraft": 2.15531,
@@ -740,7 +740,7 @@
     {
       "url": "example2.csv#row=26",
       "rownum": 24,
-      "discribes": {
+      "describes": {
         "@id": "gid-24",
         "Maschine": 0.106857,
         "Kraft": 2.31852,
@@ -762,7 +762,7 @@
     {
       "url": "example2.csv#row=27",
       "rownum": 25,
-      "discribes": {
+      "describes": {
         "@id": "gid-25",
         "Maschine": 0.114006,
         "Kraft": 2.47237,
@@ -784,7 +784,7 @@
     {
       "url": "example2.csv#row=28",
       "rownum": 26,
-      "discribes": {
+      "describes": {
         "@id": "gid-26",
         "Maschine": 0.120193,
         "Kraft": 2.63343,
@@ -806,7 +806,7 @@
     {
       "url": "example2.csv#row=29",
       "rownum": 27,
-      "discribes": {
+      "describes": {
         "@id": "gid-27",
         "Maschine": 0.125793,
         "Kraft": 2.78288,
@@ -828,7 +828,7 @@
     {
       "url": "example2.csv#row=30",
       "rownum": 28,
-      "discribes": {
+      "describes": {
         "@id": "gid-28",
         "Maschine": 0.13253,
         "Kraft": 2.96032,
@@ -850,7 +850,7 @@
     {
       "url": "example2.csv#row=31",
       "rownum": 29,
-      "discribes": {
+      "describes": {
         "@id": "gid-29",
         "Maschine": 0.138794,
         "Kraft": 3.12933,
@@ -872,7 +872,7 @@
     {
       "url": "example2.csv#row=32",
       "rownum": 30,
-      "discribes": {
+      "describes": {
         "@id": "gid-30",
         "Maschine": 0.144508,
         "Kraft": 3.28811,
@@ -894,7 +894,7 @@
     {
       "url": "example2.csv#row=33",
       "rownum": 31,
-      "discribes": {
+      "describes": {
         "@id": "gid-31",
         "Maschine": 0.152168,
         "Kraft": 3.49679,
@@ -916,7 +916,7 @@
     {
       "url": "example2.csv#row=34",
       "rownum": 32,
-      "discribes": {
+      "describes": {
         "@id": "gid-32",
         "Maschine": 0.157272,
         "Kraft": 3.65656,
@@ -938,7 +938,7 @@
     {
       "url": "example2.csv#row=35",
       "rownum": 33,
-      "discribes": {
+      "describes": {
         "@id": "gid-33",
         "Maschine": 0.164223,
         "Kraft": 3.84668,
@@ -960,7 +960,7 @@
     {
       "url": "example2.csv#row=36",
       "rownum": 34,
-      "discribes": {
+      "describes": {
         "@id": "gid-34",
         "Maschine": 0.170013,
         "Kraft": 4.02389,
@@ -982,7 +982,7 @@
     {
       "url": "example2.csv#row=37",
       "rownum": 35,
-      "discribes": {
+      "describes": {
         "@id": "gid-35",
         "Maschine": 0.176201,
         "Kraft": 4.21655,
@@ -1004,7 +1004,7 @@
     {
       "url": "example2.csv#row=38",
       "rownum": 36,
-      "discribes": {
+      "describes": {
         "@id": "gid-36",
         "Maschine": 0.182159,
         "Kraft": 4.38717,
@@ -1026,7 +1026,7 @@
     {
       "url": "example2.csv#row=39",
       "rownum": 37,
-      "discribes": {
+      "describes": {
         "@id": "gid-37",
         "Maschine": 0.189293,
         "Kraft": 4.60317,
@@ -1048,7 +1048,7 @@
     {
       "url": "example2.csv#row=40",
       "rownum": 38,
-      "discribes": {
+      "describes": {
         "@id": "gid-38",
         "Maschine": 0.195099,
         "Kraft": 4.78273,
@@ -1070,7 +1070,7 @@
     {
       "url": "example2.csv#row=41",
       "rownum": 39,
-      "discribes": {
+      "describes": {
         "@id": "gid-39",
         "Maschine": 0.20211,
         "Kraft": 5.01184,
@@ -1092,7 +1092,7 @@
     {
       "url": "example2.csv#row=42",
       "rownum": 40,
-      "discribes": {
+      "describes": {
         "@id": "gid-40",
         "Maschine": 0.207237,
         "Kraft": 5.1518,
@@ -1114,7 +1114,7 @@
     {
       "url": "example2.csv#row=43",
       "rownum": 41,
-      "discribes": {
+      "describes": {
         "@id": "gid-41",
         "Maschine": 0.214195,
         "Kraft": 5.37299,
@@ -1136,7 +1136,7 @@
     {
       "url": "example2.csv#row=44",
       "rownum": 42,
-      "discribes": {
+      "describes": {
         "@id": "gid-42",
         "Maschine": 0.220146,
         "Kraft": 5.55965,
@@ -1158,7 +1158,7 @@
     {
       "url": "example2.csv#row=45",
       "rownum": 43,
-      "discribes": {
+      "describes": {
         "@id": "gid-43",
         "Maschine": 0.226311,
         "Kraft": 5.74636,
@@ -1180,7 +1180,7 @@
     {
       "url": "example2.csv#row=46",
       "rownum": 44,
-      "discribes": {
+      "describes": {
         "@id": "gid-44",
         "Maschine": 0.231483,
         "Kraft": 5.93102,
@@ -1202,7 +1202,7 @@
     {
       "url": "example2.csv#row=47",
       "rownum": 45,
-      "discribes": {
+      "describes": {
         "@id": "gid-45",
         "Maschine": 0.237686,
         "Kraft": 6.1313,
@@ -1224,7 +1224,7 @@
     {
       "url": "example2.csv#row=48",
       "rownum": 46,
-      "discribes": {
+      "describes": {
         "@id": "gid-46",
         "Maschine": 0.244171,
         "Kraft": 6.3252,
@@ -1246,7 +1246,7 @@
     {
       "url": "example2.csv#row=49",
       "rownum": 47,
-      "discribes": {
+      "describes": {
         "@id": "gid-47",
         "Maschine": 0.250603,
         "Kraft": 6.52072,
@@ -1268,7 +1268,7 @@
     {
       "url": "example2.csv#row=50",
       "rownum": 48,
-      "discribes": {
+      "describes": {
         "@id": "gid-48",
         "Maschine": 0.256935,
         "Kraft": 6.72778,
@@ -1290,7 +1290,7 @@
     {
       "url": "example2.csv#row=51",
       "rownum": 49,
-      "discribes": {
+      "describes": {
         "@id": "gid-49",
         "Maschine": 0.26326,
         "Kraft": 6.90983,
@@ -1312,7 +1312,7 @@
     {
       "url": "example2.csv#row=52",
       "rownum": 50,
-      "discribes": {
+      "describes": {
         "@id": "gid-50",
         "Maschine": 0.269432,
         "Kraft": 7.11086,
@@ -1334,7 +1334,7 @@
     {
       "url": "example2.csv#row=53",
       "rownum": 51,
-      "discribes": {
+      "describes": {
         "@id": "gid-51",
         "Maschine": 0.274696,
         "Kraft": 7.29495,
@@ -1356,7 +1356,7 @@
     {
       "url": "example2.csv#row=54",
       "rownum": 52,
-      "discribes": {
+      "describes": {
         "@id": "gid-52",
         "Maschine": 0.281357,
         "Kraft": 7.51168,
@@ -1378,7 +1378,7 @@
     {
       "url": "example2.csv#row=55",
       "rownum": 53,
-      "discribes": {
+      "describes": {
         "@id": "gid-53",
         "Maschine": 0.288063,
         "Kraft": 7.71637,
@@ -1400,7 +1400,7 @@
     {
       "url": "example2.csv#row=56",
       "rownum": 54,
-      "discribes": {
+      "describes": {
         "@id": "gid-54",
         "Maschine": 0.293419,
         "Kraft": 7.91641,
@@ -1422,7 +1422,7 @@
     {
       "url": "example2.csv#row=57",
       "rownum": 55,
-      "discribes": {
+      "describes": {
         "@id": "gid-55",
         "Maschine": 0.300385,
         "Kraft": 8.12246,
@@ -1444,7 +1444,7 @@
     {
       "url": "example2.csv#row=58",
       "rownum": 56,
-      "discribes": {
+      "describes": {
         "@id": "gid-56",
         "Maschine": 0.306305,
         "Kraft": 8.32527,
@@ -1466,7 +1466,7 @@
     {
       "url": "example2.csv#row=59",
       "rownum": 57,
-      "discribes": {
+      "describes": {
         "@id": "gid-57",
         "Maschine": 0.312912,
         "Kraft": 8.53781,
@@ -1488,7 +1488,7 @@
     {
       "url": "example2.csv#row=60",
       "rownum": 58,
-      "discribes": {
+      "describes": {
         "@id": "gid-58",
         "Maschine": 0.319702,
         "Kraft": 8.76353,
@@ -1510,7 +1510,7 @@
     {
       "url": "example2.csv#row=61",
       "rownum": 59,
-      "discribes": {
+      "describes": {
         "@id": "gid-59",
         "Maschine": 0.324608,
         "Kraft": 8.93649,
@@ -1532,7 +1532,7 @@
     {
       "url": "example2.csv#row=62",
       "rownum": 60,
-      "discribes": {
+      "describes": {
         "@id": "gid-60",
         "Maschine": 0.33165,
         "Kraft": 9.16571,
@@ -1554,7 +1554,7 @@
     {
       "url": "example2.csv#row=63",
       "rownum": 61,
-      "discribes": {
+      "describes": {
         "@id": "gid-61",
         "Maschine": 0.337578,
         "Kraft": 9.35469,
@@ -1576,7 +1576,7 @@
     {
       "url": "example2.csv#row=64",
       "rownum": 62,
-      "discribes": {
+      "describes": {
         "@id": "gid-62",
         "Maschine": 0.344231,
         "Kraft": 9.56096,
@@ -1598,7 +1598,7 @@
     {
       "url": "example2.csv#row=65",
       "rownum": 63,
-      "discribes": {
+      "describes": {
         "@id": "gid-63",
         "Maschine": 0.349472,
         "Kraft": 9.74729,
@@ -1620,7 +1620,7 @@
     {
       "url": "example2.csv#row=66",
       "rownum": 64,
-      "discribes": {
+      "describes": {
         "@id": "gid-64",
         "Maschine": 0.355644,
         "Kraft": 9.94089,
@@ -1642,7 +1642,7 @@
     {
       "url": "example2.csv#row=67",
       "rownum": 65,
-      "discribes": {
+      "describes": {
         "@id": "gid-65",
         "Maschine": 0.362999,
         "Kraft": 10.1769,
@@ -1664,7 +1664,7 @@
     {
       "url": "example2.csv#row=68",
       "rownum": 66,
-      "discribes": {
+      "describes": {
         "@id": "gid-66",
         "Maschine": 0.36718,
         "Kraft": 10.3241,
@@ -1686,7 +1686,7 @@
     {
       "url": "example2.csv#row=69",
       "rownum": 67,
-      "discribes": {
+      "describes": {
         "@id": "gid-67",
         "Maschine": 0.374062,
         "Kraft": 10.5481,
@@ -1708,7 +1708,7 @@
     {
       "url": "example2.csv#row=70",
       "rownum": 68,
-      "discribes": {
+      "describes": {
         "@id": "gid-68",
         "Maschine": 0.380142,
         "Kraft": 10.755,
@@ -1730,7 +1730,7 @@
     {
       "url": "example2.csv#row=71",
       "rownum": 69,
-      "discribes": {
+      "describes": {
         "@id": "gid-69",
         "Maschine": 0.386581,
         "Kraft": 10.9439,
@@ -1752,7 +1752,7 @@
     {
       "url": "example2.csv#row=72",
       "rownum": 70,
-      "discribes": {
+      "describes": {
         "@id": "gid-70",
         "Maschine": 0.392776,
         "Kraft": 11.1599,
@@ -1774,7 +1774,7 @@
     {
       "url": "example2.csv#row=73",
       "rownum": 71,
-      "discribes": {
+      "describes": {
         "@id": "gid-71",
         "Maschine": 0.39859,
         "Kraft": 11.3532,
@@ -1796,7 +1796,7 @@
     {
       "url": "example2.csv#row=74",
       "rownum": 72,
-      "discribes": {
+      "describes": {
         "@id": "gid-72",
         "Maschine": 0.404564,
         "Kraft": 11.546,
@@ -1818,7 +1818,7 @@
     {
       "url": "example2.csv#row=75",
       "rownum": 73,
-      "discribes": {
+      "describes": {
         "@id": "gid-73",
         "Maschine": 0.411018,
         "Kraft": 11.7621,
@@ -1840,7 +1840,7 @@
     {
       "url": "example2.csv#row=76",
       "rownum": 74,
-      "discribes": {
+      "describes": {
         "@id": "gid-74",
         "Maschine": 0.417519,
         "Kraft": 11.971,
@@ -1862,7 +1862,7 @@
     {
       "url": "example2.csv#row=77",
       "rownum": 75,
-      "discribes": {
+      "describes": {
         "@id": "gid-75",
         "Maschine": 0.423523,
         "Kraft": 12.1814,
@@ -1884,7 +1884,7 @@
     {
       "url": "example2.csv#row=78",
       "rownum": 76,
-      "discribes": {
+      "describes": {
         "@id": "gid-76",
         "Maschine": 0.429497,
         "Kraft": 12.3654,
@@ -1906,7 +1906,7 @@
     {
       "url": "example2.csv#row=79",
       "rownum": 77,
-      "discribes": {
+      "describes": {
         "@id": "gid-77",
         "Maschine": 0.435295,
         "Kraft": 12.5657,
@@ -1928,7 +1928,7 @@
     {
       "url": "example2.csv#row=80",
       "rownum": 78,
-      "discribes": {
+      "describes": {
         "@id": "gid-78",
         "Maschine": 0.441856,
         "Kraft": 12.7992,
@@ -1950,7 +1950,7 @@
     {
       "url": "example2.csv#row=81",
       "rownum": 79,
-      "discribes": {
+      "describes": {
         "@id": "gid-79",
         "Maschine": 0.448227,
         "Kraft": 12.9884,
@@ -1972,7 +1972,7 @@
     {
       "url": "example2.csv#row=82",
       "rownum": 80,
-      "discribes": {
+      "describes": {
         "@id": "gid-80",
         "Maschine": 0.45282,
         "Kraft": 13.1704,
@@ -1994,7 +1994,7 @@
     {
       "url": "example2.csv#row=83",
       "rownum": 81,
-      "discribes": {
+      "describes": {
         "@id": "gid-81",
         "Maschine": 0.459938,
         "Kraft": 13.3928,
@@ -2016,7 +2016,7 @@
     {
       "url": "example2.csv#row=84",
       "rownum": 82,
-      "discribes": {
+      "describes": {
         "@id": "gid-82",
         "Maschine": 0.465645,
         "Kraft": 13.5842,
@@ -2038,7 +2038,7 @@
     {
       "url": "example2.csv#row=85",
       "rownum": 83,
-      "discribes": {
+      "describes": {
         "@id": "gid-83",
         "Maschine": 0.472313,
         "Kraft": 13.7957,
@@ -2060,7 +2060,7 @@
     {
       "url": "example2.csv#row=86",
       "rownum": 84,
-      "discribes": {
+      "describes": {
         "@id": "gid-84",
         "Maschine": 0.478172,
         "Kraft": 13.9747,
@@ -2082,7 +2082,7 @@
     {
       "url": "example2.csv#row=87",
       "rownum": 85,
-      "discribes": {
+      "describes": {
         "@id": "gid-85",
         "Maschine": 0.484802,
         "Kraft": 14.1961,
@@ -2104,7 +2104,7 @@
     {
       "url": "example2.csv#row=88",
       "rownum": 86,
-      "discribes": {
+      "describes": {
         "@id": "gid-86",
         "Maschine": 0.490814,
         "Kraft": 14.3905,
@@ -2126,7 +2126,7 @@
     {
       "url": "example2.csv#row=89",
       "rownum": 87,
-      "discribes": {
+      "describes": {
         "@id": "gid-87",
         "Maschine": 0.496681,
         "Kraft": 14.5893,
@@ -2148,7 +2148,7 @@
     {
       "url": "example2.csv#row=90",
       "rownum": 88,
-      "discribes": {
+      "describes": {
         "@id": "gid-88",
         "Maschine": 0.503212,
         "Kraft": 14.7922,
@@ -2170,7 +2170,7 @@
     {
       "url": "example2.csv#row=91",
       "rownum": 89,
-      "discribes": {
+      "describes": {
         "@id": "gid-89",
         "Maschine": 0.509171,
         "Kraft": 14.9896,
@@ -2192,7 +2192,7 @@
     {
       "url": "example2.csv#row=92",
       "rownum": 90,
-      "discribes": {
+      "describes": {
         "@id": "gid-90",
         "Maschine": 0.515526,
         "Kraft": 15.1961,
@@ -2214,7 +2214,7 @@
     {
       "url": "example2.csv#row=93",
       "rownum": 91,
-      "discribes": {
+      "describes": {
         "@id": "gid-91",
         "Maschine": 0.521873,
         "Kraft": 15.4139,
@@ -2236,7 +2236,7 @@
     {
       "url": "example2.csv#row=94",
       "rownum": 92,
-      "discribes": {
+      "describes": {
         "@id": "gid-92",
         "Maschine": 0.527832,
         "Kraft": 15.6035,
@@ -2258,7 +2258,7 @@
     {
       "url": "example2.csv#row=95",
       "rownum": 93,
-      "discribes": {
+      "describes": {
         "@id": "gid-93",
         "Maschine": 0.534386,
         "Kraft": 15.8107,
@@ -2280,7 +2280,7 @@
     {
       "url": "example2.csv#row=96",
       "rownum": 94,
-      "discribes": {
+      "describes": {
         "@id": "gid-94",
         "Maschine": 0.540512,
         "Kraft": 16.0115,
@@ -2302,7 +2302,7 @@
     {
       "url": "example2.csv#row=97",
       "rownum": 95,
-      "discribes": {
+      "describes": {
         "@id": "gid-95",
         "Maschine": 0.545921,
         "Kraft": 16.1865,
@@ -2324,7 +2324,7 @@
     {
       "url": "example2.csv#row=98",
       "rownum": 96,
-      "discribes": {
+      "describes": {
         "@id": "gid-96",
         "Maschine": 0.552284,
         "Kraft": 16.391,
@@ -2346,7 +2346,7 @@
     {
       "url": "example2.csv#row=99",
       "rownum": 97,
-      "discribes": {
+      "describes": {
         "@id": "gid-97",
         "Maschine": 0.55793,
         "Kraft": 16.6009,
@@ -2368,7 +2368,7 @@
     {
       "url": "example2.csv#row=100",
       "rownum": 98,
-      "discribes": {
+      "describes": {
         "@id": "gid-98",
         "Maschine": 0.563843,
         "Kraft": 16.7969,
@@ -2390,7 +2390,7 @@
     {
       "url": "example2.csv#row=101",
       "rownum": 99,
-      "discribes": {
+      "describes": {
         "@id": "gid-99",
         "Maschine": 0.569862,
         "Kraft": 16.9855,
@@ -2412,7 +2412,7 @@
     {
       "url": "example2.csv#row=102",
       "rownum": 100,
-      "discribes": {
+      "describes": {
         "@id": "gid-100",
         "Maschine": 0.576469,
         "Kraft": 17.1864,
@@ -2434,7 +2434,7 @@
     {
       "url": "example2.csv#row=103",
       "rownum": 101,
-      "discribes": {
+      "describes": {
         "@id": "gid-101",
         "Maschine": 0.582436,
         "Kraft": 17.3898,
@@ -2456,7 +2456,7 @@
     {
       "url": "example2.csv#row=104",
       "rownum": 102,
-      "discribes": {
+      "describes": {
         "@id": "gid-102",
         "Maschine": 0.588707,
         "Kraft": 17.5833,
@@ -2478,7 +2478,7 @@
     {
       "url": "example2.csv#row=105",
       "rownum": 103,
-      "discribes": {
+      "describes": {
         "@id": "gid-103",
         "Maschine": 0.594269,
         "Kraft": 17.7684,
@@ -2500,7 +2500,7 @@
     {
       "url": "example2.csv#row=106",
       "rownum": 104,
-      "discribes": {
+      "describes": {
         "@id": "gid-104",
         "Maschine": 0.599625,
         "Kraft": 17.9479,
@@ -2522,7 +2522,7 @@
     {
       "url": "example2.csv#row=107",
       "rownum": 105,
-      "discribes": {
+      "describes": {
         "@id": "gid-105",
         "Maschine": 0.605507,
         "Kraft": 18.1467,
@@ -2544,7 +2544,7 @@
     {
       "url": "example2.csv#row=108",
       "rownum": 106,
-      "discribes": {
+      "describes": {
         "@id": "gid-106",
         "Maschine": 0.612144,
         "Kraft": 18.3433,
@@ -2566,7 +2566,7 @@
     {
       "url": "example2.csv#row=109",
       "rownum": 107,
-      "discribes": {
+      "describes": {
         "@id": "gid-107",
         "Maschine": 0.618614,
         "Kraft": 18.5492,
@@ -2588,7 +2588,7 @@
     {
       "url": "example2.csv#row=110",
       "rownum": 108,
-      "discribes": {
+      "describes": {
         "@id": "gid-108",
         "Maschine": 0.625664,
         "Kraft": 18.7566,
@@ -2610,7 +2610,7 @@
     {
       "url": "example2.csv#row=111",
       "rownum": 109,
-      "discribes": {
+      "describes": {
         "@id": "gid-109",
         "Maschine": 0.631393,
         "Kraft": 18.9314,
@@ -2632,7 +2632,7 @@
     {
       "url": "example2.csv#row=112",
       "rownum": 110,
-      "discribes": {
+      "describes": {
         "@id": "gid-110",
         "Maschine": 0.637558,
         "Kraft": 19.1474,
@@ -2654,7 +2654,7 @@
     {
       "url": "example2.csv#row=113",
       "rownum": 111,
-      "discribes": {
+      "describes": {
         "@id": "gid-111",
         "Maschine": 0.642593,
         "Kraft": 19.3057,
@@ -2676,7 +2676,7 @@
     {
       "url": "example2.csv#row=114",
       "rownum": 112,
-      "discribes": {
+      "describes": {
         "@id": "gid-112",
         "Maschine": 0.648804,
         "Kraft": 19.4883,
@@ -2698,7 +2698,7 @@
     {
       "url": "example2.csv#row=115",
       "rownum": 113,
-      "discribes": {
+      "describes": {
         "@id": "gid-113",
         "Maschine": 0.655617,
         "Kraft": 19.7127,
@@ -2720,7 +2720,7 @@
     {
       "url": "example2.csv#row=116",
       "rownum": 114,
-      "discribes": {
+      "describes": {
         "@id": "gid-114",
         "Maschine": 0.66114,
         "Kraft": 19.8953,
@@ -2742,7 +2742,7 @@
     {
       "url": "example2.csv#row=117",
       "rownum": 115,
-      "discribes": {
+      "describes": {
         "@id": "gid-115",
         "Maschine": 0.667801,
         "Kraft": 20.0865,
@@ -2764,7 +2764,7 @@
     {
       "url": "example2.csv#row=118",
       "rownum": 116,
-      "discribes": {
+      "describes": {
         "@id": "gid-116",
         "Maschine": 0.673889,
         "Kraft": 20.2616,
@@ -2786,7 +2786,7 @@
     {
       "url": "example2.csv#row=119",
       "rownum": 117,
-      "discribes": {
+      "describes": {
         "@id": "gid-117",
         "Maschine": 0.679665,
         "Kraft": 20.4321,
@@ -2808,7 +2808,7 @@
     {
       "url": "example2.csv#row=120",
       "rownum": 118,
-      "discribes": {
+      "describes": {
         "@id": "gid-118",
         "Maschine": 0.68589,
         "Kraft": 20.6077,
@@ -2830,7 +2830,7 @@
     {
       "url": "example2.csv#row=121",
       "rownum": 119,
-      "discribes": {
+      "describes": {
         "@id": "gid-119",
         "Maschine": 0.691956,
         "Kraft": 20.7614,
@@ -2852,7 +2852,7 @@
     {
       "url": "example2.csv#row=122",
       "rownum": 120,
-      "discribes": {
+      "describes": {
         "@id": "gid-120",
         "Maschine": 0.697258,
         "Kraft": 20.8822,
@@ -2874,7 +2874,7 @@
     {
       "url": "example2.csv#row=123",
       "rownum": 121,
-      "discribes": {
+      "describes": {
         "@id": "gid-121",
         "Maschine": 0.704437,
         "Kraft": 21.0072,
@@ -2896,7 +2896,7 @@
     {
       "url": "example2.csv#row=124",
       "rownum": 122,
-      "discribes": {
+      "describes": {
         "@id": "gid-122",
         "Maschine": 0.710274,
         "Kraft": 21.0947,
@@ -2918,7 +2918,7 @@
     {
       "url": "example2.csv#row=125",
       "rownum": 123,
-      "discribes": {
+      "describes": {
         "@id": "gid-123",
         "Maschine": 0.716072,
         "Kraft": 21.1604,
@@ -2940,7 +2940,7 @@
     {
       "url": "example2.csv#row=126",
       "rownum": 124,
-      "discribes": {
+      "describes": {
         "@id": "gid-124",
         "Maschine": 0.723167,
         "Kraft": 21.198,
@@ -2962,7 +2962,7 @@
     {
       "url": "example2.csv#row=127",
       "rownum": 125,
-      "discribes": {
+      "describes": {
         "@id": "gid-125",
         "Maschine": 0.728729,
         "Kraft": 21.2094,
@@ -2984,7 +2984,7 @@
     {
       "url": "example2.csv#row=128",
       "rownum": 126,
-      "discribes": {
+      "describes": {
         "@id": "gid-126",
         "Maschine": 0.735085,
         "Kraft": 21.2329,
@@ -3006,7 +3006,7 @@
     {
       "url": "example2.csv#row=129",
       "rownum": 127,
-      "discribes": {
+      "describes": {
         "@id": "gid-127",
         "Maschine": 0.741142,
         "Kraft": 21.256,
@@ -3028,7 +3028,7 @@
     {
       "url": "example2.csv#row=130",
       "rownum": 128,
-      "discribes": {
+      "describes": {
         "@id": "gid-128",
         "Maschine": 0.746735,
         "Kraft": 21.3028,
@@ -3050,7 +3050,7 @@
     {
       "url": "example2.csv#row=131",
       "rownum": 129,
-      "discribes": {
+      "describes": {
         "@id": "gid-129",
         "Maschine": 0.752899,
         "Kraft": 21.3348,
@@ -3072,7 +3072,7 @@
     {
       "url": "example2.csv#row=132",
       "rownum": 130,
-      "discribes": {
+      "describes": {
         "@id": "gid-130",
         "Maschine": 0.759048,
         "Kraft": 21.3818,
@@ -3094,7 +3094,7 @@
     {
       "url": "example2.csv#row=133",
       "rownum": 131,
-      "discribes": {
+      "describes": {
         "@id": "gid-131",
         "Maschine": 0.765434,
         "Kraft": 21.4073,
@@ -3116,7 +3116,7 @@
     {
       "url": "example2.csv#row=134",
       "rownum": 132,
-      "discribes": {
+      "describes": {
         "@id": "gid-132",
         "Maschine": 0.771362,
         "Kraft": 21.4439,
@@ -3138,7 +3138,7 @@
     {
       "url": "example2.csv#row=135",
       "rownum": 133,
-      "discribes": {
+      "describes": {
         "@id": "gid-133",
         "Maschine": 0.776627,
         "Kraft": 21.483,
@@ -3160,7 +3160,7 @@
     {
       "url": "example2.csv#row=136",
       "rownum": 134,
-      "discribes": {
+      "describes": {
         "@id": "gid-134",
         "Maschine": 0.783501,
         "Kraft": 21.5337,
@@ -3182,7 +3182,7 @@
     {
       "url": "example2.csv#row=137",
       "rownum": 135,
-      "discribes": {
+      "describes": {
         "@id": "gid-135",
         "Maschine": 0.788811,
         "Kraft": 21.5494,
@@ -3204,7 +3204,7 @@
     {
       "url": "example2.csv#row=138",
       "rownum": 136,
-      "discribes": {
+      "describes": {
         "@id": "gid-136",
         "Maschine": 0.795235,
         "Kraft": 21.6091,
@@ -3226,7 +3226,7 @@
     {
       "url": "example2.csv#row=139",
       "rownum": 137,
-      "discribes": {
+      "describes": {
         "@id": "gid-137",
         "Maschine": 0.801399,
         "Kraft": 21.6365,
@@ -3248,7 +3248,7 @@
     {
       "url": "example2.csv#row=140",
       "rownum": 138,
-      "discribes": {
+      "describes": {
         "@id": "gid-138",
         "Maschine": 0.807335,
         "Kraft": 21.6501,
@@ -3270,7 +3270,7 @@
     {
       "url": "example2.csv#row=141",
       "rownum": 139,
-      "discribes": {
+      "describes": {
         "@id": "gid-139",
         "Maschine": 0.813347,
         "Kraft": 21.6911,
@@ -3292,7 +3292,7 @@
     {
       "url": "example2.csv#row=142",
       "rownum": 140,
-      "discribes": {
+      "describes": {
         "@id": "gid-140",
         "Maschine": 0.819527,
         "Kraft": 21.7291,
@@ -3314,7 +3314,7 @@
     {
       "url": "example2.csv#row=143",
       "rownum": 141,
-      "discribes": {
+      "describes": {
         "@id": "gid-141",
         "Maschine": 0.8256,
         "Kraft": 21.7649,
@@ -3336,7 +3336,7 @@
     {
       "url": "example2.csv#row=144",
       "rownum": 142,
-      "discribes": {
+      "describes": {
         "@id": "gid-142",
         "Maschine": 0.831535,
         "Kraft": 21.7855,
@@ -3358,7 +3358,7 @@
     {
       "url": "example2.csv#row=145",
       "rownum": 143,
-      "discribes": {
+      "describes": {
         "@id": "gid-143",
         "Maschine": 0.838181,
         "Kraft": 21.8102,
@@ -3380,7 +3380,7 @@
     {
       "url": "example2.csv#row=146",
       "rownum": 144,
-      "discribes": {
+      "describes": {
         "@id": "gid-144",
         "Maschine": 0.843819,
         "Kraft": 21.8339,
@@ -3402,7 +3402,7 @@
     {
       "url": "example2.csv#row=147",
       "rownum": 145,
-      "discribes": {
+      "describes": {
         "@id": "gid-145",
         "Maschine": 0.849968,
         "Kraft": 21.8513,
@@ -3424,7 +3424,7 @@
     {
       "url": "example2.csv#row=148",
       "rownum": 146,
-      "discribes": {
+      "describes": {
         "@id": "gid-146",
         "Maschine": 0.856911,
         "Kraft": 21.8832,
@@ -3446,7 +3446,7 @@
     {
       "url": "example2.csv#row=149",
       "rownum": 147,
-      "discribes": {
+      "describes": {
         "@id": "gid-147",
         "Maschine": 0.862434,
         "Kraft": 21.8975,
@@ -3468,7 +3468,7 @@
     {
       "url": "example2.csv#row=150",
       "rownum": 148,
-      "discribes": {
+      "describes": {
         "@id": "gid-148",
         "Maschine": 0.869232,
         "Kraft": 21.9221,
@@ -3490,7 +3490,7 @@
     {
       "url": "example2.csv#row=151",
       "rownum": 149,
-      "discribes": {
+      "describes": {
         "@id": "gid-149",
         "Maschine": 0.875458,
         "Kraft": 21.9496,
@@ -3512,7 +3512,7 @@
     {
       "url": "example2.csv#row=152",
       "rownum": 150,
-      "discribes": {
+      "describes": {
         "@id": "gid-150",
         "Maschine": 0.881821,
         "Kraft": 21.9697,
@@ -3534,7 +3534,7 @@
     {
       "url": "example2.csv#row=153",
       "rownum": 151,
-      "discribes": {
+      "describes": {
         "@id": "gid-151",
         "Maschine": 0.887848,
         "Kraft": 21.9934,
@@ -3556,7 +3556,7 @@
     {
       "url": "example2.csv#row=154",
       "rownum": 152,
-      "discribes": {
+      "describes": {
         "@id": "gid-152",
         "Maschine": 0.89505,
         "Kraft": 22.0094,
@@ -3578,7 +3578,7 @@
     {
       "url": "example2.csv#row=155",
       "rownum": 153,
-      "discribes": {
+      "describes": {
         "@id": "gid-153",
         "Maschine": 0.900093,
         "Kraft": 22.0295,
@@ -3600,7 +3600,7 @@
     {
       "url": "example2.csv#row=156",
       "rownum": 154,
-      "discribes": {
+      "describes": {
         "@id": "gid-154",
         "Maschine": 0.906227,
         "Kraft": 22.0501,
@@ -3622,7 +3622,7 @@
     {
       "url": "example2.csv#row=157",
       "rownum": 155,
-      "discribes": {
+      "describes": {
         "@id": "gid-155",
         "Maschine": 0.912476,
         "Kraft": 22.07,
@@ -3644,7 +3644,7 @@
     {
       "url": "example2.csv#row=158",
       "rownum": 156,
-      "discribes": {
+      "describes": {
         "@id": "gid-156",
         "Maschine": 0.918434,
         "Kraft": 22.0866,
@@ -3666,7 +3666,7 @@
     {
       "url": "example2.csv#row=159",
       "rownum": 157,
-      "discribes": {
+      "describes": {
         "@id": "gid-157",
         "Maschine": 0.925034,
         "Kraft": 22.1015,
@@ -3688,7 +3688,7 @@
     {
       "url": "example2.csv#row=160",
       "rownum": 158,
-      "discribes": {
+      "describes": {
         "@id": "gid-158",
         "Maschine": 0.930458,
         "Kraft": 22.1076,
@@ -3710,7 +3710,7 @@
     {
       "url": "example2.csv#row=161",
       "rownum": 159,
-      "discribes": {
+      "describes": {
         "@id": "gid-159",
         "Maschine": 0.937042,
         "Kraft": 22.1285,
@@ -3732,7 +3732,7 @@
     {
       "url": "example2.csv#row=162",
       "rownum": 160,
-      "discribes": {
+      "describes": {
         "@id": "gid-160",
         "Maschine": 0.942772,
         "Kraft": 22.1448,
@@ -3754,7 +3754,7 @@
     {
       "url": "example2.csv#row=163",
       "rownum": 161,
-      "discribes": {
+      "describes": {
         "@id": "gid-161",
         "Maschine": 0.948708,
         "Kraft": 22.1554,
@@ -3776,7 +3776,7 @@
     {
       "url": "example2.csv#row=164",
       "rownum": 162,
-      "discribes": {
+      "describes": {
         "@id": "gid-162",
         "Maschine": 0.955688,
         "Kraft": 22.1747,
@@ -3798,7 +3798,7 @@
     {
       "url": "example2.csv#row=165",
       "rownum": 163,
-      "discribes": {
+      "describes": {
         "@id": "gid-163",
         "Maschine": 0.960739,
         "Kraft": 22.188,
@@ -3820,7 +3820,7 @@
     {
       "url": "example2.csv#row=166",
       "rownum": 164,
-      "discribes": {
+      "describes": {
         "@id": "gid-164",
         "Maschine": 0.967155,
         "Kraft": 22.1993,
@@ -3842,7 +3842,7 @@
     {
       "url": "example2.csv#row=167",
       "rownum": 165,
-      "discribes": {
+      "describes": {
         "@id": "gid-165",
         "Maschine": 0.974434,
         "Kraft": 22.2104,
@@ -3864,7 +3864,7 @@
     {
       "url": "example2.csv#row=168",
       "rownum": 166,
-      "discribes": {
+      "describes": {
         "@id": "gid-166",
         "Maschine": 0.980179,
         "Kraft": 22.2265,
@@ -3886,7 +3886,7 @@
     {
       "url": "example2.csv#row=169",
       "rownum": 167,
-      "discribes": {
+      "describes": {
         "@id": "gid-167",
         "Maschine": 0.98674,
         "Kraft": 22.234,
@@ -3908,7 +3908,7 @@
     {
       "url": "example2.csv#row=170",
       "rownum": 168,
-      "discribes": {
+      "describes": {
         "@id": "gid-168",
         "Maschine": 0.992165,
         "Kraft": 22.2377,
@@ -3930,7 +3930,7 @@
     {
       "url": "example2.csv#row=171",
       "rownum": 169,
-      "discribes": {
+      "describes": {
         "@id": "gid-169",
         "Maschine": 0.998894,
         "Kraft": 22.2583,
@@ -3952,7 +3952,7 @@
     {
       "url": "example2.csv#row=172",
       "rownum": 170,
-      "discribes": {
+      "describes": {
         "@id": "gid-170",
         "Maschine": 1.00451,
         "Kraft": 22.266,
@@ -3974,7 +3974,7 @@
     {
       "url": "example2.csv#row=173",
       "rownum": 171,
-      "discribes": {
+      "describes": {
         "@id": "gid-171",
         "Maschine": 1.01094,
         "Kraft": 22.2856,
@@ -3996,7 +3996,7 @@
     {
       "url": "example2.csv#row=174",
       "rownum": 172,
-      "discribes": {
+      "describes": {
         "@id": "gid-172",
         "Maschine": 1.01754,
         "Kraft": 22.3041,
@@ -4018,7 +4018,7 @@
     {
       "url": "example2.csv#row=175",
       "rownum": 173,
-      "discribes": {
+      "describes": {
         "@id": "gid-173",
         "Maschine": 1.02282,
         "Kraft": 22.3104,
@@ -4040,7 +4040,7 @@
     {
       "url": "example2.csv#row=176",
       "rownum": 174,
-      "discribes": {
+      "describes": {
         "@id": "gid-174",
         "Maschine": 1.02977,
         "Kraft": 22.3284,
@@ -4062,7 +4062,7 @@
     {
       "url": "example2.csv#row=177",
       "rownum": 175,
-      "discribes": {
+      "describes": {
         "@id": "gid-175",
         "Maschine": 1.03631,
         "Kraft": 22.331,
@@ -4084,7 +4084,7 @@
     {
       "url": "example2.csv#row=178",
       "rownum": 176,
-      "discribes": {
+      "describes": {
         "@id": "gid-176",
         "Maschine": 1.04189,
         "Kraft": 22.3388,
@@ -4106,7 +4106,7 @@
     {
       "url": "example2.csv#row=179",
       "rownum": 177,
-      "discribes": {
+      "describes": {
         "@id": "gid-177",
         "Maschine": 1.04768,
         "Kraft": 22.3538,
@@ -4128,7 +4128,7 @@
     {
       "url": "example2.csv#row=180",
       "rownum": 178,
-      "discribes": {
+      "describes": {
         "@id": "gid-178",
         "Maschine": 1.05391,
         "Kraft": 22.3627,
@@ -4150,7 +4150,7 @@
     {
       "url": "example2.csv#row=181",
       "rownum": 179,
-      "discribes": {
+      "describes": {
         "@id": "gid-179",
         "Maschine": 1.06059,
         "Kraft": 22.3694,
@@ -4172,7 +4172,7 @@
     {
       "url": "example2.csv#row=182",
       "rownum": 180,
-      "discribes": {
+      "describes": {
         "@id": "gid-180",
         "Maschine": 1.06583,
         "Kraft": 22.3854,
@@ -4194,7 +4194,7 @@
     {
       "url": "example2.csv#row=183",
       "rownum": 181,
-      "discribes": {
+      "describes": {
         "@id": "gid-181",
         "Maschine": 1.0723,
         "Kraft": 22.3955,
@@ -4216,7 +4216,7 @@
     {
       "url": "example2.csv#row=184",
       "rownum": 182,
-      "discribes": {
+      "describes": {
         "@id": "gid-182",
         "Maschine": 1.0787,
         "Kraft": 22.4021,
@@ -4238,7 +4238,7 @@
     {
       "url": "example2.csv#row=185",
       "rownum": 183,
-      "discribes": {
+      "describes": {
         "@id": "gid-183",
         "Maschine": 1.08544,
         "Kraft": 22.4197,
@@ -4260,7 +4260,7 @@
     {
       "url": "example2.csv#row=186",
       "rownum": 184,
-      "discribes": {
+      "describes": {
         "@id": "gid-184",
         "Maschine": 1.09092,
         "Kraft": 22.4231,
@@ -4282,7 +4282,7 @@
     {
       "url": "example2.csv#row=187",
       "rownum": 185,
-      "discribes": {
+      "describes": {
         "@id": "gid-185",
         "Maschine": 1.09767,
         "Kraft": 22.4407,
@@ -4304,7 +4304,7 @@
     {
       "url": "example2.csv#row=188",
       "rownum": 186,
-      "discribes": {
+      "describes": {
         "@id": "gid-186",
         "Maschine": 1.10387,
         "Kraft": 22.4468,
@@ -4326,7 +4326,7 @@
     {
       "url": "example2.csv#row=189",
       "rownum": 187,
-      "discribes": {
+      "describes": {
         "@id": "gid-187",
         "Maschine": 1.10992,
         "Kraft": 22.4569,
@@ -4348,7 +4348,7 @@
     {
       "url": "example2.csv#row=190",
       "rownum": 188,
-      "discribes": {
+      "describes": {
         "@id": "gid-188",
         "Maschine": 1.11597,
         "Kraft": 22.4637,
@@ -4370,7 +4370,7 @@
     {
       "url": "example2.csv#row=191",
       "rownum": 189,
-      "discribes": {
+      "describes": {
         "@id": "gid-189",
         "Maschine": 1.12234,
         "Kraft": 22.4729,
@@ -4392,7 +4392,7 @@
     {
       "url": "example2.csv#row=192",
       "rownum": 190,
-      "discribes": {
+      "describes": {
         "@id": "gid-190",
         "Maschine": 1.1287,
         "Kraft": 22.4886,
@@ -4414,7 +4414,7 @@
     {
       "url": "example2.csv#row=193",
       "rownum": 191,
-      "discribes": {
+      "describes": {
         "@id": "gid-191",
         "Maschine": 1.1346,
         "Kraft": 22.4854,
@@ -4436,7 +4436,7 @@
     {
       "url": "example2.csv#row=194",
       "rownum": 192,
-      "discribes": {
+      "describes": {
         "@id": "gid-192",
         "Maschine": 1.14056,
         "Kraft": 22.5019,
@@ -4458,7 +4458,7 @@
     {
       "url": "example2.csv#row=195",
       "rownum": 193,
-      "discribes": {
+      "describes": {
         "@id": "gid-193",
         "Maschine": 1.1467,
         "Kraft": 22.5306,
@@ -4480,7 +4480,7 @@
     {
       "url": "example2.csv#row=196",
       "rownum": 194,
-      "discribes": {
+      "describes": {
         "@id": "gid-194",
         "Maschine": 1.15251,
         "Kraft": 22.5358,
@@ -4502,7 +4502,7 @@
     {
       "url": "example2.csv#row=197",
       "rownum": 195,
-      "discribes": {
+      "describes": {
         "@id": "gid-195",
         "Maschine": 1.15889,
         "Kraft": 22.5387,
@@ -4524,7 +4524,7 @@
     {
       "url": "example2.csv#row=198",
       "rownum": 196,
-      "discribes": {
+      "describes": {
         "@id": "gid-196",
         "Maschine": 1.16528,
         "Kraft": 22.5426,
@@ -4546,7 +4546,7 @@
     {
       "url": "example2.csv#row=199",
       "rownum": 197,
-      "discribes": {
+      "describes": {
         "@id": "gid-197",
         "Maschine": 1.17181,
         "Kraft": 22.5591,
@@ -4568,7 +4568,7 @@
     {
       "url": "example2.csv#row=200",
       "rownum": 198,
-      "discribes": {
+      "describes": {
         "@id": "gid-198",
         "Maschine": 1.17735,
         "Kraft": 22.5669,
@@ -4590,7 +4590,7 @@
     {
       "url": "example2.csv#row=201",
       "rownum": 199,
-      "discribes": {
+      "describes": {
         "@id": "gid-199",
         "Maschine": 1.18437,
         "Kraft": 22.5762,
@@ -4612,7 +4612,7 @@
     {
       "url": "example2.csv#row=202",
       "rownum": 200,
-      "discribes": {
+      "describes": {
         "@id": "gid-200",
         "Maschine": 1.18993,
         "Kraft": 22.5856,
@@ -4634,7 +4634,7 @@
     {
       "url": "example2.csv#row=203",
       "rownum": 201,
-      "discribes": {
+      "describes": {
         "@id": "gid-201",
         "Maschine": 1.19608,
         "Kraft": 22.5798,
@@ -4656,7 +4656,7 @@
     {
       "url": "example2.csv#row=204",
       "rownum": 202,
-      "discribes": {
+      "describes": {
         "@id": "gid-202",
         "Maschine": 1.20208,
         "Kraft": 22.5962,
@@ -4678,7 +4678,7 @@
     {
       "url": "example2.csv#row=205",
       "rownum": 203,
-      "discribes": {
+      "describes": {
         "@id": "gid-203",
         "Maschine": 1.20903,
         "Kraft": 22.6085,
@@ -4700,7 +4700,7 @@
     {
       "url": "example2.csv#row=206",
       "rownum": 204,
-      "discribes": {
+      "describes": {
         "@id": "gid-204",
         "Maschine": 1.21568,
         "Kraft": 22.6161,
@@ -4722,7 +4722,7 @@
     {
       "url": "example2.csv#row=207",
       "rownum": 205,
-      "discribes": {
+      "describes": {
         "@id": "gid-205",
         "Maschine": 1.22155,
         "Kraft": 22.6348,
@@ -4744,7 +4744,7 @@
     {
       "url": "example2.csv#row=208",
       "rownum": 206,
-      "discribes": {
+      "describes": {
         "@id": "gid-206",
         "Maschine": 1.22826,
         "Kraft": 22.6495,
@@ -4766,7 +4766,7 @@
     {
       "url": "example2.csv#row=209",
       "rownum": 207,
-      "discribes": {
+      "describes": {
         "@id": "gid-207",
         "Maschine": 1.23402,
         "Kraft": 22.6447,
@@ -4788,7 +4788,7 @@
     {
       "url": "example2.csv#row=210",
       "rownum": 208,
-      "discribes": {
+      "describes": {
         "@id": "gid-208",
         "Maschine": 1.23991,
         "Kraft": 22.6492,
@@ -4810,7 +4810,7 @@
     {
       "url": "example2.csv#row=211",
       "rownum": 209,
-      "discribes": {
+      "describes": {
         "@id": "gid-209",
         "Maschine": 1.2454,
         "Kraft": 22.6537,
@@ -4832,7 +4832,7 @@
     {
       "url": "example2.csv#row=212",
       "rownum": 210,
-      "discribes": {
+      "describes": {
         "@id": "gid-210",
         "Maschine": 1.25273,
         "Kraft": 22.6651,
@@ -4854,7 +4854,7 @@
     {
       "url": "example2.csv#row=213",
       "rownum": 211,
-      "discribes": {
+      "describes": {
         "@id": "gid-211",
         "Maschine": 1.25829,
         "Kraft": 22.6745,
@@ -4876,7 +4876,7 @@
     {
       "url": "example2.csv#row=214",
       "rownum": 212,
-      "discribes": {
+      "describes": {
         "@id": "gid-212",
         "Maschine": 1.26441,
         "Kraft": 22.6884,
@@ -4898,7 +4898,7 @@
     {
       "url": "example2.csv#row=215",
       "rownum": 213,
-      "discribes": {
+      "describes": {
         "@id": "gid-213",
         "Maschine": 1.26992,
         "Kraft": 22.6972,
@@ -4920,7 +4920,7 @@
     {
       "url": "example2.csv#row=216",
       "rownum": 214,
-      "discribes": {
+      "describes": {
         "@id": "gid-214",
         "Maschine": 1.27696,
         "Kraft": 22.7023,
@@ -4942,7 +4942,7 @@
     {
       "url": "example2.csv#row=217",
       "rownum": 215,
-      "discribes": {
+      "describes": {
         "@id": "gid-215",
         "Maschine": 1.28266,
         "Kraft": 22.7088,
@@ -4964,7 +4964,7 @@
     {
       "url": "example2.csv#row=218",
       "rownum": 216,
-      "discribes": {
+      "describes": {
         "@id": "gid-216",
         "Maschine": 1.28939,
         "Kraft": 22.7152,
@@ -4986,7 +4986,7 @@
     {
       "url": "example2.csv#row=219",
       "rownum": 217,
-      "discribes": {
+      "describes": {
         "@id": "gid-217",
         "Maschine": 1.296,
         "Kraft": 22.7283,
@@ -5008,7 +5008,7 @@
     {
       "url": "example2.csv#row=220",
       "rownum": 218,
-      "discribes": {
+      "describes": {
         "@id": "gid-218",
         "Maschine": 1.30187,
         "Kraft": 22.7244,
@@ -5030,7 +5030,7 @@
     {
       "url": "example2.csv#row=221",
       "rownum": 219,
-      "discribes": {
+      "describes": {
         "@id": "gid-219",
         "Maschine": 1.30802,
         "Kraft": 22.7485,
@@ -5052,7 +5052,7 @@
     {
       "url": "example2.csv#row=222",
       "rownum": 220,
-      "discribes": {
+      "describes": {
         "@id": "gid-220",
         "Maschine": 1.31385,
         "Kraft": 22.747,
@@ -5074,7 +5074,7 @@
     {
       "url": "example2.csv#row=223",
       "rownum": 221,
-      "discribes": {
+      "describes": {
         "@id": "gid-221",
         "Maschine": 1.32062,
         "Kraft": 22.7629,
@@ -5096,7 +5096,7 @@
     {
       "url": "example2.csv#row=224",
       "rownum": 222,
-      "discribes": {
+      "describes": {
         "@id": "gid-222",
         "Maschine": 1.3265,
         "Kraft": 22.7726,
@@ -5118,7 +5118,7 @@
     {
       "url": "example2.csv#row=225",
       "rownum": 223,
-      "discribes": {
+      "describes": {
         "@id": "gid-223",
         "Maschine": 1.33234,
         "Kraft": 22.7899,
@@ -5140,7 +5140,7 @@
     {
       "url": "example2.csv#row=226",
       "rownum": 224,
-      "discribes": {
+      "describes": {
         "@id": "gid-224",
         "Maschine": 1.33875,
         "Kraft": 22.7788,
@@ -5162,7 +5162,7 @@
     {
       "url": "example2.csv#row=227",
       "rownum": 225,
-      "discribes": {
+      "describes": {
         "@id": "gid-225",
         "Maschine": 1.34553,
         "Kraft": 22.7971,
@@ -5184,7 +5184,7 @@
     {
       "url": "example2.csv#row=228",
       "rownum": 226,
-      "discribes": {
+      "describes": {
         "@id": "gid-226",
         "Maschine": 1.35204,
         "Kraft": 22.7989,
@@ -5206,7 +5206,7 @@
     {
       "url": "example2.csv#row=229",
       "rownum": 227,
-      "discribes": {
+      "describes": {
         "@id": "gid-227",
         "Maschine": 1.35822,
         "Kraft": 22.8042,
@@ -5228,7 +5228,7 @@
     {
       "url": "example2.csv#row=230",
       "rownum": 228,
-      "discribes": {
+      "describes": {
         "@id": "gid-228",
         "Maschine": 1.36358,
         "Kraft": 22.8021,
@@ -5250,7 +5250,7 @@
     {
       "url": "example2.csv#row=231",
       "rownum": 229,
-      "discribes": {
+      "describes": {
         "@id": "gid-229",
         "Maschine": 1.36973,
         "Kraft": 22.8235,
@@ -5272,7 +5272,7 @@
     {
       "url": "example2.csv#row=232",
       "rownum": 230,
-      "discribes": {
+      "describes": {
         "@id": "gid-230",
         "Maschine": 1.37636,
         "Kraft": 22.8319,
@@ -5294,7 +5294,7 @@
     {
       "url": "example2.csv#row=233",
       "rownum": 231,
-      "discribes": {
+      "describes": {
         "@id": "gid-231",
         "Maschine": 1.38253,
         "Kraft": 22.8336,
@@ -5316,7 +5316,7 @@
     {
       "url": "example2.csv#row=234",
       "rownum": 232,
-      "discribes": {
+      "describes": {
         "@id": "gid-232",
         "Maschine": 1.38924,
         "Kraft": 22.8463,
@@ -5338,7 +5338,7 @@
     {
       "url": "example2.csv#row=235",
       "rownum": 233,
-      "discribes": {
+      "describes": {
         "@id": "gid-233",
         "Maschine": 1.39478,
         "Kraft": 22.8513,
@@ -5360,7 +5360,7 @@
     {
       "url": "example2.csv#row=236",
       "rownum": 234,
-      "discribes": {
+      "describes": {
         "@id": "gid-234",
         "Maschine": 1.40118,
         "Kraft": 22.8715,
@@ -5382,7 +5382,7 @@
     {
       "url": "example2.csv#row=237",
       "rownum": 235,
-      "discribes": {
+      "describes": {
         "@id": "gid-235",
         "Maschine": 1.40661,
         "Kraft": 22.8649,
@@ -5404,7 +5404,7 @@
     {
       "url": "example2.csv#row=238",
       "rownum": 236,
-      "discribes": {
+      "describes": {
         "@id": "gid-236",
         "Maschine": 1.4132,
         "Kraft": 22.8781,
@@ -5426,7 +5426,7 @@
     {
       "url": "example2.csv#row=239",
       "rownum": 237,
-      "discribes": {
+      "describes": {
         "@id": "gid-237",
         "Maschine": 1.41973,
         "Kraft": 22.8834,
@@ -5448,7 +5448,7 @@
     {
       "url": "example2.csv#row=240",
       "rownum": 238,
-      "discribes": {
+      "describes": {
         "@id": "gid-238",
         "Maschine": 1.42614,
         "Kraft": 22.8892,
@@ -5470,7 +5470,7 @@
     {
       "url": "example2.csv#row=241",
       "rownum": 239,
-      "discribes": {
+      "describes": {
         "@id": "gid-239",
         "Maschine": 1.43242,
         "Kraft": 22.9045,
@@ -5492,7 +5492,7 @@
     {
       "url": "example2.csv#row=242",
       "rownum": 240,
-      "discribes": {
+      "describes": {
         "@id": "gid-240",
         "Maschine": 1.43852,
         "Kraft": 22.9004,
@@ -5514,7 +5514,7 @@
     {
       "url": "example2.csv#row=243",
       "rownum": 241,
-      "discribes": {
+      "describes": {
         "@id": "gid-241",
         "Maschine": 1.44462,
         "Kraft": 22.9092,
@@ -5536,7 +5536,7 @@
     {
       "url": "example2.csv#row=244",
       "rownum": 242,
-      "discribes": {
+      "describes": {
         "@id": "gid-242",
         "Maschine": 1.45105,
         "Kraft": 22.9195,
@@ -5558,7 +5558,7 @@
     {
       "url": "example2.csv#row=245",
       "rownum": 243,
-      "discribes": {
+      "describes": {
         "@id": "gid-243",
         "Maschine": 1.45716,
         "Kraft": 22.9263,
@@ -5580,7 +5580,7 @@
     {
       "url": "example2.csv#row=246",
       "rownum": 244,
-      "discribes": {
+      "describes": {
         "@id": "gid-244",
         "Maschine": 1.46246,
         "Kraft": 22.9273,
@@ -5602,7 +5602,7 @@
     {
       "url": "example2.csv#row=247",
       "rownum": 245,
-      "discribes": {
+      "describes": {
         "@id": "gid-245",
         "Maschine": 1.46955,
         "Kraft": 22.9472,
@@ -5624,7 +5624,7 @@
     {
       "url": "example2.csv#row=248",
       "rownum": 246,
-      "discribes": {
+      "describes": {
         "@id": "gid-246",
         "Maschine": 1.475,
         "Kraft": 22.947,
@@ -5646,7 +5646,7 @@
     {
       "url": "example2.csv#row=249",
       "rownum": 247,
-      "discribes": {
+      "describes": {
         "@id": "gid-247",
         "Maschine": 1.48219,
         "Kraft": 22.9661,
@@ -5668,7 +5668,7 @@
     {
       "url": "example2.csv#row=250",
       "rownum": 248,
-      "discribes": {
+      "describes": {
         "@id": "gid-248",
         "Maschine": 1.48763,
         "Kraft": 22.9443,
@@ -5690,7 +5690,7 @@
     {
       "url": "example2.csv#row=251",
       "rownum": 249,
-      "discribes": {
+      "describes": {
         "@id": "gid-249",
         "Maschine": 1.49336,
         "Kraft": 22.9623,
@@ -5712,7 +5712,7 @@
     {
       "url": "example2.csv#row=252",
       "rownum": 250,
-      "discribes": {
+      "describes": {
         "@id": "gid-250",
         "Maschine": 1.49939,
         "Kraft": 22.9674,
@@ -5734,7 +5734,7 @@
     {
       "url": "example2.csv#row=253",
       "rownum": 251,
-      "discribes": {
+      "describes": {
         "@id": "gid-251",
         "Maschine": 1.5058,
         "Kraft": 22.9738,
@@ -5756,7 +5756,7 @@
     {
       "url": "example2.csv#row=254",
       "rownum": 252,
-      "discribes": {
+      "describes": {
         "@id": "gid-252",
         "Maschine": 1.51275,
         "Kraft": 22.9927,
@@ -5778,7 +5778,7 @@
     {
       "url": "example2.csv#row=255",
       "rownum": 253,
-      "discribes": {
+      "describes": {
         "@id": "gid-253",
         "Maschine": 1.51891,
         "Kraft": 23.0007,
@@ -5800,7 +5800,7 @@
     {
       "url": "example2.csv#row=256",
       "rownum": 254,
-      "discribes": {
+      "describes": {
         "@id": "gid-254",
         "Maschine": 1.52519,
         "Kraft": 22.9997,
@@ -5822,7 +5822,7 @@
     {
       "url": "example2.csv#row=257",
       "rownum": 255,
-      "discribes": {
+      "describes": {
         "@id": "gid-255",
         "Maschine": 1.53101,
         "Kraft": 23.0096,
@@ -5844,7 +5844,7 @@
     {
       "url": "example2.csv#row=258",
       "rownum": 256,
-      "discribes": {
+      "describes": {
         "@id": "gid-256",
         "Maschine": 1.53748,
         "Kraft": 23.0156,
@@ -5866,7 +5866,7 @@
     {
       "url": "example2.csv#row=259",
       "rownum": 257,
-      "discribes": {
+      "describes": {
         "@id": "gid-257",
         "Maschine": 1.54341,
         "Kraft": 23.017,
@@ -5888,7 +5888,7 @@
     {
       "url": "example2.csv#row=260",
       "rownum": 258,
-      "discribes": {
+      "describes": {
         "@id": "gid-258",
         "Maschine": 1.54949,
         "Kraft": 23.0227,
@@ -5910,7 +5910,7 @@
     {
       "url": "example2.csv#row=261",
       "rownum": 259,
-      "discribes": {
+      "describes": {
         "@id": "gid-259",
         "Maschine": 1.55482,
         "Kraft": 23.0206,
@@ -5932,7 +5932,7 @@
     {
       "url": "example2.csv#row=262",
       "rownum": 260,
-      "discribes": {
+      "describes": {
         "@id": "gid-260",
         "Maschine": 1.56113,
         "Kraft": 23.0391,
@@ -5954,7 +5954,7 @@
     {
       "url": "example2.csv#row=263",
       "rownum": 261,
-      "discribes": {
+      "describes": {
         "@id": "gid-261",
         "Maschine": 1.5682,
         "Kraft": 23.0495,
@@ -5976,7 +5976,7 @@
     {
       "url": "example2.csv#row=264",
       "rownum": 262,
-      "discribes": {
+      "describes": {
         "@id": "gid-262",
         "Maschine": 1.57412,
         "Kraft": 23.0446,
@@ -5998,7 +5998,7 @@
     {
       "url": "example2.csv#row=265",
       "rownum": 263,
-      "discribes": {
+      "describes": {
         "@id": "gid-263",
         "Maschine": 1.58023,
         "Kraft": 23.0612,
@@ -6020,7 +6020,7 @@
     {
       "url": "example2.csv#row=266",
       "rownum": 264,
-      "discribes": {
+      "describes": {
         "@id": "gid-264",
         "Maschine": 1.58621,
         "Kraft": 23.06,
@@ -6042,7 +6042,7 @@
     {
       "url": "example2.csv#row=267",
       "rownum": 265,
-      "discribes": {
+      "describes": {
         "@id": "gid-265",
         "Maschine": 1.59201,
         "Kraft": 23.0724,
@@ -6064,7 +6064,7 @@
     {
       "url": "example2.csv#row=268",
       "rownum": 266,
-      "discribes": {
+      "describes": {
         "@id": "gid-266",
         "Maschine": 1.59783,
         "Kraft": 23.0663,
@@ -6086,7 +6086,7 @@
     {
       "url": "example2.csv#row=269",
       "rownum": 267,
-      "discribes": {
+      "describes": {
         "@id": "gid-267",
         "Maschine": 1.60455,
         "Kraft": 23.0825,
@@ -6108,7 +6108,7 @@
     {
       "url": "example2.csv#row=270",
       "rownum": 268,
-      "discribes": {
+      "describes": {
         "@id": "gid-268",
         "Maschine": 1.61039,
         "Kraft": 23.0808,
@@ -6130,7 +6130,7 @@
     {
       "url": "example2.csv#row=271",
       "rownum": 269,
-      "discribes": {
+      "describes": {
         "@id": "gid-269",
         "Maschine": 1.61699,
         "Kraft": 23.0899,
@@ -6152,7 +6152,7 @@
     {
       "url": "example2.csv#row=272",
       "rownum": 270,
-      "discribes": {
+      "describes": {
         "@id": "gid-270",
         "Maschine": 1.6227,
         "Kraft": 23.0944,
@@ -6174,7 +6174,7 @@
     {
       "url": "example2.csv#row=273",
       "rownum": 271,
-      "discribes": {
+      "describes": {
         "@id": "gid-271",
         "Maschine": 1.62852,
         "Kraft": 23.0767,
@@ -6196,7 +6196,7 @@
     {
       "url": "example2.csv#row=274",
       "rownum": 272,
-      "discribes": {
+      "describes": {
         "@id": "gid-272",
         "Maschine": 1.63429,
         "Kraft": 23.1003,
@@ -6218,7 +6218,7 @@
     {
       "url": "example2.csv#row=275",
       "rownum": 273,
-      "discribes": {
+      "describes": {
         "@id": "gid-273",
         "Maschine": 1.64041,
         "Kraft": 23.1163,
@@ -6240,7 +6240,7 @@
     {
       "url": "example2.csv#row=276",
       "rownum": 274,
-      "discribes": {
+      "describes": {
         "@id": "gid-274",
         "Maschine": 1.64603,
         "Kraft": 23.1159,
@@ -6262,7 +6262,7 @@
     {
       "url": "example2.csv#row=277",
       "rownum": 275,
-      "discribes": {
+      "describes": {
         "@id": "gid-275",
         "Maschine": 1.6529,
         "Kraft": 23.1222,
@@ -6284,7 +6284,7 @@
     {
       "url": "example2.csv#row=278",
       "rownum": 276,
-      "discribes": {
+      "describes": {
         "@id": "gid-276",
         "Maschine": 1.65883,
         "Kraft": 23.1165,
@@ -6306,7 +6306,7 @@
     {
       "url": "example2.csv#row=279",
       "rownum": 277,
-      "discribes": {
+      "describes": {
         "@id": "gid-277",
         "Maschine": 1.66576,
         "Kraft": 23.1277,
@@ -6328,7 +6328,7 @@
     {
       "url": "example2.csv#row=280",
       "rownum": 278,
-      "discribes": {
+      "describes": {
         "@id": "gid-278",
         "Maschine": 1.67161,
         "Kraft": 23.1362,
@@ -6350,7 +6350,7 @@
     {
       "url": "example2.csv#row=281",
       "rownum": 279,
-      "discribes": {
+      "describes": {
         "@id": "gid-279",
         "Maschine": 1.67754,
         "Kraft": 23.1387,
@@ -6372,7 +6372,7 @@
     {
       "url": "example2.csv#row=282",
       "rownum": 280,
-      "discribes": {
+      "describes": {
         "@id": "gid-280",
         "Maschine": 1.68419,
         "Kraft": 23.1441,
@@ -6394,7 +6394,7 @@
     {
       "url": "example2.csv#row=283",
       "rownum": 281,
-      "discribes": {
+      "describes": {
         "@id": "gid-281",
         "Maschine": 1.68963,
         "Kraft": 23.1475,
@@ -6416,7 +6416,7 @@
     {
       "url": "example2.csv#row=284",
       "rownum": 282,
-      "discribes": {
+      "describes": {
         "@id": "gid-282",
         "Maschine": 1.69574,
         "Kraft": 23.152,
@@ -6438,7 +6438,7 @@
     {
       "url": "example2.csv#row=285",
       "rownum": 283,
-      "discribes": {
+      "describes": {
         "@id": "gid-283",
         "Maschine": 1.70246,
         "Kraft": 23.1593,
@@ -6460,7 +6460,7 @@
     {
       "url": "example2.csv#row=286",
       "rownum": 284,
-      "discribes": {
+      "describes": {
         "@id": "gid-284",
         "Maschine": 1.70911,
         "Kraft": 23.1611,
@@ -6482,7 +6482,7 @@
     {
       "url": "example2.csv#row=287",
       "rownum": 285,
-      "discribes": {
+      "describes": {
         "@id": "gid-285",
         "Maschine": 1.71487,
         "Kraft": 23.1712,
@@ -6504,7 +6504,7 @@
     {
       "url": "example2.csv#row=288",
       "rownum": 286,
-      "discribes": {
+      "describes": {
         "@id": "gid-286",
         "Maschine": 1.72166,
         "Kraft": 23.1786,
@@ -6526,7 +6526,7 @@
     {
       "url": "example2.csv#row=289",
       "rownum": 287,
-      "discribes": {
+      "describes": {
         "@id": "gid-287",
         "Maschine": 1.72771,
         "Kraft": 23.1761,
@@ -6548,7 +6548,7 @@
     {
       "url": "example2.csv#row=290",
       "rownum": 288,
-      "discribes": {
+      "describes": {
         "@id": "gid-288",
         "Maschine": 1.73306,
         "Kraft": 23.1749,
@@ -6570,7 +6570,7 @@
     {
       "url": "example2.csv#row=291",
       "rownum": 289,
-      "discribes": {
+      "describes": {
         "@id": "gid-289",
         "Maschine": 1.73866,
         "Kraft": 23.1818,
@@ -6592,7 +6592,7 @@
     {
       "url": "example2.csv#row=292",
       "rownum": 290,
-      "discribes": {
+      "describes": {
         "@id": "gid-290",
         "Maschine": 1.74548,
         "Kraft": 23.1972,
@@ -6614,7 +6614,7 @@
     {
       "url": "example2.csv#row=293",
       "rownum": 291,
-      "discribes": {
+      "describes": {
         "@id": "gid-291",
         "Maschine": 1.75132,
         "Kraft": 23.1864,
@@ -6636,7 +6636,7 @@
     {
       "url": "example2.csv#row=294",
       "rownum": 292,
-      "discribes": {
+      "describes": {
         "@id": "gid-292",
         "Maschine": 1.75853,
         "Kraft": 23.1973,
@@ -6658,7 +6658,7 @@
     {
       "url": "example2.csv#row=295",
       "rownum": 293,
-      "discribes": {
+      "describes": {
         "@id": "gid-293",
         "Maschine": 1.76386,
         "Kraft": 23.1987,
@@ -6680,7 +6680,7 @@
     {
       "url": "example2.csv#row=296",
       "rownum": 294,
-      "discribes": {
+      "describes": {
         "@id": "gid-294",
         "Maschine": 1.77004,
         "Kraft": 23.2105,
@@ -6702,7 +6702,7 @@
     {
       "url": "example2.csv#row=297",
       "rownum": 295,
-      "discribes": {
+      "describes": {
         "@id": "gid-295",
         "Maschine": 1.77656,
         "Kraft": 23.1988,
@@ -6724,7 +6724,7 @@
     {
       "url": "example2.csv#row=298",
       "rownum": 296,
-      "discribes": {
+      "describes": {
         "@id": "gid-296",
         "Maschine": 1.78196,
         "Kraft": 23.201,
@@ -6746,7 +6746,7 @@
     {
       "url": "example2.csv#row=299",
       "rownum": 297,
-      "discribes": {
+      "describes": {
         "@id": "gid-297",
         "Maschine": 1.78789,
         "Kraft": 23.2149,
@@ -6768,7 +6768,7 @@
     {
       "url": "example2.csv#row=300",
       "rownum": 298,
-      "discribes": {
+      "describes": {
         "@id": "gid-298",
         "Maschine": 1.79447,
         "Kraft": 23.216,
@@ -6790,7 +6790,7 @@
     {
       "url": "example2.csv#row=301",
       "rownum": 299,
-      "discribes": {
+      "describes": {
         "@id": "gid-299",
         "Maschine": 1.79994,
         "Kraft": 23.2245,
@@ -6812,7 +6812,7 @@
     {
       "url": "example2.csv#row=302",
       "rownum": 300,
-      "discribes": {
+      "describes": {
         "@id": "gid-300",
         "Maschine": 1.80672,
         "Kraft": 23.2347,
@@ -6834,7 +6834,7 @@
     {
       "url": "example2.csv#row=303",
       "rownum": 301,
-      "discribes": {
+      "describes": {
         "@id": "gid-301",
         "Maschine": 1.81245,
         "Kraft": 23.2328,
@@ -6856,7 +6856,7 @@
     {
       "url": "example2.csv#row=304",
       "rownum": 302,
-      "discribes": {
+      "describes": {
         "@id": "gid-302",
         "Maschine": 1.81847,
         "Kraft": 23.2419,
@@ -6878,7 +6878,7 @@
     {
       "url": "example2.csv#row=305",
       "rownum": 303,
-      "discribes": {
+      "describes": {
         "@id": "gid-303",
         "Maschine": 1.82423,
         "Kraft": 23.2404,
@@ -6900,7 +6900,7 @@
     {
       "url": "example2.csv#row=306",
       "rownum": 304,
-      "discribes": {
+      "describes": {
         "@id": "gid-304",
         "Maschine": 1.83042,
         "Kraft": 23.2458,
@@ -6922,7 +6922,7 @@
     {
       "url": "example2.csv#row=307",
       "rownum": 305,
-      "discribes": {
+      "describes": {
         "@id": "gid-305",
         "Maschine": 1.83632,
         "Kraft": 23.2472,
@@ -6944,7 +6944,7 @@
     {
       "url": "example2.csv#row=308",
       "rownum": 306,
-      "discribes": {
+      "describes": {
         "@id": "gid-306",
         "Maschine": 1.84293,
         "Kraft": 23.2555,
@@ -6966,7 +6966,7 @@
     {
       "url": "example2.csv#row=309",
       "rownum": 307,
-      "discribes": {
+      "describes": {
         "@id": "gid-307",
         "Maschine": 1.84997,
         "Kraft": 23.2531,
@@ -6988,7 +6988,7 @@
     {
       "url": "example2.csv#row=310",
       "rownum": 308,
-      "discribes": {
+      "describes": {
         "@id": "gid-308",
         "Maschine": 1.85548,
         "Kraft": 23.257,
@@ -7010,7 +7010,7 @@
     {
       "url": "example2.csv#row=311",
       "rownum": 309,
-      "discribes": {
+      "describes": {
         "@id": "gid-309",
         "Maschine": 1.86117,
         "Kraft": 23.2726,
@@ -7032,7 +7032,7 @@
     {
       "url": "example2.csv#row=312",
       "rownum": 310,
-      "discribes": {
+      "describes": {
         "@id": "gid-310",
         "Maschine": 1.86714,
         "Kraft": 23.2633,
@@ -7054,7 +7054,7 @@
     {
       "url": "example2.csv#row=313",
       "rownum": 311,
-      "discribes": {
+      "describes": {
         "@id": "gid-311",
         "Maschine": 1.87315,
         "Kraft": 23.2696,
@@ -7076,7 +7076,7 @@
     {
       "url": "example2.csv#row=314",
       "rownum": 312,
-      "discribes": {
+      "describes": {
         "@id": "gid-312",
         "Maschine": 1.87969,
         "Kraft": 23.2682,
@@ -7098,7 +7098,7 @@
     {
       "url": "example2.csv#row=315",
       "rownum": 313,
-      "discribes": {
+      "describes": {
         "@id": "gid-313",
         "Maschine": 1.8857,
         "Kraft": 23.2838,
@@ -7120,7 +7120,7 @@
     {
       "url": "example2.csv#row=316",
       "rownum": 314,
-      "discribes": {
+      "describes": {
         "@id": "gid-314",
         "Maschine": 1.89112,
         "Kraft": 23.2766,
@@ -7142,7 +7142,7 @@
     {
       "url": "example2.csv#row=317",
       "rownum": 315,
-      "discribes": {
+      "describes": {
         "@id": "gid-315",
         "Maschine": 1.89751,
         "Kraft": 23.2791,
@@ -7164,7 +7164,7 @@
     {
       "url": "example2.csv#row=318",
       "rownum": 316,
-      "discribes": {
+      "describes": {
         "@id": "gid-316",
         "Maschine": 1.90357,
         "Kraft": 23.2849,
@@ -7186,7 +7186,7 @@
     {
       "url": "example2.csv#row=319",
       "rownum": 317,
-      "discribes": {
+      "describes": {
         "@id": "gid-317",
         "Maschine": 1.91003,
         "Kraft": 23.2825,
@@ -7208,7 +7208,7 @@
     {
       "url": "example2.csv#row=320",
       "rownum": 318,
-      "discribes": {
+      "describes": {
         "@id": "gid-318",
         "Maschine": 1.91499,
         "Kraft": 23.2792,
@@ -7230,7 +7230,7 @@
     {
       "url": "example2.csv#row=321",
       "rownum": 319,
-      "discribes": {
+      "describes": {
         "@id": "gid-319",
         "Maschine": 1.92186,
         "Kraft": 23.2865,
@@ -7252,7 +7252,7 @@
     {
       "url": "example2.csv#row=322",
       "rownum": 320,
-      "discribes": {
+      "describes": {
         "@id": "gid-320",
         "Maschine": 1.9283,
         "Kraft": 23.3032,
@@ -7274,7 +7274,7 @@
     {
       "url": "example2.csv#row=323",
       "rownum": 321,
-      "discribes": {
+      "describes": {
         "@id": "gid-321",
         "Maschine": 1.93441,
         "Kraft": 23.3003,
@@ -7296,7 +7296,7 @@
     {
       "url": "example2.csv#row=324",
       "rownum": 322,
-      "discribes": {
+      "describes": {
         "@id": "gid-322",
         "Maschine": 1.94042,
         "Kraft": 23.2909,
@@ -7318,7 +7318,7 @@
     {
       "url": "example2.csv#row=325",
       "rownum": 323,
-      "discribes": {
+      "describes": {
         "@id": "gid-323",
         "Maschine": 1.94641,
         "Kraft": 23.3008,
@@ -7340,7 +7340,7 @@
     {
       "url": "example2.csv#row=326",
       "rownum": 324,
-      "discribes": {
+      "describes": {
         "@id": "gid-324",
         "Maschine": 1.95193,
         "Kraft": 23.3112,
@@ -7362,7 +7362,7 @@
     {
       "url": "example2.csv#row=327",
       "rownum": 325,
-      "discribes": {
+      "describes": {
         "@id": "gid-325",
         "Maschine": 1.95851,
         "Kraft": 23.302,
@@ -7384,7 +7384,7 @@
     {
       "url": "example2.csv#row=328",
       "rownum": 326,
-      "discribes": {
+      "describes": {
         "@id": "gid-326",
         "Maschine": 1.96432,
         "Kraft": 23.3053,
@@ -7406,7 +7406,7 @@
     {
       "url": "example2.csv#row=329",
       "rownum": 327,
-      "discribes": {
+      "describes": {
         "@id": "gid-327",
         "Maschine": 1.97116,
         "Kraft": 23.3153,
@@ -7428,7 +7428,7 @@
     {
       "url": "example2.csv#row=330",
       "rownum": 328,
-      "discribes": {
+      "describes": {
         "@id": "gid-328",
         "Maschine": 1.97729,
         "Kraft": 23.3167,
@@ -7450,7 +7450,7 @@
     {
       "url": "example2.csv#row=331",
       "rownum": 329,
-      "discribes": {
+      "describes": {
         "@id": "gid-329",
         "Maschine": 1.98367,
         "Kraft": 23.3183,
@@ -7472,7 +7472,7 @@
     {
       "url": "example2.csv#row=332",
       "rownum": 330,
-      "discribes": {
+      "describes": {
         "@id": "gid-330",
         "Maschine": 1.98912,
         "Kraft": 23.3171,
@@ -7494,7 +7494,7 @@
     {
       "url": "example2.csv#row=333",
       "rownum": 331,
-      "discribes": {
+      "describes": {
         "@id": "gid-331",
         "Maschine": 1.99485,
         "Kraft": 23.3151,
@@ -7516,7 +7516,7 @@
     {
       "url": "example2.csv#row=334",
       "rownum": 332,
-      "discribes": {
+      "describes": {
         "@id": "gid-332",
         "Maschine": 2.00101,
         "Kraft": 23.3244,
@@ -7538,7 +7538,7 @@
     {
       "url": "example2.csv#row=335",
       "rownum": 333,
-      "discribes": {
+      "describes": {
         "@id": "gid-333",
         "Maschine": 2.00774,
         "Kraft": 23.3264,
@@ -7560,7 +7560,7 @@
     {
       "url": "example2.csv#row=336",
       "rownum": 334,
-      "discribes": {
+      "describes": {
         "@id": "gid-334",
         "Maschine": 2.01388,
         "Kraft": 23.3234,
@@ -7582,7 +7582,7 @@
     {
       "url": "example2.csv#row=337",
       "rownum": 335,
-      "discribes": {
+      "describes": {
         "@id": "gid-335",
         "Maschine": 2.01988,
         "Kraft": 23.3312,
@@ -7604,7 +7604,7 @@
     {
       "url": "example2.csv#row=338",
       "rownum": 336,
-      "discribes": {
+      "describes": {
         "@id": "gid-336",
         "Maschine": 2.02689,
         "Kraft": 23.3388,
@@ -7626,7 +7626,7 @@
     {
       "url": "example2.csv#row=339",
       "rownum": 337,
-      "discribes": {
+      "describes": {
         "@id": "gid-337",
         "Maschine": 2.03265,
         "Kraft": 23.3418,
@@ -7648,7 +7648,7 @@
     {
       "url": "example2.csv#row=340",
       "rownum": 338,
-      "discribes": {
+      "describes": {
         "@id": "gid-338",
         "Maschine": 2.03933,
         "Kraft": 23.336,
@@ -7670,7 +7670,7 @@
     {
       "url": "example2.csv#row=341",
       "rownum": 339,
-      "discribes": {
+      "describes": {
         "@id": "gid-339",
         "Maschine": 2.04533,
         "Kraft": 23.3234,
@@ -7692,7 +7692,7 @@
     {
       "url": "example2.csv#row=342",
       "rownum": 340,
-      "discribes": {
+      "describes": {
         "@id": "gid-340",
         "Maschine": 2.05091,
         "Kraft": 23.3355,
@@ -7714,7 +7714,7 @@
     {
       "url": "example2.csv#row=343",
       "rownum": 341,
-      "discribes": {
+      "describes": {
         "@id": "gid-341",
         "Maschine": 2.05698,
         "Kraft": 23.3305,
@@ -7736,7 +7736,7 @@
     {
       "url": "example2.csv#row=344",
       "rownum": 342,
-      "discribes": {
+      "describes": {
         "@id": "gid-342",
         "Maschine": 2.06306,
         "Kraft": 23.3435,
@@ -7758,7 +7758,7 @@
     {
       "url": "example2.csv#row=345",
       "rownum": 343,
-      "discribes": {
+      "describes": {
         "@id": "gid-343",
         "Maschine": 2.07051,
         "Kraft": 23.3377,
@@ -7780,7 +7780,7 @@
     {
       "url": "example2.csv#row=346",
       "rownum": 344,
-      "discribes": {
+      "describes": {
         "@id": "gid-344",
         "Maschine": 2.07669,
         "Kraft": 23.3369,
@@ -7802,7 +7802,7 @@
     {
       "url": "example2.csv#row=347",
       "rownum": 345,
-      "discribes": {
+      "describes": {
         "@id": "gid-345",
         "Maschine": 2.08315,
         "Kraft": 23.3561,
@@ -7824,7 +7824,7 @@
     {
       "url": "example2.csv#row=348",
       "rownum": 346,
-      "discribes": {
+      "describes": {
         "@id": "gid-346",
         "Maschine": 2.08912,
         "Kraft": 23.342,
@@ -7846,7 +7846,7 @@
     {
       "url": "example2.csv#row=349",
       "rownum": 347,
-      "discribes": {
+      "describes": {
         "@id": "gid-347",
         "Maschine": 2.0957,
         "Kraft": 23.3503,
@@ -7868,7 +7868,7 @@
     {
       "url": "example2.csv#row=350",
       "rownum": 348,
-      "discribes": {
+      "describes": {
         "@id": "gid-348",
         "Maschine": 2.10114,
         "Kraft": 23.3454,
@@ -7890,7 +7890,7 @@
     {
       "url": "example2.csv#row=351",
       "rownum": 349,
-      "discribes": {
+      "describes": {
         "@id": "gid-349",
         "Maschine": 2.10759,
         "Kraft": 23.3462,
@@ -7912,7 +7912,7 @@
     {
       "url": "example2.csv#row=352",
       "rownum": 350,
-      "discribes": {
+      "describes": {
         "@id": "gid-350",
         "Maschine": 2.11388,
         "Kraft": 23.3504,
@@ -7934,7 +7934,7 @@
     {
       "url": "example2.csv#row=353",
       "rownum": 351,
-      "discribes": {
+      "describes": {
         "@id": "gid-351",
         "Maschine": 2.12075,
         "Kraft": 23.3496,
@@ -7956,7 +7956,7 @@
     {
       "url": "example2.csv#row=354",
       "rownum": 352,
-      "discribes": {
+      "describes": {
         "@id": "gid-352",
         "Maschine": 2.12645,
         "Kraft": 23.3522,
@@ -7978,7 +7978,7 @@
     {
       "url": "example2.csv#row=355",
       "rownum": 353,
-      "discribes": {
+      "describes": {
         "@id": "gid-353",
         "Maschine": 2.13258,
         "Kraft": 23.3507,
@@ -8000,7 +8000,7 @@
     {
       "url": "example2.csv#row=356",
       "rownum": 354,
-      "discribes": {
+      "describes": {
         "@id": "gid-354",
         "Maschine": 2.13962,
         "Kraft": 23.3535,
@@ -8022,7 +8022,7 @@
     {
       "url": "example2.csv#row=357",
       "rownum": 355,
-      "discribes": {
+      "describes": {
         "@id": "gid-355",
         "Maschine": 2.14513,
         "Kraft": 23.3518,
@@ -8044,7 +8044,7 @@
     {
       "url": "example2.csv#row=358",
       "rownum": 356,
-      "discribes": {
+      "describes": {
         "@id": "gid-356",
         "Maschine": 2.15079,
         "Kraft": 23.3429,
@@ -8066,7 +8066,7 @@
     {
       "url": "example2.csv#row=359",
       "rownum": 357,
-      "discribes": {
+      "describes": {
         "@id": "gid-357",
         "Maschine": 2.15702,
         "Kraft": 23.3589,
@@ -8088,7 +8088,7 @@
     {
       "url": "example2.csv#row=360",
       "rownum": 358,
-      "discribes": {
+      "describes": {
         "@id": "gid-358",
         "Maschine": 2.1633,
         "Kraft": 23.3436,
@@ -8110,7 +8110,7 @@
     {
       "url": "example2.csv#row=361",
       "rownum": 359,
-      "discribes": {
+      "describes": {
         "@id": "gid-359",
         "Maschine": 2.16943,
         "Kraft": 23.3499,
@@ -8132,7 +8132,7 @@
     {
       "url": "example2.csv#row=362",
       "rownum": 360,
-      "discribes": {
+      "describes": {
         "@id": "gid-360",
         "Maschine": 2.17581,
         "Kraft": 23.3576,
@@ -8154,7 +8154,7 @@
     {
       "url": "example2.csv#row=363",
       "rownum": 361,
-      "discribes": {
+      "describes": {
         "@id": "gid-361",
         "Maschine": 2.18248,
         "Kraft": 23.356,
@@ -8176,7 +8176,7 @@
     {
       "url": "example2.csv#row=364",
       "rownum": 362,
-      "discribes": {
+      "describes": {
         "@id": "gid-362",
         "Maschine": 2.18853,
         "Kraft": 23.3502,
@@ -8198,7 +8198,7 @@
     {
       "url": "example2.csv#row=365",
       "rownum": 363,
-      "discribes": {
+      "describes": {
         "@id": "gid-363",
         "Maschine": 2.19393,
         "Kraft": 23.3512,
@@ -8220,7 +8220,7 @@
     {
       "url": "example2.csv#row=366",
       "rownum": 364,
-      "discribes": {
+      "describes": {
         "@id": "gid-364",
         "Maschine": 2.20055,
         "Kraft": 23.3645,
@@ -8242,7 +8242,7 @@
     {
       "url": "example2.csv#row=367",
       "rownum": 365,
-      "discribes": {
+      "describes": {
         "@id": "gid-365",
         "Maschine": 2.20705,
         "Kraft": 23.3718,
@@ -8264,7 +8264,7 @@
     {
       "url": "example2.csv#row=368",
       "rownum": 366,
-      "discribes": {
+      "describes": {
         "@id": "gid-366",
         "Maschine": 2.21294,
         "Kraft": 23.3582,
@@ -8286,7 +8286,7 @@
     {
       "url": "example2.csv#row=369",
       "rownum": 367,
-      "discribes": {
+      "describes": {
         "@id": "gid-367",
         "Maschine": 2.21981,
         "Kraft": 23.3549,
@@ -8308,7 +8308,7 @@
     {
       "url": "example2.csv#row=370",
       "rownum": 368,
-      "discribes": {
+      "describes": {
         "@id": "gid-368",
         "Maschine": 2.22569,
         "Kraft": 23.3609,
@@ -8330,7 +8330,7 @@
     {
       "url": "example2.csv#row=371",
       "rownum": 369,
-      "discribes": {
+      "describes": {
         "@id": "gid-369",
         "Maschine": 2.23143,
         "Kraft": 23.3507,
@@ -8352,7 +8352,7 @@
     {
       "url": "example2.csv#row=372",
       "rownum": 370,
-      "discribes": {
+      "describes": {
         "@id": "gid-370",
         "Maschine": 2.23719,
         "Kraft": 23.3647,
@@ -8374,7 +8374,7 @@
     {
       "url": "example2.csv#row=373",
       "rownum": 371,
-      "discribes": {
+      "describes": {
         "@id": "gid-371",
         "Maschine": 2.24339,
         "Kraft": 23.3487,
@@ -8396,7 +8396,7 @@
     {
       "url": "example2.csv#row=374",
       "rownum": 372,
-      "discribes": {
+      "describes": {
         "@id": "gid-372",
         "Maschine": 2.24974,
         "Kraft": 23.3701,
@@ -8418,7 +8418,7 @@
     {
       "url": "example2.csv#row=375",
       "rownum": 373,
-      "discribes": {
+      "describes": {
         "@id": "gid-373",
         "Maschine": 2.25558,
         "Kraft": 23.3538,
@@ -8440,7 +8440,7 @@
     {
       "url": "example2.csv#row=376",
       "rownum": 374,
-      "discribes": {
+      "describes": {
         "@id": "gid-374",
         "Maschine": 2.26222,
         "Kraft": 23.3638,
@@ -8462,7 +8462,7 @@
     {
       "url": "example2.csv#row=377",
       "rownum": 375,
-      "discribes": {
+      "describes": {
         "@id": "gid-375",
         "Maschine": 2.26878,
         "Kraft": 23.3525,
@@ -8484,7 +8484,7 @@
     {
       "url": "example2.csv#row=378",
       "rownum": 376,
-      "discribes": {
+      "describes": {
         "@id": "gid-376",
         "Maschine": 2.27436,
         "Kraft": 23.3603,
@@ -8506,7 +8506,7 @@
     {
       "url": "example2.csv#row=379",
       "rownum": 377,
-      "discribes": {
+      "describes": {
         "@id": "gid-377",
         "Maschine": 2.2814,
         "Kraft": 23.3632,
@@ -8528,7 +8528,7 @@
     {
       "url": "example2.csv#row=380",
       "rownum": 378,
-      "discribes": {
+      "describes": {
         "@id": "gid-378",
         "Maschine": 2.28696,
         "Kraft": 23.3495,
@@ -8550,7 +8550,7 @@
     {
       "url": "example2.csv#row=381",
       "rownum": 379,
-      "discribes": {
+      "describes": {
         "@id": "gid-379",
         "Maschine": 2.29326,
         "Kraft": 23.3527,
@@ -8572,7 +8572,7 @@
     {
       "url": "example2.csv#row=382",
       "rownum": 380,
-      "discribes": {
+      "describes": {
         "@id": "gid-380",
         "Maschine": 2.29978,
         "Kraft": 23.3429,
@@ -8594,7 +8594,7 @@
     {
       "url": "example2.csv#row=383",
       "rownum": 381,
-      "discribes": {
+      "describes": {
         "@id": "gid-381",
         "Maschine": 2.3056,
         "Kraft": 23.3548,
@@ -8616,7 +8616,7 @@
     {
       "url": "example2.csv#row=384",
       "rownum": 382,
-      "discribes": {
+      "describes": {
         "@id": "gid-382",
         "Maschine": 2.31131,
         "Kraft": 23.3523,
@@ -8638,7 +8638,7 @@
     {
       "url": "example2.csv#row=385",
       "rownum": 383,
-      "discribes": {
+      "describes": {
         "@id": "gid-383",
         "Maschine": 2.31789,
         "Kraft": 23.3554,
@@ -8660,7 +8660,7 @@
     {
       "url": "example2.csv#row=386",
       "rownum": 384,
-      "discribes": {
+      "describes": {
         "@id": "gid-384",
         "Maschine": 2.32279,
         "Kraft": 23.3337,
@@ -8682,7 +8682,7 @@
     {
       "url": "example2.csv#row=387",
       "rownum": 385,
-      "discribes": {
+      "describes": {
         "@id": "gid-385",
         "Maschine": 2.32928,
         "Kraft": 23.3443,
@@ -8704,7 +8704,7 @@
     {
       "url": "example2.csv#row=388",
       "rownum": 386,
-      "discribes": {
+      "describes": {
         "@id": "gid-386",
         "Maschine": 2.33578,
         "Kraft": 23.3493,
@@ -8726,7 +8726,7 @@
     {
       "url": "example2.csv#row=389",
       "rownum": 387,
-      "discribes": {
+      "describes": {
         "@id": "gid-387",
         "Maschine": 2.34293,
         "Kraft": 23.3327,
@@ -8748,7 +8748,7 @@
     {
       "url": "example2.csv#row=390",
       "rownum": 388,
-      "discribes": {
+      "describes": {
         "@id": "gid-388",
         "Maschine": 2.34908,
         "Kraft": 23.3487,
@@ -8770,7 +8770,7 @@
     {
       "url": "example2.csv#row=391",
       "rownum": 389,
-      "discribes": {
+      "describes": {
         "@id": "gid-389",
         "Maschine": 2.35483,
         "Kraft": 23.3431,
@@ -8792,7 +8792,7 @@
     {
       "url": "example2.csv#row=392",
       "rownum": 390,
-      "discribes": {
+      "describes": {
         "@id": "gid-390",
         "Maschine": 2.3605,
         "Kraft": 23.3325,
@@ -8814,7 +8814,7 @@
     {
       "url": "example2.csv#row=393",
       "rownum": 391,
-      "discribes": {
+      "describes": {
         "@id": "gid-391",
         "Maschine": 2.36689,
         "Kraft": 23.3436,
@@ -8836,7 +8836,7 @@
     {
       "url": "example2.csv#row=394",
       "rownum": 392,
-      "discribes": {
+      "describes": {
         "@id": "gid-392",
         "Maschine": 2.37279,
         "Kraft": 23.3485,
@@ -8858,7 +8858,7 @@
     {
       "url": "example2.csv#row=395",
       "rownum": 393,
-      "discribes": {
+      "describes": {
         "@id": "gid-393",
         "Maschine": 2.37955,
         "Kraft": 23.3446,
@@ -8880,7 +8880,7 @@
     {
       "url": "example2.csv#row=396",
       "rownum": 394,
-      "discribes": {
+      "describes": {
         "@id": "gid-394",
         "Maschine": 2.38528,
         "Kraft": 23.3375,
@@ -8902,7 +8902,7 @@
     {
       "url": "example2.csv#row=397",
       "rownum": 395,
-      "discribes": {
+      "describes": {
         "@id": "gid-395",
         "Maschine": 2.39192,
         "Kraft": 23.3401,
@@ -8924,7 +8924,7 @@
     {
       "url": "example2.csv#row=398",
       "rownum": 396,
-      "discribes": {
+      "describes": {
         "@id": "gid-396",
         "Maschine": 2.39758,
         "Kraft": 23.3374,
@@ -8946,7 +8946,7 @@
     {
       "url": "example2.csv#row=399",
       "rownum": 397,
-      "discribes": {
+      "describes": {
         "@id": "gid-397",
         "Maschine": 2.40463,
         "Kraft": 23.3312,
@@ -8968,7 +8968,7 @@
     {
       "url": "example2.csv#row=400",
       "rownum": 398,
-      "discribes": {
+      "describes": {
         "@id": "gid-398",
         "Maschine": 2.41082,
         "Kraft": 23.3276,
@@ -8990,7 +8990,7 @@
     {
       "url": "example2.csv#row=401",
       "rownum": 399,
-      "discribes": {
+      "describes": {
         "@id": "gid-399",
         "Maschine": 2.41653,
         "Kraft": 23.3336,
@@ -9012,7 +9012,7 @@
     {
       "url": "example2.csv#row=402",
       "rownum": 400,
-      "discribes": {
+      "describes": {
         "@id": "gid-400",
         "Maschine": 2.42276,
         "Kraft": 23.3251,
@@ -9034,7 +9034,7 @@
     {
       "url": "example2.csv#row=403",
       "rownum": 401,
-      "discribes": {
+      "describes": {
         "@id": "gid-401",
         "Maschine": 2.42885,
         "Kraft": 23.3115,
@@ -9056,7 +9056,7 @@
     {
       "url": "example2.csv#row=404",
       "rownum": 402,
-      "discribes": {
+      "describes": {
         "@id": "gid-402",
         "Maschine": 2.4348,
         "Kraft": 23.3149,
@@ -9078,7 +9078,7 @@
     {
       "url": "example2.csv#row=405",
       "rownum": 403,
-      "discribes": {
+      "describes": {
         "@id": "gid-403",
         "Maschine": 2.44231,
         "Kraft": 23.3242,
@@ -9100,7 +9100,7 @@
     {
       "url": "example2.csv#row=406",
       "rownum": 404,
-      "discribes": {
+      "describes": {
         "@id": "gid-404",
         "Maschine": 2.44786,
         "Kraft": 23.3165,
@@ -9122,7 +9122,7 @@
     {
       "url": "example2.csv#row=407",
       "rownum": 405,
-      "discribes": {
+      "describes": {
         "@id": "gid-405",
         "Maschine": 2.45457,
         "Kraft": 23.3213,
@@ -9144,7 +9144,7 @@
     {
       "url": "example2.csv#row=408",
       "rownum": 406,
-      "discribes": {
+      "describes": {
         "@id": "gid-406",
         "Maschine": 2.46009,
         "Kraft": 23.3046,
@@ -9166,7 +9166,7 @@
     {
       "url": "example2.csv#row=409",
       "rownum": 407,
-      "discribes": {
+      "describes": {
         "@id": "gid-407",
         "Maschine": 2.46572,
         "Kraft": 23.3167,
@@ -9188,7 +9188,7 @@
     {
       "url": "example2.csv#row=410",
       "rownum": 408,
-      "discribes": {
+      "describes": {
         "@id": "gid-408",
         "Maschine": 2.47272,
         "Kraft": 23.3082,
@@ -9210,7 +9210,7 @@
     {
       "url": "example2.csv#row=411",
       "rownum": 409,
-      "discribes": {
+      "describes": {
         "@id": "gid-409",
         "Maschine": 2.47865,
         "Kraft": 23.3078,
@@ -9232,7 +9232,7 @@
     {
       "url": "example2.csv#row=412",
       "rownum": 410,
-      "discribes": {
+      "describes": {
         "@id": "gid-410",
         "Maschine": 2.4849,
         "Kraft": 23.2897,
@@ -9254,7 +9254,7 @@
     {
       "url": "example2.csv#row=413",
       "rownum": 411,
-      "discribes": {
+      "describes": {
         "@id": "gid-411",
         "Maschine": 2.49152,
         "Kraft": 23.3131,
@@ -9276,7 +9276,7 @@
     {
       "url": "example2.csv#row=414",
       "rownum": 412,
-      "discribes": {
+      "describes": {
         "@id": "gid-412",
         "Maschine": 2.49761,
         "Kraft": 23.2913,
@@ -9298,7 +9298,7 @@
     {
       "url": "example2.csv#row=415",
       "rownum": 413,
-      "discribes": {
+      "describes": {
         "@id": "gid-413",
         "Maschine": 2.50315,
         "Kraft": 23.2824,
@@ -9320,7 +9320,7 @@
     {
       "url": "example2.csv#row=416",
       "rownum": 414,
-      "discribes": {
+      "describes": {
         "@id": "gid-414",
         "Maschine": 2.50937,
         "Kraft": 23.2846,
@@ -9342,7 +9342,7 @@
     {
       "url": "example2.csv#row=417",
       "rownum": 415,
-      "discribes": {
+      "describes": {
         "@id": "gid-415",
         "Maschine": 2.51473,
         "Kraft": 23.2792,
@@ -9364,7 +9364,7 @@
     {
       "url": "example2.csv#row=418",
       "rownum": 416,
-      "discribes": {
+      "describes": {
         "@id": "gid-416",
         "Maschine": 2.52192,
         "Kraft": 23.286,
@@ -9386,7 +9386,7 @@
     {
       "url": "example2.csv#row=419",
       "rownum": 417,
-      "discribes": {
+      "describes": {
         "@id": "gid-417",
         "Maschine": 2.52787,
         "Kraft": 23.2766,
@@ -9408,7 +9408,7 @@
     {
       "url": "example2.csv#row=420",
       "rownum": 418,
-      "discribes": {
+      "describes": {
         "@id": "gid-418",
         "Maschine": 2.53293,
         "Kraft": 23.2595,
@@ -9430,7 +9430,7 @@
     {
       "url": "example2.csv#row=421",
       "rownum": 419,
-      "discribes": {
+      "describes": {
         "@id": "gid-419",
         "Maschine": 2.54017,
         "Kraft": 23.2746,
@@ -9452,7 +9452,7 @@
     {
       "url": "example2.csv#row=422",
       "rownum": 420,
-      "discribes": {
+      "describes": {
         "@id": "gid-420",
         "Maschine": 2.54565,
         "Kraft": 23.2649,
@@ -9474,7 +9474,7 @@
     {
       "url": "example2.csv#row=423",
       "rownum": 421,
-      "discribes": {
+      "describes": {
         "@id": "gid-421",
         "Maschine": 2.55201,
         "Kraft": 23.2523,
@@ -9496,7 +9496,7 @@
     {
       "url": "example2.csv#row=424",
       "rownum": 422,
-      "discribes": {
+      "describes": {
         "@id": "gid-422",
         "Maschine": 2.55846,
         "Kraft": 23.2563,
@@ -9518,7 +9518,7 @@
     {
       "url": "example2.csv#row=425",
       "rownum": 423,
-      "discribes": {
+      "describes": {
         "@id": "gid-423",
         "Maschine": 2.564,
         "Kraft": 23.2418,
@@ -9540,7 +9540,7 @@
     {
       "url": "example2.csv#row=426",
       "rownum": 424,
-      "discribes": {
+      "describes": {
         "@id": "gid-424",
         "Maschine": 2.57019,
         "Kraft": 23.2482,
@@ -9562,7 +9562,7 @@
     {
       "url": "example2.csv#row=427",
       "rownum": 425,
-      "discribes": {
+      "describes": {
         "@id": "gid-425",
         "Maschine": 2.57684,
         "Kraft": 23.2512,
@@ -9584,7 +9584,7 @@
     {
       "url": "example2.csv#row=428",
       "rownum": 426,
-      "discribes": {
+      "describes": {
         "@id": "gid-426",
         "Maschine": 2.58276,
         "Kraft": 23.225,
@@ -9606,7 +9606,7 @@
     {
       "url": "example2.csv#row=429",
       "rownum": 427,
-      "discribes": {
+      "describes": {
         "@id": "gid-427",
         "Maschine": 2.5892,
         "Kraft": 23.2362,
@@ -9628,7 +9628,7 @@
     {
       "url": "example2.csv#row=430",
       "rownum": 428,
-      "discribes": {
+      "describes": {
         "@id": "gid-428",
         "Maschine": 2.59577,
         "Kraft": 23.2201,
@@ -9650,7 +9650,7 @@
     {
       "url": "example2.csv#row=431",
       "rownum": 429,
-      "discribes": {
+      "describes": {
         "@id": "gid-429",
         "Maschine": 2.60143,
         "Kraft": 23.2191,
@@ -9672,7 +9672,7 @@
     {
       "url": "example2.csv#row=432",
       "rownum": 430,
-      "discribes": {
+      "describes": {
         "@id": "gid-430",
         "Maschine": 2.60839,
         "Kraft": 23.226,
@@ -9694,7 +9694,7 @@
     {
       "url": "example2.csv#row=433",
       "rownum": 431,
-      "discribes": {
+      "describes": {
         "@id": "gid-431",
         "Maschine": 2.61433,
         "Kraft": 23.2115,
@@ -9716,7 +9716,7 @@
     {
       "url": "example2.csv#row=434",
       "rownum": 432,
-      "discribes": {
+      "describes": {
         "@id": "gid-432",
         "Maschine": 2.62139,
         "Kraft": 23.213,
@@ -9738,7 +9738,7 @@
     {
       "url": "example2.csv#row=435",
       "rownum": 433,
-      "discribes": {
+      "describes": {
         "@id": "gid-433",
         "Maschine": 2.6269,
         "Kraft": 23.1991,
@@ -9760,7 +9760,7 @@
     {
       "url": "example2.csv#row=436",
       "rownum": 434,
-      "discribes": {
+      "describes": {
         "@id": "gid-434",
         "Maschine": 2.63309,
         "Kraft": 23.1828,
@@ -9782,7 +9782,7 @@
     {
       "url": "example2.csv#row=437",
       "rownum": 435,
-      "discribes": {
+      "describes": {
         "@id": "gid-435",
         "Maschine": 2.63999,
         "Kraft": 23.1733,
@@ -9804,7 +9804,7 @@
     {
       "url": "example2.csv#row=438",
       "rownum": 436,
-      "discribes": {
+      "describes": {
         "@id": "gid-436",
         "Maschine": 2.6452,
         "Kraft": 23.1677,
@@ -9826,7 +9826,7 @@
     {
       "url": "example2.csv#row=439",
       "rownum": 437,
-      "discribes": {
+      "describes": {
         "@id": "gid-437",
         "Maschine": 2.65142,
         "Kraft": 23.1684,
@@ -9848,7 +9848,7 @@
     {
       "url": "example2.csv#row=440",
       "rownum": 438,
-      "discribes": {
+      "describes": {
         "@id": "gid-438",
         "Maschine": 2.65775,
         "Kraft": 23.1614,
@@ -9870,7 +9870,7 @@
     {
       "url": "example2.csv#row=441",
       "rownum": 439,
-      "discribes": {
+      "describes": {
         "@id": "gid-439",
         "Maschine": 2.66347,
         "Kraft": 23.1453,
@@ -9892,7 +9892,7 @@
     {
       "url": "example2.csv#row=442",
       "rownum": 440,
-      "discribes": {
+      "describes": {
         "@id": "gid-440",
         "Maschine": 2.67004,
         "Kraft": 23.1433,
@@ -9914,7 +9914,7 @@
     {
       "url": "example2.csv#row=443",
       "rownum": 441,
-      "discribes": {
+      "describes": {
         "@id": "gid-441",
         "Maschine": 2.67598,
         "Kraft": 23.148,
@@ -9936,7 +9936,7 @@
     {
       "url": "example2.csv#row=444",
       "rownum": 442,
-      "discribes": {
+      "describes": {
         "@id": "gid-442",
         "Maschine": 2.68188,
         "Kraft": 23.1287,
@@ -9958,7 +9958,7 @@
     {
       "url": "example2.csv#row=445",
       "rownum": 443,
-      "discribes": {
+      "describes": {
         "@id": "gid-443",
         "Maschine": 2.68819,
         "Kraft": 23.122,
@@ -9980,7 +9980,7 @@
     {
       "url": "example2.csv#row=446",
       "rownum": 444,
-      "discribes": {
+      "describes": {
         "@id": "gid-444",
         "Maschine": 2.69405,
         "Kraft": 23.1146,
@@ -10002,7 +10002,7 @@
     {
       "url": "example2.csv#row=447",
       "rownum": 445,
-      "discribes": {
+      "describes": {
         "@id": "gid-445",
         "Maschine": 2.70023,
         "Kraft": 23.0949,
@@ -10024,7 +10024,7 @@
     {
       "url": "example2.csv#row=448",
       "rownum": 446,
-      "discribes": {
+      "describes": {
         "@id": "gid-446",
         "Maschine": 2.7069,
         "Kraft": 23.0895,
@@ -10046,7 +10046,7 @@
     {
       "url": "example2.csv#row=449",
       "rownum": 447,
-      "discribes": {
+      "describes": {
         "@id": "gid-447",
         "Maschine": 2.71317,
         "Kraft": 23.0764,
@@ -10068,7 +10068,7 @@
     {
       "url": "example2.csv#row=450",
       "rownum": 448,
-      "discribes": {
+      "describes": {
         "@id": "gid-448",
         "Maschine": 2.71965,
         "Kraft": 23.0609,
@@ -10090,7 +10090,7 @@
     {
       "url": "example2.csv#row=451",
       "rownum": 449,
-      "discribes": {
+      "describes": {
         "@id": "gid-449",
         "Maschine": 2.7263,
         "Kraft": 23.0636,
@@ -10112,7 +10112,7 @@
     {
       "url": "example2.csv#row=452",
       "rownum": 450,
-      "discribes": {
+      "describes": {
         "@id": "gid-450",
         "Maschine": 2.73223,
         "Kraft": 23.0559,
@@ -10134,7 +10134,7 @@
     {
       "url": "example2.csv#row=453",
       "rownum": 451,
-      "discribes": {
+      "describes": {
         "@id": "gid-451",
         "Maschine": 2.7382,
         "Kraft": 23.0312,
@@ -10156,7 +10156,7 @@
     {
       "url": "example2.csv#row=454",
       "rownum": 452,
-      "discribes": {
+      "describes": {
         "@id": "gid-452",
         "Maschine": 2.74419,
         "Kraft": 23.025,
@@ -10178,7 +10178,7 @@
     {
       "url": "example2.csv#row=455",
       "rownum": 453,
-      "discribes": {
+      "describes": {
         "@id": "gid-453",
         "Maschine": 2.75076,
         "Kraft": 23.0057,
@@ -10200,7 +10200,7 @@
     {
       "url": "example2.csv#row=456",
       "rownum": 454,
-      "discribes": {
+      "describes": {
         "@id": "gid-454",
         "Maschine": 2.75703,
         "Kraft": 23.02,
@@ -10222,7 +10222,7 @@
     {
       "url": "example2.csv#row=457",
       "rownum": 455,
-      "discribes": {
+      "describes": {
         "@id": "gid-455",
         "Maschine": 2.76309,
         "Kraft": 23.0084,
@@ -10244,7 +10244,7 @@
     {
       "url": "example2.csv#row=458",
       "rownum": 456,
-      "discribes": {
+      "describes": {
         "@id": "gid-456",
         "Maschine": 2.76939,
         "Kraft": 22.984,
@@ -10266,7 +10266,7 @@
     {
       "url": "example2.csv#row=459",
       "rownum": 457,
-      "discribes": {
+      "describes": {
         "@id": "gid-457",
         "Maschine": 2.77578,
         "Kraft": 22.9691,
@@ -10288,7 +10288,7 @@
     {
       "url": "example2.csv#row=460",
       "rownum": 458,
-      "discribes": {
+      "describes": {
         "@id": "gid-458",
         "Maschine": 2.78197,
         "Kraft": 22.9672,
@@ -10310,7 +10310,7 @@
     {
       "url": "example2.csv#row=461",
       "rownum": 459,
-      "discribes": {
+      "describes": {
         "@id": "gid-459",
         "Maschine": 2.78773,
         "Kraft": 22.9399,
@@ -10332,7 +10332,7 @@
     {
       "url": "example2.csv#row=462",
       "rownum": 460,
-      "discribes": {
+      "describes": {
         "@id": "gid-460",
         "Maschine": 2.79352,
         "Kraft": 22.9267,
@@ -10354,7 +10354,7 @@
     {
       "url": "example2.csv#row=463",
       "rownum": 461,
-      "discribes": {
+      "describes": {
         "@id": "gid-461",
         "Maschine": 2.80015,
         "Kraft": 22.9097,
@@ -10376,7 +10376,7 @@
     {
       "url": "example2.csv#row=464",
       "rownum": 462,
-      "discribes": {
+      "describes": {
         "@id": "gid-462",
         "Maschine": 2.80677,
         "Kraft": 22.9045,
@@ -10398,7 +10398,7 @@
     {
       "url": "example2.csv#row=465",
       "rownum": 463,
-      "discribes": {
+      "describes": {
         "@id": "gid-463",
         "Maschine": 2.81228,
         "Kraft": 22.8868,
@@ -10420,7 +10420,7 @@
     {
       "url": "example2.csv#row=466",
       "rownum": 464,
-      "discribes": {
+      "describes": {
         "@id": "gid-464",
         "Maschine": 2.81916,
         "Kraft": 22.8765,
@@ -10442,7 +10442,7 @@
     {
       "url": "example2.csv#row=467",
       "rownum": 465,
-      "discribes": {
+      "describes": {
         "@id": "gid-465",
         "Maschine": 2.82514,
         "Kraft": 22.8623,
@@ -10464,7 +10464,7 @@
     {
       "url": "example2.csv#row=468",
       "rownum": 466,
-      "discribes": {
+      "describes": {
         "@id": "gid-466",
         "Maschine": 2.83138,
         "Kraft": 22.8446,
@@ -10486,7 +10486,7 @@
     {
       "url": "example2.csv#row=469",
       "rownum": 467,
-      "discribes": {
+      "describes": {
         "@id": "gid-467",
         "Maschine": 2.83753,
         "Kraft": 22.8251,
@@ -10508,7 +10508,7 @@
     {
       "url": "example2.csv#row=470",
       "rownum": 468,
-      "discribes": {
+      "describes": {
         "@id": "gid-468",
         "Maschine": 2.84385,
         "Kraft": 22.8353,
@@ -10530,7 +10530,7 @@
     {
       "url": "example2.csv#row=471",
       "rownum": 469,
-      "discribes": {
+      "describes": {
         "@id": "gid-469",
         "Maschine": 2.85008,
         "Kraft": 22.8075,
@@ -10552,7 +10552,7 @@
     {
       "url": "example2.csv#row=472",
       "rownum": 470,
-      "discribes": {
+      "describes": {
         "@id": "gid-470",
         "Maschine": 2.8559,
         "Kraft": 22.7889,
@@ -10574,7 +10574,7 @@
     {
       "url": "example2.csv#row=473",
       "rownum": 471,
-      "discribes": {
+      "describes": {
         "@id": "gid-471",
         "Maschine": 2.86285,
         "Kraft": 22.7875,
@@ -10596,7 +10596,7 @@
     {
       "url": "example2.csv#row=474",
       "rownum": 472,
-      "discribes": {
+      "describes": {
         "@id": "gid-472",
         "Maschine": 2.86864,
         "Kraft": 22.762,
@@ -10618,7 +10618,7 @@
     {
       "url": "example2.csv#row=475",
       "rownum": 473,
-      "discribes": {
+      "describes": {
         "@id": "gid-473",
         "Maschine": 2.87469,
         "Kraft": 22.7449,
@@ -10640,7 +10640,7 @@
     {
       "url": "example2.csv#row=476",
       "rownum": 474,
-      "discribes": {
+      "describes": {
         "@id": "gid-474",
         "Maschine": 2.88078,
         "Kraft": 22.7437,
@@ -10662,7 +10662,7 @@
     {
       "url": "example2.csv#row=477",
       "rownum": 475,
-      "discribes": {
+      "describes": {
         "@id": "gid-475",
         "Maschine": 2.88708,
         "Kraft": 22.7127,
@@ -10684,7 +10684,7 @@
     {
       "url": "example2.csv#row=478",
       "rownum": 476,
-      "discribes": {
+      "describes": {
         "@id": "gid-476",
         "Maschine": 2.8936,
         "Kraft": 22.6893,
@@ -10706,7 +10706,7 @@
     {
       "url": "example2.csv#row=479",
       "rownum": 477,
-      "discribes": {
+      "describes": {
         "@id": "gid-477",
         "Maschine": 2.90096,
         "Kraft": 22.6817,
@@ -10728,7 +10728,7 @@
     {
       "url": "example2.csv#row=480",
       "rownum": 478,
-      "discribes": {
+      "describes": {
         "@id": "gid-478",
         "Maschine": 2.90681,
         "Kraft": 22.6654,
@@ -10750,7 +10750,7 @@
     {
       "url": "example2.csv#row=481",
       "rownum": 479,
-      "discribes": {
+      "describes": {
         "@id": "gid-479",
         "Maschine": 2.91246,
         "Kraft": 22.6469,
@@ -10772,7 +10772,7 @@
     {
       "url": "example2.csv#row=482",
       "rownum": 480,
-      "discribes": {
+      "describes": {
         "@id": "gid-480",
         "Maschine": 2.91888,
         "Kraft": 22.6396,
@@ -10794,7 +10794,7 @@
     {
       "url": "example2.csv#row=483",
       "rownum": 481,
-      "discribes": {
+      "describes": {
         "@id": "gid-481",
         "Maschine": 2.92479,
         "Kraft": 22.6128,
@@ -10816,7 +10816,7 @@
     {
       "url": "example2.csv#row=484",
       "rownum": 482,
-      "discribes": {
+      "describes": {
         "@id": "gid-482",
         "Maschine": 2.93137,
         "Kraft": 22.5955,
@@ -10838,7 +10838,7 @@
     {
       "url": "example2.csv#row=485",
       "rownum": 483,
-      "discribes": {
+      "describes": {
         "@id": "gid-483",
         "Maschine": 2.93679,
         "Kraft": 22.5707,
@@ -10860,7 +10860,7 @@
     {
       "url": "example2.csv#row=486",
       "rownum": 484,
-      "discribes": {
+      "describes": {
         "@id": "gid-484",
         "Maschine": 2.9445,
         "Kraft": 22.5813,
@@ -10882,7 +10882,7 @@
     {
       "url": "example2.csv#row=487",
       "rownum": 485,
-      "discribes": {
+      "describes": {
         "@id": "gid-485",
         "Maschine": 2.95045,
         "Kraft": 22.5475,
@@ -10904,7 +10904,7 @@
     {
       "url": "example2.csv#row=488",
       "rownum": 486,
-      "discribes": {
+      "describes": {
         "@id": "gid-486",
         "Maschine": 2.95572,
         "Kraft": 22.5313,
@@ -10926,7 +10926,7 @@
     {
       "url": "example2.csv#row=489",
       "rownum": 487,
-      "discribes": {
+      "describes": {
         "@id": "gid-487",
         "Maschine": 2.96206,
         "Kraft": 22.5292,
@@ -10948,7 +10948,7 @@
     {
       "url": "example2.csv#row=490",
       "rownum": 488,
-      "discribes": {
+      "describes": {
         "@id": "gid-488",
         "Maschine": 2.96803,
         "Kraft": 22.5043,
@@ -10970,7 +10970,7 @@
     {
       "url": "example2.csv#row=491",
       "rownum": 489,
-      "discribes": {
+      "describes": {
         "@id": "gid-489",
         "Maschine": 2.97384,
         "Kraft": 22.4965,
@@ -10992,7 +10992,7 @@
     {
       "url": "example2.csv#row=492",
       "rownum": 490,
-      "discribes": {
+      "describes": {
         "@id": "gid-490",
         "Maschine": 2.98103,
         "Kraft": 22.4773,
@@ -11014,7 +11014,7 @@
     {
       "url": "example2.csv#row=493",
       "rownum": 491,
-      "discribes": {
+      "describes": {
         "@id": "gid-491",
         "Maschine": 2.98692,
         "Kraft": 22.4478,
@@ -11036,7 +11036,7 @@
     {
       "url": "example2.csv#row=494",
       "rownum": 492,
-      "discribes": {
+      "describes": {
         "@id": "gid-492",
         "Maschine": 2.99277,
         "Kraft": 22.4369,
@@ -11058,7 +11058,7 @@
     {
       "url": "example2.csv#row=495",
       "rownum": 493,
-      "discribes": {
+      "describes": {
         "@id": "gid-493",
         "Maschine": 2.99897,
         "Kraft": 22.4285,
@@ -11080,7 +11080,7 @@
     {
       "url": "example2.csv#row=496",
       "rownum": 494,
-      "discribes": {
+      "describes": {
         "@id": "gid-494",
         "Maschine": 3.00436,
         "Kraft": 22.3935,
@@ -11102,7 +11102,7 @@
     {
       "url": "example2.csv#row=497",
       "rownum": 495,
-      "discribes": {
+      "describes": {
         "@id": "gid-495",
         "Maschine": 3.01135,
         "Kraft": 22.3884,
@@ -11124,7 +11124,7 @@
     {
       "url": "example2.csv#row=498",
       "rownum": 496,
-      "discribes": {
+      "describes": {
         "@id": "gid-496",
         "Maschine": 3.01732,
         "Kraft": 22.3594,
@@ -11146,7 +11146,7 @@
     {
       "url": "example2.csv#row=499",
       "rownum": 497,
-      "discribes": {
+      "describes": {
         "@id": "gid-497",
         "Maschine": 3.02364,
         "Kraft": 22.3442,
@@ -11168,7 +11168,7 @@
     {
       "url": "example2.csv#row=500",
       "rownum": 498,
-      "discribes": {
+      "describes": {
         "@id": "gid-498",
         "Maschine": 3.03001,
         "Kraft": 22.3252,
@@ -11190,7 +11190,7 @@
     {
       "url": "example2.csv#row=501",
       "rownum": 499,
-      "discribes": {
+      "describes": {
         "@id": "gid-499",
         "Maschine": 3.036,
         "Kraft": 22.3091,
@@ -11212,7 +11212,7 @@
     {
       "url": "example2.csv#row=502",
       "rownum": 500,
-      "discribes": {
+      "describes": {
         "@id": "gid-500",
         "Maschine": 3.04203,
         "Kraft": 22.2977,
@@ -11234,7 +11234,7 @@
     {
       "url": "example2.csv#row=503",
       "rownum": 501,
-      "discribes": {
+      "describes": {
         "@id": "gid-501",
         "Maschine": 3.04802,
         "Kraft": 22.2772,
@@ -11256,7 +11256,7 @@
     {
       "url": "example2.csv#row=504",
       "rownum": 502,
-      "discribes": {
+      "describes": {
         "@id": "gid-502",
         "Maschine": 3.05489,
         "Kraft": 22.2589,
@@ -11278,7 +11278,7 @@
     {
       "url": "example2.csv#row=505",
       "rownum": 503,
-      "discribes": {
+      "describes": {
         "@id": "gid-503",
         "Maschine": 3.06071,
         "Kraft": 22.2363,
@@ -11300,7 +11300,7 @@
     {
       "url": "example2.csv#row=506",
       "rownum": 504,
-      "discribes": {
+      "describes": {
         "@id": "gid-504",
         "Maschine": 3.06656,
         "Kraft": 22.2215,
@@ -11322,7 +11322,7 @@
     {
       "url": "example2.csv#row=507",
       "rownum": 505,
-      "discribes": {
+      "describes": {
         "@id": "gid-505",
         "Maschine": 3.07346,
         "Kraft": 22.2196,
@@ -11344,7 +11344,7 @@
     {
       "url": "example2.csv#row=508",
       "rownum": 506,
-      "discribes": {
+      "describes": {
         "@id": "gid-506",
         "Maschine": 3.07937,
         "Kraft": 22.1844,
@@ -11366,7 +11366,7 @@
     {
       "url": "example2.csv#row=509",
       "rownum": 507,
-      "discribes": {
+      "describes": {
         "@id": "gid-507",
         "Maschine": 3.08524,
         "Kraft": 22.1567,
@@ -11388,7 +11388,7 @@
     {
       "url": "example2.csv#row=510",
       "rownum": 508,
-      "discribes": {
+      "describes": {
         "@id": "gid-508",
         "Maschine": 3.09148,
         "Kraft": 22.1624,
@@ -11410,7 +11410,7 @@
     {
       "url": "example2.csv#row=511",
       "rownum": 509,
-      "discribes": {
+      "describes": {
         "@id": "gid-509",
         "Maschine": 3.09886,
         "Kraft": 22.1466,
@@ -11432,7 +11432,7 @@
     {
       "url": "example2.csv#row=512",
       "rownum": 510,
-      "discribes": {
+      "describes": {
         "@id": "gid-510",
         "Maschine": 3.1049,
         "Kraft": 22.1159,
@@ -11454,7 +11454,7 @@
     {
       "url": "example2.csv#row=513",
       "rownum": 511,
-      "discribes": {
+      "describes": {
         "@id": "gid-511",
         "Maschine": 3.11057,
         "Kraft": 22.09,
@@ -11476,7 +11476,7 @@
     {
       "url": "example2.csv#row=514",
       "rownum": 512,
-      "discribes": {
+      "describes": {
         "@id": "gid-512",
         "Maschine": 3.11669,
         "Kraft": 22.0773,
@@ -11498,7 +11498,7 @@
     {
       "url": "example2.csv#row=515",
       "rownum": 513,
-      "discribes": {
+      "describes": {
         "@id": "gid-513",
         "Maschine": 3.12266,
         "Kraft": 22.0511,
@@ -11520,7 +11520,7 @@
     {
       "url": "example2.csv#row=516",
       "rownum": 514,
-      "discribes": {
+      "describes": {
         "@id": "gid-514",
         "Maschine": 3.12902,
         "Kraft": 22.0383,
@@ -11542,7 +11542,7 @@
     {
       "url": "example2.csv#row=517",
       "rownum": 515,
-      "discribes": {
+      "describes": {
         "@id": "gid-515",
         "Maschine": 3.1351,
         "Kraft": 22.0212,
@@ -11564,7 +11564,7 @@
     {
       "url": "example2.csv#row=518",
       "rownum": 516,
-      "discribes": {
+      "describes": {
         "@id": "gid-516",
         "Maschine": 3.14124,
         "Kraft": 22.002,
@@ -11586,7 +11586,7 @@
     {
       "url": "example2.csv#row=519",
       "rownum": 517,
-      "discribes": {
+      "describes": {
         "@id": "gid-517",
         "Maschine": 3.14766,
         "Kraft": 21.9787,
@@ -11608,7 +11608,7 @@
     {
       "url": "example2.csv#row=520",
       "rownum": 518,
-      "discribes": {
+      "describes": {
         "@id": "gid-518",
         "Maschine": 3.15357,
         "Kraft": 21.9623,
@@ -11630,7 +11630,7 @@
     {
       "url": "example2.csv#row=521",
       "rownum": 519,
-      "discribes": {
+      "describes": {
         "@id": "gid-519",
         "Maschine": 3.1597,
         "Kraft": 21.9444,
@@ -11652,7 +11652,7 @@
     {
       "url": "example2.csv#row=522",
       "rownum": 520,
-      "discribes": {
+      "describes": {
         "@id": "gid-520",
         "Maschine": 3.16606,
         "Kraft": 21.9387,
@@ -11674,7 +11674,7 @@
     {
       "url": "example2.csv#row=523",
       "rownum": 521,
-      "discribes": {
+      "describes": {
         "@id": "gid-521",
         "Maschine": 3.1731,
         "Kraft": 21.9207,
@@ -11696,7 +11696,7 @@
     {
       "url": "example2.csv#row=524",
       "rownum": 522,
-      "discribes": {
+      "describes": {
         "@id": "gid-522",
         "Maschine": 3.17905,
         "Kraft": 21.8989,
@@ -11718,7 +11718,7 @@
     {
       "url": "example2.csv#row=525",
       "rownum": 523,
-      "discribes": {
+      "describes": {
         "@id": "gid-523",
         "Maschine": 3.18532,
         "Kraft": 21.8798,
@@ -11740,7 +11740,7 @@
     {
       "url": "example2.csv#row=526",
       "rownum": 524,
-      "discribes": {
+      "describes": {
         "@id": "gid-524",
         "Maschine": 3.19117,
         "Kraft": 21.8423,
@@ -11762,7 +11762,7 @@
     {
       "url": "example2.csv#row=527",
       "rownum": 525,
-      "discribes": {
+      "describes": {
         "@id": "gid-525",
         "Maschine": 3.1973,
         "Kraft": 21.8412,
@@ -11784,7 +11784,7 @@
     {
       "url": "example2.csv#row=528",
       "rownum": 526,
-      "discribes": {
+      "describes": {
         "@id": "gid-526",
         "Maschine": 3.20308,
         "Kraft": 21.8237,
@@ -11806,7 +11806,7 @@
     {
       "url": "example2.csv#row=529",
       "rownum": 527,
-      "discribes": {
+      "describes": {
         "@id": "gid-527",
         "Maschine": 3.20896,
         "Kraft": 21.8003,
@@ -11828,7 +11828,7 @@
     {
       "url": "example2.csv#row=530",
       "rownum": 528,
-      "discribes": {
+      "describes": {
         "@id": "gid-528",
         "Maschine": 3.21615,
         "Kraft": 21.7849,
@@ -11850,7 +11850,7 @@
     {
       "url": "example2.csv#row=531",
       "rownum": 529,
-      "discribes": {
+      "describes": {
         "@id": "gid-529",
         "Maschine": 3.22231,
         "Kraft": 21.7613,
@@ -11872,7 +11872,7 @@
     {
       "url": "example2.csv#row=532",
       "rownum": 530,
-      "discribes": {
+      "describes": {
         "@id": "gid-530",
         "Maschine": 3.22784,
         "Kraft": 21.7312,
@@ -11894,7 +11894,7 @@
     {
       "url": "example2.csv#row=533",
       "rownum": 531,
-      "discribes": {
+      "describes": {
         "@id": "gid-531",
         "Maschine": 3.23448,
         "Kraft": 21.7181,
@@ -11916,7 +11916,7 @@
     {
       "url": "example2.csv#row=534",
       "rownum": 532,
-      "discribes": {
+      "describes": {
         "@id": "gid-532",
         "Maschine": 3.24052,
         "Kraft": 21.7083,
@@ -11938,7 +11938,7 @@
     {
       "url": "example2.csv#row=535",
       "rownum": 533,
-      "discribes": {
+      "describes": {
         "@id": "gid-533",
         "Maschine": 3.24694,
         "Kraft": 21.6844,
@@ -11960,7 +11960,7 @@
     {
       "url": "example2.csv#row=536",
       "rownum": 534,
-      "discribes": {
+      "describes": {
         "@id": "gid-534",
         "Maschine": 3.25399,
         "Kraft": 21.6713,
@@ -11982,7 +11982,7 @@
     {
       "url": "example2.csv#row=537",
       "rownum": 535,
-      "discribes": {
+      "describes": {
         "@id": "gid-535",
         "Maschine": 3.2593,
         "Kraft": 21.6386,
@@ -12004,7 +12004,7 @@
     {
       "url": "example2.csv#row=538",
       "rownum": 536,
-      "discribes": {
+      "describes": {
         "@id": "gid-536",
         "Maschine": 3.26582,
         "Kraft": 21.6264,
@@ -12026,7 +12026,7 @@
     {
       "url": "example2.csv#row=539",
       "rownum": 537,
-      "discribes": {
+      "describes": {
         "@id": "gid-537",
         "Maschine": 3.27218,
         "Kraft": 21.593,
@@ -12048,7 +12048,7 @@
     {
       "url": "example2.csv#row=540",
       "rownum": 538,
-      "discribes": {
+      "describes": {
         "@id": "gid-538",
         "Maschine": 3.27807,
         "Kraft": 21.5904,
@@ -12070,7 +12070,7 @@
     {
       "url": "example2.csv#row=541",
       "rownum": 539,
-      "discribes": {
+      "describes": {
         "@id": "gid-539",
         "Maschine": 3.28475,
         "Kraft": 21.5468,
@@ -12092,7 +12092,7 @@
     {
       "url": "example2.csv#row=542",
       "rownum": 540,
-      "discribes": {
+      "describes": {
         "@id": "gid-540",
         "Maschine": 3.29113,
         "Kraft": 21.5506,
@@ -12114,7 +12114,7 @@
     {
       "url": "example2.csv#row=543",
       "rownum": 541,
-      "discribes": {
+      "describes": {
         "@id": "gid-541",
         "Maschine": 3.29678,
         "Kraft": 21.5191,
@@ -12136,7 +12136,7 @@
     {
       "url": "example2.csv#row=544",
       "rownum": 542,
-      "discribes": {
+      "describes": {
         "@id": "gid-542",
         "Maschine": 3.30283,
         "Kraft": 21.504,
@@ -12158,7 +12158,7 @@
     {
       "url": "example2.csv#row=545",
       "rownum": 543,
-      "discribes": {
+      "describes": {
         "@id": "gid-543",
         "Maschine": 3.30946,
         "Kraft": 21.4941,
@@ -12180,7 +12180,7 @@
     {
       "url": "example2.csv#row=546",
       "rownum": 544,
-      "discribes": {
+      "describes": {
         "@id": "gid-544",
         "Maschine": 3.3152,
         "Kraft": 21.469,
@@ -12202,7 +12202,7 @@
     {
       "url": "example2.csv#row=547",
       "rownum": 545,
-      "discribes": {
+      "describes": {
         "@id": "gid-545",
         "Maschine": 3.32171,
         "Kraft": 21.4525,
@@ -12224,7 +12224,7 @@
     {
       "url": "example2.csv#row=548",
       "rownum": 546,
-      "discribes": {
+      "describes": {
         "@id": "gid-546",
         "Maschine": 3.32736,
         "Kraft": 21.4275,
@@ -12246,7 +12246,7 @@
     {
       "url": "example2.csv#row=549",
       "rownum": 547,
-      "discribes": {
+      "describes": {
         "@id": "gid-547",
         "Maschine": 3.33345,
         "Kraft": 21.4155,
@@ -12268,7 +12268,7 @@
     {
       "url": "example2.csv#row=550",
       "rownum": 548,
-      "discribes": {
+      "describes": {
         "@id": "gid-548",
         "Maschine": 3.34018,
         "Kraft": 21.3918,
@@ -12290,7 +12290,7 @@
     {
       "url": "example2.csv#row=551",
       "rownum": 549,
-      "discribes": {
+      "describes": {
         "@id": "gid-549",
         "Maschine": 3.34617,
         "Kraft": 21.3702,
@@ -12312,7 +12312,7 @@
     {
       "url": "example2.csv#row=552",
       "rownum": 550,
-      "discribes": {
+      "describes": {
         "@id": "gid-550",
         "Maschine": 3.3512,
         "Kraft": 21.3373,
@@ -12334,7 +12334,7 @@
     {
       "url": "example2.csv#row=553",
       "rownum": 551,
-      "discribes": {
+      "describes": {
         "@id": "gid-551",
         "Maschine": 3.35757,
         "Kraft": 21.3278,
@@ -12356,7 +12356,7 @@
     {
       "url": "example2.csv#row=554",
       "rownum": 552,
-      "discribes": {
+      "describes": {
         "@id": "gid-552",
         "Maschine": 3.3642,
         "Kraft": 21.3108,
@@ -12378,7 +12378,7 @@
     {
       "url": "example2.csv#row=555",
       "rownum": 553,
-      "discribes": {
+      "describes": {
         "@id": "gid-553",
         "Maschine": 3.37077,
         "Kraft": 21.2798,
@@ -12400,7 +12400,7 @@
     {
       "url": "example2.csv#row=556",
       "rownum": 554,
-      "discribes": {
+      "describes": {
         "@id": "gid-554",
         "Maschine": 3.37733,
         "Kraft": 21.265,
@@ -12422,7 +12422,7 @@
     {
       "url": "example2.csv#row=557",
       "rownum": 555,
-      "discribes": {
+      "describes": {
         "@id": "gid-555",
         "Maschine": 3.38306,
         "Kraft": 21.2421,
@@ -12444,7 +12444,7 @@
     {
       "url": "example2.csv#row=558",
       "rownum": 556,
-      "discribes": {
+      "describes": {
         "@id": "gid-556",
         "Maschine": 3.38924,
         "Kraft": 21.2232,
@@ -12466,7 +12466,7 @@
     {
       "url": "example2.csv#row=559",
       "rownum": 557,
-      "discribes": {
+      "describes": {
         "@id": "gid-557",
         "Maschine": 3.39536,
         "Kraft": 21.216,
@@ -12488,7 +12488,7 @@
     {
       "url": "example2.csv#row=560",
       "rownum": 558,
-      "discribes": {
+      "describes": {
         "@id": "gid-558",
         "Maschine": 3.40192,
         "Kraft": 21.1827,
@@ -12510,7 +12510,7 @@
     {
       "url": "example2.csv#row=561",
       "rownum": 559,
-      "discribes": {
+      "describes": {
         "@id": "gid-559",
         "Maschine": 3.40779,
         "Kraft": 21.1539,
@@ -12532,7 +12532,7 @@
     {
       "url": "example2.csv#row=562",
       "rownum": 560,
-      "discribes": {
+      "describes": {
         "@id": "gid-560",
         "Maschine": 3.4145,
         "Kraft": 21.1415,
@@ -12554,7 +12554,7 @@
     {
       "url": "example2.csv#row=563",
       "rownum": 561,
-      "discribes": {
+      "describes": {
         "@id": "gid-561",
         "Maschine": 3.41999,
         "Kraft": 21.1165,
@@ -12576,7 +12576,7 @@
     {
       "url": "example2.csv#row=564",
       "rownum": 562,
-      "discribes": {
+      "describes": {
         "@id": "gid-562",
         "Maschine": 3.42597,
         "Kraft": 21.112,
@@ -12598,7 +12598,7 @@
     {
       "url": "example2.csv#row=565",
       "rownum": 563,
-      "discribes": {
+      "describes": {
         "@id": "gid-563",
         "Maschine": 3.43208,
         "Kraft": 21.0816,
@@ -12620,7 +12620,7 @@
     {
       "url": "example2.csv#row=566",
       "rownum": 564,
-      "discribes": {
+      "describes": {
         "@id": "gid-564",
         "Maschine": 3.43773,
         "Kraft": 21.0538,
@@ -12642,7 +12642,7 @@
     {
       "url": "example2.csv#row=567",
       "rownum": 565,
-      "discribes": {
+      "describes": {
         "@id": "gid-565",
         "Maschine": 3.44408,
         "Kraft": 21.0423,
@@ -12664,7 +12664,7 @@
     {
       "url": "example2.csv#row=568",
       "rownum": 566,
-      "discribes": {
+      "describes": {
         "@id": "gid-566",
         "Maschine": 3.45033,
         "Kraft": 21.0208,
@@ -12686,7 +12686,7 @@
     {
       "url": "example2.csv#row=569",
       "rownum": 567,
-      "discribes": {
+      "describes": {
         "@id": "gid-567",
         "Maschine": 3.45628,
         "Kraft": 20.9994,
@@ -12708,7 +12708,7 @@
     {
       "url": "example2.csv#row=570",
       "rownum": 568,
-      "discribes": {
+      "describes": {
         "@id": "gid-568",
         "Maschine": 3.46226,
         "Kraft": 20.9732,
@@ -12730,7 +12730,7 @@
     {
       "url": "example2.csv#row=571",
       "rownum": 569,
-      "discribes": {
+      "describes": {
         "@id": "gid-569",
         "Maschine": 3.46889,
         "Kraft": 20.9601,
@@ -12752,7 +12752,7 @@
     {
       "url": "example2.csv#row=572",
       "rownum": 570,
-      "discribes": {
+      "describes": {
         "@id": "gid-570",
         "Maschine": 3.47482,
         "Kraft": 20.9354,
@@ -12774,7 +12774,7 @@
     {
       "url": "example2.csv#row=573",
       "rownum": 571,
-      "discribes": {
+      "describes": {
         "@id": "gid-571",
         "Maschine": 3.48096,
         "Kraft": 20.9144,
@@ -12796,7 +12796,7 @@
     {
       "url": "example2.csv#row=574",
       "rownum": 572,
-      "discribes": {
+      "describes": {
         "@id": "gid-572",
         "Maschine": 3.48663,
         "Kraft": 20.8841,
@@ -12818,7 +12818,7 @@
     {
       "url": "example2.csv#row=575",
       "rownum": 573,
-      "discribes": {
+      "describes": {
         "@id": "gid-573",
         "Maschine": 3.49245,
         "Kraft": 20.867,
@@ -12840,7 +12840,7 @@
     {
       "url": "example2.csv#row=576",
       "rownum": 574,
-      "discribes": {
+      "describes": {
         "@id": "gid-574",
         "Maschine": 3.49977,
         "Kraft": 20.8337,
@@ -12862,7 +12862,7 @@
     {
       "url": "example2.csv#row=577",
       "rownum": 575,
-      "discribes": {
+      "describes": {
         "@id": "gid-575",
         "Maschine": 3.50595,
         "Kraft": 20.8327,
@@ -12884,7 +12884,7 @@
     {
       "url": "example2.csv#row=578",
       "rownum": 576,
-      "discribes": {
+      "describes": {
         "@id": "gid-576",
         "Maschine": 3.51144,
         "Kraft": 20.8181,
@@ -12906,7 +12906,7 @@
     {
       "url": "example2.csv#row=579",
       "rownum": 577,
-      "discribes": {
+      "describes": {
         "@id": "gid-577",
         "Maschine": 3.51797,
         "Kraft": 20.7921,
@@ -12928,7 +12928,7 @@
     {
       "url": "example2.csv#row=580",
       "rownum": 578,
-      "discribes": {
+      "describes": {
         "@id": "gid-578",
         "Maschine": 3.52361,
         "Kraft": 20.7636,
@@ -12950,7 +12950,7 @@
     {
       "url": "example2.csv#row=581",
       "rownum": 579,
-      "discribes": {
+      "describes": {
         "@id": "gid-579",
         "Maschine": 3.52972,
         "Kraft": 20.739,
@@ -12972,7 +12972,7 @@
     {
       "url": "example2.csv#row=582",
       "rownum": 580,
-      "discribes": {
+      "describes": {
         "@id": "gid-580",
         "Maschine": 3.53616,
         "Kraft": 20.7225,
@@ -12994,7 +12994,7 @@
     {
       "url": "example2.csv#row=583",
       "rownum": 581,
-      "discribes": {
+      "describes": {
         "@id": "gid-581",
         "Maschine": 3.54292,
         "Kraft": 20.7047,
@@ -13016,7 +13016,7 @@
     {
       "url": "example2.csv#row=584",
       "rownum": 582,
-      "discribes": {
+      "describes": {
         "@id": "gid-582",
         "Maschine": 3.54974,
         "Kraft": 20.6816,
@@ -13038,7 +13038,7 @@
     {
       "url": "example2.csv#row=585",
       "rownum": 583,
-      "discribes": {
+      "describes": {
         "@id": "gid-583",
         "Maschine": 3.55569,
         "Kraft": 20.653,
@@ -13060,7 +13060,7 @@
     {
       "url": "example2.csv#row=586",
       "rownum": 584,
-      "discribes": {
+      "describes": {
         "@id": "gid-584",
         "Maschine": 3.56109,
         "Kraft": 20.6164,
@@ -13082,7 +13082,7 @@
     {
       "url": "example2.csv#row=587",
       "rownum": 585,
-      "discribes": {
+      "describes": {
         "@id": "gid-585",
         "Maschine": 3.56818,
         "Kraft": 20.6171,
@@ -13104,7 +13104,7 @@
     {
       "url": "example2.csv#row=588",
       "rownum": 586,
-      "discribes": {
+      "describes": {
         "@id": "gid-586",
         "Maschine": 3.5736,
         "Kraft": 20.5832,
@@ -13126,7 +13126,7 @@
     {
       "url": "example2.csv#row=589",
       "rownum": 587,
-      "discribes": {
+      "describes": {
         "@id": "gid-587",
         "Maschine": 3.58011,
         "Kraft": 20.572,
@@ -13148,7 +13148,7 @@
     {
       "url": "example2.csv#row=590",
       "rownum": 588,
-      "discribes": {
+      "describes": {
         "@id": "gid-588",
         "Maschine": 3.58714,
         "Kraft": 20.5501,
@@ -13170,7 +13170,7 @@
     {
       "url": "example2.csv#row=591",
       "rownum": 589,
-      "discribes": {
+      "describes": {
         "@id": "gid-589",
         "Maschine": 3.59298,
         "Kraft": 20.5249,
@@ -13192,7 +13192,7 @@
     {
       "url": "example2.csv#row=592",
       "rownum": 590,
-      "discribes": {
+      "describes": {
         "@id": "gid-590",
         "Maschine": 3.59807,
         "Kraft": 20.4823,
@@ -13214,7 +13214,7 @@
     {
       "url": "example2.csv#row=593",
       "rownum": 591,
-      "discribes": {
+      "describes": {
         "@id": "gid-591",
         "Maschine": 3.6047,
         "Kraft": 20.4801,
@@ -13236,7 +13236,7 @@
     {
       "url": "example2.csv#row=594",
       "rownum": 592,
-      "discribes": {
+      "describes": {
         "@id": "gid-592",
         "Maschine": 3.61027,
         "Kraft": 20.4485,
@@ -13258,7 +13258,7 @@
     {
       "url": "example2.csv#row=595",
       "rownum": 593,
-      "discribes": {
+      "describes": {
         "@id": "gid-593",
         "Maschine": 3.61727,
         "Kraft": 20.4303,
@@ -13280,7 +13280,7 @@
     {
       "url": "example2.csv#row=596",
       "rownum": 594,
-      "discribes": {
+      "describes": {
         "@id": "gid-594",
         "Maschine": 3.6225,
         "Kraft": 20.4173,
@@ -13302,7 +13302,7 @@
     {
       "url": "example2.csv#row=597",
       "rownum": 595,
-      "discribes": {
+      "describes": {
         "@id": "gid-595",
         "Maschine": 3.62931,
         "Kraft": 20.3825,
@@ -13324,7 +13324,7 @@
     {
       "url": "example2.csv#row=598",
       "rownum": 596,
-      "discribes": {
+      "describes": {
         "@id": "gid-596",
         "Maschine": 3.63583,
         "Kraft": 20.3764,
@@ -13346,7 +13346,7 @@
     {
       "url": "example2.csv#row=599",
       "rownum": 597,
-      "discribes": {
+      "describes": {
         "@id": "gid-597",
         "Maschine": 3.64227,
         "Kraft": 20.3459,
@@ -13368,7 +13368,7 @@
     {
       "url": "example2.csv#row=600",
       "rownum": 598,
-      "discribes": {
+      "describes": {
         "@id": "gid-598",
         "Maschine": 3.64753,
         "Kraft": 20.3137,
@@ -13390,7 +13390,7 @@
     {
       "url": "example2.csv#row=601",
       "rownum": 599,
-      "discribes": {
+      "describes": {
         "@id": "gid-599",
         "Maschine": 3.65418,
         "Kraft": 20.3105,
@@ -13412,7 +13412,7 @@
     {
       "url": "example2.csv#row=602",
       "rownum": 600,
-      "discribes": {
+      "describes": {
         "@id": "gid-600",
         "Maschine": 3.65901,
         "Kraft": 20.263,
@@ -13434,7 +13434,7 @@
     {
       "url": "example2.csv#row=603",
       "rownum": 601,
-      "discribes": {
+      "describes": {
         "@id": "gid-601",
         "Maschine": 3.66582,
         "Kraft": 20.2587,
@@ -13456,7 +13456,7 @@
     {
       "url": "example2.csv#row=604",
       "rownum": 602,
-      "discribes": {
+      "describes": {
         "@id": "gid-602",
         "Maschine": 3.67151,
         "Kraft": 20.2292,
@@ -13478,7 +13478,7 @@
     {
       "url": "example2.csv#row=605",
       "rownum": 603,
-      "discribes": {
+      "describes": {
         "@id": "gid-603",
         "Maschine": 3.67825,
         "Kraft": 20.205,
@@ -13500,7 +13500,7 @@
     {
       "url": "example2.csv#row=606",
       "rownum": 604,
-      "discribes": {
+      "describes": {
         "@id": "gid-604",
         "Maschine": 3.6846,
         "Kraft": 20.1885,
@@ -13522,7 +13522,7 @@
     {
       "url": "example2.csv#row=607",
       "rownum": 605,
-      "discribes": {
+      "describes": {
         "@id": "gid-605",
         "Maschine": 3.6911,
         "Kraft": 20.1586,
@@ -13544,7 +13544,7 @@
     {
       "url": "example2.csv#row=608",
       "rownum": 606,
-      "discribes": {
+      "describes": {
         "@id": "gid-606",
         "Maschine": 3.69787,
         "Kraft": 20.1473,
@@ -13566,7 +13566,7 @@
     {
       "url": "example2.csv#row=609",
       "rownum": 607,
-      "discribes": {
+      "describes": {
         "@id": "gid-607",
         "Maschine": 3.70405,
         "Kraft": 20.1058,
@@ -13588,7 +13588,7 @@
     {
       "url": "example2.csv#row=610",
       "rownum": 608,
-      "discribes": {
+      "describes": {
         "@id": "gid-608",
         "Maschine": 3.71006,
         "Kraft": 20.0874,
@@ -13610,7 +13610,7 @@
     {
       "url": "example2.csv#row=611",
       "rownum": 609,
-      "discribes": {
+      "describes": {
         "@id": "gid-609",
         "Maschine": 3.71642,
         "Kraft": 20.0668,
@@ -13632,7 +13632,7 @@
     {
       "url": "example2.csv#row=612",
       "rownum": 610,
-      "discribes": {
+      "describes": {
         "@id": "gid-610",
         "Maschine": 3.72208,
         "Kraft": 20.0474,
@@ -13654,7 +13654,7 @@
     {
       "url": "example2.csv#row=613",
       "rownum": 611,
-      "discribes": {
+      "describes": {
         "@id": "gid-611",
         "Maschine": 3.72799,
         "Kraft": 20.004,
@@ -13676,7 +13676,7 @@
     {
       "url": "example2.csv#row=614",
       "rownum": 612,
-      "discribes": {
+      "describes": {
         "@id": "gid-612",
         "Maschine": 3.7341,
         "Kraft": 19.9926,
@@ -13698,7 +13698,7 @@
     {
       "url": "example2.csv#row=615",
       "rownum": 613,
-      "discribes": {
+      "describes": {
         "@id": "gid-613",
         "Maschine": 3.74019,
         "Kraft": 19.9714,
@@ -13720,7 +13720,7 @@
     {
       "url": "example2.csv#row=616",
       "rownum": 614,
-      "discribes": {
+      "describes": {
         "@id": "gid-614",
         "Maschine": 3.74617,
         "Kraft": 19.9364,
@@ -13742,7 +13742,7 @@
     {
       "url": "example2.csv#row=617",
       "rownum": 615,
-      "discribes": {
+      "describes": {
         "@id": "gid-615",
         "Maschine": 3.75263,
         "Kraft": 19.9218,
@@ -13764,7 +13764,7 @@
     {
       "url": "example2.csv#row=618",
       "rownum": 616,
-      "discribes": {
+      "describes": {
         "@id": "gid-616",
         "Maschine": 3.75898,
         "Kraft": 19.8918,
@@ -13786,7 +13786,7 @@
     {
       "url": "example2.csv#row=619",
       "rownum": 617,
-      "discribes": {
+      "describes": {
         "@id": "gid-617",
         "Maschine": 3.76517,
         "Kraft": 19.8704,
@@ -13808,7 +13808,7 @@
     {
       "url": "example2.csv#row=620",
       "rownum": 618,
-      "discribes": {
+      "describes": {
         "@id": "gid-618",
         "Maschine": 3.77186,
         "Kraft": 19.843,
@@ -13830,7 +13830,7 @@
     {
       "url": "example2.csv#row=621",
       "rownum": 619,
-      "discribes": {
+      "describes": {
         "@id": "gid-619",
         "Maschine": 3.77776,
         "Kraft": 19.8267,
@@ -13852,7 +13852,7 @@
     {
       "url": "example2.csv#row=622",
       "rownum": 620,
-      "discribes": {
+      "describes": {
         "@id": "gid-620",
         "Maschine": 3.78401,
         "Kraft": 19.788,
@@ -13874,7 +13874,7 @@
     {
       "url": "example2.csv#row=623",
       "rownum": 621,
-      "discribes": {
+      "describes": {
         "@id": "gid-621",
         "Maschine": 3.7895,
         "Kraft": 19.7739,
@@ -13896,7 +13896,7 @@
     {
       "url": "example2.csv#row=624",
       "rownum": 622,
-      "discribes": {
+      "describes": {
         "@id": "gid-622",
         "Maschine": 3.79539,
         "Kraft": 19.738,
@@ -13918,7 +13918,7 @@
     {
       "url": "example2.csv#row=625",
       "rownum": 623,
-      "discribes": {
+      "describes": {
         "@id": "gid-623",
         "Maschine": 3.80133,
         "Kraft": 19.7329,
@@ -13940,7 +13940,7 @@
     {
       "url": "example2.csv#row=626",
       "rownum": 624,
-      "discribes": {
+      "describes": {
         "@id": "gid-624",
         "Maschine": 3.80812,
         "Kraft": 19.7099,
@@ -13962,7 +13962,7 @@
     {
       "url": "example2.csv#row=627",
       "rownum": 625,
-      "discribes": {
+      "describes": {
         "@id": "gid-625",
         "Maschine": 3.81379,
         "Kraft": 19.672,
@@ -13984,7 +13984,7 @@
     {
       "url": "example2.csv#row=628",
       "rownum": 626,
-      "discribes": {
+      "describes": {
         "@id": "gid-626",
         "Maschine": 3.82087,
         "Kraft": 19.6476,
@@ -14006,7 +14006,7 @@
     {
       "url": "example2.csv#row=629",
       "rownum": 627,
-      "discribes": {
+      "describes": {
         "@id": "gid-627",
         "Maschine": 3.82626,
         "Kraft": 19.6253,
@@ -14028,7 +14028,7 @@
     {
       "url": "example2.csv#row=630",
       "rownum": 628,
-      "discribes": {
+      "describes": {
         "@id": "gid-628",
         "Maschine": 3.83289,
         "Kraft": 19.6043,
@@ -14050,7 +14050,7 @@
     {
       "url": "example2.csv#row=631",
       "rownum": 629,
-      "discribes": {
+      "describes": {
         "@id": "gid-629",
         "Maschine": 3.84022,
         "Kraft": 19.5816,
@@ -14072,7 +14072,7 @@
     {
       "url": "example2.csv#row=632",
       "rownum": 630,
-      "discribes": {
+      "describes": {
         "@id": "gid-630",
         "Maschine": 3.8456,
         "Kraft": 19.5418,
@@ -14094,7 +14094,7 @@
     {
       "url": "example2.csv#row=633",
       "rownum": 631,
-      "discribes": {
+      "describes": {
         "@id": "gid-631",
         "Maschine": 3.85207,
         "Kraft": 19.5199,
@@ -14116,7 +14116,7 @@
     {
       "url": "example2.csv#row=634",
       "rownum": 632,
-      "discribes": {
+      "describes": {
         "@id": "gid-632",
         "Maschine": 3.85841,
         "Kraft": 19.4998,
@@ -14138,7 +14138,7 @@
     {
       "url": "example2.csv#row=635",
       "rownum": 633,
-      "discribes": {
+      "describes": {
         "@id": "gid-633",
         "Maschine": 3.86376,
         "Kraft": 19.4668,
@@ -14160,7 +14160,7 @@
     {
       "url": "example2.csv#row=636",
       "rownum": 634,
-      "discribes": {
+      "describes": {
         "@id": "gid-634",
         "Maschine": 3.86983,
         "Kraft": 19.4453,
@@ -14182,7 +14182,7 @@
     {
       "url": "example2.csv#row=637",
       "rownum": 635,
-      "discribes": {
+      "describes": {
         "@id": "gid-635",
         "Maschine": 3.87584,
         "Kraft": 19.4214,
@@ -14204,7 +14204,7 @@
     {
       "url": "example2.csv#row=638",
       "rownum": 636,
-      "discribes": {
+      "describes": {
         "@id": "gid-636",
         "Maschine": 3.88132,
         "Kraft": 19.3996,
@@ -14226,7 +14226,7 @@
     {
       "url": "example2.csv#row=639",
       "rownum": 637,
-      "discribes": {
+      "describes": {
         "@id": "gid-637",
         "Maschine": 3.88779,
         "Kraft": 19.3756,
@@ -14248,7 +14248,7 @@
     {
       "url": "example2.csv#row=640",
       "rownum": 638,
-      "discribes": {
+      "describes": {
         "@id": "gid-638",
         "Maschine": 3.8944,
         "Kraft": 19.3482,
@@ -14270,7 +14270,7 @@
     {
       "url": "example2.csv#row=641",
       "rownum": 639,
-      "discribes": {
+      "describes": {
         "@id": "gid-639",
         "Maschine": 3.90059,
         "Kraft": 19.3149,
@@ -14292,7 +14292,7 @@
     {
       "url": "example2.csv#row=642",
       "rownum": 640,
-      "discribes": {
+      "describes": {
         "@id": "gid-640",
         "Maschine": 3.90723,
         "Kraft": 19.2802,
@@ -14314,7 +14314,7 @@
     {
       "url": "example2.csv#row=643",
       "rownum": 641,
-      "discribes": {
+      "describes": {
         "@id": "gid-641",
         "Maschine": 3.9144,
         "Kraft": 19.2655,
@@ -14336,7 +14336,7 @@
     {
       "url": "example2.csv#row=644",
       "rownum": 642,
-      "discribes": {
+      "describes": {
         "@id": "gid-642",
         "Maschine": 3.91968,
         "Kraft": 19.2203,
@@ -14358,7 +14358,7 @@
     {
       "url": "example2.csv#row=645",
       "rownum": 643,
-      "discribes": {
+      "describes": {
         "@id": "gid-643",
         "Maschine": 3.92535,
         "Kraft": 19.1986,
@@ -14380,7 +14380,7 @@
     {
       "url": "example2.csv#row=646",
       "rownum": 644,
-      "discribes": {
+      "describes": {
         "@id": "gid-644",
         "Maschine": 3.93122,
         "Kraft": 19.1841,
@@ -14402,7 +14402,7 @@
     {
       "url": "example2.csv#row=647",
       "rownum": 645,
-      "discribes": {
+      "describes": {
         "@id": "gid-645",
         "Maschine": 3.93797,
         "Kraft": 19.1528,
@@ -14424,7 +14424,7 @@
     {
       "url": "example2.csv#row=648",
       "rownum": 646,
-      "discribes": {
+      "describes": {
         "@id": "gid-646",
         "Maschine": 3.94449,
         "Kraft": 19.1328,
@@ -14446,7 +14446,7 @@
     {
       "url": "example2.csv#row=649",
       "rownum": 647,
-      "discribes": {
+      "describes": {
         "@id": "gid-647",
         "Maschine": 3.9506,
         "Kraft": 19.0987,
@@ -14468,7 +14468,7 @@
     {
       "url": "example2.csv#row=650",
       "rownum": 648,
-      "discribes": {
+      "describes": {
         "@id": "gid-648",
         "Maschine": 3.95711,
         "Kraft": 19.0869,
@@ -14490,7 +14490,7 @@
     {
       "url": "example2.csv#row=651",
       "rownum": 649,
-      "discribes": {
+      "describes": {
         "@id": "gid-649",
         "Maschine": 3.96278,
         "Kraft": 19.0438,
@@ -14512,7 +14512,7 @@
     {
       "url": "example2.csv#row=652",
       "rownum": 650,
-      "discribes": {
+      "describes": {
         "@id": "gid-650",
         "Maschine": 3.96896,
         "Kraft": 19.023,
@@ -14534,7 +14534,7 @@
     {
       "url": "example2.csv#row=653",
       "rownum": 651,
-      "discribes": {
+      "describes": {
         "@id": "gid-651",
         "Maschine": 3.97569,
         "Kraft": 19.0039,
@@ -14556,7 +14556,7 @@
     {
       "url": "example2.csv#row=654",
       "rownum": 652,
-      "discribes": {
+      "describes": {
         "@id": "gid-652",
         "Maschine": 3.98134,
         "Kraft": 18.9427,
@@ -14578,7 +14578,7 @@
     {
       "url": "example2.csv#row=655",
       "rownum": 653,
-      "discribes": {
+      "describes": {
         "@id": "gid-653",
         "Maschine": 3.9871,
         "Kraft": 18.9324,
@@ -14600,7 +14600,7 @@
     {
       "url": "example2.csv#row=656",
       "rownum": 654,
-      "discribes": {
+      "describes": {
         "@id": "gid-654",
         "Maschine": 3.99388,
         "Kraft": 18.9029,
@@ -14622,7 +14622,7 @@
     {
       "url": "example2.csv#row=657",
       "rownum": 655,
-      "discribes": {
+      "describes": {
         "@id": "gid-655",
         "Maschine": 4.00048,
         "Kraft": 18.8873,
@@ -14644,7 +14644,7 @@
     {
       "url": "example2.csv#row=658",
       "rownum": 656,
-      "discribes": {
+      "describes": {
         "@id": "gid-656",
         "Maschine": 4.00683,
         "Kraft": 18.8566,
@@ -14666,7 +14666,7 @@
     {
       "url": "example2.csv#row=659",
       "rownum": 657,
-      "discribes": {
+      "describes": {
         "@id": "gid-657",
         "Maschine": 4.01276,
         "Kraft": 18.8233,
@@ -14688,7 +14688,7 @@
     {
       "url": "example2.csv#row=660",
       "rownum": 658,
-      "discribes": {
+      "describes": {
         "@id": "gid-658",
         "Maschine": 4.01907,
         "Kraft": 18.7935,
@@ -14710,7 +14710,7 @@
     {
       "url": "example2.csv#row=661",
       "rownum": 659,
-      "discribes": {
+      "describes": {
         "@id": "gid-659",
         "Maschine": 4.0251,
         "Kraft": 18.7742,
@@ -14732,7 +14732,7 @@
     {
       "url": "example2.csv#row=662",
       "rownum": 660,
-      "discribes": {
+      "describes": {
         "@id": "gid-660",
         "Maschine": 4.03174,
         "Kraft": 18.7399,
@@ -14754,7 +14754,7 @@
     {
       "url": "example2.csv#row=663",
       "rownum": 661,
-      "discribes": {
+      "describes": {
         "@id": "gid-661",
         "Maschine": 4.03727,
         "Kraft": 18.7087,
@@ -14776,7 +14776,7 @@
     {
       "url": "example2.csv#row=664",
       "rownum": 662,
-      "discribes": {
+      "describes": {
         "@id": "gid-662",
         "Maschine": 4.04337,
         "Kraft": 18.6853,
@@ -14798,7 +14798,7 @@
     {
       "url": "example2.csv#row=665",
       "rownum": 663,
-      "discribes": {
+      "describes": {
         "@id": "gid-663",
         "Maschine": 4.04999,
         "Kraft": 18.6533,
@@ -14820,7 +14820,7 @@
     {
       "url": "example2.csv#row=666",
       "rownum": 664,
-      "discribes": {
+      "describes": {
         "@id": "gid-664",
         "Maschine": 4.0555,
         "Kraft": 18.6258,
@@ -14842,7 +14842,7 @@
     {
       "url": "example2.csv#row=667",
       "rownum": 665,
-      "discribes": {
+      "describes": {
         "@id": "gid-665",
         "Maschine": 4.06214,
         "Kraft": 18.6074,
@@ -14864,7 +14864,7 @@
     {
       "url": "example2.csv#row=668",
       "rownum": 666,
-      "discribes": {
+      "describes": {
         "@id": "gid-666",
         "Maschine": 4.0688,
         "Kraft": 18.5613,
@@ -14886,7 +14886,7 @@
     {
       "url": "example2.csv#row=669",
       "rownum": 667,
-      "discribes": {
+      "describes": {
         "@id": "gid-667",
         "Maschine": 4.07487,
         "Kraft": 18.5429,
@@ -14908,7 +14908,7 @@
     {
       "url": "example2.csv#row=670",
       "rownum": 668,
-      "discribes": {
+      "describes": {
         "@id": "gid-668",
         "Maschine": 4.08025,
         "Kraft": 18.5163,
@@ -14930,7 +14930,7 @@
     {
       "url": "example2.csv#row=671",
       "rownum": 669,
-      "discribes": {
+      "describes": {
         "@id": "gid-669",
         "Maschine": 4.08612,
         "Kraft": 18.4818,
@@ -14952,7 +14952,7 @@
     {
       "url": "example2.csv#row=672",
       "rownum": 670,
-      "discribes": {
+      "describes": {
         "@id": "gid-670",
         "Maschine": 4.0921,
         "Kraft": 18.4602,
@@ -14974,7 +14974,7 @@
     {
       "url": "example2.csv#row=673",
       "rownum": 671,
-      "discribes": {
+      "describes": {
         "@id": "gid-671",
         "Maschine": 4.09874,
         "Kraft": 18.4187,
@@ -14996,7 +14996,7 @@
     {
       "url": "example2.csv#row=674",
       "rownum": 672,
-      "discribes": {
+      "describes": {
         "@id": "gid-672",
         "Maschine": 4.10502,
         "Kraft": 18.3962,
@@ -15018,7 +15018,7 @@
     {
       "url": "example2.csv#row=675",
       "rownum": 673,
-      "discribes": {
+      "describes": {
         "@id": "gid-673",
         "Maschine": 4.11161,
         "Kraft": 18.3738,
@@ -15040,7 +15040,7 @@
     {
       "url": "example2.csv#row=676",
       "rownum": 674,
-      "discribes": {
+      "describes": {
         "@id": "gid-674",
         "Maschine": 4.11774,
         "Kraft": 18.335,
@@ -15062,7 +15062,7 @@
     {
       "url": "example2.csv#row=677",
       "rownum": 675,
-      "discribes": {
+      "describes": {
         "@id": "gid-675",
         "Maschine": 4.12334,
         "Kraft": 18.3091,
@@ -15084,7 +15084,7 @@
     {
       "url": "example2.csv#row=678",
       "rownum": 676,
-      "discribes": {
+      "describes": {
         "@id": "gid-676",
         "Maschine": 4.1292,
         "Kraft": 18.2752,
@@ -15106,7 +15106,7 @@
     {
       "url": "example2.csv#row=679",
       "rownum": 677,
-      "discribes": {
+      "describes": {
         "@id": "gid-677",
         "Maschine": 4.1355,
         "Kraft": 18.2347,
@@ -15128,7 +15128,7 @@
     {
       "url": "example2.csv#row=680",
       "rownum": 678,
-      "discribes": {
+      "describes": {
         "@id": "gid-678",
         "Maschine": 4.14214,
         "Kraft": 18.2183,
@@ -15150,7 +15150,7 @@
     {
       "url": "example2.csv#row=681",
       "rownum": 679,
-      "discribes": {
+      "describes": {
         "@id": "gid-679",
         "Maschine": 4.1476,
         "Kraft": 18.1863,
@@ -15172,7 +15172,7 @@
     {
       "url": "example2.csv#row=682",
       "rownum": 680,
-      "discribes": {
+      "describes": {
         "@id": "gid-680",
         "Maschine": 4.15349,
         "Kraft": 18.1477,
@@ -15194,7 +15194,7 @@
     {
       "url": "example2.csv#row=683",
       "rownum": 681,
-      "discribes": {
+      "describes": {
         "@id": "gid-681",
         "Maschine": 4.15983,
         "Kraft": 18.121,
@@ -15216,7 +15216,7 @@
     {
       "url": "example2.csv#row=684",
       "rownum": 682,
-      "discribes": {
+      "describes": {
         "@id": "gid-682",
         "Maschine": 4.16588,
         "Kraft": 18.0956,
@@ -15238,7 +15238,7 @@
     {
       "url": "example2.csv#row=685",
       "rownum": 683,
-      "discribes": {
+      "describes": {
         "@id": "gid-683",
         "Maschine": 4.17183,
         "Kraft": 18.0688,
@@ -15260,7 +15260,7 @@
     {
       "url": "example2.csv#row=686",
       "rownum": 684,
-      "discribes": {
+      "describes": {
         "@id": "gid-684",
         "Maschine": 4.17861,
         "Kraft": 18.0262,
@@ -15282,7 +15282,7 @@
     {
       "url": "example2.csv#row=687",
       "rownum": 685,
-      "discribes": {
+      "describes": {
         "@id": "gid-685",
         "Maschine": 4.18464,
         "Kraft": 18.0108,
@@ -15304,7 +15304,7 @@
     {
       "url": "example2.csv#row=688",
       "rownum": 686,
-      "discribes": {
+      "describes": {
         "@id": "gid-686",
         "Maschine": 4.19032,
         "Kraft": 17.9706,
@@ -15326,7 +15326,7 @@
     {
       "url": "example2.csv#row=689",
       "rownum": 687,
-      "discribes": {
+      "describes": {
         "@id": "gid-687",
         "Maschine": 4.19679,
         "Kraft": 17.9511,
@@ -15348,7 +15348,7 @@
     {
       "url": "example2.csv#row=690",
       "rownum": 688,
-      "discribes": {
+      "describes": {
         "@id": "gid-688",
         "Maschine": 4.20331,
         "Kraft": 17.9251,
@@ -15370,7 +15370,7 @@
     {
       "url": "example2.csv#row=691",
       "rownum": 689,
-      "discribes": {
+      "describes": {
         "@id": "gid-689",
         "Maschine": 4.20892,
         "Kraft": 17.8817,
@@ -15392,7 +15392,7 @@
     {
       "url": "example2.csv#row=692",
       "rownum": 690,
-      "discribes": {
+      "describes": {
         "@id": "gid-690",
         "Maschine": 4.21457,
         "Kraft": 17.8559,
@@ -15414,7 +15414,7 @@
     {
       "url": "example2.csv#row=693",
       "rownum": 691,
-      "discribes": {
+      "describes": {
         "@id": "gid-691",
         "Maschine": 4.22205,
         "Kraft": 17.8111,
@@ -15436,7 +15436,7 @@
     {
       "url": "example2.csv#row=694",
       "rownum": 692,
-      "discribes": {
+      "describes": {
         "@id": "gid-692",
         "Maschine": 4.2279,
         "Kraft": 17.7884,
@@ -15458,7 +15458,7 @@
     {
       "url": "example2.csv#row=695",
       "rownum": 693,
-      "discribes": {
+      "describes": {
         "@id": "gid-693",
         "Maschine": 4.23416,
         "Kraft": 17.7425,
@@ -15480,7 +15480,7 @@
     {
       "url": "example2.csv#row=696",
       "rownum": 694,
-      "discribes": {
+      "describes": {
         "@id": "gid-694",
         "Maschine": 4.24013,
         "Kraft": 17.7126,
@@ -15502,7 +15502,7 @@
     {
       "url": "example2.csv#row=697",
       "rownum": 695,
-      "discribes": {
+      "describes": {
         "@id": "gid-695",
         "Maschine": 4.24609,
         "Kraft": 17.6905,
@@ -15524,7 +15524,7 @@
     {
       "url": "example2.csv#row=698",
       "rownum": 696,
-      "discribes": {
+      "describes": {
         "@id": "gid-696",
         "Maschine": 4.25232,
         "Kraft": 17.655,
@@ -15546,7 +15546,7 @@
     {
       "url": "example2.csv#row=699",
       "rownum": 697,
-      "discribes": {
+      "describes": {
         "@id": "gid-697",
         "Maschine": 4.25847,
         "Kraft": 17.6271,
@@ -15568,7 +15568,7 @@
     {
       "url": "example2.csv#row=700",
       "rownum": 698,
-      "discribes": {
+      "describes": {
         "@id": "gid-698",
         "Maschine": 4.26431,
         "Kraft": 17.5844,
@@ -15590,7 +15590,7 @@
     {
       "url": "example2.csv#row=701",
       "rownum": 699,
-      "discribes": {
+      "describes": {
         "@id": "gid-699",
         "Maschine": 4.27075,
         "Kraft": 17.5523,
@@ -15612,7 +15612,7 @@
     {
       "url": "example2.csv#row=702",
       "rownum": 700,
-      "discribes": {
+      "describes": {
         "@id": "gid-700",
         "Maschine": 4.2772,
         "Kraft": 17.5261,
@@ -15634,7 +15634,7 @@
     {
       "url": "example2.csv#row=703",
       "rownum": 701,
-      "discribes": {
+      "describes": {
         "@id": "gid-701",
         "Maschine": 4.28347,
         "Kraft": 17.4906,
@@ -15656,7 +15656,7 @@
     {
       "url": "example2.csv#row=704",
       "rownum": 702,
-      "discribes": {
+      "describes": {
         "@id": "gid-702",
         "Maschine": 4.2894,
         "Kraft": 17.4601,
@@ -15678,7 +15678,7 @@
     {
       "url": "example2.csv#row=705",
       "rownum": 703,
-      "discribes": {
+      "describes": {
         "@id": "gid-703",
         "Maschine": 4.29525,
         "Kraft": 17.4191,
@@ -15700,7 +15700,7 @@
     {
       "url": "example2.csv#row=706",
       "rownum": 704,
-      "discribes": {
+      "describes": {
         "@id": "gid-704",
         "Maschine": 4.30212,
         "Kraft": 17.3826,
@@ -15722,7 +15722,7 @@
     {
       "url": "example2.csv#row=707",
       "rownum": 705,
-      "discribes": {
+      "describes": {
         "@id": "gid-705",
         "Maschine": 4.30797,
         "Kraft": 17.3683,
@@ -15744,7 +15744,7 @@
     {
       "url": "example2.csv#row=708",
       "rownum": 706,
-      "discribes": {
+      "describes": {
         "@id": "gid-706",
         "Maschine": 4.31446,
         "Kraft": 17.3243,
@@ -15766,7 +15766,7 @@
     {
       "url": "example2.csv#row=709",
       "rownum": 707,
-      "discribes": {
+      "describes": {
         "@id": "gid-707",
         "Maschine": 4.32008,
         "Kraft": 17.2739,
@@ -15788,7 +15788,7 @@
     {
       "url": "example2.csv#row=710",
       "rownum": 708,
-      "discribes": {
+      "describes": {
         "@id": "gid-708",
         "Maschine": 4.32668,
         "Kraft": 17.2392,
@@ -15810,7 +15810,7 @@
     {
       "url": "example2.csv#row=711",
       "rownum": 709,
-      "discribes": {
+      "describes": {
         "@id": "gid-709",
         "Maschine": 4.3331,
         "Kraft": 17.2085,
@@ -15832,7 +15832,7 @@
     {
       "url": "example2.csv#row=712",
       "rownum": 710,
-      "discribes": {
+      "describes": {
         "@id": "gid-710",
         "Maschine": 4.33884,
         "Kraft": 17.1444,
@@ -15854,7 +15854,7 @@
     {
       "url": "example2.csv#row=713",
       "rownum": 711,
-      "discribes": {
+      "describes": {
         "@id": "gid-711",
         "Maschine": 4.34694,
         "Kraft": 0,
