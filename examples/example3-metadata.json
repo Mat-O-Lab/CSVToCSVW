@@ -29,7 +29,7 @@
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "Version"
         },
         {
@@ -41,32 +41,32 @@
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "Revision"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "7:"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "MX840B"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "INSTRON"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "8852TT;1605F:"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "PCLAB-P009:"
         },
         {
@@ -96,12 +96,12 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "Name:"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "PMD"
         }
       ]
@@ -117,7 +117,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "D:\\PMD\\AWA_3\\AWA_3_03_Rz.ein"
         }
       ]
@@ -133,7 +133,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "erstellen:"
         },
         {
@@ -156,7 +156,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "AWA_3_03_Rz"
         }
       ]
@@ -190,7 +190,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "[mm]:"
         },
         {
@@ -213,7 +213,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "[mm]:"
         },
         {
@@ -236,7 +236,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "[mm]:"
         },
         {
@@ -259,7 +259,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "[mm]:"
         },
         {
@@ -282,12 +282,12 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "Rz"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "B5x25;46NT31-Rohling;T"
         },
         {
@@ -310,12 +310,12 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "ID:"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "46NTA5-1-1-2"
         }
       ]
@@ -331,7 +331,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "[°C]:"
         },
         {
@@ -354,12 +354,12 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "INSTRON"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "8852TT;1605F"
         }
       ]
@@ -375,7 +375,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "[mm/s]:"
         },
         {
@@ -398,7 +398,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "1:"
         },
         {
@@ -439,7 +439,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "MinMax:"
         },
         {
@@ -480,7 +480,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "MinMax:"
         },
         {
@@ -503,7 +503,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "abspeichern:"
         },
         {
@@ -580,7 +580,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "1:"
         },
         {
@@ -610,12 +610,12 @@
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "Label:"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "Maschine"
         }
       ]
@@ -631,7 +631,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "QUANTUM"
         }
       ]
@@ -647,7 +647,7 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "USB"
         }
       ]
@@ -681,12 +681,12 @@
       "oa:hasBody": [
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "IP:"
         },
         {
           "@type": "oa:TextualBody",
-          "@purpose": "oa:tagging",
+          "oa:purpose": "oa:tagging",
           "@value": "192.168.33.70"
         }
       ]
