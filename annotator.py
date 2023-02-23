@@ -564,7 +564,7 @@ class CSV_Annotator():
                 table_data.insert(2,'@id',table_data.index)
                 table_data['@id']='gid-'+table_data['@id'].astype(str)
                 table_data['url']=file_name+'#row='+table_data['url'].astype(str)
-                table_entrys=[{'url': record.pop('url'), 'rownum': record.pop('rownum'), 'discribes':record} 
+                table_entrys=[{'url': record.pop('url'), 'rownum': record.pop('rownum'), 'describes':record} 
                     for record in table_data.to_dict('records')]
                 metadata_csvw["row"] =table_entrys
                 
