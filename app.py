@@ -136,7 +136,7 @@ class StartForm(StarletteForm):
         default=''
         )
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def index(request: Request):
     """GET /: form handler
     """
@@ -149,44 +149,6 @@ async def index(request: Request):
         }
     )
 
-# @app.post("/", response_class=HTMLResponse)
-# async def index(request: Request):
-#     """POST /: form handler
-#     """
-#     start_form = await StartForm.from_formdata(request)
-#     result = ''
-#     if await start_form.validate_on_submit():
-#         if not start_form.data_url.data:
-#             start_form.data_url.data=start_form.data_url.render_kw['placeholder']
-#             flash(request,'URL Data File empty: using placeholder value for demonstration','info')
-#         try:
-#             annotator = AnnotateRequest(data_url=start_form.data_url.data)
-#             response = await api(annotate=annotator)
-#             meta_file_name=response['filename']
-#             result=response['filedata']
-#             b64 = base64.b64encode(response['filedata'].encode())
-#             payload = payload = b64.decode()
-#         except Exception as error:
-#             flash(request,str(error),'error')
-#             meta_file_name=''
-#             payload=''
-#         else:
-#             b64 = base64.b64encode(response['filedata'].encode())
-#             payload = b64.decode()
-#         return templates.TemplateResponse("index.html",
-#             {"request": request,
-#             "start_form": start_form,
-#             "result": result,
-#             "payload": payload,
-#             "filename": meta_file_name  
-#             }
-#         )
-#     return templates.TemplateResponse("index.html",
-#         {"request": request,
-#         "start_form": start_form,
-#         "result": result
-#         }
-#     )
 
 @app.post("/api",response_model=AnnotateResponse)
 async def api(annotate: AnnotateRequest) -> dict:
