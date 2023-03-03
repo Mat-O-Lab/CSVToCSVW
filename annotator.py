@@ -17,6 +17,8 @@ from contextlib import redirect_stderr
 from csv import Sniffer
 
 import chardet
+import locale
+locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
 
 from rdflib import Graph, URIRef, Literal, Namespace
 from rdflib.namespace import RDF, RDFS
@@ -226,7 +228,6 @@ class CSV_Annotator():
             num_cols = len(sep_regex.findall(
                 last_line.decode(encoding))) + 1
 
-        counter = 0
         # iter over column counts from end of file, if column count changes start of data table reached
         col_counts=list(enumerate(self.generate_col_counts(file_data=file_data, separator=separator, encoding=encoding)))
         #max_cols=col_counts[-1][1]
@@ -555,6 +556,13 @@ class CSV_Annotator():
             metadata_csvw["aboutUrl"] = "gid-{GID}"
 
             if self.include_table_data:
+                #try to apply locale
+                for column in table_data:
+                    try:
+                        table_data[column]=table_data[column].apply(locale.atof)
+                    except Exception as e:
+                        print(e)
+                print(table_data)
                 #serialize row of the table data
                 columns_names=[item['name'] for item in metadata_csvw["tableSchema"]["columns"] if item['name']!='GID']
                 #set names of colums same as in mteadata
@@ -579,3 +587,25 @@ class CSV_Annotator():
 
     def set_separator(self, new_separator: str):
         self.separator = new_separator
+
+
+# @prefix csvw: <http://www.w3.org/ns/csvw#> .
+# @prefix prov: <http://www.w3.org/ns/prov#> .
+# @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# <> prov:wasGeneratedBy [
+#     a prov:Activity ;
+#     prov:wasAssociatedWith  <http://example.org/my-csv2rdf-application> ;
+#     prov:startedAtTime "2015-02-13T15:12:44"^^xsd:dateTime ;
+#     prov:endedAtTime   "2015-02-13T15:12:46"^^xsd:dateTime ;
+#     prov:qualifiedUsage [ a prov:Usage ;
+#         prov:entity <http://example.org/csv/data.csv> ;
+#         prov:hadRole csvw:csvEncodedTabularData
+#     ];
+#     prov:qualifiedUsage [ a prov:Usage ;
+#         prov:entity 
+#                 <http://example.org/csv/data.csv-metadata.json> ,                 
+#                 <http://example.org/csv/csv-metadata.json> ;
+#         prov:hadRole csvw:tabularMetadata
+#     ];
+# ]
