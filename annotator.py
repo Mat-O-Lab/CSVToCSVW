@@ -263,7 +263,8 @@ class CSV_Annotator():
         for line in file_string:
             #print(line)
             tests=[self.get_value_type(
-                string) == 'TEXT' for string in line.split(separator_string)]
+                string) in ['BLANK', 'TEXT'] for string in line.split(separator_string)]
+            print([(string, self.get_value_type(string)) for string in line.split(separator_string)])
             #print(tests)
             all_text = all(tests)
             if all_text:
@@ -314,6 +315,7 @@ class CSV_Annotator():
 
     def get_value_type(self, string):
         string = str(string)
+        print(string)
         # remove spaces and replace , with . and
         string = string.strip().replace(',', '.')
         if len(string) == 0:
