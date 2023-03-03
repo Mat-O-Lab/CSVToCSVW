@@ -561,8 +561,9 @@ class CSV_Annotator():
                     try:
                         table_data[column]=table_data[column].apply(locale.atof)
                     except Exception as e:
-                        print(e)
-                print(table_data)
+                        #print(e)
+                        pass
+                #print(table_data)
                 #serialize row of the table data
                 columns_names=[item['name'] for item in metadata_csvw["tableSchema"]["columns"] if item['name']!='GID']
                 #set names of colums same as in mteadata
