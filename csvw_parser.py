@@ -44,8 +44,8 @@ class CSVWtoRDF:
             self.csv_url=None
         converter=CSVWModelConverter(csv_url, metadata_url)
         self.atdm, self.metadata =converter.convert_to_atdm('standard')
-    def convert(self):
-        return RDFConverter(self.atdm, self.metadata).convert('standard','turtle')
+    def convert(self,format='turtle'):
+        return RDFConverter(self.atdm, self.metadata).convert('standard',format=format)
 
 class RDFConverter(ToRDFConverter):
     def convert(self, mode='standard', format=None):
@@ -58,7 +58,6 @@ class RDFConverter(ToRDFConverter):
 
         for table_metadata, table_data in zip(self.metadata['tables'], self.atdm['tables']):
             self._parse_table(main_node, table_metadata, table_data)
-
         return self.graph if format is None else self.graph.serialize(format=format)
     def _parse_row_data(self, atdm_row, subject, table_metadata, property_url, row_node, atdm_table):
         top_level_property_url = property_url

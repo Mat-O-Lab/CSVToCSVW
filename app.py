@@ -4,6 +4,7 @@ from fileinput import filename
 import os
 import base64
 import re
+import io
 
 import uvicorn
 from starlette_wtf import StarletteForm
@@ -20,7 +21,7 @@ from fastapi import Request, FastAPI, HTTPException, Body
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 #from fastapi.encoders import jsonable_encoder
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 
 from wtforms import URLField, SelectField, BooleanField
 
@@ -106,8 +107,9 @@ class AnnotateResponse(BaseModel):
     filedata: dict = Field( title='Generated JSON-LD', description='The generated jdon-ld for the given raw csv file as string in utf-8.')
 
 class RDFRequest(BaseModel):
-    csv_url: AnyUrl = Field('', title='Graph Url', description='Url to csvw file to use.')
     metadata_url: AnyUrl = Field('', title='Graph Url', description='Url to csvw metadata to use.')
+    csv_url: Optional[AnyUrl] = Field('', title='CSV Url', description='Url to csvw file to use or else the mentioned url in metadata will be used.')
+    format: Optional[str] = Field('turtle', title='Serialization Format', description='The format to use to serialize the rdf.')
 
 class StartForm(StarletteForm):
     data_url = URLField(
@@ -171,25 +173,27 @@ def annotation(annotate: AnnotateRequest) -> dict:
 from csvw_parser import CSVWtoRDF
 
 @app.post("/api/rdf")
-def rdf(request: RDFRequest= Body(
+async def rdf(request: RDFRequest= Body(
         examples={
             "normal": {
                 "summary": "A simple rdf example",
                 "description": "Creates rdf from csv file and csvw metadata description.",
                 "value": {
-                    "csv_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
                     "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json"
                     },
             },
         }
-    )) -> dict:
+    )) -> Response:
     converter=CSVWtoRDF(request.metadata_url,request.csv_url)
     if len(converter.metadata['tables'])==1:
         filename=converter.metadata['tables'][0]['url'].rsplit('/',1)[-1].split('.')[0]+'.ttl'
     else:
         filename='dataset.ttl'
-    return {'filename': filename, 'filedata': converter.convert()}
-
+    headers = {
+        'Content-Disposition': 'attachment; filename={}'.format(filename)
+    }
+    return Response(content=converter.convert(), headers=headers,  media_type='text/utf-8')
+    
 
 @app.get("/info", response_model=Settings)
 async def info() -> dict:
