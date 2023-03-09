@@ -35,7 +35,11 @@ jobs:
               FILENAME=$(echo $RESULT | jq -r '.filename')
               echo $FILENAME
               jq . <<< "$FILEDATA" > $FILENAME
-              RESULT=$(curl -X POST "http://localhost:${{env.APP_PORT}}/api/rdf" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"metadata_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/$file-metadata.json\"}")
+            done
+          for file in *.json 
+            do
+              echo "$file"
+              RESULT=$(curl -X POST "http://localhost:${{env.APP_PORT}}/api/rdf" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"metadata_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/$file\"}")
               FILENAME=$(echo $RESULT | jq -r '.filename')
               echo $FILENAME
               DATA="$(jq .filedata <<< "$RESULT")"
