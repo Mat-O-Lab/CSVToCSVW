@@ -3,6 +3,7 @@
 from fileinput import filename
 import os
 import base64
+import re
 
 import uvicorn
 from starlette_wtf import StarletteForm
@@ -11,16 +12,15 @@ from starlette.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
 #from starlette.middleware.cors import CORSMiddleware
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.concurrency import run_in_threadpool
 from typing import Optional, Any
 
-from pydantic import BaseSettings, BaseModel, AnyUrl, Field, Json
+from pydantic import BaseSettings, BaseModel, AnyUrl, Field
 
-from fastapi import Request, FastAPI, HTTPException
+from fastapi import Request, FastAPI, HTTPException, Body
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.encoders import jsonable_encoder
-from fastapi.responses import HTMLResponse, JSONResponse
+#from fastapi.encoders import jsonable_encoder
+from fastapi.responses import HTMLResponse
 
 from wtforms import URLField, SelectField, BooleanField
 
@@ -104,37 +104,44 @@ class AnnotateRequest(BaseModel):
 class AnnotateResponse(BaseModel):
     filename:  str = Field('example-metadata.json', title='Resulting File Name', description='Suggested filename of the generated json-ld')
     filedata: dict = Field( title='Generated JSON-LD', description='The generated jdon-ld for the given raw csv file as string in utf-8.')
-    
+
+class RDFRequest(BaseModel):
+    csv_url: AnyUrl = Field('', title='Graph Url', description='Url to csvw file to use.')
+    metadata_url: AnyUrl = Field('', title='Graph Url', description='Url to csvw metadata to use.')
+
 class StartForm(StarletteForm):
     data_url = URLField(
         'URL Data File',
         #validators=[DataRequired()],
         description='Paste URL to a data file, e.g. csv, TRA',
-        render_kw={"placeholder": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"},
+        render_kw={"class":"form-control", "placeholder": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"},
     )
     separator = SelectField(
         'Choose Data Table Separator, default: auto detect',
         choices=separators,
+        render_kw={"class":"form-control"},
         description='select a separator for your data table manually',
         default='auto'
         )
     header_separator = SelectField(
         'Choose Additional Header Separator, default: auto detect',
         choices=separators,
+        render_kw={"class":"form-control"},
         description='select a separator for the additional header manually',
         default='auto'
         )
     encoding = SelectField(
         'Choose Encoding, default: auto detect',
         choices=encodings,
+        render_kw={"class":"form-control"},
         description='select an encoding for your data manually',
         default='auto'
         )
-    include_table_data = BooleanField(
-        'Include Table Data',
-        description='Should the table data be included?',
-        default=''
-        )
+    # include_table_data = BooleanField(
+    #     'Include Table Data',
+    #     description='Should the table data be included?',
+    #     default=''
+    #     )
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def index(request: Request):
@@ -150,15 +157,38 @@ async def index(request: Request):
     )
 
 
-@app.post("/api",response_model=AnnotateResponse)
-async def api(annotate: AnnotateRequest) -> dict:
+@app.post("/api/annotation",response_model=AnnotateResponse)
+def annotation(annotate: AnnotateRequest) -> dict:
     try:
         annotator = CSV_Annotator(
             encoding=annotate.encoding, separator=annotate.separator, header_separator=annotate.header_separator, include_table_data=annotate.include_table_data)
         result = annotator.process(annotate.data_url)
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=500, detail=str(e))
     return result
+
+from csvw_parser import CSVWtoRDF
+
+@app.post("/api/rdf")
+def rdf(request: RDFRequest= Body(
+        examples={
+            "normal": {
+                "summary": "A simple rdf example",
+                "description": "Creates rdf from csv file and csvw metadata description.",
+                "value": {
+                    "csv_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
+                    "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json"
+                    },
+            },
+        }
+    )) -> dict:
+    converter=CSVWtoRDF(request.metadata_url,request.csv_url)
+    if len(converter.metadata['tables'])==1:
+        filename=converter.metadata['tables'][0]['url'].rsplit('/',1)[-1].split('.')[0]+'.ttl'
+    else:
+        filename='dataset.ttl'
+    return {'filename': filename, 'filedata': converter.convert()}
 
 
 @app.get("/info", response_model=Settings)
@@ -184,4 +214,8 @@ if __name__ == "__main__":
     else:
         reload=False
         access_log=False
+        "--workers", "6","--proxy-headers"
     uvicorn.run("app:app",host="0.0.0.0",port=port, reload=reload, access_log=access_log)
+
+
+    

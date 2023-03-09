@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 from cmath import nan
-from email import header
 from email.base64mime import header_length
-from itertools import count
-from tkinter.ttk import Separator
 import pandas as pd
 import io
 import os
@@ -13,7 +10,6 @@ import json
 from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 from dateutil.parser import parse
-from contextlib import redirect_stderr
 from csv import Sniffer
 
 import chardet
@@ -131,6 +127,9 @@ class CSV_Annotator():
 
         if self.encoding == 'auto':
             self.encoding = self.get_encoding(file_data)
+            if self.encoding=='ISO-8859-1':
+                self.encoding='latin-1'
+
 
         if self.separator == 'auto':
             separator = self.get_column_separator(file_data)
@@ -315,7 +314,6 @@ class CSV_Annotator():
 
     def get_value_type(self, string):
         string = str(string)
-        print(string)
         # remove spaces and replace , with . and
         string = string.strip().replace(',', '.')
         if len(string) == 0:
@@ -525,14 +523,16 @@ class CSV_Annotator():
                 #"dc:description": "An identifier as index of a table.",
                 "datatype": "string",
                 "required": True,
-                "suppressOutput": True
+                "suppressOutput": True,
+                # "propertyUrl": "schema:url",
+                # "valueUrl": "gid-{GID}"
             }
             column_json.append(json_str)
             #print(column_json)
             if header_lines == 1:
                 # see if there might be a unit string at the end of each title
                 # e.g. "E_y (MPa)"
-                for index, title in enumerate(table_data.columns):
+                for title in enumerate(table_data.columns):
 
                     # skip Unnamed cols
                     if "Unnamed" in title:
@@ -544,40 +544,39 @@ class CSV_Annotator():
                         unit_json = {}
                     if unit_json:
                         title=title.rsplit(' ', 1)[0]
+                    # if self.include_table_data:
+                    #     abouturl={"aboutUrl": "#row-{_row}-distance", "propertyUrl": "schema:value"}
+                    name_str=self.make_id(title)
                     json_str = {
-                        **{'titles': title, '@id': self.make_id(title), "@type": "Column", 'name': self.make_id(title)}, **unit_json}
+                        **{
+                            'titles': [name_str, title],
+                            '@id': name_str,
+                            "@type": "Column",
+                            'name': name_str,
+                            'aboutUrl': "#gid-{GID}-"+name_str
+                        }, **unit_json
+                    }
                     column_json.append(json_str)
                 metadata_csvw["tableSchema"] = {"columns": column_json}
             else:
-                for index, (title, unit_str) in enumerate(table_data.columns):
-                    json_str = {**{'titles': title, '@id': self.make_id(title), "@type": "Column", 'name': self.make_id(title)},
-                                **self.get_unit(unit_str)}
+                for (title, unit_str) in table_data.columns:
+                    name_str=self.make_id(title)
+                    json_str = {
+                        **{
+                            'titles': [name_str, title],
+                            '@id': name_str,
+                            "@type": "Column",
+                            'name': name_str,
+                            'aboutUrl': "#gid-{GID}-"+name_str
+                        },
+                        **self.get_unit(unit_str)
+                    }
                     column_json.append(json_str)
                 metadata_csvw["tableSchema"] = {"columns": column_json}
-            metadata_csvw["primaryKey"] = column_json[0]['name']
-            metadata_csvw["aboutUrl"] = "gid-{GID}"
+            metadata_csvw["tableSchema"] ["primaryKey"] = column_json[0]['name']
+            metadata_csvw["tableSchema"] ["aboutUrl"] = "#gid-{GID}"
+            # metadata_csvw["tableSchema"] ["propertyUrl"] = "schema:value"
 
-            if self.include_table_data:
-                #try to apply locale
-                for column in table_data:
-                    try:
-                        table_data[column]=table_data[column].apply(locale.atof)
-                    except Exception as e:
-                        #print(e)
-                        pass
-                #print(table_data)
-                #serialize row of the table data
-                columns_names=[item['name'] for item in metadata_csvw["tableSchema"]["columns"] if item['name']!='GID']
-                #set names of colums same as in mteadata
-                table_data.columns=columns_names
-                table_data.insert(0,'url',data_table_header_row_index+header_lines+table_data.index)
-                table_data.insert(1,'rownum',table_data.index)
-                table_data.insert(2,'@id',table_data.index)
-                table_data['@id']='gid-'+table_data['@id'].astype(str)
-                table_data['url']=file_name+'#row='+table_data['url'].astype(str)
-                table_entrys=[{'url': record.pop('url'), 'rownum': record.pop('rownum'), 'describes':record} 
-                    for record in table_data.to_dict('records')]
-                metadata_csvw["row"] =table_entrys
                 
         if self.include_table_data:
                 meta_file_name = file_name.split(sep='.')[0] + '-detailed-metadata.json'
