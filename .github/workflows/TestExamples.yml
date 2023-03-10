@@ -40,7 +40,7 @@ jobs:
       - name: create csvw rdf
         working-directory: ${{env.WORKING_DIR}}
         run: |
-          docker logs csvtocsvw
+          rm *.ttl
           for file in *-metadata.json 
             do
               echo "$file"
