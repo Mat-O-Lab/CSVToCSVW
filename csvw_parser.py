@@ -1,4 +1,5 @@
 
+from typing import Tuple
 from pydantic import AnyUrl
 import pandas as pd
 from rdflib import BNode, URIRef, Literal, Graph
@@ -9,18 +10,16 @@ from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 import io
 
-def parse_csv_from_url_to_list(csv_url,delimiter=',', skiprows=0, num_header_rows=2, encoding='utf-8'):
-        print(encoding)
+def parse_csv_from_url_to_list(csv_url,delimiter: str=',', skiprows:int =0, num_header_rows: int=2, encoding: str='utf-8') -> list:
         file_data, file_name = open_csv(csv_url)
         file_string = io.StringIO(file_data.decode(encoding))
         table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=delimiter, skiprows=num_header_rows+skiprows, encoding=encoding)
         # add a row index column
-        #table_data.insert(0,'GID',value=range(len(table_data)))
         line_list=table_data.to_numpy().tolist()
         line_list=[ [index,]+line for index, line in enumerate(line_list)]
         return line_list
 
-def open_csv(uri=''):
+def open_csv(uri: str='') -> Tuple[str,str]:
         print('try to open: {}'.format(uri))
         try:
             uri_parsed = urlparse(uri)
@@ -118,7 +117,7 @@ class CSVWtoRDF:
                         g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/',1)[0],url)), Literal(cell)))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
-    def convert(self,format='turtle'):
+    def convert(self,format: str='turtle') -> str:
         graph=self.metagraph+self.convert_table()
         return graph.serialize(format=format)
 
