@@ -1,736 +1,736 @@
 {
-  "@context": [
-    "http://www.w3.org/ns/csvw",
-    {
-      "oa": "http://www.w3.org/ns/oa#",
-      "label": "http://www.w3.org/2000/01/rdf-schema#label",
-      "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "qudt": "http://qudt.org/schema/qudt/"
+    "@context": [
+      "http://www.w3.org/ns/csvw",
+      {
+        "oa": "http://www.w3.org/ns/oa#",
+        "label": "http://www.w3.org/2000/01/rdf-schema#label",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      }
+    ],
+    "@id": "",
+    "url": "example3.csv",
+    "notes": [
+      {
+        "@id": "IwmDatalogger0",
+        "label": "IWM-DataLogger",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 0,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 4,
+              "@type": "xsd:decimal"
+            }
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "Version"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 4,
+              "@type": "xsd:decimal"
+            }
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "Revision"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "7:"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "MX840B"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "INSTRON"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "8852TT;1605F:"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "PCLAB-P009:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": "2022-08-24T00:00:00",
+              "@type": "xsd:dateTime"
+            }
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": "2023-03-10T11:55:02",
+              "@type": "xsd:dateTime"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Projekt5",
+        "label": "Projekt",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 5,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "Name:"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "PMD"
+          }
+        ]
+      },
+      {
+        "@id": "Dateiname8",
+        "label": "Dateiname",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 8,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "D:\\PMD\\AWA_3\\AWA_3_03_Rz.ein"
+          }
+        ]
+      },
+      {
+        "@id": "Backup9",
+        "label": "Backup",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 9,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "erstellen:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 1,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Probenname16",
+        "label": "Probenname",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 16,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "AWA_3_03_Rz"
+          }
+        ]
+      },
+      {
+        "@id": "Probentyp17",
+        "label": "Probentyp",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 17,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 1,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Probendurchmesser18",
+        "label": "Probendurchmesser",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 18,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "[mm]:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0.05,
+              "@type": "xsd:decimal"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Probendicke19",
+        "label": "Probendicke",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 19,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "[mm]:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0.03,
+              "@type": "xsd:decimal"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Probenbreite20",
+        "label": "Probenbreite",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 20,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "[mm]:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 10,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Messlaenge21",
+        "label": "Messlänge",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 21,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "[mm]:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 15,
+              "@type": "xsd:decimal"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Bemerkungen22",
+        "label": "Bemerkungen",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 22,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "Rz"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "B5x25;46NT31-Rohling;T"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 1000,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Proben24",
+        "label": "Proben",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 24,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "ID:"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "46NTA5-1-1-2"
+          }
+        ]
+      },
+      {
+        "@id": "Prueftemperatur30",
+        "label": "Prüftemperatur",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 30,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "[°C]:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Pruefmaschine37",
+        "label": "Prüfmaschine",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 37,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "INSTRON"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "8852TT;1605F"
+          }
+        ]
+      },
+      {
+        "@id": "Pruefgeschwindigkeit40",
+        "label": "Prüfgeschwindigkeit",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 40,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "[mm/s]:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Kamera47",
+        "label": "Kamera",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 47,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "1:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Durchmessermessung48",
+        "label": "Durchmessermessung",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 48,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": true,
+              "@type": "xsd:boolean"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Durchmessermessung49",
+        "label": "Durchmessermessung",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 49,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "MinMax:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Abstandsmessung50",
+        "label": "Abstandsmessung",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 50,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Abstandsmessung51",
+        "label": "Abstandsmessung",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 51,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "MinMax:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Bilder52",
+        "label": "Bilder",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 52,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "abspeichern:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 0,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Darstellung65",
+        "label": "Darstellung",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 65,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 5,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "XAchse66",
+        "label": "X-Achse",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 66,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 1,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "YAchse67",
+        "label": "y-Achse",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 67,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 2,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Anzeige70",
+        "label": "Anzeige",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 70,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "1:"
+          },
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 2,
+              "@type": "xsd:decimal"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Messkanal80",
+        "label": "Messkanal",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 80,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 1,
+              "@type": "xsd:integer"
+            }
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "Label:"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "Maschine"
+          }
+        ]
+      },
+      {
+        "@id": "Verstaerkertyp110",
+        "label": "VerstaerkerTyp",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 110,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "QUANTUM"
+          }
+        ]
+      },
+      {
+        "@id": "Kameratyp111",
+        "label": "KameraTyp",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 111,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "USB"
+          }
+        ]
+      },
+      {
+        "@id": "Comport112",
+        "label": "ComPort",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 112,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+              "@value": 3,
+              "@type": "xsd:integer"
+            }
+          }
+        ]
+      },
+      {
+        "@id": "Quantum113",
+        "label": "Quantum",
+        "@type": "oa:Annotation",
+        "rownum": {
+          "@value": 113,
+          "@type": "xsd:integer"
+        },
+        "oa:hasBody": [
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "IP:"
+          },
+          {
+            "@type": "oa:TextualBody",
+            "oa:purpose": "oa:tagging",
+            "oa:format": "text/plain",
+            "oa:value": "192.168.33.70"
+          }
+        ]
+      }
+    ],
+    "dialect": {
+      "delimiter": " ",
+      "skipRows": 131,
+      "headerRowCount": 0,
+      "encoding": "latin-1"
     }
-  ],
-  "@id": "",
-  "url": "example3.csv",
-  "notes": [
-    {
-      "@id": "IwmDatalogger0",
-      "label": "IWM-DataLogger",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 0,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 4,
-            "@type": "xsd:decimal"
-          }
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "Version"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 4,
-            "@type": "xsd:decimal"
-          }
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "Revision"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "7:"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "MX840B"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "INSTRON"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "8852TT;1605F:"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "PCLAB-P009:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": "2022-08-24T00:00:00",
-            "@type": "xsd:dateTime"
-          }
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": "2023-03-10T11:55:02",
-            "@type": "xsd:dateTime"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Projekt5",
-      "label": "Projekt",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 5,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "Name:"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "PMD"
-        }
-      ]
-    },
-    {
-      "@id": "Dateiname8",
-      "label": "Dateiname",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 8,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "D:\\PMD\\AWA_3\\AWA_3_03_Rz.ein"
-        }
-      ]
-    },
-    {
-      "@id": "Backup9",
-      "label": "Backup",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 9,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "erstellen:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 1,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Probenname16",
-      "label": "Probenname",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 16,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "AWA_3_03_Rz"
-        }
-      ]
-    },
-    {
-      "@id": "Probentyp17",
-      "label": "Probentyp",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 17,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 1,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Probendurchmesser18",
-      "label": "Probendurchmesser",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 18,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm]:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0.05,
-            "@type": "xsd:decimal"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Probendicke19",
-      "label": "Probendicke",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 19,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm]:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0.03,
-            "@type": "xsd:decimal"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Probenbreite20",
-      "label": "Probenbreite",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 20,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm]:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 10,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Messlaenge21",
-      "label": "Messlänge",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 21,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm]:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 15,
-            "@type": "xsd:decimal"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Bemerkungen22",
-      "label": "Bemerkungen",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 22,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "Rz"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "B5x25;46NT31-Rohling;T"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 1000,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Proben24",
-      "label": "Proben",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 24,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "ID:"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "46NTA5-1-1-2"
-        }
-      ]
-    },
-    {
-      "@id": "Prueftemperatur30",
-      "label": "Prüftemperatur",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 30,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[°C]:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Pruefmaschine37",
-      "label": "Prüfmaschine",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 37,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "INSTRON"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "8852TT;1605F"
-        }
-      ]
-    },
-    {
-      "@id": "Pruefgeschwindigkeit40",
-      "label": "Prüfgeschwindigkeit",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 40,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm/s]:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Kamera47",
-      "label": "Kamera",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 47,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "1:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Durchmessermessung48",
-      "label": "Durchmessermessung",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 48,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": true,
-            "@type": "xsd:boolean"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Durchmessermessung49",
-      "label": "Durchmessermessung",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 49,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "MinMax:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Abstandsmessung50",
-      "label": "Abstandsmessung",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 50,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Abstandsmessung51",
-      "label": "Abstandsmessung",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 51,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "MinMax:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Bilder52",
-      "label": "Bilder",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 52,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "abspeichern:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 0,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Darstellung65",
-      "label": "Darstellung",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 65,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 5,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "XAchse66",
-      "label": "X-Achse",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 66,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 1,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "YAchse67",
-      "label": "y-Achse",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 67,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 2,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Anzeige70",
-      "label": "Anzeige",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 70,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "1:"
-        },
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 2,
-            "@type": "xsd:decimal"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Messkanal80",
-      "label": "Messkanal",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 80,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 1,
-            "@type": "xsd:integer"
-          }
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "Label:"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "Maschine"
-        }
-      ]
-    },
-    {
-      "@id": "Verstaerkertyp110",
-      "label": "VerstaerkerTyp",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 110,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "QUANTUM"
-        }
-      ]
-    },
-    {
-      "@id": "Kameratyp111",
-      "label": "KameraTyp",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 111,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "USB"
-        }
-      ]
-    },
-    {
-      "@id": "Comport112",
-      "label": "ComPort",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 112,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "qudt:QuantityValue",
-          "qudt:value": {
-            "@value": 3,
-            "@type": "xsd:integer"
-          }
-        }
-      ]
-    },
-    {
-      "@id": "Quantum113",
-      "label": "Quantum",
-      "@type": "oa:Annotation",
-      "rownum": {
-        "@value": 113,
-        "@type": "xsd:integer"
-      },
-      "oa:hasBody": [
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "IP:"
-        },
-        {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "192.168.33.70"
-        }
-      ]
-    }
-  ],
-  "dialect": {
-    "delimiter": " ",
-    "skipRows": 131,
-    "headerRowCount": 0,
-    "encoding": "latin-1"
   }
-}
