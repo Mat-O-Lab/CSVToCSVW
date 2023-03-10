@@ -81,13 +81,16 @@ class CSVWtoRDF:
         print(len(self.columns))
         print(self.columns)
         # get table form csv_url
-        self.table = parse_csv_from_url_to_list(
-            self.csv_url,
-            delimiter=self.dialect_dict[CSVW.delimiter],
-            skiprows=self.dialect_dict[CSVW.skipRows],
-            num_header_rows=self.dialect_dict[CSVW.headerRowCount],
-            encoding=self.dialect_dict[CSVW.encoding],
-            )
+        if self.table_schema_node:
+            self.table = parse_csv_from_url_to_list(
+                self.csv_url,
+                delimiter=self.dialect_dict[CSVW.delimiter],
+                skiprows=self.dialect_dict[CSVW.skipRows],
+                num_header_rows=self.dialect_dict[CSVW.headerRowCount],
+                encoding=self.dialect_dict[CSVW.encoding],
+                )
+        else:
+            self.table=list()
         #print(self.table[:5])
     def convert_table(self) -> Graph:
         g=Graph()
@@ -103,7 +106,8 @@ class CSVWtoRDF:
             g.add((row_node, CSVW.describes, value_node))
             g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,index+self.dialect_dict[CSVW.skipRows]+self.dialect_dict[CSVW.headerRowCount]))))
             for cell_index, cell in enumerate(row):
-                column=self.columns[cell_index][0]
+                # print(self.columns[cell_index])
+                # column=self.columns[cell_index][0]
                 if self.columns[cell_index][1][CSVW.name]==Literal('GID'):
                     continue
                 else:

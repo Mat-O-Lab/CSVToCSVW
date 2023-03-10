@@ -76,7 +76,8 @@
         ],
         "datatype": "string",
         "required": true,
-        "suppressOutput": true
+        "suppressOutput": true,
+        "@type": "Column"
       },
       {
         "titles": "Maschine",
