@@ -533,7 +533,7 @@ class CSV_Annotator():
             if header_lines == 1:
                 # see if there might be a unit string at the end of each title
                 # e.g. "E_y (MPa)"
-                for title in enumerate(table_data.columns):
+                for title in table_data.columns:
 
                     # skip Unnamed cols
                     if "Unnamed" in title:
