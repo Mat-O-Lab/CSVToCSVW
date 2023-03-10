@@ -102,7 +102,6 @@ class CSVWtoRDF:
             g.add((row_node, RDF.type, CSVW.row))
             g.add((row_node, CSVW.describes, value_node))
             g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,index+self.dialect_dict[CSVW.skipRows]+self.dialect_dict[CSVW.headerRowCount]))))
-            print(row)
             for cell_index, cell in enumerate(row):
                 column=self.columns[cell_index][0]
                 if self.columns[cell_index][1][CSVW.name]==Literal('GID'):
@@ -116,14 +115,11 @@ class CSVWtoRDF:
                     else:
                         url=self.columns[cell_index][1][CSVW.name]
                         g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/',1)[0],url)), Literal(cell)))
-            break
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format='turtle'):
         graph=self.metagraph+self.convert_table()
         return graph.serialize(format=format)
-
-        return RDFConverter(self.atdm, self.metadata).convert('standard',format=format)
 
 # if self.include_table_data:
             #     #try to apply locale
