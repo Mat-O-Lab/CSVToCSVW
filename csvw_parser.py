@@ -71,6 +71,7 @@ class CSVWtoRDF:
         if csv_url:
             self.csv_url=csv_url
         print(self.metadata_url,self.csv_url)
+        self.filename=self.csv_url.rsplit('.',1)+".ttl"
         dialect=next(self.metagraph[self.meta_root : CSVW.dialect],None)
         self.dialect_dict={k: v.value for (k,v) in self.metagraph[dialect:]}
         print(self.dialect_dict)
