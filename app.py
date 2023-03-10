@@ -185,13 +185,15 @@ async def rdf(request: RDFRequest= Body(
         }
     )) -> Response:
     converter=CSVWtoRDF(request.metadata_url,request.csv_url)
-    if len(converter.metadata['tables'])==1:
+    # if len(converter.metadata['tables'])==1:
+    if False:
         filename=converter.metadata['tables'][0]['url'].rsplit('/',1)[-1].split('.')[0]+'.ttl'
     else:
         filename='dataset.ttl'
     headers = {
         'Content-Disposition': 'attachment; filename={}'.format(filename)
     }
+    #print(converter.metadata['tables'][0])
     return Response(content=converter.convert(), headers=headers,  media_type='text/utf-8')
     
 

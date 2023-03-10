@@ -422,7 +422,7 @@ class CSV_Annotator():
             if unit_json:
                 #print('unit in param name',unit_json)
                 parm_name=parm_name.rsplit(' ', 1)[0]
-            para_dict = {'@id': self.make_id(parm_name)+str(
+            para_dict = {'@id': self.make_id(parm_name,filename)+str(
                 data['row']), 'label': parm_name.strip(), '@type': info_line_iri}
             for col_name, value in data.items():
                 #print(body)
@@ -504,7 +504,7 @@ class CSV_Annotator():
             if not header_data.empty:
                 # print("serialze additinal header")
                 metadata_csvw["notes"] = self.serialize_header(
-                    header_data, filename=file_name)
+                    header_data, filename=None)
         # read tabular data structure, and determine number of header lines for column description used
         header_lines, table_data = self.get_num_header_rows_and_dataframe(
             file_data, separator, data_table_header_row_index, encoding)
@@ -526,6 +526,7 @@ class CSV_Annotator():
                 "suppressOutput": True,
                 # "propertyUrl": "schema:url",
                 # "valueUrl": "gid-{GID}"
+                "@type": "Column"
             }
             column_json.append(json_str)
             #print(column_json)
@@ -553,7 +554,7 @@ class CSV_Annotator():
                             '@id': name_str,
                             "@type": "Column",
                             'name': name_str,
-                            'aboutUrl': "#gid-{GID}-"+name_str
+                            #'aboutUrl': "#gid-{GID}-"+name_str
                         }, **unit_json
                     }
                     column_json.append(json_str)
@@ -567,7 +568,7 @@ class CSV_Annotator():
                             '@id': name_str,
                             "@type": "Column",
                             'name': name_str,
-                            'aboutUrl': "#gid-{GID}-"+name_str
+                            #'aboutUrl': "#gid-{GID}-"+name_str
                         },
                         **self.get_unit(unit_str)
                     }

@@ -1,21 +1,26 @@
-from importlib.metadata import metadata
-from csvwlib.converter.ModelConverter import ModelConverter, ValuesValidator
-from csvwlib.converter.ToRDFConverter import ToRDFConverter
-from csvwlib.utils.url.PropertyUrlUtils import PropertyUrlUtils
-from csvwlib.utils.url.UriTemplateUtils import UriTemplateUtils
-from csvwlib.utils.ATDMUtils import ATDMUtils
-from csvwlib.utils.json.CommonProperties import CommonProperties
 
 from pydantic import AnyUrl
-import csv as csvlib
-import requests
 import pandas as pd
-from rdflib import BNode, URIRef, Literal
+from rdflib import BNode, URIRef, Literal, Graph
+from rdflib.util import guess_format
 from rdflib.namespace import CSVW, RDF
 
 from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
-def open_file(uri=''):
+import io
+
+def parse_csv_from_url_to_list(csv_url,delimiter=',', skiprows=0, num_header_rows=2, encoding='utf-8'):
+        print(encoding)
+        file_data, file_name = open_csv(csv_url)
+        file_string = io.StringIO(file_data.decode(encoding))
+        table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=delimiter, skiprows=num_header_rows+skiprows, encoding=encoding)
+        # add a row index column
+        #table_data.insert(0,'GID',value=range(len(table_data)))
+        line_list=table_data.to_numpy().tolist()
+        line_list=[ [index,]+line for index, line in enumerate(line_list)]
+        return line_list
+
+def open_csv(uri=''):
         print('try to open: {}'.format(uri))
         try:
             uri_parsed = urlparse(uri)
@@ -34,212 +39,91 @@ def open_file(uri=''):
                 return None
             return filedata, filename
 
+def parse_graph(url: str, graph: Graph) -> Graph:
+    """Parse a Graph from web url to rdflib graph object
+    Args:
+        url (AnyUrl): Url to an web ressource
+        graph (Graph): Existing Rdflib Graph object to parse data to.
+    Returns:
+        Graph: Rdflib graph Object
+    """
+    parsed_url=urlparse(url)
+    format=guess_format(parsed_url.path)
+    if not format:
+        format='xml'
+    if parsed_url.scheme in ['https', 'http']:
+        graph.parse(unquote(parsed_url.geturl()), format=format)
+
+    elif parsed_url.scheme == 'file':
+        print(parsed_url.path)
+        graph.parse(parsed_url.path, format=format)
+    return graph
+
 
 class CSVWtoRDF:
-    def __init__(self,metadata_url: AnyUrl, csv_url: AnyUrl) -> None:
+    def __init__(self,metadata_url: str, csv_url: AnyUrl) -> None:
         self.metadata_url=metadata_url
+        # get metadata graph
+        self.metagraph=parse_graph(metadata_url,Graph())
+        self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
+        self.csv_url="{}/{}".format(metadata_url.rsplit('/',1)[0],url)
+        # replace if set in request
         if csv_url:
             self.csv_url=csv_url
+        print(self.metadata_url,self.csv_url)
+        dialect=next(self.metagraph[self.meta_root : CSVW.dialect],None)
+        self.dialect_dict={k: v.value for (k,v) in self.metagraph[dialect:]}
+        print(self.dialect_dict)
+        self.table_schema_node=next(self.metagraph[ self.meta_root: CSVW.tableSchema: ],None)
+        self.table_aboutUrl=next(self.metagraph[self.table_schema_node : CSVW.aboutUrl],None)
+        columns=self.metagraph[ : RDF.type : CSVW.Column]
+        self.columns=[(column,{ k: v for (k,v) in self.metagraph[column:]}) for column in columns]
+        print(len(self.columns))
+        print(self.columns)
+        # get table form csv_url
+        self.table = parse_csv_from_url_to_list(
+            self.csv_url,
+            delimiter=self.dialect_dict[CSVW.delimiter],
+            skiprows=self.dialect_dict[CSVW.skipRows],
+            num_header_rows=self.dialect_dict[CSVW.headerRowCount],
+            encoding=self.dialect_dict[CSVW.encoding],
+            )
+        #print(self.table[:5])
+    def convert_table(self) -> Graph:
+        g=Graph()
+        g.bind("csvw", CSVW)
+        if self.table_aboutUrl:
+            row_uri=self.table_aboutUrl
         else:
-            self.csv_url=None
-        converter=CSVWModelConverter(csv_url, metadata_url)
-        self.atdm, self.metadata =converter.convert_to_atdm('standard')
+            row_uri='#gid-{GID}'
+        for index,row in enumerate(self.table):
+            row_node=BNode()
+            value_node=URIRef(row_uri.format(GID=index))
+            g.add((row_node, RDF.type, CSVW.row))
+            g.add((row_node, CSVW.describes, value_node))
+            g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,index+self.dialect_dict[CSVW.skipRows]+self.dialect_dict[CSVW.headerRowCount]))))
+            print(row)
+            for cell_index, cell in enumerate(row):
+                column=self.columns[cell_index][0]
+                if self.columns[cell_index][1][CSVW.name]==Literal('GID'):
+                    continue
+                else:
+                    if isinstance(column,URIRef): #has proper uri
+                        g.add((value_node, column, Literal(cell)))
+                    elif CSVW.aboutUrl in self.columns[cell_index][1].keys():
+                        aboutUrl=self.columns[cell_index][1][CSVW.aboutUrl]
+                        g.add((value_node, URIRef(aboutUrl.format(GID=index)), Literal(cell)))
+                    else:
+                        url=self.columns[cell_index][1][CSVW.name]
+                        g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/',1)[0],url)), Literal(cell)))
+            break
+        return g
+        #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format='turtle'):
+        graph=self.metagraph+self.convert_table()
+        return graph.serialize(format=format)
+
         return RDFConverter(self.atdm, self.metadata).convert('standard',format=format)
-
-class RDFConverter(ToRDFConverter):
-    def convert(self, mode='standard', format=None):
-        self.mode = mode
-        main_node = BNode()
-        if mode == 'standard':
-            self.graph.add((main_node, RDF.type, CSVW.TableGroup))
-            self._add_file_metadata(self.metadata, main_node)
-        # TODO: 4.5 non-core annotations
-
-        for table_metadata, table_data in zip(self.metadata['tables'], self.atdm['tables']):
-            self._parse_table(main_node, table_metadata, table_data)
-        return self.graph if format is None else self.graph.serialize(format=format)
-    def _parse_row_data(self, atdm_row, subject, table_metadata, property_url, row_node, atdm_table):
-        top_level_property_url = property_url
-        atdm_columns = atdm_table['columns']
-        for index, entry in enumerate(atdm_row['cells'].items()):
-            col_name, values = entry
-            for col_metadata in atdm_columns:
-                if col_metadata['name'] == col_name:
-                    break
-            if col_metadata.get('suppressOutput', False):
-                continue
-            property_url = col_metadata.get('propertyUrl', top_level_property_url)
-            if 'aboutUrl' in col_metadata:
-                subject = CustomUriTemplateUtils.insert_value_rdf(col_metadata['aboutUrl'], atdm_row, col_name,
-                                                            table_metadata['url'])
-                if self.mode == 'standard':
-                    self.graph.add((row_node, CSVW.describes, subject))
-
-            property_namespace = PropertyUrlUtils.create_namespace(property_url, table_metadata['url'])
-            predicate = self._predicate_node(property_namespace, property_url, col_name)
-            self._parse_cell_values(values, col_metadata, subject, predicate)
-
-from csvwlib.utils.MetadataLocator import MetadataLocator
-from csvwlib.utils.metadata import MetadataValidator, non_regex_types
-
-class CSVWModelConverter(ModelConverter):
-    def __init__(self, csv_url=None, metadata_url=None):
-        super().__init__()
-        self.csv_url = csv_url
-        self.csvs = None
-        self.values_valiator = None
-        self.metadata_url = metadata_url
-        self.start_url = metadata_url if metadata_url is not None else csv_url
-        self.metadata = None
-        self.atdm = {'@type': '@AnnotatedTableGroup'}
-        self.mode = 'standard'
-
-    def _fetch_csvs(self):
-        if self.metadata is None or self.metadata == {}:
-            self.csvs = [parse_csv_from_url_to_list(self.csv_url)]
-        else:
-            if 'tables' in self.metadata:
-                self.csvs = list(
-                    map(lambda table:
-                        parse_csv_from_url_to_list(table['url'],
-                        delimiter=self._delimiter(table),
-                        skiprows=self._skipRows(table),
-                        num_header_rows=self._headerRowCount(table),
-                        encoding=self._encoding(table),
-                        ),
-                    self.metadata['tables']))
-            else:
-                columns_names=[item['name'] for item in self.metadata["tableSchema"]["columns"] if item['name']!='GID']
-                table = parse_csv_from_url_to_list(
-                    self.metadata['url'],
-                    delimiter=self._delimiter(self.metadata),
-                    skiprows=self._skipRows(self.metadata),
-                    num_header_rows=self._headerRowCount(self.metadata),
-                    encoding=self._encoding(self.metadata),
-                    )
-                columns_names.insert(0,'GID')
-                table.insert(0,columns_names)
-                self.csvs=[table]
-    @staticmethod
-    def _skipRows(metadata):
-        skipRows = 0
-        if 'dialect' in metadata:
-            skipRows = int(metadata['dialect'].get('skipRows', skipRows))
-        return metadata.get('skipRows', skipRows)
-
-    @staticmethod
-    def _headerRowCount(metadata):
-        headerRowCount = 0
-        if 'dialect' in metadata:
-            headerRowCount = int(metadata['dialect'].get('headerRowCount', headerRowCount))
-        return metadata.get('headerRowCount', headerRowCount)
-    @staticmethod
-    def _encoding(metadata):
-        encoding = 'utf-8'
-        if 'dialect' in metadata:
-            encoding = metadata['dialect'].get('encoding', encoding)
-        return metadata.get('encoding', encoding)
-    
-    def _row_data_to_json(self, row, table_metadata):
-        cells_map = {}
-        null_value = table_metadata.get('null', '')
-        for column_metadata, column_data in zip(table_metadata['tableSchema']['columns'], row):
-            column_name = column_metadata['name']
-            cells_map[column_name] = [column_data]
-        return cells_map
-    
-    
-    def convert_to_atdm(self, mode='standard'):
-        """ atdm - annotated tabular data model """
-        metadata_validator = MetadataValidator(self.start_url)
-        self.mode = mode
-        self.metadata = MetadataLocator.find_and_get(self.csv_url, self.metadata_url)
-        # replace csv url in meta data if given
-        if self.csv_url:
-            self.metadata['url']=self.csv_url
-        print(self.metadata['url'])
-        self._normalize_metadata_base_url()
-        self._normalize_metadata_csv_url()
-        metadata_validator.validate_metadata(self.metadata)
-        print('fetch table data')
-        self._fetch_csvs()
-        self._normalize_existing_metadata()
-        self.values_valiator = ValuesValidator(self.csvs, self.metadata)
-        self.values_valiator.validate()
-
-        self._normalize_csv_values()
-        print('check compartability')
-        metadata_validator.check_compatibility(self.csvs, self.metadata)
-        print('create table metadata')
-        tables = []
-        self._add_table_metadata(self.metadata, self.atdm)
-        for index, table_metadata in enumerate(self.metadata['tables']):
-            print(len(table_metadata['tableSchema']['columns']))
-            rows = []
-            start_position = self._first_row_of_data(table_metadata)
-            for number, row_data in enumerate(self.csvs[index][0:], start=1):
-                #print(row_data)
-                source_number = number + start_position
-                #print(number, source_number)
-                rows.append(self._parse_row(row_data, number, source_number, table_metadata))
-            tables.append({'@type': 'AnnotatedTable', 'columns': table_metadata['tableSchema']['columns'], 'rows': rows,
-                           'url': table_metadata['url']})
-            self._add_table_metadata(table_metadata, tables[-1])
-            tables[-1] = {**table_metadata['tableSchema'], **tables[-1]}
-        for table in tables:
-            for column in table['columns']:
-                column['@type'] = 'Column'
-
-        self.atdm['tables'] = tables
-        self._normalize_atdm_values()
-        return self.atdm, self.metadata
-
-import io
-
-def parse_csv_from_url_to_list(csv_url,delimiter=',', skiprows=0, num_header_rows=2, encoding='utf-8'):
-        print(encoding)
-        file_data, file_name = open_file(csv_url)
-        file_string = io.StringIO(file_data.decode(encoding))
-        table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=delimiter, skiprows=num_header_rows+skiprows, encoding=encoding)
-        # add a row index column
-        #table_data.insert(0,'GID',value=range(len(table_data)))
-        line_list=table_data.to_numpy().tolist()
-        print(line_list[:5])
-        line_list=[ [index,]+line for index, line in enumerate(line_list)]
-        print(line_list[:5])
-        return line_list
-
-class CustomUriTemplateUtils(UriTemplateUtils):
-    @staticmethod
-    def insert_value_rdf(url, atdm_row, col_name, domain_url):
-        """ Does the same what normal 'insert_value' but
-        returns rdf type: URIRef of Literal based on uri"""
-        filled_url = CustomUriTemplateUtils.insert_value(url, atdm_row, col_name, domain_url)
-        return URIRef(filled_url) if filled_url.startswith('http') else Literal(filled_url)
-    @staticmethod
-    def insert_value(url, atdm_row, col_name, domain_url):
-        """ Inserts value into uri template - between {...}
-        If url is common property, it is returned unmodified
-        Also uri is expanded with domain url if necessary """
-        if CommonProperties.is_common_property(url):
-            return url
-        url = UriTemplateUtils.expand(url, domain_url)
-        if '{' not in url:
-            return url
-
-        key = url[url.find('{') + 1:url.find('}')]
-        key = key.replace('#', '')
-        prefix = UriTemplateUtils.prefix(url, '')
-
-        if key == '_row':
-            return prefix + str(atdm_row['number'])
-        elif key == '_sourceRow':
-            return prefix + atdm_row['url'].rsplit('=')[1]
-        elif key == '_name':
-            return prefix + col_name
-        else:
-            return prefix + str(ATDMUtils.column_value(atdm_row, key))
 
 # if self.include_table_data:
             #     #try to apply locale
