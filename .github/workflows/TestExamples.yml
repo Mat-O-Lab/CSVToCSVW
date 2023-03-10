@@ -36,6 +36,7 @@ jobs:
               echo $FILENAME
               jq . <<< "$FILEDATA" > $FILENAME
             done
+          docker logs csvtocsvw
       - name: create csvw rdf
         working-directory: ${{env.WORKING_DIR}}
         run: |
