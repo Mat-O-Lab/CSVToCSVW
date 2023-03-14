@@ -1,10 +1,5 @@
 # app.py
-
-from fileinput import filename
 import os
-import base64
-import re
-import io
 
 import uvicorn
 from starlette_wtf import StarletteForm
@@ -23,7 +18,7 @@ from fastapi.templating import Jinja2Templates
 #from fastapi.encoders import jsonable_encoder
 from fastapi.responses import HTMLResponse, Response
 
-from wtforms import URLField, SelectField, BooleanField
+from wtforms import URLField, SelectField
 
 import logging
 
@@ -90,15 +85,13 @@ class AnnotateRequest(BaseModel):
     separator: Optional[str] = Field('auto', title='Table Column Separator', description='Column separator of the data table part.',omit_default=True)
     header_separator: Optional[str] = Field('auto', title='Additional Header Column Separator', description='Column separator of additional header that might occure before the data table.',omit_default=True)
     encoding: Optional[str] = Field('auto', title='Encoding', description='Encoding of the file',omit_default=True)
-    include_table_data: Optional[bool] = Field(False, title='Include Table Data', description='If to include the also the table data.',omit_default=True)
     class Config:
         schema_extra = {
             "example": {
                 "data_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
                 "separator": "auto",
                 "header_separator": "auto",
-                "encoding": 'auto',
-                "include_table_data": False
+                "encoding": 'auto'
             }
         }
 
@@ -110,6 +103,11 @@ class RDFRequest(BaseModel):
     metadata_url: AnyUrl = Field('', title='Graph Url', description='Url to csvw metadata to use.')
     csv_url: Optional[AnyUrl] = Field('', title='CSV Url', description='Url to csvw file to use or else the mentioned url in metadata will be used.')
     format: Optional[str] = Field('turtle', title='Serialization Format', description='The format to use to serialize the rdf.')
+    as_json: Optional[bool] = Field(False, title='Return JSON response', description='If to return the response as JSON.')
+
+class RDFResponse(BaseModel):
+    filename:  str = Field('example.ttl', title='Resulting File Name', description='Suggested filename of the generated rdf.')
+    filedata: str = Field( title='Generated RDF', description='The generated rdf for the given meta data file as string in utf-8.')
 
 class StartForm(StarletteForm):
     data_url = URLField(
@@ -139,11 +137,6 @@ class StartForm(StarletteForm):
         description='select an encoding for your data manually',
         default='auto'
         )
-    # include_table_data = BooleanField(
-    #     'Include Table Data',
-    #     description='Should the table data be included?',
-    #     default=''
-    #     )
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def index(request: Request):
@@ -163,7 +156,7 @@ async def index(request: Request):
 def annotation(annotate: AnnotateRequest) -> dict:
     try:
         annotator = CSV_Annotator(
-            encoding=annotate.encoding, separator=annotate.separator, header_separator=annotate.header_separator, include_table_data=annotate.include_table_data)
+            encoding=annotate.encoding, separator=annotate.separator, header_separator=annotate.header_separator)
         result = annotator.process(annotate.data_url)
     except Exception as e:
         print(e)
@@ -172,24 +165,42 @@ def annotation(annotate: AnnotateRequest) -> dict:
 
 from csvw_parser import CSVWtoRDF
 
-@app.post("/api/rdf")
+@app.post("/api/rdf", response_model=RDFResponse, responses={
+        200: {
+            "content": {"text/utf-8": {}},
+            "description": "Return serialized rdf as file download.",
+        }
+    },)
 async def rdf(request: RDFRequest= Body(
         examples={
-            "normal": {
-                "summary": "A simple rdf example",
+            "as download": {
+                "summary": "A rdf example, returned as download",
                 "description": "Creates rdf from csv file and csvw metadata description.",
                 "value": {
-                    "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json"
+                    "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json",
+                    },
+            },
+            "as json": {
+                "summary": "Return directly as json",
+                "description": "Creates rdf from csv file and csvw metadata description.",
+                "value": {
+                    "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json",
+                    "as_json": True
                     },
             },
         }
     )) -> Response:
     converter=CSVWtoRDF(request.metadata_url,request.csv_url)
+    filename=converter.file_url.rsplit('/',1)[-1]
     headers = {
-        'Content-Disposition': 'attachment; filename={}'.format(converter.filename)
+        'Content-Disposition': 'attachment; filename={}'.format(filename)
     }
+    filedata=converter.convert()
     #print(converter.metadata['tables'][0])
-    return Response(content=converter.convert(), headers=headers,  media_type='text/utf-8')
+    if request.as_json:
+        return {"filename": filename, "filedata": filedata}
+    else:
+        return Response(filedata, headers=headers,  media_type='text/utf-8')
     
 
 @app.get("/info", response_model=Settings)

@@ -1,6 +1,5 @@
 
-from typing import Tuple
-from pydantic import AnyUrl
+from typing import Tuple, List
 import pandas as pd
 from rdflib import BNode, URIRef, Literal, Graph
 from rdflib.util import guess_format
@@ -10,33 +9,53 @@ from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 import io
 
-def parse_csv_from_url_to_list(csv_url,delimiter: str=',', skiprows:int =0, num_header_rows: int=2, encoding: str='utf-8') -> list:
-        file_data, file_name = open_csv(csv_url)
-        file_string = io.StringIO(file_data.decode(encoding))
-        table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=delimiter, skiprows=num_header_rows+skiprows, encoding=encoding)
-        # add a row index column
-        line_list=table_data.to_numpy().tolist()
-        line_list=[ [index,]+line for index, line in enumerate(line_list)]
-        return line_list
+def parse_csv_from_url_to_list(csv_url,delimiter: str=',', skiprows:int =0, num_header_rows: int=2, encoding: str='utf-8') -> List[List]:
+    """Parses a csv file using the dialect given, to a list containing the content of every row as list.
 
-def open_csv(uri: str='') -> Tuple[str,str]:
-        print('try to open: {}'.format(uri))
-        try:
-            uri_parsed = urlparse(uri)
-        except:
-            print('not an uri - if local file add file:// as prefix')
-            return None
+    Args:
+        csv_url (_type_): Url to the csv file to parse
+        delimiter (str, optional): Delimiter for columns. Defaults to ','.
+        skiprows (int, optional): Rows to Skip reading. Defaults to 0.
+        num_header_rows (int, optional): Number of header rows with names of columns. Defaults to 2.
+        encoding (str, optional): Encoding of the csv file. Defaults to 'utf-8'.
+
+    Returns:
+        List[List]: List of Lists with entrys for each row. Content of header rows are not included
+    """
+    file_data, file_name = open_csv(csv_url)
+    file_string = io.StringIO(file_data.decode(encoding))
+    table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=delimiter, skiprows=num_header_rows+skiprows, encoding=encoding)
+    # add a row index column
+    line_list=table_data.to_numpy().tolist()
+    line_list=[ [index,]+line for index, line in enumerate(line_list)]
+    return line_list
+
+def open_csv(uri: str) -> Tuple[str,str]:
+    """Open a csv file for reading, returns filedata and filename in a Tuple.
+
+    Args:
+        uri (str): Uri to the file to read
+
+    Returns:
+        Tuple[str,str]: Tuple of filedata and filename
+    """
+    print('try to open: {}'.format(uri))
+    try:
+        uri_parsed = urlparse(uri)
+    except:
+        print('not an uri - if local file add file:// as prefix')
+        return None
+    else:
+        filename = unquote(uri_parsed.path).split('/')[-1]
+        if uri_parsed.scheme in ['https', 'http']:
+            filedata = urlopen(uri).read()
+
+        elif uri_parsed.scheme == 'file':
+            filedata = open(unquote(uri_parsed.path), 'rb').read()
         else:
-            filename = unquote(uri_parsed.path).split('/')[-1]
-            if uri_parsed.scheme in ['https', 'http']:
-                filedata = urlopen(uri).read()
-
-            elif uri_parsed.scheme == 'file':
-                filedata = open(unquote(uri_parsed.path), 'rb').read()
-            else:
-                print('unknown scheme {}'.format(uri_parsed.scheme))
-                return None
-            return filedata, filename
+            print('unknown scheme {}'.format(uri_parsed.scheme))
+            return None
+        return filedata, filename
 
 def parse_graph(url: str, graph: Graph) -> Graph:
     """Parse a Graph from web url to rdflib graph object
@@ -60,17 +79,21 @@ def parse_graph(url: str, graph: Graph) -> Graph:
 
 
 class CSVWtoRDF:
-    def __init__(self,metadata_url: str, csv_url: AnyUrl) -> None:
+    """Class for Converting CSV data to RDF with help of CSVW Annotations
+    """
+    def __init__(self,metadata_url: str, csv_url: str) -> None:
         self.metadata_url=metadata_url
         # get metadata graph
         self.metagraph=parse_graph(metadata_url,Graph())
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
-        self.csv_url="{}/{}".format(metadata_url.rsplit('/',1)[0],url)
+        self.graph=Graph()
+        self.base_url="{}/".format(str(self.meta_root).rsplit('/',1)[0])
+        self.csv_url=self.base_url+url
         # replace if set in request
         if csv_url:
             self.csv_url=csv_url
         print(self.metadata_url,self.csv_url)
-        self.filename=self.csv_url.rsplit('.',1)[0]+".ttl"
+        self.file_url=self.csv_url.rsplit('.',1)[0]+".ttl"
         dialect=next(self.metagraph[self.meta_root : CSVW.dialect],None)
         self.dialect_dict={k: v.value for (k,v) in self.metagraph[dialect:]}
         print(self.dialect_dict)
@@ -79,7 +102,6 @@ class CSVWtoRDF:
         columns=self.metagraph[ : RDF.type : CSVW.Column]
         self.columns=[(column,{ k: v for (k,v) in self.metagraph[column:]}) for column in columns]
         print(len(self.columns))
-        print(self.columns)
         # get table form csv_url
         if self.table_schema_node:
             self.table = parse_csv_from_url_to_list(
@@ -91,7 +113,6 @@ class CSVWtoRDF:
                 )
         else:
             self.table=list()
-        #print(self.table[:5])
     def convert_table(self) -> Graph:
         g=Graph()
         g.bind("csvw", CSVW)
@@ -107,7 +128,7 @@ class CSVWtoRDF:
             g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,index+self.dialect_dict[CSVW.skipRows]+self.dialect_dict[CSVW.headerRowCount]))))
             for cell_index, cell in enumerate(row):
                 # print(self.columns[cell_index])
-                # column=self.columns[cell_index][0]
+                column=self.columns[cell_index][0]
                 if self.columns[cell_index][1][CSVW.name]==Literal('GID'):
                     continue
                 else:
@@ -123,26 +144,5 @@ class CSVWtoRDF:
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
         graph=self.metagraph+self.convert_table()
+        graph.bind('base',self.base_url, override=True)
         return graph.serialize(format=format)
-
-# if self.include_table_data:
-            #     #try to apply locale
-            #     for column in table_data:
-            #         try:
-            #             table_data[column]=table_data[column].apply(locale.atof)
-            #         except Exception as e:
-            #             #print(e)
-            #             pass
-            #     #print(table_data)
-            #     #serialize row of the table data
-            #     columns_names=[item['name'] for item in metadata_csvw["tableSchema"]["columns"] if item['name']!='GID']
-            #     #set names of colums same as in mteadata
-            #     table_data.columns=columns_names
-            #     table_data.insert(0,'url',data_table_header_row_index+header_lines+table_data.index)
-            #     table_data.insert(1,'rownum',table_data.index)
-            #     table_data.insert(2,'@id',table_data.index)
-            #     table_data['@id']='gid-'+table_data['@id'].astype(str)
-            #     table_data['url']=file_name+'#row='+table_data['url'].astype(str)
-            #     table_entrys=[{'url': record.pop('url'), 'rownum': record.pop('rownum'), 'describes':record} 
-            #         for record in table_data.to_dict('records')]
-            #     metadata_csvw["row"] =table_entrys

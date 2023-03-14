@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from cmath import nan
-from email.base64mime import header_length
+from typing import Tuple
 import pandas as pd
 import io
 import os
@@ -59,12 +58,10 @@ units_graph.parse(QUDT_UNIT_URL, format='turtle')
 
 
 class CSV_Annotator():
-    def __init__(self, separator: str='auto', header_separator: str= 'auto', encoding: str='auto', include_table_data: bool=False) -> (str, json) : 
+    def __init__(self, separator: str='auto', header_separator: str= 'auto', encoding: str='auto') -> (str, json) : 
         self.separator = separator
         self.header_separator = header_separator
         self.encoding = encoding
-        self.include_table_data = include_table_data
-        #print(self.separator, self.header_separator, self.encoding,self.include_table_data)
         self.json_ld_context = [
             "http://www.w3.org/ns/csvw", {
                 #"cco": "http://www.ontologyrepository.com/CommonCoreOntologies/",
@@ -529,60 +526,39 @@ class CSV_Annotator():
                 "@type": "Column"
             }
             column_json.append(json_str)
-            #print(column_json)
-            if header_lines == 1:
-                # see if there might be a unit string at the end of each title
-                # e.g. "E_y (MPa)"
-                for title in table_data.columns:
-
-                    # skip Unnamed cols
-                    if "Unnamed" in title:
-                        continue
-                    # try to find unit if its last part and separated by space in title
-                    if len(title.split(' ')) > 1:
-                        unit_json = self.get_unit(title.rsplit(' ',1)[-1])
-                    else:
-                        unit_json = {}
-                    if unit_json:
-                        title=title.rsplit(' ', 1)[0]
-                    # if self.include_table_data:
-                    #     abouturl={"aboutUrl": "#row-{_row}-distance", "propertyUrl": "schema:value"}
-                    name_str=self.make_id(title)
-                    json_str = {
-                        **{
-                            'titles': [name_str, title],
-                            '@id': name_str,
-                            "@type": "Column",
-                            'name': name_str,
-                            #'aboutUrl': "#gid-{GID}-"+name_str
-                        }, **unit_json
-                    }
-                    column_json.append(json_str)
-                metadata_csvw["tableSchema"] = {"columns": column_json}
-            else:
-                for (title, unit_str) in table_data.columns:
-                    name_str=self.make_id(title)
-                    json_str = {
-                        **{
-                            'titles': [name_str, title],
-                            '@id': name_str,
-                            "@type": "Column",
-                            'name': name_str,
-                            #'aboutUrl': "#gid-{GID}-"+name_str
-                        },
-                        **self.get_unit(unit_str)
-                    }
-                    column_json.append(json_str)
-                metadata_csvw["tableSchema"] = {"columns": column_json}
+            for titles in table_data.columns:
+                if isinstance(titles,Tuple):
+                    titles_list=[*titles]
+                else:
+                    titles_list=[titles,]
+                name_str=self.make_id(titles_list[0])
+                for title in titles_list:
+                    titleparts=title.split(' ')
+                    for part in titleparts:
+                        unit_dict=self.get_unit(part)
+                        if unit_dict:
+                            break
+                titles_list.append(name_str)
+                json_str = {
+                    **{
+                        'titles': titles_list,
+                        '@id': name_str,
+                        'name': name_str,
+                        #'aboutUrl': "#gid-{GID}-"+name_str
+                    },
+                    **unit_dict
+                }
+                if unit_dict:
+                    json_str['@type']=["Column","qudt:QuantityValue"]
+                else:
+                    json_str['@type']=["Column"]
+                column_json.append(json_str)
+            metadata_csvw["tableSchema"] = {"columns": column_json}
             metadata_csvw["tableSchema"] ["primaryKey"] = column_json[0]['name']
             metadata_csvw["tableSchema"] ["aboutUrl"] = "#gid-{GID}"
             # metadata_csvw["tableSchema"] ["propertyUrl"] = "schema:value"
-
-                
-        if self.include_table_data:
-                meta_file_name = file_name.split(sep='.')[0] + '-detailed-metadata.json'
-        else:
-            meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
+    
+        meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
         return {'filename':meta_file_name, 'filedata': metadata_csvw}
 
     def set_encoding(self, new_encoding: str):
