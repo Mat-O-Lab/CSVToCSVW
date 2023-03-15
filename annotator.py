@@ -26,6 +26,7 @@ from rdflib.plugins.sparql import prepareQuery
 #QUDT_UNIT_URL = 'http://qudt.org/2.1/vocab/unit'
 QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
 QUDT = Namespace("http://qudt.org/schema/qudt/")
+QUNIT = Namespace("http://qudt.org/vocab/unit/")
 
 sub_classes = prepareQuery(
     "SELECT ?entity WHERE {?entity rdfs:subClassOf* ?parent}"
@@ -280,7 +281,7 @@ class CSV_Annotator():
 
     def get_unit(self, string):
         # remove possible braces
-        string=string.strip("[]").strip("()")
+        string=string.strip(" []():")
         #get rid of superscripts
         for k in self.superscripts_replace.keys():
             string = string.replace(k, self.superscripts_replace[k])
@@ -290,7 +291,7 @@ class CSV_Annotator():
         string=string.replace('sec','s')
         
         found = get_entities_with_property_with_value(
-                units_graph, QUDT.Symbol, Literal(string)) \
+                units_graph, QUDT.symbol, Literal(string)) \
                 + get_entities_with_property_with_value(
                     units_graph, QUDT.ucumCode,
                     Literal(string, datatype=QUDT.UCUMcs)
@@ -407,11 +408,12 @@ class CSV_Annotator():
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
             # try to find unit if its last part and separated by space in label
-            #print(parm_name)
+            print(parm_name, data)
             body=list()
-            #print(parm_name)
+            #remove : if any at end
             if parm_name[-1]==":":
                 parm_name=parm_name[:-1]
+            #see if there is a unitstring in the param name
             if len(parm_name.split(' ')) > 1:
                 unit_json = self.get_unit(parm_name.rsplit(' ',1)[-1])
             else:
