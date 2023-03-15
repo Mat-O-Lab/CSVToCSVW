@@ -12,8 +12,8 @@
   "url": "example3.csv",
   "notes": [
     {
-      "@id": "IwmDatalogger0",
-      "label": "IWM-DataLogger",
+      "@id": "Datalogger0",
+      "label": "DataLogger",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 0,
@@ -86,7 +86,7 @@
         {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
-            "@value": "2023-03-10T11:55:02",
+            "@value": "2023-03-15T11:55:02",
             "@type": "xsd:dateTime"
           }
         }
@@ -264,8 +264,8 @@
       ]
     },
     {
-      "@id": "Messlaenge21",
-      "label": "Messlänge",
+      "@id": "MesslNge21",
+      "label": "Messl�nge",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 21,
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "@id": "Prueftemperatur30",
-      "label": "Prüftemperatur",
+      "@id": "PrFtemperatur30",
+      "label": "Pr�ftemperatur",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 30,
@@ -353,7 +353,7 @@
           "@type": "oa:TextualBody",
           "oa:purpose": "oa:tagging",
           "oa:format": "text/plain",
-          "oa:value": "[°C]:"
+          "oa:value": "[�C]:"
         },
         {
           "@type": "qudt:QuantityValue",
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "@id": "Pruefmaschine37",
-      "label": "Prüfmaschine",
+      "@id": "PrFmaschine37",
+      "label": "Pr�fmaschine",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 37,
@@ -388,8 +388,8 @@
       ]
     },
     {
-      "@id": "Pruefgeschwindigkeit40",
-      "label": "Prüfgeschwindigkeit",
+      "@id": "PrFgeschwindigkeit40",
+      "label": "Pr�fgeschwindigkeit",
       "@type": "oa:Annotation",
       "rownum": {
         "@value": 40,
@@ -731,6 +731,6 @@
     "delimiter": " ",
     "skipRows": 131,
     "headerRowCount": 0,
-    "encoding": "latin-1"
+    "encoding": "utf-8"
   }
 }
