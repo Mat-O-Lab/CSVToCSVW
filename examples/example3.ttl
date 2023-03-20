@@ -41,6 +41,8 @@ base:example3-metadata.json csvw:dialect [ csvw:delimiter " " ;
         base:YAchse67 ;
     csvw:url "example3.csv"^^xsd:anyURI .
 
+<http://qudt.org/vocab/unit/MilliM-PER-SEC> a qudt:Unit .
+
 base:Abstandsmessung50 a oa:Annotation ;
     rdfs:label "Abstandsmessung" ;
     csvw:rownum 50 ;
@@ -61,11 +63,8 @@ base:Anzeige70 a oa:Annotation ;
     rdfs:label "Anzeige" ;
     csvw:rownum 70 ;
     oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 2.0 ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "1:" ] .
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 2.0 ] .
 
 base:Backup9 a oa:Annotation ;
     rdfs:label "Backup" ;
@@ -80,26 +79,26 @@ base:Backup9 a oa:Annotation ;
 base:Bemerkungen22 a oa:Annotation ;
     rdfs:label "Bemerkungen" ;
     csvw:rownum 22 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 1000 ],
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Rz" ],
         [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
             oa:value "B5x25;46NT31-Rohling;T" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "Rz" ] .
+        [ a qudt:QuantityValue ;
+            qudt:value 1000 ] .
 
 base:Bilder52 a oa:Annotation ;
     rdfs:label "Bilder" ;
     csvw:rownum 52 ;
-    oa:hasBody [ a oa:TextualBody ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ],
+        [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "abspeichern:" ],
-        [ a qudt:QuantityValue ;
-            qudt:value 0 ] .
+            oa:value "abspeichern:" ] .
 
 base:Comport112 a oa:Annotation ;
     rdfs:label "ComPort" ;
@@ -117,9 +116,29 @@ base:Datalogger0 a oa:Annotation ;
     rdfs:label "DataLogger" ;
     csvw:rownum 0 ;
     oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value "2022-08-24T00:00:00"^^xsd:dateTime ],
+            qudt:value 4.0 ],
+        [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "8852TT;1605F:" ],
+        [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Version" ],
         [ a qudt:QuantityValue ;
             qudt:value 4.0 ],
+        [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Revision" ],
+        [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "MX840B" ],
+        [ a qudt:QuantityValue ;
+            qudt:value "2023-03-20T11:55:02"^^xsd:dateTime ],
+        [ a qudt:QuantityValue ;
+            qudt:value "2022-08-24T00:00:00"^^xsd:dateTime ],
         [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
@@ -127,31 +146,11 @@ base:Datalogger0 a oa:Annotation ;
         [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "MX840B" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "7:" ],
-        [ a qudt:QuantityValue ;
-            qudt:value 4.0 ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "Version" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
             oa:value "PCLAB-P009:" ],
         [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "8852TT;1605F:" ],
-        [ a qudt:QuantityValue ;
-            qudt:value "2023-03-15T11:55:02"^^xsd:dateTime ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "Revision" ] .
+            oa:value "7:" ] .
 
 base:Dateiname8 a oa:Annotation ;
     rdfs:label "Dateiname" ;
@@ -170,21 +169,18 @@ base:Durchmessermessung48 a oa:Annotation ;
 base:Durchmessermessung49 a oa:Annotation ;
     rdfs:label "Durchmessermessung" ;
     csvw:rownum 49 ;
-    oa:hasBody [ a oa:TextualBody ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ],
+        [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "MinMax:" ],
-        [ a qudt:QuantityValue ;
-            qudt:value 0 ] .
+            oa:value "MinMax:" ] .
 
 base:Kamera47 a oa:Annotation ;
     rdfs:label "Kamera" ;
     csvw:rownum 47 ;
-    oa:hasBody [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "1:" ],
-        [ a qudt:QuantityValue ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
             qudt:value 0 ] .
 
 base:Kameratyp111 a oa:Annotation ;
@@ -198,35 +194,29 @@ base:Kameratyp111 a oa:Annotation ;
 base:Messkanal80 a oa:Annotation ;
     rdfs:label "Messkanal" ;
     csvw:rownum 80 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 1 ],
-        [ a oa:TextualBody ;
+    oa:hasBody [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
             oa:value "Label:" ],
         [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "Maschine" ] .
+            oa:value "Maschine" ],
+        [ a qudt:QuantityValue ;
+            qudt:value 1 ] .
 
 base:MesslNge21 a oa:Annotation ;
     rdfs:label "Messl�nge" ;
     csvw:rownum 21 ;
     oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 15.0 ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "[mm]:" ] .
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+            qudt:value 15.0 ] .
 
 base:PrFgeschwindigkeit40 a oa:Annotation ;
     rdfs:label "Pr�fgeschwindigkeit" ;
     csvw:rownum 40 ;
-    oa:hasBody [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "[mm/s]:" ],
-        [ a qudt:QuantityValue ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MilliM-PER-SEC> ;
             qudt:value 0 ] .
 
 base:PrFmaschine37 a oa:Annotation ;
@@ -235,21 +225,21 @@ base:PrFmaschine37 a oa:Annotation ;
     oa:hasBody [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "8852TT;1605F" ],
+            oa:value "INSTRON" ],
         [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "INSTRON" ] .
+            oa:value "8852TT;1605F" ] .
 
 base:PrFtemperatur30 a oa:Annotation ;
     rdfs:label "Pr�ftemperatur" ;
     csvw:rownum 30 ;
-    oa:hasBody [ a oa:TextualBody ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ],
+        [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "[�C]:" ],
-        [ a qudt:QuantityValue ;
-            qudt:value 0 ] .
+            oa:value "[�C]:" ] .
 
 base:Proben24 a oa:Annotation ;
     rdfs:label "Proben" ;
@@ -267,30 +257,21 @@ base:Probenbreite20 a oa:Annotation ;
     rdfs:label "Probenbreite" ;
     csvw:rownum 20 ;
     oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 10 ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "[mm]:" ] .
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+            qudt:value 10 ] .
 
 base:Probendicke19 a oa:Annotation ;
     rdfs:label "Probendicke" ;
     csvw:rownum 19 ;
     oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 0.03 ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "[mm]:" ] .
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+            qudt:value 0.03 ] .
 
 base:Probendurchmesser18 a oa:Annotation ;
     rdfs:label "Probendurchmesser" ;
     csvw:rownum 18 ;
-    oa:hasBody [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "[mm]:" ],
-        [ a qudt:QuantityValue ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
             qudt:value 0.05 ] .
 
 base:Probenname16 a oa:Annotation ;
@@ -313,11 +294,11 @@ base:Projekt5 a oa:Annotation ;
     oa:hasBody [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "PMD" ],
+            oa:value "Name:" ],
         [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "Name:" ] .
+            oa:value "PMD" ] .
 
 base:Quantum113 a oa:Annotation ;
     rdfs:label "Quantum" ;
@@ -350,4 +331,8 @@ base:YAchse67 a oa:Annotation ;
     csvw:rownum 67 ;
     oa:hasBody [ a qudt:QuantityValue ;
             qudt:value 2 ] .
+
+<http://qudt.org/vocab/unit/NUM> a qudt:CountingUnit .
+
+<http://qudt.org/vocab/unit/MilliM> a qudt:DerivedUnit .
 

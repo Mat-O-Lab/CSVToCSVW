@@ -5,11 +5,13 @@
       "oa": "http://www.w3.org/ns/oa#",
       "label": "http://www.w3.org/2000/01/rdf-schema#label",
       "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "qudt": "http://qudt.org/schema/qudt/"
+      "qudt": "http://qudt.org/schema/qudt/",
+      "dc": "http://purl.org/dc/elements/1.1/",
+      "prov": "http://www.w3.org/ns/prov#"
     }
   ],
-  "@id": "",
-  "url": "example2.csv",
+  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2-metadata.json",
+  "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
   "notes": [
     {
       "@id": "Probe0",
@@ -54,7 +56,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 840749,
-            "@type": "xsd:integer"
+            "@type": "http://www.w3.org/2001/XMLSchema#integer"
           }
         }
       ]
@@ -93,7 +95,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       },
       {
         "titles": [
@@ -109,7 +112,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       },
       {
         "titles": [
@@ -125,7 +129,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       },
       {
         "titles": [
@@ -141,7 +146,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -157,7 +163,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -173,7 +180,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -189,7 +197,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -205,7 +214,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -221,7 +231,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       },
       {
         "titles": [
@@ -232,7 +243,8 @@
         "name": "Kanal10",
         "@type": [
           "Column"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -243,7 +255,8 @@
         "name": "Kanal11",
         "@type": [
           "Column"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -254,7 +267,8 @@
         "name": "Kanal12",
         "@type": [
           "Column"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -265,7 +279,8 @@
         "name": "Kanal13",
         "@type": [
           "Column"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -276,7 +291,8 @@
         "name": "Kanal14",
         "@type": [
           "Column"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       },
       {
         "titles": [
@@ -287,10 +303,20 @@
         "name": "Kanal15",
         "@type": [
           "Column"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#boolean"
       }
     ],
     "primaryKey": "GID",
     "aboutUrl": "#gid-{GID}"
+  },
+  "prov:wasGeneratedBy": {
+    "id": "CSVtoCSVW",
+    "@type": "prov:Activity",
+    "prov:wasAssociatedWith": "http://localhost:5001/api/annotation"
+  },
+  "prov:generatedAtTime": {
+    "@value": "2023-03-20 12:46:21.805650",
+    "@type": "xsd:dateTime"
   }
 }
