@@ -5,11 +5,13 @@
       "oa": "http://www.w3.org/ns/oa#",
       "label": "http://www.w3.org/2000/01/rdf-schema#label",
       "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "qudt": "http://qudt.org/schema/qudt/"
+      "qudt": "http://qudt.org/schema/qudt/",
+      "dc": "http://purl.org/dc/elements/1.1/",
+      "prov": "http://www.w3.org/ns/prov#"
     }
   ],
-  "@id": "",
-  "url": "example.csv",
+  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json",
+  "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
   "notes": [
     {
       "@id": "AktuelleProbe0",
@@ -24,7 +26,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 17,
-            "@type": "xsd:integer"
+            "@type": "http://www.w3.org/2001/XMLSchema#integer"
           }
         }
       ]
@@ -42,7 +44,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 832.756,
-            "@type": "xsd:decimal"
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -81,7 +83,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 11.4,
-            "@type": "xsd:decimal"
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -103,7 +105,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0.2,
-            "@type": "xsd:decimal"
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -125,7 +127,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 150,
-            "@type": "xsd:integer"
+            "@type": "http://www.w3.org/2001/XMLSchema#integer"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM-PER-MIN",
@@ -147,7 +149,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0.2,
-            "@type": "xsd:decimal"
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/N",
@@ -169,7 +171,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 5,
-            "@type": "xsd:integer"
+            "@type": "http://www.w3.org/2001/XMLSchema#integer"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -191,7 +193,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 1127.12,
-            "@type": "xsd:decimal"
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MegaPA",
@@ -213,7 +215,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 306.402,
-            "@type": "xsd:decimal"
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/PERCENT",
@@ -235,7 +237,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 309.236,
-            "@type": "xsd:decimal"
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/PERCENT",
@@ -274,7 +276,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 37.9483,
-            "@type": "xsd:decimal"
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
           },
           "qudt:unit": {
             "@id": "http://qudt.org/vocab/unit/MegaPA",
@@ -313,7 +315,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 1,
-            "@type": "xsd:integer"
+            "@type": "http://www.w3.org/2001/XMLSchema#integer"
           }
         },
         {
@@ -337,7 +339,7 @@
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": "2008-02-20T00:00:00",
-            "@type": "xsd:dateTime"
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
           }
         }
       ]
@@ -377,7 +379,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       },
       {
         "titles": [
@@ -394,7 +397,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       },
       {
         "titles": [
@@ -411,7 +415,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       },
       {
         "titles": [
@@ -428,7 +433,8 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       },
       {
         "titles": [
@@ -445,10 +451,25 @@
         "@type": [
           "Column",
           "qudt:QuantityValue"
-        ]
+        ],
+        "format": "http://www.w3.org/2001/XMLSchema#double"
       }
     ],
     "primaryKey": "GID",
     "aboutUrl": "#gid-{GID}"
+  },
+  "prov:wasGeneratedBy": {
+    "id": "http://localhost:5001/api/annotation",
+    "@type": "prov:Activity",
+    "prov:wasAssociatedWith": {
+      "id": "CSVtoCSVWv1.1.8",
+      "rdfs.label": "CSVtoCSVW",
+      "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
+      "@type": "prov:SoftwareAgent"
+    }
+  },
+  "prov:generatedAtTime": {
+    "@value": "2023-03-20 13:05:54.734350",
+    "@type": "xsd:dateTime"
   }
 }
