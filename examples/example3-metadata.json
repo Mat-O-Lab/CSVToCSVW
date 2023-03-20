@@ -86,7 +86,7 @@
         {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
-            "@value": "2023-03-15T11:55:02",
+            "@value": "2023-03-20T11:55:02",
             "@type": "xsd:dateTime"
           }
         }
@@ -201,16 +201,14 @@
       },
       "oa:hasBody": [
         {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm]:"
-        },
-        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0.05,
             "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
           }
         }
       ]
@@ -225,16 +223,14 @@
       },
       "oa:hasBody": [
         {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm]:"
-        },
-        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0.03,
             "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
           }
         }
       ]
@@ -249,16 +245,14 @@
       },
       "oa:hasBody": [
         {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm]:"
-        },
-        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 10,
             "@type": "xsd:integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
           }
         }
       ]
@@ -273,16 +267,14 @@
       },
       "oa:hasBody": [
         {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm]:"
-        },
-        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 15,
             "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM",
+            "@type": "http://qudt.org/schema/qudt/DerivedUnit"
           }
         }
       ]
@@ -397,16 +389,14 @@
       },
       "oa:hasBody": [
         {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "[mm/s]:"
-        },
-        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/MilliM-PER-SEC",
+            "@type": "http://qudt.org/schema/qudt/Unit"
           }
         }
       ]
@@ -421,16 +411,14 @@
       },
       "oa:hasBody": [
         {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "1:"
-        },
-        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
             "@type": "xsd:integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/NUM",
+            "@type": "http://qudt.org/schema/qudt/CountingUnit"
           }
         }
       ]
@@ -607,16 +595,14 @@
       },
       "oa:hasBody": [
         {
-          "@type": "oa:TextualBody",
-          "oa:purpose": "oa:tagging",
-          "oa:format": "text/plain",
-          "oa:value": "1:"
-        },
-        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 2,
             "@type": "xsd:decimal"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/NUM",
+            "@type": "http://qudt.org/schema/qudt/CountingUnit"
           }
         }
       ]

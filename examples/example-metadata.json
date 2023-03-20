@@ -364,68 +364,88 @@
       },
       {
         "titles": [
-          "Pruefzeit",
-          "Prüfzeit"
+          "Prüfzeit",
+          "s",
+          "Pruefzeit"
         ],
         "@id": "Pruefzeit",
-        "@type": "Column",
         "name": "Pruefzeit",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/SEC",
           "@type": "http://qudt.org/schema/qudt/Unit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
           "Standardweg",
+          "mm",
           "Standardweg"
         ],
         "@id": "Standardweg",
-        "@type": "Column",
         "name": "Standardweg",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/MilliM",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
           "Standardkraft",
+          "N",
           "Standardkraft"
         ],
         "@id": "Standardkraft",
-        "@type": "Column",
         "name": "Standardkraft",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/N",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
           "Dehnung",
+          "%",
           "Dehnung"
         ],
         "@id": "Dehnung",
-        "@type": "Column",
         "name": "Dehnung",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/PERCENT",
           "@type": "http://qudt.org/schema/qudt/Unit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "TraverseAbs",
-          "Traverse abs."
+          "Traverse abs.",
+          "mm",
+          "TraverseAbs"
         ],
         "@id": "TraverseAbs",
-        "@type": "Column",
         "name": "TraverseAbs",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/MilliM",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       }
     ],
     "primaryKey": "GID",
