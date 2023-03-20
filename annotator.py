@@ -569,7 +569,7 @@ class CSV_Annotator():
                 #print(titles_list,column_types[colnum])
                 xsd_format=self.get_value_type(table_data.iloc[1][colnum])[1]
                 if xsd_format:
-                    json_str['format'] = xsd_format
+                    json_str['format'] = {'@id': xsd_format}
                 column_json.append(json_str)
             table_schema = {"columns": column_json}
             table_schema["primaryKey"] = column_json[0]['name']
@@ -582,25 +582,3 @@ class CSV_Annotator():
 
     def set_separator(self, new_separator: str):
         self.separator = new_separator
-
-
-# @prefix csvw: <http://www.w3.org/ns/csvw#> .
-# @prefix prov: <http://www.w3.org/ns/prov#> .
-# @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-# <> prov:wasGeneratedBy [
-#     a prov:Activity ;
-#     prov:wasAssociatedWith  <http://example.org/my-csv2rdf-application> ;
-#     prov:startedAtTime "2015-02-13T15:12:44"^^xsd:dateTime ;
-#     prov:endedAtTime   "2015-02-13T15:12:46"^^xsd:dateTime ;
-#     prov:qualifiedUsage [ a prov:Usage ;
-#         prov:entity <http://example.org/csv/data.csv> ;
-#         prov:hadRole csvw:csvEncodedTabularData
-#     ];
-#     prov:qualifiedUsage [ a prov:Usage ;
-#         prov:entity 
-#                 <http://example.org/csv/data.csv-metadata.json> ,                 
-#                 <http://example.org/csv/csv-metadata.json> ;
-#         prov:hadRole csvw:tabularMetadata
-#     ];
-# ]

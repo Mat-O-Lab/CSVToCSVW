@@ -156,11 +156,11 @@ async def index(request: Request):
 def document_prov(api_url: str) -> dict:
         return {
             "prov:wasGeneratedBy": {
-                "id": api_url,
+                "@id": api_url,
                 "@type": "prov:Activity",
                 "prov:wasAssociatedWith":  {
-                    "id": settings.app_name+settings.version,
-                    "rdfs.label": settings.app_name,
+                    "@id": settings.app_name+settings.version,
+                    "rdfs:label": settings.app_name,
                     "prov:hadPrimarySource": settings.source,
                     "@type": "prov:SoftwareAgent"
                 }

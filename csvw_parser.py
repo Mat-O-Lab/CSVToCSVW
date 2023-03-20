@@ -3,7 +3,7 @@ from typing import Tuple, List
 import pandas as pd
 from rdflib import BNode, URIRef, Literal, Graph
 from rdflib.util import guess_format
-from rdflib.namespace import CSVW, RDF
+from rdflib.namespace import CSVW, RDF, XSD
 
 from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
@@ -88,7 +88,11 @@ class CSVWtoRDF:
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
         self.graph=Graph()
         self.base_url="{}/".format(str(self.meta_root).rsplit('/',1)[0])
-        self.csv_url=self.base_url+url
+        parsed_url=urlparse(url)
+        if parsed_url.scheme in ['https', 'http', 'file']:
+            self.csv_url=url
+        else:
+            self.csv_url=self.base_url+url
         # replace if set in request
         if csv_url:
             self.csv_url=csv_url
@@ -127,7 +131,9 @@ class CSVWtoRDF:
             g.add((row_node, CSVW.describes, value_node))
             g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,index+self.dialect_dict[CSVW.skipRows]+self.dialect_dict[CSVW.headerRowCount]))))
             for cell_index, cell in enumerate(row):
+                #print(self.columns[cell_index])
                 column=self.columns[cell_index][0]
+                format=self.columns[cell_index][1].get('format', XSD.string)
                 if self.columns[cell_index][1][CSVW.name]==Literal('GID'):
                     continue
                 else:
@@ -135,13 +141,34 @@ class CSVWtoRDF:
                         g.add((value_node, column, Literal(cell)))
                     elif CSVW.aboutUrl in self.columns[cell_index][1].keys():
                         aboutUrl=self.columns[cell_index][1][CSVW.aboutUrl]
-                        g.add((value_node, URIRef(aboutUrl.format(GID=index)), Literal(cell)))
+                        g.add((value_node, URIRef(aboutUrl.format(GID=index)), Literal(cell,datatype=format)))
                     else:
                         url=self.columns[cell_index][1][CSVW.name]
                         g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/',1)[0],url)), Literal(cell)))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
-        graph=self.metagraph+self.convert_table()
-        graph.bind('base',self.base_url, override=True)
+        graph=self.convert_table() 
+        #graph.bind('base',self.base_url, override=True)
         return graph.serialize(format=format)
+
+# @prefix csvw: <http://www.w3.org/ns/csvw#> .
+# @prefix prov: <http://www.w3.org/ns/prov#> .
+# @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# <> prov:wasGeneratedBy [
+#     a prov:Activity ;
+#     prov:wasAssociatedWith  <http://example.org/my-csv2rdf-application> ;
+#     prov:startedAtTime "2015-02-13T15:12:44"^^xsd:dateTime ;
+#     prov:endedAtTime   "2015-02-13T15:12:46"^^xsd:dateTime ;
+#     prov:qualifiedUsage [ a prov:Usage ;
+#         prov:entity <http://example.org/csv/data.csv> ;
+#         prov:hadRole csvw:csvEncodedTabularData
+#     ];
+#     prov:qualifiedUsage [ a prov:Usage ;
+#         prov:entity 
+#                 <http://example.org/csv/data.csv-metadata.json> ,                 
+#                 <http://example.org/csv/csv-metadata.json> ;
+#         prov:hadRole csvw:tabularMetadata
+#     ];
+# ]
