@@ -81,174 +81,213 @@
       },
       {
         "titles": [
-          "Maschine",
-          "Maschine"
+          "Maschine [mm]",
+          "MaschineMm"
         ],
-        "@id": "Maschine",
-        "@type": "Column",
-        "name": "Maschine",
+        "@id": "MaschineMm",
+        "name": "MaschineMm",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/MilliM",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "Kraft",
-          "Kraft"
+          "Kraft [kN]",
+          "KraftKn"
         ],
-        "@id": "Kraft",
-        "@type": "Column",
-        "name": "Kraft",
+        "@id": "KraftKn",
+        "name": "KraftKn",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/KiloN",
           "@type": "http://qudt.org/schema/qudt/Unit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "ClipGauge",
-          "Clip-Gauge"
+          "Clip-Gauge [mm]",
+          "ClipGaugeMm"
         ],
-        "@id": "ClipGauge",
-        "@type": "Column",
-        "name": "ClipGauge",
+        "@id": "ClipGaugeMm",
+        "name": "ClipGaugeMm",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/MilliM",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "Drehmoment",
-          "Drehmoment"
+          "Drehmoment [Nm]",
+          "DrehmomentNm"
         ],
-        "@id": "Drehmoment",
-        "@type": "Column",
-        "name": "Drehmoment",
+        "@id": "DrehmomentNm",
+        "name": "DrehmomentNm",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/N-M",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "Mx840A0Ch5",
-          "MX840A_0_CH 5"
+          "MX840A_0_CH 5 [°C]",
+          "Mx840A0Ch5C"
         ],
-        "@id": "Mx840A0Ch5",
-        "@type": "Column",
-        "name": "Mx840A0Ch5",
+        "@id": "Mx840A0Ch5C",
+        "name": "Mx840A0Ch5C",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/DEG_C",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "Mx840A0Ch6",
-          "MX840A_0_CH 6"
+          "MX840A_0_CH 6 [mm]",
+          "Mx840A0Ch6Mm"
         ],
-        "@id": "Mx840A0Ch6",
-        "@type": "Column",
-        "name": "Mx840A0Ch6",
+        "@id": "Mx840A0Ch6Mm",
+        "name": "Mx840A0Ch6Mm",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/MilliM",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "Mx840A0Ch7",
-          "MX840A_0_CH 7"
+          "MX840A_0_CH 7 [V]",
+          "Mx840A0Ch7V"
         ],
-        "@id": "Mx840A0Ch7",
-        "@type": "Column",
-        "name": "Mx840A0Ch7",
+        "@id": "Mx840A0Ch7V",
+        "name": "Mx840A0Ch7V",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/V",
           "@type": "http://qudt.org/schema/qudt/Unit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "Mx840A0Ch8",
-          "MX840A_0_CH 8"
+          "MX840A_0_CH 8 [°C]",
+          "Mx840A0Ch8C"
         ],
-        "@id": "Mx840A0Ch8",
-        "@type": "Column",
-        "name": "Mx840A0Ch8",
+        "@id": "Mx840A0Ch8C",
+        "name": "Mx840A0Ch8C",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/DEG_C",
           "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "Zeit",
-          "Zeit"
+          "Zeit [s]",
+          "ZeitS"
         ],
-        "@id": "Zeit",
-        "@type": "Column",
-        "name": "Zeit",
+        "@id": "ZeitS",
+        "name": "ZeitS",
         "qudt:unit": {
           "@id": "http://qudt.org/vocab/unit/SEC",
           "@type": "http://qudt.org/schema/qudt/Unit"
-        }
+        },
+        "@type": [
+          "Column",
+          "qudt:QuantityValue"
+        ]
       },
       {
         "titles": [
-          "Kanal10",
-          "Kanal 10"
+          "Kanal 10",
+          "Kanal10"
         ],
         "@id": "Kanal10",
-        "@type": "Column",
-        "name": "Kanal10"
+        "name": "Kanal10",
+        "@type": [
+          "Column"
+        ]
       },
       {
         "titles": [
-          "Kanal11",
-          "Kanal 11"
+          "Kanal 11",
+          "Kanal11"
         ],
         "@id": "Kanal11",
-        "@type": "Column",
-        "name": "Kanal11"
+        "name": "Kanal11",
+        "@type": [
+          "Column"
+        ]
       },
       {
         "titles": [
-          "Kanal12",
-          "Kanal 12"
+          "Kanal 12",
+          "Kanal12"
         ],
         "@id": "Kanal12",
-        "@type": "Column",
-        "name": "Kanal12"
+        "name": "Kanal12",
+        "@type": [
+          "Column"
+        ]
       },
       {
         "titles": [
-          "Kanal13",
-          "Kanal 13"
+          "Kanal 13",
+          "Kanal13"
         ],
         "@id": "Kanal13",
-        "@type": "Column",
-        "name": "Kanal13"
+        "name": "Kanal13",
+        "@type": [
+          "Column"
+        ]
       },
       {
         "titles": [
-          "Kanal14",
-          "Kanal 14"
+          "Kanal 14",
+          "Kanal14"
         ],
         "@id": "Kanal14",
-        "@type": "Column",
-        "name": "Kanal14"
+        "name": "Kanal14",
+        "@type": [
+          "Column"
+        ]
       },
       {
         "titles": [
-          "Kanal15",
-          "Kanal 15"
+          "Kanal 15",
+          "Kanal15"
         ],
         "@id": "Kanal15",
-        "@type": "Column",
-        "name": "Kanal15"
+        "name": "Kanal15",
+        "@type": [
+          "Column"
+        ]
       }
     ],
     "primaryKey": "GID",
