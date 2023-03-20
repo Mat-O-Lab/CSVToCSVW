@@ -37,10 +37,13 @@ jobs:
               jq . <<< "$FILEDATA" > $FILENAME
             done
           docker logs csvtocsvw
+      - name: delete ttl files
+        working-directory: ${{env.WORKING_DIR}}
+        run: rm *.ttl
+        continue-on-error: true
       - name: create csvw rdf
         working-directory: ${{env.WORKING_DIR}}
         run: |
-          rm *.ttl
           for file in *-metadata.json 
             do
               echo "$file"
