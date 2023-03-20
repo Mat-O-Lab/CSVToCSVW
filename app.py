@@ -33,6 +33,7 @@ class Settings(BaseSettings):
     config_name: str = os.environ.get("APP_MODE") or "development"
     openapi_url: str ="/api/openapi.json"
     docs_url: str = "/api/docs"
+    source: str = "https://github.com/Mat-O-Lab/CSVToCSVW"
 settings = Settings()
 
 #flash integration flike flask flash
@@ -155,9 +156,14 @@ async def index(request: Request):
 def document_prov(api_url: str) -> dict:
         return {
             "prov:wasGeneratedBy": {
-                "id": app.title,
+                "id": api_url,
                 "@type": "prov:Activity",
-                "prov:wasAssociatedWith":  api_url
+                "prov:wasAssociatedWith":  {
+                    "id": settings.app_name+settings.version,
+                    "rdfs.label": settings.app_name,
+                    "prov:hadPrimarySource": settings.source,
+                    "@type": "prov:SoftwareAgent"
+                }
             },
             "prov:generatedAtTime": {
                     "@value": str(datetime.now()),
