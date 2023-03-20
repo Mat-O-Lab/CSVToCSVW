@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from curses import meta
+from multiprocessing import context
 from typing import Tuple
 import pandas as pd
 import io
@@ -15,8 +17,8 @@ import chardet
 import locale
 locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
 
-from rdflib import Graph, URIRef, Literal, Namespace
-from rdflib.namespace import RDF, RDFS
+from rdflib import Graph, URIRef, Literal, Namespace, BNode
+from rdflib.namespace import RDF, RDFS, XSD, CSVW, DC, PROV
 from rdflib.plugins.sparql import prepareQuery
 
 #MSEO_URL = 'https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl'
@@ -57,6 +59,23 @@ units_graph.parse(QUDT_UNIT_URL, format='turtle')
 #print(get_entities_with_property_with_value(
 #    units_graph, QUDT.ucumCode, Literal('mm', datatype=QUDT.UCUMcs)))
 
+def get_data(uri=''):
+    try:
+        uri_parsed = urlparse(uri)
+    except:
+        print('not an uri - if local file add file:// as prefix')
+        return None
+    else:
+        filename = unquote(uri_parsed.path).split('/')[-1]
+        if uri_parsed.scheme in ['https', 'http']:
+            filedata = urlopen(uri).read()
+
+        elif uri_parsed.scheme == 'file':
+            filedata = open(unquote(uri_parsed.path), 'rb').read()
+        else:
+            print('unknown scheme {}'.format(uri_parsed.scheme))
+            return None
+        return filedata, filename
 
 class CSV_Annotator():
     def __init__(self, separator: str='auto', header_separator: str= 'auto', encoding: str='auto') -> (str, json) : 
@@ -70,7 +89,9 @@ class CSV_Annotator():
                 "oa": "http://www.w3.org/ns/oa#",
                 "label": "http://www.w3.org/2000/01/rdf-schema#label",
                 "xsd": "http://www.w3.org/2001/XMLSchema#",
-                "qudt": "http://qudt.org/schema/qudt/"
+                "qudt": "http://qudt.org/schema/qudt/",
+                "dc": str(DC),
+                "prov": str(PROV),
                 }
         ]
         self.umlaute_dict = {
@@ -95,49 +116,30 @@ class CSV_Annotator():
             '\u2079':'9',
             '\u00b0C':'Cel', #for °C
         }
-    def open_file(self, uri=''):
-        try:
-            uri_parsed = urlparse(uri)
-        except:
-            print('not an uri - if local file add file:// as prefix')
-            return None
-        else:
-            filename = unquote(uri_parsed.path).split('/')[-1]
-            if uri_parsed.scheme in ['https', 'http']:
-                filedata = urlopen(uri).read()
-
-            elif uri_parsed.scheme == 'file':
-                filedata = open(unquote(uri_parsed.path), 'rb').read()
-            else:
-                print('unknown scheme {}'.format(uri_parsed.scheme))
-                return None
-            return filedata, filename
-
-    def process(self, url) -> dict:
+    def process_web_ressource(self, url) -> dict:
         '''
         :return: returns a filename and content(json string dump) of a metafile in the json format.
         '''
+        self.url=url
+        self.file_data, self.file_name = get_data(url)
 
-        file_data, file_name = self.open_file(url)
-
-        if file_name is None or file_data is None:
+        if self.file_name is None or self.file_data is None:
             return "error", "cannot parse url"
 
         if self.encoding == 'auto':
-            self.encoding = self.get_encoding(file_data)
+            self.encoding = self.get_encoding(self.file_data)
             if self.encoding=='ISO-8859-1':
                 self.encoding='latin-1'
 
-
         if self.separator == 'auto':
-            separator = self.get_column_separator(file_data)
+            separator = self.get_column_separator(self.file_data)
             if not separator:
                 return "error", 'cant find separator, pls manualy select'
             else:
                 self.separator=separator
+                
         #print(url,self.separator, self.header_separator, self.encoding, self.include_table_data)
-        result = self.process_file(file_name, file_data, self.separator, self.header_separator, self.encoding)
-
+        result = self.process_file(self.file_name, self.file_data, self.separator, self.header_separator, self.encoding, self.url.rsplit('/',1)[0])
         return result
 
     def get_encoding(self, file_data):
@@ -258,11 +260,8 @@ class CSV_Annotator():
         for row in range(header_length):
             file_string.readline()
         for line in file_string:
-            #print(line)
             tests=[self.get_value_type(
-                string) in ['BLANK', 'TEXT'] for string in line.split(separator_string)]
-            print([(string, self.get_value_type(string)) for string in line.split(separator_string)])
-            #print(tests)
+                string)[0] in ['BLANK', 'TEXT'] for string in line.split(separator_string)]
             all_text = all(tests)
             if all_text:
                 counter += 1
@@ -310,47 +309,49 @@ class CSV_Annotator():
         except ValueError:
             return False
 
-    def get_value_type(self, string):
+    def get_value_type(self, string: str)-> Tuple:
         string = str(string)
         # remove spaces and replace , with . and
         string = string.strip().replace(',', '.')
         if len(string) == 0:
-            return 'BLANK'
+            return 'BLANK', None
         try:
             t = ast.literal_eval(string)
         except ValueError:
-            return 'TEXT'
+            return 'TEXT', XSD.string
         except SyntaxError:
             if self.is_date(string):
-                return 'DATE'
+                return 'DATE', XSD.dateTime
             else:
-                return 'TEXT'
+                return 'TEXT', XSD.string
         else:
             if type(t) in [int, float, bool]:
                 if type(t) is int:
-                    return 'INT'
+                    return 'INT', XSD.integer
                 if t in set((True, False)):
-                    return 'BOOL'
+                    return 'BOOL', XSD.boolean
                 if type(t) is float:
-                    return 'FLOAT'
+                    return 'FLOAT', XSD.double
             else:
-                return 'TEXT'
+                #return 'TEXT'
+                return 'TEXT', XSD.string
 
     def describe_value(self, value_string):
         #remove leading and trailing white spaces
         if pd.isna(value_string):
             return {}
-        elif self.get_value_type(value_string) == 'INT':
-            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': int(value_string), '@type': 'xsd:integer'}}
-        elif self.get_value_type(value_string) == 'BOOL':
-            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': bool(value_string), '@type': 'xsd:boolean'}}
-        elif self.get_value_type(value_string) == 'FLOAT':
+        val_type=self.get_value_type(value_string)
+        if val_type[0] == 'INT':
+            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': int(value_string), '@type': str(val_type[1])}}
+        elif val_type[0] == 'BOOL':
+            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': bool(value_string), '@type': str(val_type[1])}}
+        elif val_type[0] == 'FLOAT':
             if isinstance(value_string,str):
                 #replace , with . as decimal separator
                 value_string = value_string.strip().replace(',', '.')
-            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': float(value_string), '@type': 'xsd:decimal'}}
-        elif self.get_value_type(value_string) == 'DATE':
-            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': str(parse(value_string).isoformat()), '@type': 'xsd:dateTime'}}
+            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': float(value_string), '@type': str(val_type[1])}}
+        elif val_type[0] == 'DATE':
+            return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': str(parse(value_string).isoformat()), '@type': str(val_type[1])}}
         else:
             return {
                 "@type": "oa:TextualBody",
@@ -467,7 +468,7 @@ class CSV_Annotator():
         # print(params)
         return params
 
-    def process_file(self, file_name, file_data, separator, header_separator, encoding, file_namespace=None) -> dict:
+    def process_file(self, file_name, file_data, separator, header_separator, encoding, file_domain='') -> dict:
         """
 
         :param file_name: name of the file we want to process
@@ -484,15 +485,20 @@ class CSV_Annotator():
         """
 
         # init results dict
-        data_root_url = "https://github.com/Mat-O-Lab/resources/"
+        #data_root_url = "https://github.com/Mat-O-Lab/resources/"
 
-        if not file_namespace:
-            file_namespace = ''
         metadata_csvw = dict()
         metadata_csvw["@context"] = self.json_ld_context        
 
-        metadata_csvw["@id"]=file_namespace
-        metadata_csvw["url"] = file_name
+        meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
+        metadata_url='{}/{}'.format(file_domain,meta_file_name)
+        
+        metadata_csvw["@id"]=metadata_url
+        if self.url:
+            metadata_csvw["url"] = self.url
+        else:
+            metadata_csvw["url"] = file_name
+        
         data_table_header_row_index, data_table_column_count = self.get_table_charateristics(
             file_data, separator, encoding)
         # read additional header lines and provide as meta in results dict
@@ -511,6 +517,12 @@ class CSV_Annotator():
         metadata_csvw["dialect"] = {"delimiter": separator,
                                     "skipRows": data_table_header_row_index, "headerRowCount": header_lines, "encoding": encoding}
         # describe columns
+        #print([(string, self.get_value_type(string)) for string in line.split(separator_string)])
+        table_schema = self.describe_table(table_data)
+        metadata_csvw['tableSchema'] = table_schema
+        return {'filename':meta_file_name, 'filedata': metadata_csvw}
+    def describe_table(self, table_data: pd.DataFrame)-> dict:
+        table_schema=dict()
         if not table_data.empty:
             column_json = list()
             #adding an index identifier
@@ -528,7 +540,7 @@ class CSV_Annotator():
                 "@type": "Column"
             }
             column_json.append(json_str)
-            for titles in table_data.columns:
+            for colnum, titles in enumerate(table_data.columns):
                 if isinstance(titles,Tuple):
                     titles_list=[*titles]
                 else:
@@ -554,14 +566,16 @@ class CSV_Annotator():
                     json_str['@type']=["Column","qudt:QuantityValue"]
                 else:
                     json_str['@type']=["Column"]
+                #print(titles_list,column_types[colnum])
+                xsd_format=self.get_value_type(table_data.iloc[1][colnum])[1]
+                if xsd_format:
+                    json_str['format'] = xsd_format
                 column_json.append(json_str)
-            metadata_csvw["tableSchema"] = {"columns": column_json}
-            metadata_csvw["tableSchema"] ["primaryKey"] = column_json[0]['name']
-            metadata_csvw["tableSchema"] ["aboutUrl"] = "#gid-{GID}"
-            # metadata_csvw["tableSchema"] ["propertyUrl"] = "schema:value"
-    
-        meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
-        return {'filename':meta_file_name, 'filedata': metadata_csvw}
+            table_schema = {"columns": column_json}
+            table_schema["primaryKey"] = column_json[0]['name']
+            table_schema["aboutUrl"] = "#gid-{GID}"
+            # table_schema["propertyUrl"] = "schema:value"
+        return table_schema
 
     def set_encoding(self, new_encoding: str):
         self.encoding = new_encoding

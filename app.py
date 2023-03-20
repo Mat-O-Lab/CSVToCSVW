@@ -19,6 +19,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, Response
 
 from wtforms import URLField, SelectField
+from datetime import datetime
 
 import logging
 
@@ -28,7 +29,7 @@ class Settings(BaseSettings):
     app_name: str = "CSVtoCSVW"
     admin_email: str = os.environ.get("ADMIN_MAIL") or "csvtocsvw@matolab.org"
     items_per_user: int = 50
-    version: str = "v1.1.7"
+    version: str = "v1.1.8"
     config_name: str = os.environ.get("APP_MODE") or "development"
     openapi_url: str ="/api/openapi.json"
     docs_url: str = "/api/docs"
@@ -44,7 +45,7 @@ def get_flashed_messages(request: Request):
     print(request.session)
     return request.session.pop("_messages") if "_messages" in request.session else []
 
-middleware = [Middleware(SessionMiddleware, secret_key='super-secret')]
+middleware = [Middleware(SessionMiddleware, secret_key=os.environ.get('APP_SECRET','1nji79hb10009'))]
 app = FastAPI(
     title="CSVtoCSVW",
     description="Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at CSVW to describe structure and information within. Also uses QUDT units ontology to lookup and describe units.",
@@ -151,16 +152,29 @@ async def index(request: Request):
         }
     )
 
+def document_prov(api_url: str) -> dict:
+        return {
+            "prov:wasGeneratedBy": {
+                "id": app.title,
+                "@type": "prov:Activity",
+                "prov:wasAssociatedWith":  api_url
+            },
+            "prov:generatedAtTime": {
+                    "@value": str(datetime.now()),
+                    "@type": "xsd:dateTime"
+                }
+            }
 
 @app.post("/api/annotation",response_model=AnnotateResponse)
-def annotation(annotate: AnnotateRequest) -> dict:
+def annotation(annotate: AnnotateRequest, request: Request) -> dict:
     try:
         annotator = CSV_Annotator(
             encoding=annotate.encoding, separator=annotate.separator, header_separator=annotate.header_separator)
-        result = annotator.process(annotate.data_url)
+        result=annotator.process_web_ressource(annotate.data_url)
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail=str(e))
+    result["filedata"]={**result["filedata"],**document_prov(request.url._url)}
     return result
 
 from csvw_parser import CSVWtoRDF

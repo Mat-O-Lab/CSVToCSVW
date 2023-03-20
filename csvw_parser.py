@@ -127,7 +127,6 @@ class CSVWtoRDF:
             g.add((row_node, CSVW.describes, value_node))
             g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,index+self.dialect_dict[CSVW.skipRows]+self.dialect_dict[CSVW.headerRowCount]))))
             for cell_index, cell in enumerate(row):
-                # print(self.columns[cell_index])
                 column=self.columns[cell_index][0]
                 if self.columns[cell_index][1][CSVW.name]==Literal('GID'):
                     continue
