@@ -96,7 +96,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       },
       {
         "titles": [
@@ -113,7 +115,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       },
       {
         "titles": [
@@ -130,7 +134,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       },
       {
         "titles": [
@@ -147,7 +153,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -164,7 +172,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -181,7 +191,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -198,7 +210,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -215,7 +229,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -232,7 +248,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       },
       {
         "titles": [
@@ -244,7 +262,9 @@
         "@type": [
           "Column"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -256,7 +276,9 @@
         "@type": [
           "Column"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -268,7 +290,9 @@
         "@type": [
           "Column"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -280,7 +304,9 @@
         "@type": [
           "Column"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -292,7 +318,9 @@
         "@type": [
           "Column"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       },
       {
         "titles": [
@@ -304,24 +332,26 @@
         "@type": [
           "Column"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#boolean"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
       }
     ],
     "primaryKey": "GID",
     "aboutUrl": "#gid-{GID}"
   },
   "prov:wasGeneratedBy": {
-    "id": "http://localhost:5001/api/annotation",
+    "@id": "http://localhost:5001/api/annotation",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "id": "CSVtoCSVWv1.1.8",
-      "rdfs.label": "CSVtoCSVW",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.8",
+      "rdfs:label": "CSVtoCSVWv1.1.8",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-20T15:48:06.996112",
+    "@value": "2023-03-20T15:51:12.898631",
     "@type": "xsd:dateTime"
   }
 }

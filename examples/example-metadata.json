@@ -380,7 +380,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       },
       {
         "titles": [
@@ -398,7 +400,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       },
       {
         "titles": [
@@ -416,7 +420,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       },
       {
         "titles": [
@@ -434,7 +440,9 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       },
       {
         "titles": [
@@ -452,24 +460,26 @@
           "Column",
           "qudt:QuantityValue"
         ],
-        "format": "http://www.w3.org/2001/XMLSchema#double"
+        "format": {
+          "@id": "http://www.w3.org/2001/XMLSchema#double"
+        }
       }
     ],
     "primaryKey": "GID",
     "aboutUrl": "#gid-{GID}"
   },
   "prov:wasGeneratedBy": {
-    "id": "http://localhost:5001/api/annotation",
+    "@id": "http://localhost:5001/api/annotation",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "id": "CSVtoCSVWv1.1.8",
-      "rdfs.label": "CSVtoCSVW",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.8",
+      "rdfs:label": "CSVtoCSVWv1.1.8",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-20T15:48:03.780043",
+    "@value": "2023-03-20T15:51:09.749650",
     "@type": "xsd:dateTime"
   }
 }
