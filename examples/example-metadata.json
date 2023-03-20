@@ -459,12 +459,17 @@
     "aboutUrl": "#gid-{GID}"
   },
   "prov:wasGeneratedBy": {
-    "id": "CSVtoCSVW",
+    "id": "http://localhost:5001/api/annotation",
     "@type": "prov:Activity",
-    "prov:wasAssociatedWith": "http://localhost:5001/api/annotation"
+    "prov:wasAssociatedWith": {
+      "id": "CSVtoCSVWv1.1.8",
+      "rdfs.label": "CSVtoCSVW",
+      "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
+      "@type": "prov:SoftwareAgent"
+    }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-20 12:46:19.192819",
+    "@value": "2023-03-20 13:05:54.734350",
     "@type": "xsd:dateTime"
   }
 }
