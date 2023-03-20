@@ -166,7 +166,7 @@ def document_prov(api_url: str) -> dict:
                 }
             },
             "prov:generatedAtTime": {
-                    "@value": str(datetime.now()),
+                    "@value": str(datetime.now().isoformat()),
                     "@type": "xsd:dateTime"
                 }
             }
