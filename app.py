@@ -153,14 +153,14 @@ async def index(request: Request):
         }
     )
 
-def document_prov(api_url: str) -> dict:
+def annotate_prov(api_url: str) -> dict:
         return {
             "prov:wasGeneratedBy": {
                 "@id": api_url,
                 "@type": "prov:Activity",
                 "prov:wasAssociatedWith":  {
-                    "@id": settings.app_name+settings.version,
-                    "rdfs:label": settings.app_name,
+                    "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/"+settings.version,
+                    "rdfs:label": settings.app_name+settings.version,
                     "prov:hadPrimarySource": settings.source,
                     "@type": "prov:SoftwareAgent"
                 }
@@ -180,7 +180,7 @@ def annotation(annotate: AnnotateRequest, request: Request) -> dict:
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail=str(e))
-    result["filedata"]={**result["filedata"],**document_prov(request.url._url)}
+    result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
     return result
 
 from csvw_parser import CSVWtoRDF
@@ -190,8 +190,8 @@ from csvw_parser import CSVWtoRDF
             "content": {"text/utf-8": {}},
             "description": "Return serialized rdf as file download.",
         }
-    },)
-async def rdf(request: RDFRequest= Body(
+    })
+async def rdf(request: Request, rdfrequest: RDFRequest= Body(
         examples={
             "as download": {
                 "summary": "A rdf example, returned as download",
@@ -210,14 +210,14 @@ async def rdf(request: RDFRequest= Body(
             },
         }
     )) -> Response:
-    converter=CSVWtoRDF(request.metadata_url,request.csv_url)
+    converter=CSVWtoRDF(rdfrequest.metadata_url,rdfrequest.csv_url, request.url._url)
     filename=converter.file_url.rsplit('/',1)[-1]
     headers = {
         'Content-Disposition': 'attachment; filename={}'.format(filename)
     }
     filedata=converter.convert()
     #print(converter.metadata['tables'][0])
-    if request.as_json:
+    if rdfrequest.as_json:
         return {"filename": filename, "filedata": filedata}
     else:
         return Response(filedata, headers=headers,  media_type='text/utf-8')
