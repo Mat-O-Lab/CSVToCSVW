@@ -723,17 +723,17 @@
   },
   "tableSchema": {},
   "prov:wasGeneratedBy": {
-    "id": "http://localhost:5001/api/annotation",
+    "@id": "http://localhost:5001/api/annotation",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "id": "CSVtoCSVWv1.1.8",
-      "rdfs.label": "CSVtoCSVW",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.8",
+      "rdfs:label": "CSVtoCSVWv1.1.8",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-20T13:22:27.550714",
+    "@value": "2023-03-20T15:51:13.348590",
     "@type": "xsd:dateTime"
   }
 }
