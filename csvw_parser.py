@@ -57,7 +57,7 @@ def open_csv(uri: str) -> Tuple[str,str]:
             return None
         return filedata, filename
 
-def parse_graph(url: str, graph: Graph) -> Graph:
+def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
     """Parse a Graph from web url to rdflib graph object
     Args:
         url (AnyUrl): Url to an web ressource
@@ -66,11 +66,10 @@ def parse_graph(url: str, graph: Graph) -> Graph:
         Graph: Rdflib graph Object
     """
     parsed_url=urlparse(url)
-    format=guess_format(parsed_url.path)
     if not format:
-        format='xml'
+        format=guess_format(parsed_url.path)
     if parsed_url.scheme in ['https', 'http']:
-        graph.parse(unquote(parsed_url.geturl()), format=format)
+        graph.parse(urlopen(parsed_url.geturl()).read(), format=format)
 
     elif parsed_url.scheme == 'file':
         print(parsed_url.path)
@@ -81,11 +80,11 @@ def parse_graph(url: str, graph: Graph) -> Graph:
 class CSVWtoRDF:
     """Class for Converting CSV data to RDF with help of CSVW Annotations
     """
-    def __init__(self,metadata_url: str, csv_url: str, api_url: None) -> None:
+    def __init__(self,metadata_url: str, csv_url: str, api_url: None, metaformat: str="json-ld") -> None:
         self.metadata_url=metadata_url
         self.api_url=api_url
         # get metadata graph
-        self.metagraph=parse_graph(metadata_url,Graph())
+        self.metagraph=parse_graph(metadata_url,Graph(),format=metaformat)
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
         self.graph=Graph()
         self.base_url="{}/".format(str(self.meta_root).rsplit('/',1)[0])
