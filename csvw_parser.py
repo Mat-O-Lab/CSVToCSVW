@@ -66,6 +66,7 @@ def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
         Graph: Rdflib graph Object
     """
     parsed_url=urlparse(url)
+    print(parsed_url)
     if not format:
         format=guess_format(parsed_url.path)
     if parsed_url.scheme in ['https', 'http']:
@@ -84,12 +85,13 @@ class CSVWtoRDF:
         self.metadata_url=metadata_url
         self.api_url=api_url
         # get metadata graph
-        self.metagraph=parse_graph(metadata_url,Graph(),format=metaformat)
+        self.metagraph=parse_graph(metadata_url,Graph(base=self.metadata_url),format=metaformat)
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
-        print('meta_root: '+self.meta_root)
-        print('csv_url: '+url)
+        
+        #print('meta_root: '+self.meta_root)
+        #print('csv_url: '+url)
         self.graph=Graph()
-        self.base_url="{}/".format(str(self.meta_root).rsplit('/',1)[0])
+        self.base_url="{}/".format(str(self.meta_root).rsplit('/download/upload')[0].rsplit('/',1)[0])
         parsed_url=urlparse(url)
         if parsed_url.scheme in ['https', 'http', 'file']:
             self.csv_url=url
@@ -99,15 +101,17 @@ class CSVWtoRDF:
         if csv_url:
             self.csv_url=csv_url
         print(self.metadata_url,self.csv_url)
-        self.file_url=self.csv_url.rsplit('.',1)[0]+".ttl"
+        self.file_url=self.csv_url.rsplit('/download/upload')[0].rsplit('.',1)[0]+".ttl"
         dialect=next(self.metagraph[self.meta_root : CSVW.dialect],None)
+        
+        
         self.dialect_dict={k: v.value for (k,v) in self.metagraph[dialect:]}
         print(self.dialect_dict)
         self.table_schema_node=next(self.metagraph[ self.meta_root: CSVW.tableSchema: ],None)
         self.table_aboutUrl=next(self.metagraph[self.table_schema_node : CSVW.aboutUrl],None)
         columns=self.metagraph[ : RDF.type : CSVW.Column]
         self.columns=[(column,{ k: v for (k,v) in self.metagraph[column:]}) for column in columns]
-        print(len(self.columns))
+        print(len(self.columns),self.columns[0])
         # get table form csv_url
         if self.table_schema_node:
             self.table = parse_csv_from_url_to_list(
@@ -145,21 +149,21 @@ class CSVWtoRDF:
                 if self.columns[cell_index][1][CSVW.name]==Literal('GID'):
                     continue
                 else:
-                    if isinstance(column,URIRef): #has proper uri
-                        g.add((value_node, column, Literal(cell)))
-                    elif CSVW.aboutUrl in self.columns[cell_index][1].keys():
+                    # if isinstance(column,URIRef) and str(self.meta_root)!='file:///src/': #has proper uri
+                    #     g.add((value_node, column, Literal(cell)))
+                    if CSVW.aboutUrl in self.columns[cell_index][1].keys():
                         aboutUrl=self.columns[cell_index][1][CSVW.aboutUrl]
                         g.add((value_node, URIRef(aboutUrl.format(GID=index)), Literal(cell, datatype=format)))
                     else:
                         url=self.columns[cell_index][1][CSVW.name]
-                        g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/',1)[0],url)), Literal(cell, datatype=format)))
+                        g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/download/upload')[0],url)), Literal(cell, datatype=format)))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
-        graph=self.convert_table() 
-        graph.bind('base',self.base_url, override=True)
+        graph=self.convert_table()
         if self.api_url:
             graph=csvwtordf_prov(graph, self.api_url, self.csv_url, self.metadata_url)
+        
         return graph.serialize(format=format)
 
 from app import settings

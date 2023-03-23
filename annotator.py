@@ -10,7 +10,7 @@ import re
 import ast
 import json
 from urllib.request import urlopen
-from urllib.parse import urlparse, unquote
+from urllib.parse import urlparse, unquote, quote
 from dateutil.parser import parse
 from csv import Sniffer
 
@@ -431,7 +431,6 @@ class CSV_Annotator():
                     if value in ['nan','None']:
                         continue
                     #first test rest of to_test for beeing a value, if add a quantity value - not add textual body
-                    #print(to_test,value,unit_json)
                     if to_test:
                         toadd=self.describe_value(to_test)
                         if toadd.get('@type') == 'qudt:QuantityValue':
@@ -471,8 +470,11 @@ class CSV_Annotator():
         metadata_csvw["@context"] = self.json_ld_context        
 
         meta_file_name = file_name.split(sep='.')[0] + '-metadata.json'
-        metadata_url='{}/{}'.format(file_domain,meta_file_name)
-        
+        if len(file_name.split(sep='.'))>1:
+            metadata_url='{}{}'.format(file_domain,meta_file_name)
+        else:
+            metadata_url=''
+        print(metadata_url)
         metadata_csvw["@id"]=metadata_url
         if self.url:
             metadata_csvw["url"] = self.url
