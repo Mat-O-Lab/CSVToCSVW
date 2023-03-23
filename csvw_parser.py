@@ -46,7 +46,7 @@ def open_csv(uri: str) -> Tuple[str,str]:
         print('not an uri - if local file add file:// as prefix')
         return None
     else:
-        filename = unquote(uri_parsed.path).split('/')[-1]
+        filename = unquote(uri_parsed.path).rsplit('/download/upload')[0].split('/')[-1]
         if uri_parsed.scheme in ['https', 'http']:
             filedata = urlopen(uri).read()
 
@@ -86,6 +86,8 @@ class CSVWtoRDF:
         # get metadata graph
         self.metagraph=parse_graph(metadata_url,Graph(),format=metaformat)
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
+        print('meta_root: '+self.meta_root)
+        print('csv_url: '+url)
         self.graph=Graph()
         self.base_url="{}/".format(str(self.meta_root).rsplit('/',1)[0])
         parsed_url=urlparse(url)

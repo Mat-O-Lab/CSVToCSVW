@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from curses import meta
+from fileinput import filename
 from multiprocessing import context
 from typing import Tuple
 import pandas as pd
@@ -44,7 +45,8 @@ def get_data(uri=''):
         print('not an uri - if local file add file:// as prefix')
         return None
     else:
-        filename = unquote(uri_parsed.path).split('/')[-1]
+        filename = unquote(uri_parsed.path).rsplit('/download/upload')[0].split('/')[-1]
+        #print(uri,filename)
         if uri_parsed.scheme in ['https', 'http']:
             filedata = urlopen(uri).read()
 
@@ -116,7 +118,7 @@ class CSV_Annotator():
                 self.separator=separator
                 
         #print(url,self.separator, self.header_separator, self.encoding, self.include_table_data)
-        result = self.process_file(self.file_name, self.file_data, self.separator, self.header_separator, self.encoding, self.url.rsplit('/',1)[0])
+        result = self.process_file(self.file_name, self.file_data, self.separator, self.header_separator, self.encoding, self.url.rsplit(self.file_name,1)[0])
         return result
 
     def get_encoding(self, file_data):
