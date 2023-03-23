@@ -316,6 +316,10 @@
           "qudt:value": {
             "@value": 1,
             "@type": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/NUM",
+            "@type": "http://qudt.org/schema/qudt/CountingUnit"
           }
         },
         {
@@ -479,7 +483,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-20T15:51:09.749650",
+    "@value": "2023-03-23T07:24:22.854231",
     "@type": "xsd:dateTime"
   }
 }

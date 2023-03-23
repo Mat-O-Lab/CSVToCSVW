@@ -88,7 +88,7 @@
         {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
-            "@value": "2023-03-20T11:55:02",
+            "@value": "2023-03-23T11:55:02",
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
           }
         }
@@ -154,6 +154,10 @@
           "qudt:value": {
             "@value": 1,
             "@type": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/NUM",
+            "@type": "http://qudt.org/schema/qudt/CountingUnit"
           }
         }
       ]
@@ -189,6 +193,10 @@
           "qudt:value": {
             "@value": 1,
             "@type": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/NUM",
+            "@type": "http://qudt.org/schema/qudt/CountingUnit"
           }
         }
       ]
@@ -413,6 +421,12 @@
       },
       "oa:hasBody": [
         {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "1:"
+        },
+        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 0,
@@ -565,6 +579,10 @@
           "qudt:value": {
             "@value": 1,
             "@type": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/NUM",
+            "@type": "http://qudt.org/schema/qudt/CountingUnit"
           }
         }
       ]
@@ -597,6 +615,12 @@
       },
       "oa:hasBody": [
         {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "1:"
+        },
+        {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
             "@value": 2,
@@ -623,6 +647,10 @@
           "qudt:value": {
             "@value": 1,
             "@type": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/NUM",
+            "@type": "http://qudt.org/schema/qudt/CountingUnit"
           }
         },
         {
@@ -733,7 +761,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-20T15:51:13.348590",
+    "@value": "2023-03-23T07:24:26.599425",
     "@type": "xsd:dateTime"
   }
 }
