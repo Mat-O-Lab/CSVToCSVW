@@ -21,11 +21,6 @@ from rdflib import Graph, URIRef, Literal, Namespace, BNode
 from rdflib.namespace import RDF, RDFS, XSD, CSVW, DC, PROV
 from rdflib.plugins.sparql import prepareQuery
 
-#MSEO_URL = 'https://raw.githubusercontent.com/Mat-O-Lab/MSEO/main/MSEO_mid.owl'
-#CCO_URL = 'https://github.com/CommonCoreOntology/CommonCoreOntologies/raw/master/cco-merged/MergedAllCoreOntology-v1.3-2021-03-01.ttl'
-#CCOMU_URL = 'https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/master/UnitsOfMeasureOntology.ttl'
-#QUDT_URL = 'http://www.qudt.org/qudt/owl/1.0.0/unit.owl'
-#QUDT_UNIT_URL = 'http://qudt.org/2.1/vocab/unit'
 QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
 QUDT = Namespace("http://qudt.org/schema/qudt/")
 QUNIT = Namespace("http://qudt.org/vocab/unit/")
@@ -39,25 +34,8 @@ def get_entities_with_property_with_value(graph, property, value):
     return [s for s, p, o in graph.triples((None,  property, value))]
 
 
-#mseo_graph = Graph()
-#mseo_graph.parse(CCO_URL, format='turtle')
-#mseo_graph.parse(MSEO_URL, format='xml')
-
 units_graph = Graph()
 units_graph.parse(QUDT_UNIT_URL, format='turtle')
-# will not use CCO Units anymore QUDT is more mature
-#units_graph.parse(CCOMU_URL, format='turtle')
-#units_graph.parse(MSEO_URL, format='xml')
-
-
-# print(get_entities_with_property_with_value(
-#     units_graph, SI_unit_symbol, Literal('min')))
-#
-# print(get_entities_with_property_with_value(
-#     units_graph, alternative_label, Literal('mm', lang='en')))
-#
-#print(get_entities_with_property_with_value(
-#    units_graph, QUDT.ucumCode, Literal('mm', datatype=QUDT.UCUMcs)))
 
 def get_data(uri=''):
     try:
@@ -84,7 +62,6 @@ class CSV_Annotator():
         self.encoding = encoding
         self.json_ld_context = [
             "http://www.w3.org/ns/csvw", {
-                #"cco": "http://www.ontologyrepository.com/CommonCoreOntologies/",
                 #"mseo": "https://purl.matolab.org/mseo/mid/",
                 "oa": "http://www.w3.org/ns/oa#",
                 "label": "http://www.w3.org/2000/01/rdf-schema#label",
@@ -403,13 +380,12 @@ class CSV_Annotator():
             return None
 
     def serialize_header(self, header_data, filename=None):
-
         params = list()
         info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
             # try to find unit if its last part and separated by space in label
-            print(parm_name, data)
+            #print(parm_name, data)
             body=list()
             #remove : if any at end
             if parm_name[-1]==":":
@@ -425,40 +401,42 @@ class CSV_Annotator():
             para_dict = {'@id': self.make_id(parm_name,filename)+str(
                 data['row']), 'label': parm_name.strip(), '@type': info_line_iri}
             for col_name, value in data.items():
+                value=str(value)
                 #print(body)
                 #print(parm_name,col_name, value,type(value))
                 if col_name == 'row':
                     para_dict['rownum'] = {
                         "@value": data['row'], "@type": "xsd:integer"}
-                # check if its a unit
-                # if unit occurres before values in the line
                 else:
-                    value=str(value)
+                    to_test=value
+                    #test space separated parts for beeing unit strings
+                    for part in to_test.split(' '):
+                        unit_dict = self.get_unit(part.strip())
+                        if unit_dict:
+                            unit_json=unit_dict
+                            #if string is a number unit will be NUM, then dont strip unit of string
+                            if unit_dict['qudt:unit']['@id']!='http://qudt.org/vocab/unit/NUM':
+                                to_test=to_test.replace(part,'').strip()
+                            if not to_test:
+                                #empty string -> add unit if there was aquantity value detected in the row before
+                                if any(entry.get('@type') == 'qudt:QuantityValue' for entry in body):
+                                    for entry in body:
+                                        #print('updating entry')
+                                        if entry.get('@type') == 'qudt:QuantityValue':
+                                            entry.update({**entry,**unit_dict})
+                                            toadd={}
+                            break
                     if value in ['nan','None']:
                         continue
-                    toadd=self.describe_value(value)
-                    #print('1',toadd)
-                    #print(unit_json)
-                    if unit_json:
+                    #first test rest of to_test for beeing a value, if add a quantity value - not add textual body
+                    #print(to_test,value,unit_json)
+                    if to_test:
+                        toadd=self.describe_value(to_test)
                         if toadd.get('@type') == 'qudt:QuantityValue':
                             toadd={**toadd,**unit_json}
-                    else:
-                        unit_dict = self.get_unit(value.strip())
-                        #print('2',unit_dict)
-                        if unit_dict!={} and toadd.get('@type') == 'oa:TextualBody':
-                            # need to add unit to body of type QuantityValue if possible
-                            #print('3',unit_dict)
-                            if any(entry.get('@type') == 'qudt:QuantityValue' for entry in body):
-                                for entry in body:
-                                    #print('updating entry')
-                                    if entry.get('@type') == 'qudt:QuantityValue':
-                                        entry.update({**entry,**unit_dict})
-                                        toadd={}
-                                        continue
-                            else:
-                                unit_json=unit_dict
-                                toadd={}
-                    #print('descibe dict',toadd)
+                        else:
+                            # should result in textual body
+                            toadd=self.describe_value(value)
                 if toadd:
                         body.append(toadd)
                         toadd={}
