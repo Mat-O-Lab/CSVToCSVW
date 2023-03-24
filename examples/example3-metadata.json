@@ -10,7 +10,7 @@
       "prov": "http://www.w3.org/ns/prov#"
     }
   ],
-  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples//example3-metadata.json",
+  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3-metadata.json",
   "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv",
   "notes": [
     {
@@ -88,7 +88,7 @@
         {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
-            "@value": "2023-03-23T11:55:02",
+            "@value": "2023-03-24T11:55:02",
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
           }
         }
@@ -761,7 +761,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-23T11:01:16.251990",
+    "@value": "2023-03-24T11:50:31.604374",
     "@type": "xsd:dateTime"
   }
 }
