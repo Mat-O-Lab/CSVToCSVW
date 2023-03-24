@@ -88,7 +88,7 @@
         {
           "@type": "qudt:QuantityValue",
           "qudt:value": {
-            "@value": "2023-03-23T11:55:02",
+            "@value": "2023-03-24T11:55:02",
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
           }
         }
@@ -761,7 +761,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-23T08:40:05.532321",
+    "@value": "2023-03-24T11:50:31.604374",
     "@type": "xsd:dateTime"
   }
 }
