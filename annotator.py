@@ -475,7 +475,8 @@ class CSV_Annotator():
         else:
             metadata_url=''
         print(metadata_url)
-        metadata_csvw["@id"]=metadata_url
+        #metadata_csvw["@id"]=metadata_url
+        metadata_csvw["@id"]=''
         if self.url:
             metadata_csvw["url"] = self.url
         else:
