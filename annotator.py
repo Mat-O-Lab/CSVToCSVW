@@ -12,7 +12,7 @@ import json
 from urllib.request import urlopen
 from urllib.parse import urlparse, unquote, quote
 from dateutil.parser import parse
-from csv import Sniffer
+from csv import Sniffer, reader
 
 import chardet
 import locale
@@ -95,6 +95,9 @@ class CSV_Annotator():
             '\u2079':'9',
             '\u00b0C':'Cel', #for °C
         }
+        # se order is importent
+        self.regex_separators = [ r";", r"\|", r":+\s+\s*", r"\t", r","]
+
     def process_web_ressource(self, url) -> dict:
         '''
         :return: returns a filename and content(json string dump) of a metafile in the json format.
@@ -167,6 +170,100 @@ class CSV_Annotator():
                 yield len(sep_regex.findall(row)) + 1
                 row = f.readline()
             return
+    def get_line_delimiter(self,line: str)-> (str, int):
+        del_counts = {}
+        #print(line)
+        # count the number of occurrences of each delimiter regex in the line
+        for regex in self.regex_separators:
+            sep_regex = re.compile(regex.__str__())
+        
+            count = len(re.findall(sep_regex, line))
+            del_counts[regex] = count
+        # choose the delimiter regex with the highest count
+        mvp_del_regex = max(del_counts, key=del_counts.get)
+        # extract the delimiter character from the regex
+        search=re.search(mvp_del_regex, line)
+        if search:
+            mvp_del = re.search(mvp_del_regex, line).group()
+        else:
+            return None, None
+        #print("Most probable delimiter is:", most_probable_delimiter)
+        #print(del_counts, mvp_del_regex,mvp_del)
+        results, count=mvp_del_regex, del_counts[mvp_del_regex]
+        #cover case that all in line are float of german notation (,), select the second best of only one occurency less
+        if mvp_del_regex==',':
+            #find second best
+            del_counts.pop(',')
+            second_best_regex=max(del_counts, key=del_counts.get)
+            if del_counts[second_best_regex]>=count-1:
+                #print('replacing with second best rated delimiter')
+                #print(results, count,second_best_regex, del_counts[second_best_regex])
+                results=second_best_regex
+                count=del_counts[second_best_regex]
+                
+        #print("regex: {}, string: {}, occurency: {}".format(mvp_del_regex,mvp_del,del_counts[mvp_del_regex]))
+        return results, count
+    
+    def segment_csv(self,file_data: bytes, encoding: str):
+        segments = []
+        parts={0:{}}
+        file_string=file_data.decode(encoding)
+        i=0
+        s_start=0
+        s_end=0
+        prev=None
+        with io.StringIO(file_string) as f:
+            for line in f:
+                current=self.get_line_delimiter(line.rstrip())
+                if prev is not None and current and current != prev:
+                    segments.append({'start': s_start, 'end': i, 'sep': prev[0], 'count': prev[1]})
+                    s_start=i
+                else:
+                    s_end=i
+                prev = current
+                i+=1
+            #add last segment aswell
+            s_end=i
+            segments.append({'start': s_start, 'end': s_end, 'sep': prev[0], 'count': prev[1]})
+            #if segments have only one line and no header row mark them additional_header
+            parts={}
+            last_part=None
+            for segment in segments:        
+                if last_part is not None:
+                    #update last part to overlab segment
+                    if last_part['sep']==segment['sep'] and  last_part['count']==segment['count']:
+                        last_part['end']=segment['end']
+                    else:
+                        if not parts.keys():
+                            part_num=0
+                        else:
+                            part_num=max(parts.keys())+1
+                        parts[part_num]={'start': segment['start'], 'end': segment['end'], 'sep':segment['sep'], 'count': segment['count'], 'type': 'unknown'}
+                else:
+                    if not parts.keys():
+                            part_num=0
+                    else:
+                        part_num=max(parts.keys())+1
+                    parts[part_num]={'start': segment['start'], 'end': segment['end'], 'sep':segment['sep'], 'count': segment['count'], 'type': 'unknown'}
+                if parts.keys():
+                    last_part=parts[max(parts.keys())]
+            #test lenght of segments and first line of parts to be all text to categorize to meta or data table part
+            parts={key: value for key,value in parts.items() if value['sep']}
+            for key, value in parts.items():
+                f.seek(0)
+                if value['end']-value['start']==1 or value['sep']==':+\\s+\\s*':
+                    value['type']='meta'
+                #test for header line but not if sep ':+\\s+\\s*' should be config style data which is meta
+                elif value['sep']!=':+\\s+\\s*' and value['end']-value['start']>=1:
+                    for i, line in enumerate(f):
+                        if i==value['start']:
+                            tests=[self.get_value_type(string)[0] in ['BLANK', 'TEXT', 'INT'] for string in re.split(value['sep'],line)]
+                            all_text = all(tests)
+                            break
+                    if all_text:
+                        #seams it has at least on header row
+                        value['type']='data'
+        return parts
 
     def get_table_charateristics(self, file_data: bytes, separator: str, encoding: str) -> (int, int):
         """
@@ -255,6 +352,46 @@ class CSV_Annotator():
             skiprows=header_length, encoding=encoding)
         except:
             table_data=pd.DataFrame()
+        return num_header_rows, table_data
+
+    def get_table_data(self, file_data, start: int , end: int , separator: str, encoding):
+        """
+
+        :param file_data: content of the file we want to parse
+        :param separator_string: csv-delimiter
+        :param header_length: rows of the header
+        :param encoding: csv-encoding
+        :return: 2-tuple (num_header_rows, table_data)
+                      where
+                          num_header_rows : number of header rows
+                          table_data : pandas DataFrame object containing the tabular information
+        """
+        #print(separator_string, header_length, encoding)
+        file_string = io.StringIO(file_data.decode(encoding))
+        #skip lines already processed
+        num_header_rows=0
+        counter=0
+        if start>0: 
+            for i,line in enumerate(file_string):
+                if i==(start-1):
+                    break
+        for line in file_string:
+            tests=[self.get_value_type(string)[0] in ['BLANK', 'TEXT', 'INT'] for string in re.split(separator ,line)]
+            all_text = all(tests)
+            if all_text:
+                counter += 1
+                continue
+            else:
+                num_header_rows=counter
+                break
+        #print(num_header_rows,list(range(num_header_rows)))
+        file_string.seek(0)
+        if start>0: 
+            for i,line in enumerate(file_string):
+                if i==(start-1):
+                    break
+        table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=separator, nrows=end-start-num_header_rows, encoding=encoding, engine='python')
+        #print(table_data.columns, separator)
         return num_header_rows, table_data
 
     def get_unit(self, string):
@@ -347,6 +484,37 @@ class CSV_Annotator():
             return filename + '/' + re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
         else:
             return re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
+    def get_meta_data(self, file_data: bytes, start: int , end: int , col_count: int, header_separator='auto', encoding: str = 'utf-8') -> pd.DataFrame: 
+        """
+
+        :param file_data: content of the file we want to parse
+        :param header_lenght: lenght of the additional header at start of csv file in count of rows
+        :param encoding: text encoding
+        :return:
+        """
+        #test the last additional header line for the separator
+        if header_separator=='auto':
+            header_separator = self.get_column_separator(file_data, rownum=end)
+        
+        file_string = io.StringIO(file_data.decode(encoding))
+        #skip to segement start
+        if start>0: 
+            for i,line in enumerate(file_string):
+                if i==(start-1):
+                    break
+        
+        header_df = pd.read_csv(file_string, header=None, sep=header_separator, nrows=end-start,
+                                    names=range(col_count),
+                                    encoding=encoding,
+                                    skip_blank_lines=False,
+                                    engine='python')
+        header_df['row'] = header_df.index
+        header_df.rename(columns={0: 'param'}, inplace=True)
+        header_df.set_index('param', inplace=True)
+        header_df = header_df[~header_df.index.duplicated()]
+        header_df.dropna(thresh=2, inplace=True)
+        #print(header_df)
+        return header_df
 
     def get_additional_header(self, file_data: bytes, header_lenght: int = 0, header_separator='auto', encoding: str = 'utf-8') -> pd.DataFrame: 
         """
@@ -381,13 +549,13 @@ class CSV_Annotator():
         else:
             return None
 
-    def serialize_header(self, header_data, filename=None):
+    def serialize_header(self, header_data, row_offset: int=0, filename=None):
         params = list()
         info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
             # try to find unit if its last part and separated by space in label
-            #print(parm_name, data)
+            print(parm_name, data)
             body=list()
             #remove : if any at end
             if parm_name[-1]==":":
@@ -401,14 +569,14 @@ class CSV_Annotator():
                 #print('unit in param name',unit_json)
                 parm_name=parm_name.rsplit(' ', 1)[0]
             para_dict = {'@id': self.make_id(parm_name,filename)+str(
-                data['row']), 'label': parm_name.strip(), '@type': info_line_iri}
+                data['row']+row_offset), 'label': parm_name.strip(), '@type': info_line_iri}
             for col_name, value in data.items():
-                value=str(value)
+                value=str(value).strip('"')
                 #print(body)
                 #print(parm_name,col_name, value,type(value))
                 if col_name == 'row':
                     para_dict['rownum'] = {
-                        "@value": data['row'], "@type": "xsd:integer"}
+                        "@value": data['row']+row_offset, "@type": "xsd:integer"}
                 else:
                     to_test=value
                     #test space separated parts for beeing unit strings
@@ -478,31 +646,58 @@ class CSV_Annotator():
         #metadata_csvw["@id"]=metadata_url
         metadata_csvw["@id"]=''
         if self.url:
-            metadata_csvw["url"] = self.url
+            url_string = self.url
         else:
-            metadata_csvw["url"] = file_name
-        
-        data_table_header_row_index, data_table_column_count = self.get_table_charateristics(
-            file_data, separator, encoding)
-        # read additional header lines and provide as meta in results dict
-        if data_table_header_row_index != 0:
-            header_data = self.get_additional_header(
-                file_data, data_table_header_row_index, header_separator,encoding)
-            #print(header_data)
-            if not header_data.empty:
-                # print("serialze additinal header")
-                metadata_csvw["notes"] = self.serialize_header(
-                    header_data, filename=None)
-        # read tabular data structure, and determine number of header lines for column description used
-        header_lines, table_data = self.get_num_header_rows_and_dataframe(
-            file_data, separator, data_table_header_row_index, encoding)
-        # describe dialect
-        metadata_csvw["dialect"] = {"delimiter": separator,
-                                    "skipRows": data_table_header_row_index, "headerRowCount": header_lines, "encoding": encoding}
-        # describe columns
-        #print([(string, self.get_value_type(string)) for string in line.split(separator_string)])
-        table_schema = self.describe_table(table_data)
-        metadata_csvw['tableSchema'] = table_schema
+            url_string = file_name
+        metadata_csvw["url"]=url_string
+        #try to find all table like segments in the file
+        parts=self.segment_csv(file_data,encoding)
+        metadata_csvw["notes"]=list()
+        metadata_csvw["tables"]=list()
+        for key, value in parts.items():
+            if value['type']=='meta':
+                meta_data=self.get_meta_data(file_data, start=value['start'], end=value['end'], col_count=value['count']+1,header_separator=value['sep'], encoding=encoding)
+                if not meta_data.empty:
+                    metadata_csvw["notes"].extend(self.serialize_header(meta_data, row_offset=value['start'],filename=None))
+            if value['type']=='data':
+                # read tabular data structure, and determine number of header lines for column description used
+                # table_data=self.get_meta_data(file_data, start=value['start'], end=value['end'], col_count=value['count']+1,header_separator=value['sep'], encoding=encoding)
+                header_lines, table_data = self.get_table_data(file_data, start=value['start'], end=value['end'], separator=value['sep'], encoding=encoding)
+                if not table_data.empty:
+                    table={
+                        "url": url_string,
+                        "dialect": {
+                        "delimiter": value['sep'],
+                        "skipRows": value['start'],
+                        "headerRowCount": header_lines,
+                        "encoding": encoding
+                        },
+                        'tableSchema': self.describe_table(table_data)
+                    }
+                    metadata_csvw["tables"].append((table.copy()))
+
+                    
+        # data_table_header_row_index, data_table_column_count = self.get_table_charateristics(
+        #     file_data, separator, encoding)
+        # # read additional header lines and provide as meta in results dict
+        # if data_table_header_row_index != 0:
+        #     header_data = self.get_additional_header(
+        #         file_data, data_table_header_row_index, header_separator,encoding)
+        #     #print(header_data)
+        #     if not header_data.empty:
+        #         # print("serialze additinal header")
+        #         metadata_csvw["notes"] = self.serialize_header(
+        #             header_data, filename=None)
+        # # read tabular data structure, and determine number of header lines for column description used
+        # header_lines, table_data = self.get_num_header_rows_and_dataframe(
+        #     file_data, separator, data_table_header_row_index, encoding)
+        # # describe dialect
+        # metadata_csvw["dialect"] = {"delimiter": separator,
+        #                             "skipRows": data_table_header_row_index, "headerRowCount": header_lines, "encoding": encoding}
+        # # describe columns
+        # #print([(string, self.get_value_type(string)) for string in line.split(separator_string)])
+        # table_schema = self.describe_table(table_data)
+        # metadata_csvw['tableSchema'] = table_schema
         return {'filename':meta_file_name, 'filedata': metadata_csvw}
     def describe_table(self, table_data: pd.DataFrame)-> dict:
         table_schema=dict()
