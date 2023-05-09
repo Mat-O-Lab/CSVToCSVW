@@ -86,8 +86,7 @@ class AnnotateRequest(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "data_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
-                "encoding": 'auto'
+                "data_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"
             }
         }
 

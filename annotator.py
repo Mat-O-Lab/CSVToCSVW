@@ -177,8 +177,6 @@ class CSV_Annotator():
             mvp_del = re.search(mvp_del_regex, line).group()
         else:
             return None, None
-        #print("Most probable delimiter is:", most_probable_delimiter)
-        #print(del_counts, mvp_del_regex,mvp_del)
         results, count=mvp_del_regex, del_counts[mvp_del_regex]
         #cover case that all in line are float of german notation (,), select the second best of only one occurency less
         if mvp_del_regex==',':
@@ -186,12 +184,8 @@ class CSV_Annotator():
             del_counts.pop(',')
             second_best_regex=max(del_counts, key=del_counts.get)
             if del_counts[second_best_regex]>=count-1:
-                #print('replacing with second best rated delimiter')
-                #print(results, count,second_best_regex, del_counts[second_best_regex])
                 results=second_best_regex
                 count=del_counts[second_best_regex]
-                
-        #print("regex: {}, string: {}, occurency: {}".format(mvp_del_regex,mvp_del,del_counts[mvp_del_regex]))
         return results, count
     
     def segment_csv(self,file_data: bytes, encoding: str):
@@ -218,6 +212,7 @@ class CSV_Annotator():
             #if segments have only one line and no header row mark them additional_header
             parts={}
             last_part=None
+            #joint segments in parts if possible
             for segment in segments:        
                 if last_part is not None:
                     #update last part to overlab segment
@@ -336,14 +331,13 @@ class CSV_Annotator():
             else:
                 num_header_rows=counter
                 break
-        #print(num_header_rows,list(range(num_header_rows)))
         file_string.seek(0)
+        # skip to start of part
         if start>0: 
             for i,line in enumerate(file_string):
                 if i==(start-1):
                     break
         table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=separator, nrows=end-start-num_header_rows, encoding=encoding, engine='python')
-        #print(table_data.columns, separator)
         return num_header_rows, table_data
 
     def get_unit(self, string):
@@ -352,7 +346,6 @@ class CSV_Annotator():
         #get rid of superscripts
         for k in self.superscripts_replace.keys():
             string = string.replace(k, self.superscripts_replace[k])
-        #print(string)
         string=string.replace('N/mm2','MPa')
         string=string.replace('Nm','N.m')
         string=string.replace('sec','s')
@@ -465,7 +458,6 @@ class CSV_Annotator():
         header_df.set_index('param', inplace=True)
         header_df = header_df[~header_df.index.duplicated()]
         header_df.dropna(thresh=2, inplace=True)
-        #print(header_df)
         return header_df
 
 
@@ -486,14 +478,11 @@ class CSV_Annotator():
             else:
                 unit_json = {}
             if unit_json:
-                #print('unit in param name',unit_json)
                 parm_name=parm_name.rsplit(' ', 1)[0]
             para_dict = {'@id': self.make_id(parm_name,filename)+str(
                 data['row']+row_offset), 'label': parm_name.strip(), '@type': info_line_iri}
             for col_name, value in data.items():
                 value=str(value).strip('"')
-                #print(body)
-                #print(parm_name,col_name, value,type(value))
                 if col_name == 'row':
                     para_dict['rownum'] = {
                         "@value": data['row']+row_offset, "@type": "xsd:integer"}
@@ -529,10 +518,8 @@ class CSV_Annotator():
                 if toadd:
                         body.append(toadd)
                         toadd={}
-            #print(body)
             para_dict['oa:hasBody']=body
             params.append(para_dict)
-        # print(params)
         return params
 
     def process_file(self, file_name, file_data, encoding, file_domain='') -> dict:
@@ -641,7 +628,6 @@ class CSV_Annotator():
                     json_str['@type']=["Column","qudt:QuantityValue"]
                 else:
                     json_str['@type']=["Column"]
-                #print(titles_list,column_types[colnum])
                 xsd_format=self.get_value_type(table_data.iloc[1][colnum])[1]
                 if xsd_format:
                     json_str['format'] = {'@id': xsd_format}
