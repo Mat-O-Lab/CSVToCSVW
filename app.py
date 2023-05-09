@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     app_name: str = "CSVtoCSVW"
     admin_email: str = os.environ.get("ADMIN_MAIL") or "csvtocsvw@matolab.org"
     items_per_user: int = 50
-    version: str = "v1.1.8"
+    version: str = "v1.1.9"
     config_name: str = os.environ.get("APP_MODE") or "development"
     openapi_url: str ="/api/openapi.json"
     docs_url: str = "/api/docs"
@@ -78,22 +78,15 @@ templates.env.globals['get_flashed_messages'] = get_flashed_messages
 
 logging.basicConfig(level=logging.DEBUG)
 
-separators = ["auto", ";", ",", "\\t", "\\t+",
-              "|", ":", "\s+", "\s+|\\t+|\s+\\t+|\\t+\s+"]
 encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
 
 class AnnotateRequest(BaseModel):
     data_url: AnyUrl = Field('', title='Raw CSV Url', description='Url to raw csv')
-    separator: Optional[str] = Field('auto', title='Table Column Separator', description='Column separator of the data table part.',omit_default=True)
-    header_separator: Optional[str] = Field('auto', title='Additional Header Column Separator', description='Column separator of additional header that might occure before the data table.',omit_default=True)
     encoding: Optional[str] = Field('auto', title='Encoding', description='Encoding of the file',omit_default=True)
     class Config:
         schema_extra = {
             "example": {
-                "data_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
-                "separator": "auto",
-                "header_separator": "auto",
-                "encoding": 'auto'
+                "data_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"
             }
         }
 
@@ -118,20 +111,6 @@ class StartForm(StarletteForm):
         description='Paste URL to a data file, e.g. csv, TRA',
         render_kw={"class":"form-control", "placeholder": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"},
     )
-    separator = SelectField(
-        'Choose Data Table Separator, default: auto detect',
-        choices=separators,
-        render_kw={"class":"form-control"},
-        description='select a separator for your data table manually',
-        default='auto'
-        )
-    header_separator = SelectField(
-        'Choose Additional Header Separator, default: auto detect',
-        choices=separators,
-        render_kw={"class":"form-control"},
-        description='select a separator for the additional header manually',
-        default='auto'
-        )
     encoding = SelectField(
         'Choose Encoding, default: auto detect',
         choices=encodings,
@@ -173,13 +152,9 @@ def annotate_prov(api_url: str) -> dict:
 
 @app.post("/api/annotation",response_model=AnnotateResponse)
 def annotation(annotate: AnnotateRequest, request: Request) -> dict:
-    try:
-        annotator = CSV_Annotator(
-            encoding=annotate.encoding, separator=annotate.separator, header_separator=annotate.header_separator)
-        result=annotator.process_web_ressource(annotate.data_url)
-    except Exception as e:
-        print(e)
-        raise HTTPException(status_code=500, detail=str(e))
+    annotator = CSV_Annotator(
+            encoding=annotate.encoding)
+    result=annotator.process_web_ressource(annotate.data_url)
     result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
     return result
 
