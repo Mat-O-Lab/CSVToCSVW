@@ -10,7 +10,7 @@
       "prov": "http://www.w3.org/ns/prov#"
     }
   ],
-  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json",
+  "@id": "",
   "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
   "notes": [
     {
@@ -483,7 +483,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-03-24T12:41:47.502736",
+    "@value": "2023-05-09T14:25:05.765657",
     "@type": "xsd:dateTime"
   }
 }
