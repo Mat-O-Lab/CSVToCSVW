@@ -62,296 +62,301 @@
       ]
     }
   ],
-  "dialect": {
-    "delimiter": "\t",
-    "skipRows": 1,
-    "headerRowCount": 1,
-    "encoding": "utf-8"
-  },
-  "tableSchema": {
-    "columns": [
-      {
-        "name": "GID",
-        "titles": [
-          "GID",
-          "Generic Identifier"
-        ],
-        "datatype": "string",
-        "required": true,
-        "suppressOutput": true,
-        "@type": "Column"
+  "tables": [
+    {
+      "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
+      "dialect": {
+        "delimiter": "\\t",
+        "skipRows": 1,
+        "headerRowCount": 1,
+        "encoding": "utf-8"
       },
-      {
-        "titles": [
-          "Maschine [mm]",
-          "MaschineMm"
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "GID",
+            "titles": [
+              "GID",
+              "Generic Identifier"
+            ],
+            "datatype": "string",
+            "required": true,
+            "suppressOutput": true,
+            "@type": "Column"
+          },
+          {
+            "titles": [
+              "Maschine [mm]",
+              "MaschineMm"
+            ],
+            "@id": "MaschineMm",
+            "name": "MaschineMm",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Kraft [kN]",
+              "KraftKn"
+            ],
+            "@id": "KraftKn",
+            "name": "KraftKn",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/KiloN",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Clip-Gauge [mm]",
+              "ClipGaugeMm"
+            ],
+            "@id": "ClipGaugeMm",
+            "name": "ClipGaugeMm",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Drehmoment [Nm]",
+              "DrehmomentNm"
+            ],
+            "@id": "DrehmomentNm",
+            "name": "DrehmomentNm",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/N-M",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "MX840A_0_CH 5 [°C]",
+              "Mx840A0Ch5C"
+            ],
+            "@id": "Mx840A0Ch5C",
+            "name": "Mx840A0Ch5C",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/DEG_C",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "MX840A_0_CH 6 [mm]",
+              "Mx840A0Ch6Mm"
+            ],
+            "@id": "Mx840A0Ch6Mm",
+            "name": "Mx840A0Ch6Mm",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "MX840A_0_CH 7 [V]",
+              "Mx840A0Ch7V"
+            ],
+            "@id": "Mx840A0Ch7V",
+            "name": "Mx840A0Ch7V",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/V",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "MX840A_0_CH 8 [°C]",
+              "Mx840A0Ch8C"
+            ],
+            "@id": "Mx840A0Ch8C",
+            "name": "Mx840A0Ch8C",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/DEG_C",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "Zeit [s]",
+              "ZeitS"
+            ],
+            "@id": "ZeitS",
+            "name": "ZeitS",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/SEC",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Kanal 10",
+              "Kanal10"
+            ],
+            "@id": "Kanal10",
+            "name": "Kanal10",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "Kanal 11",
+              "Kanal11"
+            ],
+            "@id": "Kanal11",
+            "name": "Kanal11",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "Kanal 12",
+              "Kanal12"
+            ],
+            "@id": "Kanal12",
+            "name": "Kanal12",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "Kanal 13",
+              "Kanal13"
+            ],
+            "@id": "Kanal13",
+            "name": "Kanal13",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "Kanal 14",
+              "Kanal14"
+            ],
+            "@id": "Kanal14",
+            "name": "Kanal14",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          },
+          {
+            "titles": [
+              "Kanal 15",
+              "Kanal15"
+            ],
+            "@id": "Kanal15",
+            "name": "Kanal15",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          }
         ],
-        "@id": "MaschineMm",
-        "name": "MaschineMm",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/MilliM",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#double"
-        }
-      },
-      {
-        "titles": [
-          "Kraft [kN]",
-          "KraftKn"
-        ],
-        "@id": "KraftKn",
-        "name": "KraftKn",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/KiloN",
-          "@type": "http://qudt.org/schema/qudt/Unit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#double"
-        }
-      },
-      {
-        "titles": [
-          "Clip-Gauge [mm]",
-          "ClipGaugeMm"
-        ],
-        "@id": "ClipGaugeMm",
-        "name": "ClipGaugeMm",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/MilliM",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#double"
-        }
-      },
-      {
-        "titles": [
-          "Drehmoment [Nm]",
-          "DrehmomentNm"
-        ],
-        "@id": "DrehmomentNm",
-        "name": "DrehmomentNm",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/N-M",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "MX840A_0_CH 5 [°C]",
-          "Mx840A0Ch5C"
-        ],
-        "@id": "Mx840A0Ch5C",
-        "name": "Mx840A0Ch5C",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/DEG_C",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "MX840A_0_CH 6 [mm]",
-          "Mx840A0Ch6Mm"
-        ],
-        "@id": "Mx840A0Ch6Mm",
-        "name": "Mx840A0Ch6Mm",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/MilliM",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "MX840A_0_CH 7 [V]",
-          "Mx840A0Ch7V"
-        ],
-        "@id": "Mx840A0Ch7V",
-        "name": "Mx840A0Ch7V",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/V",
-          "@type": "http://qudt.org/schema/qudt/Unit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "MX840A_0_CH 8 [°C]",
-          "Mx840A0Ch8C"
-        ],
-        "@id": "Mx840A0Ch8C",
-        "name": "Mx840A0Ch8C",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/DEG_C",
-          "@type": "http://qudt.org/schema/qudt/DerivedUnit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "Zeit [s]",
-          "ZeitS"
-        ],
-        "@id": "ZeitS",
-        "name": "ZeitS",
-        "qudt:unit": {
-          "@id": "http://qudt.org/vocab/unit/SEC",
-          "@type": "http://qudt.org/schema/qudt/Unit"
-        },
-        "@type": [
-          "Column",
-          "qudt:QuantityValue"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#double"
-        }
-      },
-      {
-        "titles": [
-          "Kanal 10",
-          "Kanal10"
-        ],
-        "@id": "Kanal10",
-        "name": "Kanal10",
-        "@type": [
-          "Column"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "Kanal 11",
-          "Kanal11"
-        ],
-        "@id": "Kanal11",
-        "name": "Kanal11",
-        "@type": [
-          "Column"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "Kanal 12",
-          "Kanal12"
-        ],
-        "@id": "Kanal12",
-        "name": "Kanal12",
-        "@type": [
-          "Column"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "Kanal 13",
-          "Kanal13"
-        ],
-        "@id": "Kanal13",
-        "name": "Kanal13",
-        "@type": [
-          "Column"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "Kanal 14",
-          "Kanal14"
-        ],
-        "@id": "Kanal14",
-        "name": "Kanal14",
-        "@type": [
-          "Column"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
-      },
-      {
-        "titles": [
-          "Kanal 15",
-          "Kanal15"
-        ],
-        "@id": "Kanal15",
-        "name": "Kanal15",
-        "@type": [
-          "Column"
-        ],
-        "format": {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-        }
+        "primaryKey": "GID",
+        "aboutUrl": "#gid-{GID}"
       }
-    ],
-    "primaryKey": "GID",
-    "aboutUrl": "#gid-{GID}"
-  },
+    }
+  ],
   "prov:wasGeneratedBy": {
     "@id": "http://localhost:5001/api/annotation",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.8",
-      "rdfs:label": "CSVtoCSVWv1.1.8",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.9",
+      "rdfs:label": "CSVtoCSVWv1.1.9",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-09T14:25:08.280831",
+    "@value": "2023-05-10T09:43:03.844180",
     "@type": "xsd:dateTime"
   }
 }
