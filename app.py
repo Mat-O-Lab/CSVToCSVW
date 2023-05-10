@@ -152,9 +152,9 @@ def annotate_prov(api_url: str) -> dict:
 
 @app.post("/api/annotation",response_model=AnnotateResponse)
 def annotation(annotate: AnnotateRequest, request: Request) -> dict:
-    annotator = CSV_Annotator(
-            encoding=annotate.encoding)
-    result=annotator.process_web_ressource(annotate.data_url)
+    annotator = CSV_Annotator(annotate.data_url, encoding=annotate.encoding)
+    #print(annotator)
+    result=annotator.annotate()
     result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
     return result
 
