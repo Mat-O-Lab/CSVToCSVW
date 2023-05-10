@@ -16,7 +16,9 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 ADD . /src
 WORKDIR /src
 # get qudt_units ontology
-RUN curl https://raw.githubusercontent.com/qudt/qudt-public-repo/main/vocab/unit/VOCAB_QUDT-UNITS-ALL-v2.1.ttl > ./ontologies/qudt_unit.ttl
+#RUN curl https://raw.githubusercontent.com/qudt/qudt-public-repo/main/vocab/unit/VOCAB_QUDT-UNITS-ALL-v2.1.ttl > ./ontologies/qudt_unit.ttl
+COPY ./ontologies/qudt_unit.ttl ./ontologies/qudt_unit.ttl
+
 ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
