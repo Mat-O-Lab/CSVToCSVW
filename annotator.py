@@ -479,7 +479,7 @@ class CSV_Annotator():
             if unit_json:
                 parm_name=parm_name.rsplit(' ', 1)[0]
             para_dict = {'@id': self.make_id(parm_name,filename)+str(
-                data['row']+row_offset), 'label': parm_name.strip(), '@type': info_line_iri}
+                data['row']+row_offset), 'label': parm_name.strip('"'), '@type': info_line_iri}
             for col_name, value in data.items():
                 value=str(value).strip('"')
                 if col_name == 'row':
