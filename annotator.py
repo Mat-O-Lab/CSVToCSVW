@@ -467,7 +467,6 @@ class CSV_Annotator():
         for parm_name, data in header_data.to_dict(orient='index').items():
             # describe_value(data['value'])
             # try to find unit if its last part and separated by space in label
-            print(parm_name, data)
             body=list()
             #remove : if any at end
             if parm_name[-1]==":":
