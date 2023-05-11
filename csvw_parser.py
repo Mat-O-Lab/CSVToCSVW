@@ -1,7 +1,9 @@
 
 from typing import Tuple, List
+from collections import OrderedDict
 import pandas as pd
 from rdflib import BNode, URIRef, Literal, Graph
+from rdflib.collection import Collection
 from rdflib.util import guess_format
 from rdflib.namespace import CSVW, RDF, XSD, PROV, RDFS
 from datetime import datetime
@@ -9,8 +11,15 @@ from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 import io
 
-def test_bad_line(seg_list: list[str]) -> list[str] | None:
-    return None
+
+def get_columns_from_schema(schema: URIRef ,graph: Graph)->OrderedDict:
+    column_collection_node=next(graph[ schema : CSVW.column : ],None)
+    #collection must be queried in another way
+    column_collection=Collection(graph,column_collection_node)
+    columns=list(column_collection)
+    return OrderedDict([ (column,{ k: v for (k,v) in graph[column:]}) for column in columns])
+                
+
 def parse_csv_from_url_to_list(csv_url, num_cols: int, delimiter: str=',', skiprows:int =0, num_header_rows: int=2, encoding: str='utf-8') -> List[List]:
     """Parses a csv file using the dialect given, to a list containing the content of every row as list.
 
@@ -28,13 +37,19 @@ def parse_csv_from_url_to_list(csv_url, num_cols: int, delimiter: str=',', skipr
     file_string = io.StringIO(file_data.decode(encoding))
     print(delimiter,num_header_rows+skiprows)
     table_data = pd.read_csv(file_string, 
-                            #header= list(range(num_header_rows)),
+                            header= None,
                             sep=delimiter,
                             usecols=range(num_cols),
                             skiprows=num_header_rows+skiprows,
                             encoding=encoding,
-                            #on_bad_lines=test_bad_line,
+                            skip_blank_lines=False,
+                            #on_bad_lines=test_bad_line,    
                             engine='python')
+    #remove data after blank line
+    blank_df = table_data.loc[table_data.isnull().all(1)]
+    if len(blank_df) > 0:
+        first_blank_index = blank_df.index[0]
+        table_data = table_data[:first_blank_index]
     # add a row index column
     line_list=table_data.to_numpy().tolist()
     line_list=[ [index,]+line for index, line in enumerate(line_list)]
@@ -121,25 +136,19 @@ class CSVWtoRDF:
                 data['dialect']={k: v.value for (k,v) in self.metagraph[dialect:]}
                 #print(data['dialect'])
                 data['schema']=next(self.metagraph[ key: CSVW.tableSchema: ],None)
-                print(list(self.metagraph[ data['schema'] : : ]))
-                column_node=next(self.metagraph[ data['schema'] : CSVW.column : ],None)
-                print(column_node)
-                columns=self.metagraph[ column_node : RDF.type : CSVW.Column]
-                print('columns: {}'.format(columns))
-                data['columns']=[(column,{ k: v for (k,v) in self.metagraph[column:]}) for column in columns]
-                print('columns: {}'.format(columns))
-                break
-                #print(len(data['columns']),data['columns'][0])
+                data['columns']=get_columns_from_schema(data['schema'],self.metagraph)
+                print(data['columns'])
                 # get table form csv_url
                 if data['schema']:
                     data['about_url']=next(self.metagraph[data['schema'] : CSVW.aboutUrl],None)
-                    print(data['dialect'])
-                    print(len(data['columns']))
+                    #print(data['dialect'])
+                    print("skipRows: {} headerRowCount: {}".format(data['dialect'][CSVW.skipRows],data['dialect'][CSVW.headerRowCount]))
                     data['lines'] = parse_csv_from_url_to_list(
                         self.csv_url,
                         delimiter=data['dialect'][CSVW.delimiter],
                         skiprows=data['dialect'][CSVW.skipRows],
-                        num_cols=len(data['columns']),
+                        #always on column less, index is created after reading
+                        num_cols=len(data['columns'].keys())-1,
                         num_header_rows=data['dialect'][CSVW.headerRowCount],
                         encoding=data['dialect'][CSVW.encoding],
                         )
@@ -157,8 +166,9 @@ class CSVWtoRDF:
                 row_uri=data['about_url']
             else:
                 row_uri='#gid-{GID}'
+            columns=list(data['columns'].items())
             for index,row in enumerate(data['lines']):
-                print(row)
+                #print(index, row)
                 row_node=BNode()
                 value_node=URIRef(row_uri.format(GID=index))
                 g.add((table,CSVW.row,row_node))
@@ -168,18 +178,18 @@ class CSVWtoRDF:
                 g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,row_num))))
                 for cell_index, cell in enumerate(row):
                     #print(self.columns[cell_index])
-                    column=data['columns'][cell_index][0]
-                    format=data['columns'][cell_index][1].get('format', XSD.string)
-                    if data['columns'][cell_index][1][CSVW.name]==Literal('GID'):
+                    column_data=columns[cell_index][1]
+                    format=column_data.get('format', XSD.string)
+                    if column_data[CSVW.name]==Literal('GID'):
                         continue
                     else:
                         # if isinstance(column,URIRef) and str(self.meta_root)!='file:///src/': #has proper uri
                         #     g.add((value_node, column, Literal(cell)))
-                        if CSVW.aboutUrl in data['columns'][cell_index][1].keys():
-                            aboutUrl=data['columns'][cell_index][1][CSVW.aboutUrl]
+                        if CSVW.aboutUrl in column_data.keys():
+                            aboutUrl=column_data[CSVW.aboutUrl]
                             g.add((value_node, URIRef(aboutUrl.format(GID=index)), Literal(cell, datatype=format)))
                         else:
-                            url=data['columns'][cell_index][1][CSVW.name]
+                            url=column_data[CSVW.name]
                             g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/download/upload')[0],url)), Literal(cell, datatype=format)))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')

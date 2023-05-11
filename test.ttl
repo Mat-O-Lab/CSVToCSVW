@@ -1,4 +1,4 @@
-@base <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4-metadata.json> .
+@base <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -8,270 +8,148 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <file:///src/> a csvw:TableGroup ;
-    csvw:note <file:///src/BedienerInformation2>,
-        <file:///src/Bemerkungen6>,
-        <file:///src/Datenerfassung12>,
-        <file:///src/Datenerfassung947>,
-        <file:///src/Datum3>,
-        <file:///src/Durchmesser8>,
-        <file:///src/LNge9>,
-        <file:///src/Masse7>,
-        <file:///src/Mts7930>,
-        <file:///src/PrFer4>,
-        <file:///src/Probenbezeichnung5> ;
+    csvw:note <file:///src/AktuelleProbe0>,
+        <file:///src/Bruchkraft13>,
+        <file:///src/Datum15>,
+        <file:///src/Einspannlaenge1>,
+        <file:///src/GeschwindigkeitEModul14>,
+        <file:///src/Kraftmaximum12>,
+        <file:///src/Messlaenge2>,
+        <file:///src/ObereStreckgrenze11> ;
     csvw:table [ csvw:dialect [ csvw:delimiter "\\t" ;
-                    csvw:encoding "utf-8" ;
+                    csvw:encoding "latin-1" ;
                     csvw:headerRowCount "2"^^xsd:nonNegativeInteger ;
-                    csvw:skipRows "13"^^xsd:nonNegativeInteger ] ;
-            csvw:tableSchema [ csvw:aboutUrl "#8-gid-{GID}"^^csvw:uriTemplate ;
-                    csvw:column ( [ a csvw:Column ;
-                                csvw:datatype xsd:string ;
-                                csvw:name "GID" ;
-                                csvw:required true ;
-                                csvw:suppressOutput true ;
-                                csvw:title "GID",
-                                    "Generic Identifier" ] <file:///src/Datum> <file:///src/Laufzeit> <file:///src/Ch1KraftSollwert> <file:///src/Ch1Kraft> <file:///src/Ch1Weg> <file:///src/1944B> <file:///src/1281068> <file:///src/2157> ) ;
+                    csvw:skipRows "16"^^xsd:nonNegativeInteger ] ;
+            csvw:tableSchema [ csvw:aboutUrl "#9-gid-{GID}"^^csvw:uriTemplate ;
+                    csvw:column ( <file:///src/9-GID> <file:///src/9-Pruefzeit> <file:///src/9-Standardweg> <file:///src/9-Standardkraft> <file:///src/9-Dehnung> <file:///src/9-TraverseAbs> ) ;
                     csvw:primaryKey "GID" ] ;
-            csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv"^^xsd:anyURI ],
-        [ csvw:dialect [ csvw:delimiter "\\t" ;
-                    csvw:encoding "utf-8" ;
-                    csvw:headerRowCount "2"^^xsd:nonNegativeInteger ;
-                    csvw:skipRows "948"^^xsd:nonNegativeInteger ] ;
-            csvw:tableSchema [ csvw:aboutUrl "#11-gid-{GID}"^^csvw:uriTemplate ;
-                    csvw:column ( [ a csvw:Column ;
-                                csvw:datatype xsd:string ;
-                                csvw:name "GID" ;
-                                csvw:required true ;
-                                csvw:suppressOutput true ;
-                                csvw:title "GID",
-                                    "Generic Identifier" ] <file:///src/Ch1Kraft> <file:///src/Ch1W2TkMittel> <file:///src/1944A> <file:///src/1944B> <file:///src/1281068> ) ;
-                    csvw:primaryKey "GID" ] ;
-            csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv"^^xsd:anyURI ] ;
-    csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv"^^xsd:anyURI ;
-    prov:generatedAtTime "2023-05-11T10:43:53.045409"^^xsd:dateTime ;
+            csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"^^xsd:anyURI ] ;
+    csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"^^xsd:anyURI ;
+    prov:generatedAtTime "2023-05-11T11:08:55.208223"^^xsd:dateTime ;
     prov:wasGeneratedBy <http://localhost:5001/api/annotation> .
 
-<file:///src/1944A> a csvw:Column ;
+<file:///src/9-Dehnung> a csvw:Column ;
+    qudt:unit <http://qudt.org/vocab/unit/PERCENT> ;
+    csvw:format xsd:double ;
+    csvw:name "Dehnung" ;
+    csvw:title "%",
+        "Dehnung" .
+
+<file:///src/9-GID> a csvw:Column ;
+    csvw:datatype xsd:string ;
+    csvw:name "GID" ;
+    csvw:required true ;
+    csvw:suppressOutput true ;
+    csvw:title "GID",
+        "Generic Identifier" .
+
+<file:///src/9-Pruefzeit> a csvw:Column ;
+    qudt:unit <http://qudt.org/vocab/unit/SEC> ;
+    csvw:format xsd:double ;
+    csvw:name "Pruefzeit" ;
+    csvw:title "Pruefzeit",
+        "Prüfzeit",
+        "s" .
+
+<file:///src/9-Standardkraft> a csvw:Column ;
+    qudt:unit <http://qudt.org/vocab/unit/N> ;
+    csvw:format xsd:double ;
+    csvw:name "Standardkraft" ;
+    csvw:title "N",
+        "Standardkraft" .
+
+<file:///src/9-Standardweg> a csvw:Column ;
     qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
     csvw:format xsd:double ;
-    csvw:name "1944A" ;
-    csvw:title "1944 A",
-        "1944A",
+    csvw:name "Standardweg" ;
+    csvw:title "Standardweg",
         "mm" .
 
-<file:///src/2157> a csvw:Column ;
+<file:///src/9-TraverseAbs> a csvw:Column ;
     qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
     csvw:format xsd:double ;
-    csvw:name "2157" ;
-    csvw:title "2157",
+    csvw:name "TraverseAbs" ;
+    csvw:title "Traverse abs.",
+        "TraverseAbs",
         "mm" .
 
-<file:///src/BedienerInformation2> a oa:Annotation ;
-    rdfs:label "Bediener Information" ;
+<file:///src/AktuelleProbe0> a oa:Annotation ;
+    rdfs:label "aktuelle Probe" ;
+    csvw:rownum 0 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 17 ] .
+
+<file:///src/Bruchkraft13> a oa:Annotation ;
+    rdfs:label "Bruchkraft" ;
+    csvw:rownum 13 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "nicht bekannt" ] .
+
+<file:///src/Datum15> a oa:Annotation ;
+    rdfs:label "Datum" ;
+    csvw:rownum 15 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value "2008-02-20T00:00:00"^^xsd:dateTime ] .
+
+<file:///src/Einspannlaenge1> a oa:Annotation ;
+    rdfs:label "Einspannlänge" ;
+    csvw:rownum 1 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+            qudt:value 8.32756e+02 ] .
+
+<file:///src/GeschwindigkeitEModul14> a oa:Annotation ;
+    rdfs:label "Geschwindigkeit E-Modul" ;
+    csvw:rownum 14 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 1 ],
+        [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "%L0/min" ] .
+
+<file:///src/Kraftmaximum12> a oa:Annotation ;
+    rdfs:label "Kraftmaximum" ;
+    csvw:rownum 12 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MegaPA> ;
+            qudt:value 3.79483e+01 ] .
+
+<file:///src/Messlaenge2> a oa:Annotation ;
+    rdfs:label "Messlänge" ;
     csvw:rownum 2 ;
     oa:hasBody [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "Zeit:" ],
-        [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/SEC> ;
-            qudt:value "2014-07-22T07:20:41"^^xsd:dateTime ],
-        [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/SEC> ;
-            qudt:value 7.849414e+01 ] .
+            oa:value "nicht bekannt" ] .
 
-<file:///src/Bemerkungen6> a oa:Annotation ;
-    rdfs:label "Bemerkungen" ;
-    csvw:rownum 6 ;
+<file:///src/ObereStreckgrenze11> a oa:Annotation ;
+    rdfs:label "obere Streckgrenze" ;
+    csvw:rownum 11 ;
     oa:hasBody [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "Kraftgeregelt 3,9 kN/s" ] .
-
-<file:///src/Ch1KraftSollwert> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/KiloN> ;
-    csvw:format xsd:double ;
-    csvw:name "Ch1KraftSollwert" ;
-    csvw:title "Ch 1 Kraft Sollwert",
-        "Ch1KraftSollwert",
-        "kN" .
-
-<file:///src/Ch1W2TkMittel> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
-    csvw:format xsd:double ;
-    csvw:name "Ch1W2TkMittel" ;
-    csvw:title "Ch 1 W2TK Mittel",
-        "Ch1W2TkMittel",
-        "mm" .
-
-<file:///src/Ch1Weg> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
-    csvw:format xsd:double ;
-    csvw:name "Ch1Weg" ;
-    csvw:title "Ch 1 Weg",
-        "Ch1Weg",
-        "mm" .
-
-<file:///src/Datenerfassung12> a oa:Annotation ;
-    rdfs:label "Datenerfassung" ;
-    csvw:rownum 12 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/SEC> ;
-            qudt:value 5.443555e+02 ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "Zeit:" ],
-        [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/SEC> ;
-            qudt:value "2014-07-22T07:28:27"^^xsd:dateTime ] .
-
-<file:///src/Datenerfassung947> a oa:Annotation ;
-    rdfs:label "Datenerfassung" ;
-    csvw:rownum 947 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/SEC> ;
-            qudt:value 5.443643e+02 ],
-        [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/SEC> ;
-            qudt:value "2014-07-22T07:28:27"^^xsd:dateTime ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "Zeit:" ] .
-
-<file:///src/Datum> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/DAY> ;
-    csvw:format xsd:integer ;
-    csvw:name "Datum" ;
-    csvw:title "Datum",
-        "d" .
-
-<file:///src/Datum3> a oa:Annotation ;
-    rdfs:label "Datum " ;
-    csvw:rownum 3 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value "2000-07-18T00:00:00"^^xsd:dateTime ] .
-
-<file:///src/Durchmesser8> a oa:Annotation ;
-    rdfs:label "Durchmesser " ;
-    csvw:rownum 8 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 1.001e+02 ] .
-
-<file:///src/LNge9> a oa:Annotation ;
-    rdfs:label "L�nge " ;
-    csvw:rownum 9 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 2.998e+02 ] .
-
-<file:///src/Laufzeit> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/SEC> ;
-    csvw:format xsd:double ;
-    csvw:name "Laufzeit" ;
-    csvw:title "Laufzeit",
-        "s" .
-
-<file:///src/Masse7> a oa:Annotation ;
-    rdfs:label "Masse " ;
-    csvw:rownum 7 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 5.6462e+03 ] .
-
-<file:///src/Mts7930> a oa:Annotation ;
-    rdfs:label "MTS793" ;
-    csvw:rownum 0 ;
-    oa:hasBody [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "MPT" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value ":" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "x" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "," ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "DEU" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "x" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "." ],
-        [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/A> ;
-            qudt:value 1 ],
-        [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/A> ;
-            qudt:value 49 ],
-        [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/A> ;
-            qudt:value 1 ] .
-
-<file:///src/PrFer4> a oa:Annotation ;
-    rdfs:label "Pr�fer " ;
-    csvw:rownum 4 ;
-    oa:hasBody [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "Kh" ] .
-
-<file:///src/Probenbezeichnung5> a oa:Annotation ;
-    rdfs:label "Probenbezeichnung " ;
-    csvw:rownum 5 ;
-    oa:hasBody [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "Maack X.x Drucklversuch Probe 11 B" ] .
+            oa:value "nicht bekannt" ] .
 
 <http://localhost:5001/api/annotation> a prov:Activity ;
     prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.9> .
 
-<http://qudt.org/vocab/unit/DAY> a qudt:Unit .
+<http://qudt.org/vocab/unit/MegaPA> a qudt:Unit .
+
+<http://qudt.org/vocab/unit/N> a qudt:DerivedUnit .
+
+<http://qudt.org/vocab/unit/NUM> a qudt:CountingUnit .
+
+<http://qudt.org/vocab/unit/PERCENT> a qudt:Unit .
+
+<http://qudt.org/vocab/unit/SEC> a qudt:Unit .
 
 <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.9> a prov:SoftwareAgent ;
     rdfs:label "CSVtoCSVWv1.1.9" ;
     prov:hadPrimarySource "https://github.com/Mat-O-Lab/CSVToCSVW" .
 
-<file:///src/1281068> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
-    csvw:format xsd:double ;
-    csvw:name "1281068" ;
-    csvw:title "1281068",
-        "mm" .
-
-<file:///src/1944B> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
-    csvw:format xsd:double ;
-    csvw:name "1944B" ;
-    csvw:title "1944 B",
-        "1944B",
-        "mm" .
-
-<file:///src/Ch1Kraft> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/KiloN> ;
-    csvw:format xsd:double ;
-    csvw:name "Ch1Kraft" ;
-    csvw:title "Ch 1 Kraft",
-        "Ch1Kraft",
-        "kN" .
-
-<http://qudt.org/vocab/unit/KiloN> a qudt:Unit .
-
-<http://qudt.org/vocab/unit/A> a qudt:Unit .
-
 <http://qudt.org/vocab/unit/MilliM> a qudt:DerivedUnit .
-
-<http://qudt.org/vocab/unit/SEC> a qudt:Unit .
 
