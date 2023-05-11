@@ -496,10 +496,7 @@ class CSV_Annotator():
                     },
                     **unit_dict
                 }
-                if unit_dict:
-                    json_str['@type']=["Column","qudt:QuantityValue"]
-                else:
-                    json_str['@type']=["Column"]
+                json_str['@type']=["Column"]
                 xsd_format=get_value_type(table_data.iloc[1][colnum])[1]
                 if xsd_format:
                     json_str['format'] = {'@id': xsd_format}
@@ -534,6 +531,7 @@ class CSV_Annotator():
         meta_file_name = self.meta_file_name
         #metadata_csvw["@id"]=metadata_url
         metadata["@id"]=''
+        metadata['@type']=CSVW.TableGroup
         metadata["notes"]=list()
         metadata["tables"]=list()
         

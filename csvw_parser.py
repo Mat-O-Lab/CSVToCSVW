@@ -9,7 +9,9 @@ from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 import io
 
-def parse_csv_from_url_to_list(csv_url,delimiter: str=',', skiprows:int =0, num_header_rows: int=2, encoding: str='utf-8') -> List[List]:
+def test_bad_line(seg_list: list[str]) -> list[str] | None:
+    return None
+def parse_csv_from_url_to_list(csv_url, num_cols: int, delimiter: str=',', skiprows:int =0, num_header_rows: int=2, encoding: str='utf-8') -> List[List]:
     """Parses a csv file using the dialect given, to a list containing the content of every row as list.
 
     Args:
@@ -24,7 +26,15 @@ def parse_csv_from_url_to_list(csv_url,delimiter: str=',', skiprows:int =0, num_
     """
     file_data, file_name = open_csv(csv_url)
     file_string = io.StringIO(file_data.decode(encoding))
-    table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=delimiter, skiprows=num_header_rows+skiprows, encoding=encoding, engine='python')
+    print(delimiter,num_header_rows+skiprows)
+    table_data = pd.read_csv(file_string, 
+                            #header= list(range(num_header_rows)),
+                            sep=delimiter,
+                            usecols=range(num_cols),
+                            skiprows=num_header_rows+skiprows,
+                            encoding=encoding,
+                            #on_bad_lines=test_bad_line,
+                            engine='python')
     # add a row index column
     line_list=table_data.to_numpy().tolist()
     line_list=[ [index,]+line for index, line in enumerate(line_list)]
@@ -104,7 +114,7 @@ class CSVWtoRDF:
         print(self.metadata_url,self.csv_url)
         self.file_url=self.csv_url.rsplit('/download/upload')[0].rsplit('.',1)[0]+".ttl"
         self.tables={table_node: {} for file, table_node in self.metagraph[: CSVW.table: ]}
-        print(self.tables)
+        print('tables: {}'.format(self.tables))
         self.table_data=list()
         if self.tables:
             for key, data in self.tables.items():
@@ -112,26 +122,32 @@ class CSVWtoRDF:
                 data['dialect']={k: v.value for (k,v) in self.metagraph[dialect:]}
                 print(data['dialect'])
                 data['schema']=next(self.metagraph[ key: CSVW.tableSchema: ],None)
-                columns=self.metagraph[ : RDF.type : CSVW.Column]
+                columns=list(self.metagraph[ data['schema'] :  : ])
+                print('columns: {}'.format(columns))
                 data['columns']=[(column,{ k: v for (k,v) in self.metagraph[column:]}) for column in columns]
-                #print(len(self.columns),self.columns[0])
+                print('columns: {}'.format(columns))
+                #print(len(data['columns']),data['columns'][0])
                 # get table form csv_url
                 if data['schema']:
                     data['about_url']=next(self.metagraph[data['schema'] : CSVW.aboutUrl],None)
+                    print(data['dialect'])
+                    print(len(data['columns']))
                     data['lines'] = parse_csv_from_url_to_list(
                         self.csv_url,
                         delimiter=data['dialect'][CSVW.delimiter],
                         skiprows=data['dialect'][CSVW.skipRows],
+                        num_cols=len(data['columns']),
                         num_header_rows=data['dialect'][CSVW.headerRowCount],
                         encoding=data['dialect'][CSVW.encoding],
                         )
-    def convert_table(self) -> Graph:
+    def convert_tables(self) -> Graph:
         g=Graph()
         g.bind("csvw", CSVW)
         table_group=BNode()
         g.add((table_group,RDF.type,CSVW.TableGroup))
         table=BNode()
         for key, data in self.tables.items():
+            print("table: {}, about_url: {}".format(key,data['about_url']))
             g.add((table_group,CSVW.table, key))
             g.add((table,RDF.type,CSVW.Table))
             if data['about_url']:
@@ -139,6 +155,7 @@ class CSVWtoRDF:
             else:
                 row_uri='#gid-{GID}'
             for index,row in enumerate(data['lines']):
+                print(row)
                 row_node=BNode()
                 value_node=URIRef(row_uri.format(GID=index))
                 g.add((table,CSVW.row,row_node))
@@ -164,7 +181,7 @@ class CSVWtoRDF:
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
-        graph=self.convert_table()
+        graph=self.convert_tables()
         if self.api_url:
             graph=csvwtordf_prov(graph, self.api_url, self.csv_url, self.metadata_url)
         
