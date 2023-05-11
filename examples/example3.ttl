@@ -1,0 +1,4 @@
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+
+[] a csvw:TableGroup .
+
