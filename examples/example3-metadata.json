@@ -11,6 +11,7 @@
     }
   ],
   "@id": "",
+  "@type": "http://www.w3.org/ns/csvw#TableGroup",
   "notes": [
     {
       "@id": "Datalogger40Version40Revision70",
@@ -1518,7 +1519,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T09:25:04.517893",
+    "@value": "2023-05-11T10:43:52.375673",
     "@type": "xsd:dateTime"
   }
 }

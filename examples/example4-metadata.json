@@ -11,6 +11,7 @@
     }
   ],
   "@id": "",
+  "@type": "http://www.w3.org/ns/csvw#TableGroup",
   "notes": [
     {
       "@id": "Mts7930",
@@ -373,7 +374,9 @@
               "@id": "http://qudt.org/vocab/unit/DAY",
               "@type": "http://qudt.org/schema/qudt/Unit"
             },
-            "@type": "Column",
+            "@type": [
+              "Column"
+            ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#integer"
             }
@@ -391,8 +394,7 @@
               "@type": "http://qudt.org/schema/qudt/Unit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -411,8 +413,7 @@
               "@type": "http://qudt.org/schema/qudt/Unit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -431,8 +432,7 @@
               "@type": "http://qudt.org/schema/qudt/Unit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -451,8 +451,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -471,8 +470,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -491,8 +489,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -511,8 +508,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -557,8 +553,7 @@
               "@type": "http://qudt.org/schema/qudt/Unit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -577,8 +572,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -597,8 +591,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -617,8 +610,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -637,8 +629,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -662,7 +653,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T09:25:05.207125",
+    "@value": "2023-05-11T10:43:53.045409",
     "@type": "xsd:dateTime"
   }
 }

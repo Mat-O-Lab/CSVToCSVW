@@ -11,6 +11,7 @@
     }
   ],
   "@id": "",
+  "@type": "http://www.w3.org/ns/csvw#TableGroup",
   "notes": [
     {
       "@id": "AktuelleProbe0",
@@ -207,8 +208,7 @@
               "@type": "http://qudt.org/schema/qudt/Unit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -227,8 +227,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -247,8 +246,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -267,8 +265,7 @@
               "@type": "http://qudt.org/schema/qudt/Unit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -287,8 +284,7 @@
               "@type": "http://qudt.org/schema/qudt/DerivedUnit"
             },
             "@type": [
-              "Column",
-              "qudt:QuantityValue"
+              "Column"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -312,7 +308,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T09:25:02.905022",
+    "@value": "2023-05-11T10:43:50.776012",
     "@type": "xsd:dateTime"
   }
 }
