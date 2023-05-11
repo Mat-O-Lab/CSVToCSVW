@@ -24,7 +24,7 @@ def parse_csv_from_url_to_list(csv_url,delimiter: str=',', skiprows:int =0, num_
     """
     file_data, file_name = open_csv(csv_url)
     file_string = io.StringIO(file_data.decode(encoding))
-    table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=delimiter, skiprows=num_header_rows+skiprows, encoding=encoding)
+    table_data = pd.read_csv(file_string, header= list(range(num_header_rows)), sep=delimiter, skiprows=num_header_rows+skiprows, encoding=encoding, engine='python')
     # add a row index column
     line_list=table_data.to_numpy().tolist()
     line_list=[ [index,]+line for index, line in enumerate(line_list)]
@@ -87,7 +87,8 @@ class CSVWtoRDF:
         # get metadata graph
         self.metagraph=parse_graph(metadata_url,Graph(base=self.metadata_url),format=metaformat)
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
-        
+        print('tables')
+        print(list(self.metagraph[:CSVW.table:]))
         #print('meta_root: '+self.meta_root)
         #print('csv_url: '+url)
         self.graph=Graph()
@@ -102,61 +103,64 @@ class CSVWtoRDF:
             self.csv_url=csv_url
         print(self.metadata_url,self.csv_url)
         self.file_url=self.csv_url.rsplit('/download/upload')[0].rsplit('.',1)[0]+".ttl"
-        dialect=next(self.metagraph[self.meta_root : CSVW.dialect],None)
-        
-        
-        self.dialect_dict={k: v.value for (k,v) in self.metagraph[dialect:]}
-        print(self.dialect_dict)
-        self.table_schema_node=next(self.metagraph[ self.meta_root: CSVW.tableSchema: ],None)
-        self.table_aboutUrl=next(self.metagraph[self.table_schema_node : CSVW.aboutUrl],None)
-        columns=self.metagraph[ : RDF.type : CSVW.Column]
-        self.columns=[(column,{ k: v for (k,v) in self.metagraph[column:]}) for column in columns]
-        print(len(self.columns),self.columns[0])
-        # get table form csv_url
-        if self.table_schema_node:
-            self.table = parse_csv_from_url_to_list(
-                self.csv_url,
-                delimiter=self.dialect_dict[CSVW.delimiter],
-                skiprows=self.dialect_dict[CSVW.skipRows],
-                num_header_rows=self.dialect_dict[CSVW.headerRowCount],
-                encoding=self.dialect_dict[CSVW.encoding],
-                )
-        else:
-            self.table=list()
+        self.tables={table_node: {} for file, table_node in self.metagraph[: CSVW.table: ]}
+        print(self.tables)
+        self.table_data=list()
+        if self.tables:
+            for key, data in self.tables.items():
+                dialect=next(self.metagraph[key : CSVW.dialect],None)
+                data['dialect']={k: v.value for (k,v) in self.metagraph[dialect:]}
+                print(data['dialect'])
+                data['schema']=next(self.metagraph[ key: CSVW.tableSchema: ],None)
+                columns=self.metagraph[ : RDF.type : CSVW.Column]
+                data['columns']=[(column,{ k: v for (k,v) in self.metagraph[column:]}) for column in columns]
+                #print(len(self.columns),self.columns[0])
+                # get table form csv_url
+                if data['schema']:
+                    data['about_url']=next(self.metagraph[data['schema'] : CSVW.aboutUrl],None)
+                    data['lines'] = parse_csv_from_url_to_list(
+                        self.csv_url,
+                        delimiter=data['dialect'][CSVW.delimiter],
+                        skiprows=data['dialect'][CSVW.skipRows],
+                        num_header_rows=data['dialect'][CSVW.headerRowCount],
+                        encoding=data['dialect'][CSVW.encoding],
+                        )
     def convert_table(self) -> Graph:
         g=Graph()
         g.bind("csvw", CSVW)
         table_group=BNode()
         g.add((table_group,RDF.type,CSVW.TableGroup))
         table=BNode()
-        g.add((table_group,CSVW.table, table))
-        g.add((table,RDF.type,CSVW.Table))
-        if self.table_aboutUrl:
-            row_uri=self.table_aboutUrl
-        else:
-            row_uri='#gid-{GID}'
-        for index,row in enumerate(self.table):
-            row_node=BNode()
-            value_node=URIRef(row_uri.format(GID=index))
-            g.add((table,CSVW.row,row_node))
-            g.add((row_node, RDF.type, CSVW.Row))
-            g.add((row_node, CSVW.describes, value_node))
-            g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,index+self.dialect_dict[CSVW.skipRows]+self.dialect_dict[CSVW.headerRowCount]))))
-            for cell_index, cell in enumerate(row):
-                #print(self.columns[cell_index])
-                column=self.columns[cell_index][0]
-                format=self.columns[cell_index][1].get('format', XSD.string)
-                if self.columns[cell_index][1][CSVW.name]==Literal('GID'):
-                    continue
-                else:
-                    # if isinstance(column,URIRef) and str(self.meta_root)!='file:///src/': #has proper uri
-                    #     g.add((value_node, column, Literal(cell)))
-                    if CSVW.aboutUrl in self.columns[cell_index][1].keys():
-                        aboutUrl=self.columns[cell_index][1][CSVW.aboutUrl]
-                        g.add((value_node, URIRef(aboutUrl.format(GID=index)), Literal(cell, datatype=format)))
+        for key, data in self.tables.items():
+            g.add((table_group,CSVW.table, key))
+            g.add((table,RDF.type,CSVW.Table))
+            if data['about_url']:
+                row_uri=data['about_url']
+            else:
+                row_uri='#gid-{GID}'
+            for index,row in enumerate(data['lines']):
+                row_node=BNode()
+                value_node=URIRef(row_uri.format(GID=index))
+                g.add((table,CSVW.row,row_node))
+                g.add((row_node, RDF.type, CSVW.Row))
+                g.add((row_node, CSVW.describes, value_node))
+                row_num=index+data['dialect'][CSVW.skipRows]+data['dialect'][CSVW.headerRowCount]
+                g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,row_num))))
+                for cell_index, cell in enumerate(row):
+                    #print(self.columns[cell_index])
+                    column=data['columns'][cell_index][0]
+                    format=data['columns'][cell_index][1].get('format', XSD.string)
+                    if data['columns'][cell_index][1][CSVW.name]==Literal('GID'):
+                        continue
                     else:
-                        url=self.columns[cell_index][1][CSVW.name]
-                        g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/download/upload')[0],url)), Literal(cell, datatype=format)))
+                        # if isinstance(column,URIRef) and str(self.meta_root)!='file:///src/': #has proper uri
+                        #     g.add((value_node, column, Literal(cell)))
+                        if CSVW.aboutUrl in data['columns'][cell_index][1].keys():
+                            aboutUrl=data['columns'][cell_index][1][CSVW.aboutUrl]
+                            g.add((value_node, URIRef(aboutUrl.format(GID=index)), Literal(cell, datatype=format)))
+                        else:
+                            url=data['columns'][cell_index][1][CSVW.name]
+                            g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/download/upload')[0],url)), Literal(cell, datatype=format)))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:

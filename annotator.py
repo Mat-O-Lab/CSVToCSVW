@@ -454,7 +454,7 @@ class CSV_Annotator():
         return params
 
     @staticmethod
-    def __describe_table(table_data: pd.DataFrame)-> dict:
+    def __describe_table(table_data: pd.DataFrame, about_prefix: str='')-> dict:
         table_schema=dict()
         if not table_data.empty:
             column_json = list()
@@ -506,7 +506,7 @@ class CSV_Annotator():
                 column_json.append(json_str)
             table_schema = {"columns": column_json}
             table_schema["primaryKey"] = column_json[0]['name']
-            table_schema["aboutUrl"] = "#gid-{GID}"
+            table_schema["aboutUrl"] = "#{}-gid-{GID}".format(about_prefix)
             # table_schema["propertyUrl"] = "schema:value"
         return table_schema
 
@@ -561,7 +561,7 @@ class CSV_Annotator():
                         "headerRowCount": header_lines,
                         "encoding": self.encoding
                         },
-                        'tableSchema': self.__describe_table(table_data)
+                        'tableSchema': self.__describe_table(table_data, key)
                     }
                     metadata["tables"].append((table.copy()))
 
