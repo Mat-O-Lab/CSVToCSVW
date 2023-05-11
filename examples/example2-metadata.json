@@ -11,7 +11,6 @@
     }
   ],
   "@id": "",
-  "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
   "notes": [
     {
       "@id": "Probe0",
@@ -345,6 +344,7 @@
       }
     }
   ],
+  "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
   "prov:wasGeneratedBy": {
     "@id": "http://localhost:5001/api/annotation",
     "@type": "prov:Activity",
@@ -356,7 +356,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T07:58:07.457950",
+    "@value": "2023-05-11T08:05:04.013914",
     "@type": "xsd:dateTime"
   }
 }

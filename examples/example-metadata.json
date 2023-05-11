@@ -11,7 +11,6 @@
     }
   ],
   "@id": "",
-  "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
   "notes": [
     {
       "@id": "AktuelleProbe0",
@@ -197,14 +196,19 @@
           },
           {
             "titles": [
-              "\"Prüfzeit\"",
-              "\"s\"",
+              "Prüfzeit",
+              "s",
               "Pruefzeit"
             ],
             "@id": "Pruefzeit",
             "name": "Pruefzeit",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/SEC",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
             "@type": [
-              "Column"
+              "Column",
+              "qudt:QuantityValue"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -212,14 +216,19 @@
           },
           {
             "titles": [
-              "\"Standardweg\"",
-              "\"mm\"",
+              "Standardweg",
+              "mm",
               "Standardweg"
             ],
             "@id": "Standardweg",
             "name": "Standardweg",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
             "@type": [
-              "Column"
+              "Column",
+              "qudt:QuantityValue"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -227,14 +236,19 @@
           },
           {
             "titles": [
-              "\"Standardkraft\"",
-              "\"N\"",
+              "Standardkraft",
+              "N",
               "Standardkraft"
             ],
             "@id": "Standardkraft",
             "name": "Standardkraft",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/N",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
             "@type": [
-              "Column"
+              "Column",
+              "qudt:QuantityValue"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -242,14 +256,19 @@
           },
           {
             "titles": [
-              "\"Dehnung\"",
-              "\"%\"",
+              "Dehnung",
+              "%",
               "Dehnung"
             ],
             "@id": "Dehnung",
             "name": "Dehnung",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/PERCENT",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
             "@type": [
-              "Column"
+              "Column",
+              "qudt:QuantityValue"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -257,14 +276,19 @@
           },
           {
             "titles": [
-              "\"Traverse abs.\"",
-              "\"mm\"",
+              "Traverse abs.",
+              "mm",
               "TraverseAbs"
             ],
             "@id": "TraverseAbs",
             "name": "TraverseAbs",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
             "@type": [
-              "Column"
+              "Column",
+              "qudt:QuantityValue"
             ],
             "format": {
               "@id": "http://www.w3.org/2001/XMLSchema#double"
@@ -276,6 +300,7 @@
       }
     }
   ],
+  "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
   "prov:wasGeneratedBy": {
     "@id": "http://localhost:5001/api/annotation",
     "@type": "prov:Activity",
@@ -287,7 +312,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T07:58:05.673784",
+    "@value": "2023-05-11T08:05:02.393418",
     "@type": "xsd:dateTime"
   }
 }
