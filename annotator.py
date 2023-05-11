@@ -155,7 +155,7 @@ def get_unit(string) -> dict:
         return {}
 
 
-def get_column_delimiter(regex_list: list,line: str)-> (str, int):
+def get_column_separator(regex_list: list,line: str)-> (str, int):
     del_counts = {}
     # count the number of occurrences of each delimiter regex in the line
     for regex in regex_list:
@@ -166,9 +166,8 @@ def get_column_delimiter(regex_list: list,line: str)-> (str, int):
     mvp_del_regex = max(del_counts, key=del_counts.get)
     # extract the delimiter character from the regex
     search=re.search(mvp_del_regex, line)
-    if search:
-        mvp_del = re.search(mvp_del_regex, line).group()
-    else:
+    #mvp_del = re.search(mvp_del_regex, line).group()
+    if not search:
         return None, None
     results, count=mvp_del_regex, del_counts[mvp_del_regex]
     #cover case that all in line are float of german notation (,), select the second best of only one occurency less
@@ -231,7 +230,7 @@ class CSV_Annotator():
         self.file_domain=self.url.rsplit(self.file_name,1)[0]
         self.meta_file_name = self.file_name.split(sep='.')[0] + '-metadata.json'
         
-        self.parts=self.segment_csv(self.file_string)
+        self.parts=self.__segment_csv(self.file_string)
 
     @staticmethod
     def read_data(url, encoding: str)->(str,str,str):
@@ -259,7 +258,7 @@ class CSV_Annotator():
         return str(attrs)
     
     @staticmethod
-    def segment_csv(file_string: str)->dict:
+    def __segment_csv(file_string: str)->dict:
         segments = []
         parts={0:{}}
         i=0
@@ -268,7 +267,7 @@ class CSV_Annotator():
         prev=None
         with io.StringIO(file_string) as f:
             for line in f:
-                current=get_column_delimiter(SEPARATORS_REGEX,line.rstrip())
+                current=get_column_separator(SEPARATORS_REGEX,line.rstrip())
                 if prev is not None and current and current != prev:
                     segments.append({'start': s_start, 'end': i, 'sep': prev[0], 'count': prev[1]})
                     s_start=i
@@ -475,10 +474,11 @@ class CSV_Annotator():
             }
             column_json.append(json_str)
             for colnum, titles in enumerate(table_data.columns):
+
                 if isinstance(titles,Tuple):
-                    titles_list=[*titles]
+                    titles_list=[title.strip('"') for title in titles]
                 else:
-                    titles_list=[titles,]
+                    titles_list=[titles.strip('"'),]
                 name_str=make_id(titles_list[0])
                 for title in titles_list:
                     titleparts=title.split(' ')
@@ -529,24 +529,25 @@ class CSV_Annotator():
         # init results dict
         #data_root_url = "https://github.com/Mat-O-Lab/resources/"
 
-        metadata_csvw = dict()
-        metadata_csvw["@context"] = self.context        
+        metadata = dict()
+        metadata["@context"] = self.context        
         meta_file_name = self.meta_file_name
         #metadata_csvw["@id"]=metadata_url
-        metadata_csvw["@id"]=''
+        metadata["@id"]=''
+        metadata["notes"]=list()
+        metadata["tables"]=list()
+        
         if self.url:
             url_string = self.url
         else:
             url_string = self.file_name
-        metadata_csvw["url"]=url_string
+        metadata["url"]=url_string
         #try to find all table like segments in the file
-        metadata_csvw["notes"]=list()
-        metadata_csvw["tables"]=list()
         for key, value in self.parts.items():
             if value['type']=='meta':
                 meta_data=self.__get_data_meta_part(self.file_string, start=value['start'], end=value['end'], col_count=value['count']+1,separator=value['sep'])
                 if not meta_data.empty:
-                    metadata_csvw["notes"].extend(self.__serialize_meta(meta_data, row_offset=value['start'],filename=None))
+                    metadata["notes"].extend(self.__serialize_meta(meta_data, row_offset=value['start'],filename=None))
             if value['type']=='data':
                 # read tabular data structure, and determine number of header lines for column description used
                 # table_data=self.get_meta_data(file_data, start=value['start'], end=value['end'], col_count=value['count']+1,header_separator=value['sep'], encoding=encoding)
@@ -562,9 +563,9 @@ class CSV_Annotator():
                         },
                         'tableSchema': self.__describe_table(table_data)
                     }
-                    metadata_csvw["tables"].append((table.copy()))
+                    metadata["tables"].append((table.copy()))
 
-        return {'filename':meta_file_name, 'filedata': metadata_csvw}
+        return {'filename':meta_file_name, 'filedata': metadata}
     
     def set_encoding(self, new_encoding: str):
         self.encoding = new_encoding
