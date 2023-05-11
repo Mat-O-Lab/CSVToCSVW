@@ -96,9 +96,8 @@ class CSVWtoRDF:
         self.api_url=api_url
         # get metadata graph
         self.metagraph=parse_graph(metadata_url,Graph(base=self.metadata_url),format=metaformat)
+        self.metagraph.serialize('test.ttl',format='turtle')
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
-        print('tables')
-        print(list(self.metagraph[:CSVW.table:]))
         #print('meta_root: '+self.meta_root)
         #print('csv_url: '+url)
         self.graph=Graph()
@@ -120,12 +119,16 @@ class CSVWtoRDF:
             for key, data in self.tables.items():
                 dialect=next(self.metagraph[key : CSVW.dialect],None)
                 data['dialect']={k: v.value for (k,v) in self.metagraph[dialect:]}
-                print(data['dialect'])
+                #print(data['dialect'])
                 data['schema']=next(self.metagraph[ key: CSVW.tableSchema: ],None)
-                columns=list(self.metagraph[ data['schema'] :  : ])
+                print(list(self.metagraph[ data['schema'] : : ]))
+                column_node=next(self.metagraph[ data['schema'] : CSVW.column : ],None)
+                print(column_node)
+                columns=self.metagraph[ column_node : RDF.type : CSVW.Column]
                 print('columns: {}'.format(columns))
                 data['columns']=[(column,{ k: v for (k,v) in self.metagraph[column:]}) for column in columns]
                 print('columns: {}'.format(columns))
+                break
                 #print(len(data['columns']),data['columns'][0])
                 # get table form csv_url
                 if data['schema']:

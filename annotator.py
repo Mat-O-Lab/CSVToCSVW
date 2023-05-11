@@ -459,7 +459,9 @@ class CSV_Annotator():
         if not table_data.empty:
             column_json = list()
             #adding an index identifier
-            json_str={"name": "GID",
+            json_str={
+                "@id": about_prefix+"-GID",
+                "name": "GID",
                 "titles": [
                     "GID",
                     "Generic Identifier"
@@ -490,7 +492,7 @@ class CSV_Annotator():
                 json_str = {
                     **{
                         'titles': titles_list,
-                        '@id': name_str,
+                        '@id': about_prefix+'-'+name_str,
                         'name': name_str,
                         #'aboutUrl': "#gid-{GID}-"+name_str
                     },
