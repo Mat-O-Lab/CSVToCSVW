@@ -1,0 +1,671 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "oa": "http://www.w3.org/ns/oa#",
+      "label": "http://www.w3.org/2000/01/rdf-schema#label",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "qudt": "http://qudt.org/schema/qudt/",
+      "dc": "http://purl.org/dc/elements/1.1/",
+      "prov": "http://www.w3.org/ns/prov#"
+    }
+  ],
+  "@id": "",
+  "notes": [
+    {
+      "@id": "Mts7930",
+      "label": "MTS793",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 0,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "MPT"
+        },
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "DEU"
+        },
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "x"
+        },
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "x"
+        },
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": ","
+        },
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "."
+        },
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": ":"
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 49,
+            "@type": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/A",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 1,
+            "@type": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/A",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 1,
+            "@type": "http://www.w3.org/2001/XMLSchema#integer"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/A",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "BedienerInformation2",
+      "label": "Bediener Information",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 2,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "Zeit:"
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 78.494141,
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/SEC",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": "2014-07-22T07:20:41",
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/SEC",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "Datum3",
+      "label": "Datum ",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 3,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": "2000-07-18T00:00:00",
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "PrFer4",
+      "label": "Pr�fer ",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 4,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "Kh"
+        }
+      ]
+    },
+    {
+      "@id": "Probenbezeichnung5",
+      "label": "Probenbezeichnung ",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 5,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "Maack X.x Drucklversuch Probe 11 B"
+        }
+      ]
+    },
+    {
+      "@id": "Bemerkungen6",
+      "label": "Bemerkungen",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 6,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "Kraftgeregelt 3,9 kN/s"
+        }
+      ]
+    },
+    {
+      "@id": "Masse7",
+      "label": "Masse ",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 7,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 5646.2,
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "Durchmesser8",
+      "label": "Durchmesser ",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 8,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 100.1,
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "LNge9",
+      "label": "L�nge ",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 9,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 299.8,
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "Datenerfassung12",
+      "label": "Datenerfassung",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 12,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "Zeit:"
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 544.35547,
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/SEC",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": "2014-07-22T07:28:27",
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/SEC",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "Datenerfassung947",
+      "label": "Datenerfassung",
+      "@type": "oa:Annotation",
+      "rownum": {
+        "@value": 947,
+        "@type": "xsd:integer"
+      },
+      "oa:hasBody": [
+        {
+          "@type": "oa:TextualBody",
+          "oa:purpose": "oa:tagging",
+          "oa:format": "text/plain",
+          "oa:value": "Zeit:"
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": 544.36426,
+            "@type": "http://www.w3.org/2001/XMLSchema#double"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/SEC",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        },
+        {
+          "@type": "qudt:QuantityValue",
+          "qudt:value": {
+            "@value": "2014-07-22T07:28:27",
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+          },
+          "qudt:unit": {
+            "@id": "http://qudt.org/vocab/unit/SEC",
+            "@type": "http://qudt.org/schema/qudt/Unit"
+          }
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv",
+      "dialect": {
+        "delimiter": "\\t",
+        "skipRows": 13,
+        "headerRowCount": 2,
+        "encoding": "utf-8"
+      },
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "GID",
+            "titles": [
+              "GID",
+              "Generic Identifier"
+            ],
+            "datatype": "string",
+            "required": true,
+            "suppressOutput": true,
+            "@type": "Column"
+          },
+          {
+            "titles": [
+              "Datum",
+              "d",
+              "Datum"
+            ],
+            "@id": "Datum",
+            "name": "Datum",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/DAY",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          },
+          {
+            "titles": [
+              "Laufzeit",
+              "s",
+              "Laufzeit"
+            ],
+            "@id": "Laufzeit",
+            "name": "Laufzeit",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/SEC",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Ch 1 Kraft Sollwert",
+              "kN",
+              "Ch1KraftSollwert"
+            ],
+            "@id": "Ch1KraftSollwert",
+            "name": "Ch1KraftSollwert",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/KiloN",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Ch 1 Kraft",
+              "kN",
+              "Ch1Kraft"
+            ],
+            "@id": "Ch1Kraft",
+            "name": "Ch1Kraft",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/KiloN",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Ch 1 Weg",
+              "mm",
+              "Ch1Weg"
+            ],
+            "@id": "Ch1Weg",
+            "name": "Ch1Weg",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "1944 B",
+              "mm",
+              "1944B"
+            ],
+            "@id": "1944B",
+            "name": "1944B",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "1281068",
+              "mm",
+              "1281068"
+            ],
+            "@id": "1281068",
+            "name": "1281068",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "2157",
+              "mm",
+              "2157"
+            ],
+            "@id": "2157",
+            "name": "2157",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          }
+        ],
+        "primaryKey": "GID",
+        "aboutUrl": "#gid-{GID}"
+      }
+    },
+    {
+      "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv",
+      "dialect": {
+        "delimiter": "\\t",
+        "skipRows": 948,
+        "headerRowCount": 2,
+        "encoding": "utf-8"
+      },
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "GID",
+            "titles": [
+              "GID",
+              "Generic Identifier"
+            ],
+            "datatype": "string",
+            "required": true,
+            "suppressOutput": true,
+            "@type": "Column"
+          },
+          {
+            "titles": [
+              "Ch 1 Kraft",
+              "kN",
+              "Ch1Kraft"
+            ],
+            "@id": "Ch1Kraft",
+            "name": "Ch1Kraft",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/KiloN",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Ch 1 W2TK Mittel",
+              "mm",
+              "Ch1W2TkMittel"
+            ],
+            "@id": "Ch1W2TkMittel",
+            "name": "Ch1W2TkMittel",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "1944 A",
+              "mm",
+              "1944A"
+            ],
+            "@id": "1944A",
+            "name": "1944A",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "1944 B",
+              "mm",
+              "1944B"
+            ],
+            "@id": "1944B",
+            "name": "1944B",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "1281068",
+              "mm",
+              "1281068"
+            ],
+            "@id": "1281068",
+            "name": "1281068",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MilliM",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column",
+              "qudt:QuantityValue"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          }
+        ],
+        "primaryKey": "GID",
+        "aboutUrl": "#gid-{GID}"
+      }
+    }
+  ],
+  "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv",
+  "prov:wasGeneratedBy": {
+    "@id": "http://localhost:5001/api/annotation",
+    "@type": "prov:Activity",
+    "prov:wasAssociatedWith": {
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.9",
+      "rdfs:label": "CSVtoCSVWv1.1.9",
+      "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
+      "@type": "prov:SoftwareAgent"
+    }
+  },
+  "prov:generatedAtTime": {
+    "@value": "2023-05-11T09:15:43.580997",
+    "@type": "xsd:dateTime"
+  }
+}
