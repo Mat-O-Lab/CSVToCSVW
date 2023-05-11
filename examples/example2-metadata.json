@@ -74,6 +74,7 @@
       "tableSchema": {
         "columns": [
           {
+            "@id": "1-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -89,7 +90,7 @@
               "Maschine [mm]",
               "MaschineMm"
             ],
-            "@id": "MaschineMm",
+            "@id": "1-MaschineMm",
             "name": "MaschineMm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -107,7 +108,7 @@
               "Kraft [kN]",
               "KraftKn"
             ],
-            "@id": "KraftKn",
+            "@id": "1-KraftKn",
             "name": "KraftKn",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -125,7 +126,7 @@
               "Clip-Gauge [mm]",
               "ClipGaugeMm"
             ],
-            "@id": "ClipGaugeMm",
+            "@id": "1-ClipGaugeMm",
             "name": "ClipGaugeMm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -143,7 +144,7 @@
               "Drehmoment [Nm]",
               "DrehmomentNm"
             ],
-            "@id": "DrehmomentNm",
+            "@id": "1-DrehmomentNm",
             "name": "DrehmomentNm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/N-M",
@@ -161,7 +162,7 @@
               "MX840A_0_CH 5 [°C]",
               "Mx840A0Ch5C"
             ],
-            "@id": "Mx840A0Ch5C",
+            "@id": "1-Mx840A0Ch5C",
             "name": "Mx840A0Ch5C",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/DEG_C",
@@ -179,7 +180,7 @@
               "MX840A_0_CH 6 [mm]",
               "Mx840A0Ch6Mm"
             ],
-            "@id": "Mx840A0Ch6Mm",
+            "@id": "1-Mx840A0Ch6Mm",
             "name": "Mx840A0Ch6Mm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -197,7 +198,7 @@
               "MX840A_0_CH 7 [V]",
               "Mx840A0Ch7V"
             ],
-            "@id": "Mx840A0Ch7V",
+            "@id": "1-Mx840A0Ch7V",
             "name": "Mx840A0Ch7V",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/V",
@@ -215,7 +216,7 @@
               "MX840A_0_CH 8 [°C]",
               "Mx840A0Ch8C"
             ],
-            "@id": "Mx840A0Ch8C",
+            "@id": "1-Mx840A0Ch8C",
             "name": "Mx840A0Ch8C",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/DEG_C",
@@ -233,7 +234,7 @@
               "Zeit [s]",
               "ZeitS"
             ],
-            "@id": "ZeitS",
+            "@id": "1-ZeitS",
             "name": "ZeitS",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/SEC",
@@ -251,7 +252,7 @@
               "Kanal 10",
               "Kanal10"
             ],
-            "@id": "Kanal10",
+            "@id": "1-Kanal10",
             "name": "Kanal10",
             "@type": [
               "Column"
@@ -265,7 +266,7 @@
               "Kanal 11",
               "Kanal11"
             ],
-            "@id": "Kanal11",
+            "@id": "1-Kanal11",
             "name": "Kanal11",
             "@type": [
               "Column"
@@ -279,7 +280,7 @@
               "Kanal 12",
               "Kanal12"
             ],
-            "@id": "Kanal12",
+            "@id": "1-Kanal12",
             "name": "Kanal12",
             "@type": [
               "Column"
@@ -293,7 +294,7 @@
               "Kanal 13",
               "Kanal13"
             ],
-            "@id": "Kanal13",
+            "@id": "1-Kanal13",
             "name": "Kanal13",
             "@type": [
               "Column"
@@ -307,7 +308,7 @@
               "Kanal 14",
               "Kanal14"
             ],
-            "@id": "Kanal14",
+            "@id": "1-Kanal14",
             "name": "Kanal14",
             "@type": [
               "Column"
@@ -321,7 +322,7 @@
               "Kanal 15",
               "Kanal15"
             ],
-            "@id": "Kanal15",
+            "@id": "1-Kanal15",
             "name": "Kanal15",
             "@type": [
               "Column"
@@ -348,7 +349,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T10:43:52.055157",
+    "@value": "2023-05-11T11:08:56.486845",
     "@type": "xsd:dateTime"
   }
 }

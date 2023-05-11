@@ -352,6 +352,7 @@
       "tableSchema": {
         "columns": [
           {
+            "@id": "8-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -368,7 +369,7 @@
               "d",
               "Datum"
             ],
-            "@id": "Datum",
+            "@id": "8-Datum",
             "name": "Datum",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/DAY",
@@ -387,7 +388,7 @@
               "s",
               "Laufzeit"
             ],
-            "@id": "Laufzeit",
+            "@id": "8-Laufzeit",
             "name": "Laufzeit",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/SEC",
@@ -406,7 +407,7 @@
               "kN",
               "Ch1KraftSollwert"
             ],
-            "@id": "Ch1KraftSollwert",
+            "@id": "8-Ch1KraftSollwert",
             "name": "Ch1KraftSollwert",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -425,7 +426,7 @@
               "kN",
               "Ch1Kraft"
             ],
-            "@id": "Ch1Kraft",
+            "@id": "8-Ch1Kraft",
             "name": "Ch1Kraft",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -444,7 +445,7 @@
               "mm",
               "Ch1Weg"
             ],
-            "@id": "Ch1Weg",
+            "@id": "8-Ch1Weg",
             "name": "Ch1Weg",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -463,7 +464,7 @@
               "mm",
               "1944B"
             ],
-            "@id": "1944B",
+            "@id": "8-1944B",
             "name": "1944B",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -482,7 +483,7 @@
               "mm",
               "1281068"
             ],
-            "@id": "1281068",
+            "@id": "8-1281068",
             "name": "1281068",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -501,7 +502,7 @@
               "mm",
               "2157"
             ],
-            "@id": "2157",
+            "@id": "8-2157",
             "name": "2157",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -530,6 +531,7 @@
       "tableSchema": {
         "columns": [
           {
+            "@id": "11-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -546,7 +548,7 @@
               "kN",
               "Ch1Kraft"
             ],
-            "@id": "Ch1Kraft",
+            "@id": "11-Ch1Kraft",
             "name": "Ch1Kraft",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -565,7 +567,7 @@
               "mm",
               "Ch1W2TkMittel"
             ],
-            "@id": "Ch1W2TkMittel",
+            "@id": "11-Ch1W2TkMittel",
             "name": "Ch1W2TkMittel",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -584,7 +586,7 @@
               "mm",
               "1944A"
             ],
-            "@id": "1944A",
+            "@id": "11-1944A",
             "name": "1944A",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -603,7 +605,7 @@
               "mm",
               "1944B"
             ],
-            "@id": "1944B",
+            "@id": "11-1944B",
             "name": "1944B",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -622,7 +624,7 @@
               "mm",
               "1281068"
             ],
-            "@id": "1281068",
+            "@id": "11-1281068",
             "name": "1281068",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -653,7 +655,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T10:43:53.045409",
+    "@value": "2023-05-11T11:08:57.496083",
     "@type": "xsd:dateTime"
   }
 }

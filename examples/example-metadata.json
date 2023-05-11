@@ -185,6 +185,7 @@
       "tableSchema": {
         "columns": [
           {
+            "@id": "9-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -201,7 +202,7 @@
               "s",
               "Pruefzeit"
             ],
-            "@id": "Pruefzeit",
+            "@id": "9-Pruefzeit",
             "name": "Pruefzeit",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/SEC",
@@ -220,7 +221,7 @@
               "mm",
               "Standardweg"
             ],
-            "@id": "Standardweg",
+            "@id": "9-Standardweg",
             "name": "Standardweg",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -239,7 +240,7 @@
               "N",
               "Standardkraft"
             ],
-            "@id": "Standardkraft",
+            "@id": "9-Standardkraft",
             "name": "Standardkraft",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/N",
@@ -258,7 +259,7 @@
               "%",
               "Dehnung"
             ],
-            "@id": "Dehnung",
+            "@id": "9-Dehnung",
             "name": "Dehnung",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/PERCENT",
@@ -277,7 +278,7 @@
               "mm",
               "TraverseAbs"
             ],
-            "@id": "TraverseAbs",
+            "@id": "9-TraverseAbs",
             "name": "TraverseAbs",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -308,7 +309,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T10:43:50.776012",
+    "@value": "2023-05-11T11:08:55.208223",
     "@type": "xsd:dateTime"
   }
 }
