@@ -1,4 +1,681 @@
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-[] a csvw:TableGroup .
+<file:///src/> a csvw:TableGroup ;
+    csvw:note <file:///src/Abstandsmessung50>,
+        <file:///src/Abstandsmessung57>,
+        <file:///src/AbstandsmessungMinmax51>,
+        <file:///src/AbstandsmessungMinmax58>,
+        <file:///src/Anzeige271>,
+        <file:///src/Anzeige372>,
+        <file:///src/Anzeige473>,
+        <file:///src/Anzeige70>,
+        <file:///src/BackupErstellen9>,
+        <file:///src/BemerkungenRzB5X2522>,
+        <file:///src/BilderAbspeichern52>,
+        <file:///src/BilderAbspeichern59>,
+        <file:///src/Comport112>,
+        <file:///src/Darstellung65>,
+        <file:///src/Datalogger40Version40Revision70>,
+        <file:///src/Dateiname8>,
+        <file:///src/Durchmessermessung48>,
+        <file:///src/Durchmessermessung55>,
+        <file:///src/DurchmessermessungMinmax49>,
+        <file:///src/DurchmessermessungMinmax56>,
+        <file:///src/Kamera254>,
+        <file:///src/Kamera47>,
+        <file:///src/Kameratyp111>,
+        <file:///src/Messkanal10Label98>,
+        <file:///src/Messkanal10Unit99>,
+        <file:///src/Messkanal11Label100>,
+        <file:///src/Messkanal11Unit101>,
+        <file:///src/Messkanal12Label102>,
+        <file:///src/Messkanal12Unit103>,
+        <file:///src/Messkanal13Label104>,
+        <file:///src/Messkanal13Unit105>,
+        <file:///src/Messkanal14Label106>,
+        <file:///src/Messkanal14Unit107>,
+        <file:///src/Messkanal15Label108>,
+        <file:///src/Messkanal15Unit109>,
+        <file:///src/Messkanal1Invert117>,
+        <file:///src/Messkanal1Label80>,
+        <file:///src/Messkanal1Tara116>,
+        <file:///src/Messkanal1Unit81>,
+        <file:///src/Messkanal2Invert119>,
+        <file:///src/Messkanal2Label82>,
+        <file:///src/Messkanal2Tara118>,
+        <file:///src/Messkanal2Unit83>,
+        <file:///src/Messkanal3Invert121>,
+        <file:///src/Messkanal3Label84>,
+        <file:///src/Messkanal3Tara120>,
+        <file:///src/Messkanal3Unit85>,
+        <file:///src/Messkanal4Invert123>,
+        <file:///src/Messkanal4Label86>,
+        <file:///src/Messkanal4Tara122>,
+        <file:///src/Messkanal4Unit87>,
+        <file:///src/Messkanal5Invert125>,
+        <file:///src/Messkanal5Label88>,
+        <file:///src/Messkanal5Tara124>,
+        <file:///src/Messkanal5Unit89>,
+        <file:///src/Messkanal6Invert127>,
+        <file:///src/Messkanal6Label90>,
+        <file:///src/Messkanal6Tara126>,
+        <file:///src/Messkanal6Unit91>,
+        <file:///src/Messkanal7Invert129>,
+        <file:///src/Messkanal7Label92>,
+        <file:///src/Messkanal7Tara128>,
+        <file:///src/Messkanal7Unit93>,
+        <file:///src/Messkanal8Invert131>,
+        <file:///src/Messkanal8Label94>,
+        <file:///src/Messkanal8Tara130>,
+        <file:///src/Messkanal8Unit95>,
+        <file:///src/Messkanal9Label96>,
+        <file:///src/Messkanal9Unit97>,
+        <file:///src/MesslNge21>,
+        <file:///src/PrFgeschwindigkeit40>,
+        <file:///src/PrFmaschineInstron8852Tt37>,
+        <file:///src/PrFtemperaturC30>,
+        <file:///src/ProbenId24>,
+        <file:///src/Probenbreite20>,
+        <file:///src/Probendicke19>,
+        <file:///src/Probendurchmesser18>,
+        <file:///src/Probenname16>,
+        <file:///src/Probentyp17>,
+        <file:///src/ProjektName5>,
+        <file:///src/ProjektNummer6>,
+        <file:///src/QuantumIp113>,
+        <file:///src/QuantumNameMx840BInstron8852Tt114>,
+        <file:///src/Verstaerkertyp110>,
+        <file:///src/XAchse66>,
+        <file:///src/YAchse67> ;
+    csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv"^^xsd:anyURI ;
+    prov:generatedAtTime "2023-05-12T07:45:02.030438"^^xsd:dateTime ;
+    prov:wasGeneratedBy <http://localhost:5001/api/annotation> .
+
+<file:///src/Abstandsmessung50> a oa:Annotation ;
+    rdfs:label "Abstandsmessung" ;
+    csvw:rownum 50 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Abstandsmessung57> a oa:Annotation ;
+    rdfs:label "Abstandsmessung" ;
+    csvw:rownum 57 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/AbstandsmessungMinmax51> a oa:Annotation ;
+    rdfs:label "Abstandsmessung MinMax" ;
+    csvw:rownum 51 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/AbstandsmessungMinmax58> a oa:Annotation ;
+    rdfs:label "Abstandsmessung MinMax" ;
+    csvw:rownum 58 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Anzeige271> a oa:Annotation ;
+    rdfs:label "Anzeige 2" ;
+    csvw:rownum 71 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 1 ] .
+
+<file:///src/Anzeige372> a oa:Annotation ;
+    rdfs:label "Anzeige 3" ;
+    csvw:rownum 72 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 3 ] .
+
+<file:///src/Anzeige473> a oa:Annotation ;
+    rdfs:label "Anzeige 4" ;
+    csvw:rownum 73 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 9 ] .
+
+<file:///src/Anzeige70> a oa:Annotation ;
+    rdfs:label "Anzeige" ;
+    csvw:rownum 70 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 2 ] .
+
+<file:///src/BackupErstellen9> a oa:Annotation ;
+    rdfs:label "Backup erstellen" ;
+    csvw:rownum 9 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 1 ] .
+
+<file:///src/BemerkungenRzB5X2522> a oa:Annotation ;
+    rdfs:label "Bemerkungen: Rz B5x25" ;
+    csvw:rownum 22 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/T> ;
+            qudt:value 1000 ],
+        [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "46NT31-Rohling" ] .
+
+<file:///src/BilderAbspeichern52> a oa:Annotation ;
+    rdfs:label "Bilder abspeichern" ;
+    csvw:rownum 52 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/BilderAbspeichern59> a oa:Annotation ;
+    rdfs:label "Bilder abspeichern" ;
+    csvw:rownum 59 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Comport112> a oa:Annotation ;
+    rdfs:label "ComPort" ;
+    csvw:rownum 112 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 3 ] .
+
+<file:///src/Darstellung65> a oa:Annotation ;
+    rdfs:label "Darstellung" ;
+    csvw:rownum 65 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 5 ] .
+
+<file:///src/Datalogger40Version40Revision70> a oa:Annotation ;
+    rdfs:label "DataLogger 4.0 Version 4.0 Revision 7" ;
+    csvw:rownum 0 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "PCLAB-P009" ],
+        [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "MX840B INSTRON 8852TT;1605F" ],
+        [ a qudt:QuantityValue ;
+            qudt:value "2022-08-24T11:55:02"^^xsd:dateTime ] .
+
+<file:///src/Dateiname8> a oa:Annotation ;
+    rdfs:label "Dateiname" ;
+    csvw:rownum 8 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "D:\\PMD\\AWA_3\\AWA_3_03_Rz.ein" ] .
+
+<file:///src/Durchmessermessung48> a oa:Annotation ;
+    rdfs:label "Durchmessermessung" ;
+    csvw:rownum 48 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Durchmessermessung55> a oa:Annotation ;
+    rdfs:label "Durchmessermessung" ;
+    csvw:rownum 55 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/DurchmessermessungMinmax49> a oa:Annotation ;
+    rdfs:label "Durchmessermessung MinMax" ;
+    csvw:rownum 49 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/DurchmessermessungMinmax56> a oa:Annotation ;
+    rdfs:label "Durchmessermessung MinMax" ;
+    csvw:rownum 56 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Kamera254> a oa:Annotation ;
+    rdfs:label "Kamera 2" ;
+    csvw:rownum 54 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Kamera47> a oa:Annotation ;
+    rdfs:label "Kamera" ;
+    csvw:rownum 47 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 0 ] .
+
+<file:///src/Kameratyp111> a oa:Annotation ;
+    rdfs:label "KameraTyp" ;
+    csvw:rownum 111 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "USB" ] .
+
+<file:///src/Messkanal10Label98> a oa:Annotation ;
+    rdfs:label "Messkanal 10 Label" ;
+    csvw:rownum 98 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "D1 max." ] .
+
+<file:///src/Messkanal10Unit99> a oa:Annotation ;
+    rdfs:label "Messkanal 10 Unit" ;
+    csvw:rownum 99 .
+
+<file:///src/Messkanal11Label100> a oa:Annotation ;
+    rdfs:label "Messkanal 11 Label" ;
+    csvw:rownum 100 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "D2 max." ] .
+
+<file:///src/Messkanal11Unit101> a oa:Annotation ;
+    rdfs:label "Messkanal 11 Unit" ;
+    csvw:rownum 101 .
+
+<file:///src/Messkanal12Label102> a oa:Annotation ;
+    rdfs:label "Messkanal 12 Label" ;
+    csvw:rownum 102 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "DeltaL 1" ] .
+
+<file:///src/Messkanal12Unit103> a oa:Annotation ;
+    rdfs:label "Messkanal 12 Unit" ;
+    csvw:rownum 103 .
+
+<file:///src/Messkanal13Label104> a oa:Annotation ;
+    rdfs:label "Messkanal 13 Label" ;
+    csvw:rownum 104 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "DeltaL 2" ] .
+
+<file:///src/Messkanal13Unit105> a oa:Annotation ;
+    rdfs:label "Messkanal 13 Unit" ;
+    csvw:rownum 105 .
+
+<file:///src/Messkanal14Label106> a oa:Annotation ;
+    rdfs:label "Messkanal 14 Label" ;
+    csvw:rownum 106 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Radius 1" ] .
+
+<file:///src/Messkanal14Unit107> a oa:Annotation ;
+    rdfs:label "Messkanal 14 Unit" ;
+    csvw:rownum 107 .
+
+<file:///src/Messkanal15Label108> a oa:Annotation ;
+    rdfs:label "Messkanal 15 Label" ;
+    csvw:rownum 108 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Radius 2" ] .
+
+<file:///src/Messkanal15Unit109> a oa:Annotation ;
+    rdfs:label "Messkanal 15 Unit" ;
+    csvw:rownum 109 .
+
+<file:///src/Messkanal1Invert117> a oa:Annotation ;
+    rdfs:label "Messkanal 1 Invert" ;
+    csvw:rownum 117 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal1Label80> a oa:Annotation ;
+    rdfs:label "Messkanal 1 Label" ;
+    csvw:rownum 80 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Maschine" ] .
+
+<file:///src/Messkanal1Tara116> a oa:Annotation ;
+    rdfs:label "Messkanal 1 Tara" ;
+    csvw:rownum 116 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 1 ] .
+
+<file:///src/Messkanal1Unit81> a oa:Annotation ;
+    rdfs:label "Messkanal 1 Unit" ;
+    csvw:rownum 81 .
+
+<file:///src/Messkanal2Invert119> a oa:Annotation ;
+    rdfs:label "Messkanal 2 Invert" ;
+    csvw:rownum 119 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal2Label82> a oa:Annotation ;
+    rdfs:label "Messkanal 2 Label" ;
+    csvw:rownum 82 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Kraft" ] .
+
+<file:///src/Messkanal2Tara118> a oa:Annotation ;
+    rdfs:label "Messkanal 2 Tara" ;
+    csvw:rownum 118 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal2Unit83> a oa:Annotation ;
+    rdfs:label "Messkanal 2 Unit" ;
+    csvw:rownum 83 .
+
+<file:///src/Messkanal3Invert121> a oa:Annotation ;
+    rdfs:label "Messkanal 3 Invert" ;
+    csvw:rownum 121 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal3Label84> a oa:Annotation ;
+    rdfs:label "Messkanal 3 Label" ;
+    csvw:rownum 84 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Clip-Gauge" ] .
+
+<file:///src/Messkanal3Tara120> a oa:Annotation ;
+    rdfs:label "Messkanal 3 Tara" ;
+    csvw:rownum 120 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 1 ] .
+
+<file:///src/Messkanal3Unit85> a oa:Annotation ;
+    rdfs:label "Messkanal 3 Unit" ;
+    csvw:rownum 85 .
+
+<file:///src/Messkanal4Invert123> a oa:Annotation ;
+    rdfs:label "Messkanal 4 Invert" ;
+    csvw:rownum 123 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal4Label86> a oa:Annotation ;
+    rdfs:label "Messkanal 4 Label" ;
+    csvw:rownum 86 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Drehmoment" ] .
+
+<file:///src/Messkanal4Tara122> a oa:Annotation ;
+    rdfs:label "Messkanal 4 Tara" ;
+    csvw:rownum 122 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal4Unit87> a oa:Annotation ;
+    rdfs:label "Messkanal 4 Unit" ;
+    csvw:rownum 87 .
+
+<file:///src/Messkanal5Invert125> a oa:Annotation ;
+    rdfs:label "Messkanal 5 Invert" ;
+    csvw:rownum 125 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal5Label88> a oa:Annotation ;
+    rdfs:label "Messkanal 5 Label" ;
+    csvw:rownum 88 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "MX840A_0_CH 5" ] .
+
+<file:///src/Messkanal5Tara124> a oa:Annotation ;
+    rdfs:label "Messkanal 5 Tara" ;
+    csvw:rownum 124 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal5Unit89> a oa:Annotation ;
+    rdfs:label "Messkanal 5 Unit" ;
+    csvw:rownum 89 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "[�C]" ] .
+
+<file:///src/Messkanal6Invert127> a oa:Annotation ;
+    rdfs:label "Messkanal 6 Invert" ;
+    csvw:rownum 127 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal6Label90> a oa:Annotation ;
+    rdfs:label "Messkanal 6 Label" ;
+    csvw:rownum 90 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "MX840A_0_CH 6" ] .
+
+<file:///src/Messkanal6Tara126> a oa:Annotation ;
+    rdfs:label "Messkanal 6 Tara" ;
+    csvw:rownum 126 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal6Unit91> a oa:Annotation ;
+    rdfs:label "Messkanal 6 Unit" ;
+    csvw:rownum 91 .
+
+<file:///src/Messkanal7Invert129> a oa:Annotation ;
+    rdfs:label "Messkanal 7 Invert" ;
+    csvw:rownum 129 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal7Label92> a oa:Annotation ;
+    rdfs:label "Messkanal 7 Label" ;
+    csvw:rownum 92 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "MX840A_0_CH 7" ] .
+
+<file:///src/Messkanal7Tara128> a oa:Annotation ;
+    rdfs:label "Messkanal 7 Tara" ;
+    csvw:rownum 128 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal7Unit93> a oa:Annotation ;
+    rdfs:label "Messkanal 7 Unit" ;
+    csvw:rownum 93 .
+
+<file:///src/Messkanal8Invert131> a oa:Annotation ;
+    rdfs:label "Messkanal 8 Invert" ;
+    csvw:rownum 131 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal8Label94> a oa:Annotation ;
+    rdfs:label "Messkanal 8 Label" ;
+    csvw:rownum 94 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "MX840A_0_CH 8" ] .
+
+<file:///src/Messkanal8Tara130> a oa:Annotation ;
+    rdfs:label "Messkanal 8 Tara" ;
+    csvw:rownum 130 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/Messkanal8Unit95> a oa:Annotation ;
+    rdfs:label "Messkanal 8 Unit" ;
+    csvw:rownum 95 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "[�C]" ] .
+
+<file:///src/Messkanal9Label96> a oa:Annotation ;
+    rdfs:label "Messkanal 9 Label" ;
+    csvw:rownum 96 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "Zeit" ] .
+
+<file:///src/Messkanal9Unit97> a oa:Annotation ;
+    rdfs:label "Messkanal 9 Unit" ;
+    csvw:rownum 97 .
+
+<file:///src/MesslNge21> a oa:Annotation ;
+    rdfs:label "Messl�nge" ;
+    csvw:rownum 21 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+            qudt:value 15 ] .
+
+<file:///src/PrFgeschwindigkeit40> a oa:Annotation ;
+    rdfs:label "Pr�fgeschwindigkeit" ;
+    csvw:rownum 40 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MilliM-PER-SEC> ;
+            qudt:value 0 ] .
+
+<file:///src/PrFmaschineInstron8852Tt37> a oa:Annotation ;
+    rdfs:label "Pr�fmaschine: INSTRON 8852TT" ;
+    csvw:rownum 37 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "1605F" ] .
+
+<file:///src/PrFtemperaturC30> a oa:Annotation ;
+    rdfs:label "Pr�ftemperatur [�C]" ;
+    csvw:rownum 30 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 0 ] .
+
+<file:///src/ProbenId24> a oa:Annotation ;
+    rdfs:label "Proben ID" ;
+    csvw:rownum 24 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "46NTA5-1-1-2" ] .
+
+<file:///src/Probenbreite20> a oa:Annotation ;
+    rdfs:label "Probenbreite" ;
+    csvw:rownum 20 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+            qudt:value 10 ] .
+
+<file:///src/Probendicke19> a oa:Annotation ;
+    rdfs:label "Probendicke" ;
+    csvw:rownum 19 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+            qudt:value 3e-02 ] .
+
+<file:///src/Probendurchmesser18> a oa:Annotation ;
+    rdfs:label "Probendurchmesser" ;
+    csvw:rownum 18 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+            qudt:value 5e-02 ] .
+
+<file:///src/Probenname16> a oa:Annotation ;
+    rdfs:label "Probenname" ;
+    csvw:rownum 16 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "AWA_3_03_Rz" ] .
+
+<file:///src/Probentyp17> a oa:Annotation ;
+    rdfs:label "Probentyp" ;
+    csvw:rownum 17 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 1 ] .
+
+<file:///src/ProjektName5> a oa:Annotation ;
+    rdfs:label "Projekt Name" ;
+    csvw:rownum 5 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "PMD" ] .
+
+<file:///src/ProjektNummer6> a oa:Annotation ;
+    rdfs:label "Projekt Nummer" ;
+    csvw:rownum 6 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 840749 ] .
+
+<file:///src/QuantumIp113> a oa:Annotation ;
+    rdfs:label "Quantum IP" ;
+    csvw:rownum 113 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "192.168.33.70" ] .
+
+<file:///src/QuantumNameMx840BInstron8852Tt114> a oa:Annotation ;
+    rdfs:label "Quantum Name: MX840B INSTRON 8852TT" ;
+    csvw:rownum 114 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "1605F" ] .
+
+<file:///src/Verstaerkertyp110> a oa:Annotation ;
+    rdfs:label "VerstaerkerTyp" ;
+    csvw:rownum 110 ;
+    oa:hasBody [ a oa:TextualBody ;
+            oa:format "text/plain" ;
+            oa:purpose "oa:tagging" ;
+            oa:value "QUANTUM" ] .
+
+<file:///src/XAchse66> a oa:Annotation ;
+    rdfs:label "X-Achse" ;
+    csvw:rownum 66 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/NUM> ;
+            qudt:value 1 ] .
+
+<file:///src/YAchse67> a oa:Annotation ;
+    rdfs:label "y-Achse" ;
+    csvw:rownum 67 ;
+    oa:hasBody [ a qudt:QuantityValue ;
+            qudt:value 2 ] .
+
+<http://localhost:5001/api/annotation> a prov:Activity ;
+    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.9> .
+
+<http://qudt.org/vocab/unit/MilliM-PER-SEC> a qudt:Unit .
+
+<http://qudt.org/vocab/unit/T> a qudt:DerivedUnit .
+
+<https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.9> a prov:SoftwareAgent ;
+    rdfs:label "CSVtoCSVWv1.1.9" ;
+    prov:hadPrimarySource "https://github.com/Mat-O-Lab/CSVToCSVW" .
+
+<http://qudt.org/vocab/unit/MilliM> a qudt:DerivedUnit .
+
+<http://qudt.org/vocab/unit/NUM> a qudt:CountingUnit .
 
