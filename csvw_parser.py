@@ -2,7 +2,7 @@
 from typing import Tuple, List
 from collections import OrderedDict
 import pandas as pd
-from rdflib import BNode, URIRef, Literal, Graph
+from rdflib import BNode, URIRef, Literal, Graph, Namespace
 from rdflib.collection import Collection
 from rdflib.util import guess_format
 from rdflib.namespace import CSVW, RDF, XSD, PROV, RDFS
@@ -91,6 +91,8 @@ def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
         Graph: Rdflib graph Object
     """
     parsed_url=urlparse(url)
+    DATA = Namespace(url+"/")
+    graph.bind('data',DATA)
     print(parsed_url)
     if not format:
         format=guess_format(parsed_url.path)
@@ -111,7 +113,7 @@ class CSVWtoRDF:
         self.api_url=api_url
         # get metadata graph
         self.metagraph=parse_graph(metadata_url,Graph(base=self.metadata_url),format=metaformat)
-        self.metagraph.serialize('test.ttl',format='turtle')
+        #self.metagraph.serialize('test.ttl',format='turtle')
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
         #print('meta_root: '+self.meta_root)
         #print('csv_url: '+url)
@@ -152,16 +154,10 @@ class CSVWtoRDF:
                         num_header_rows=data['dialect'][CSVW.headerRowCount],
                         encoding=data['dialect'][CSVW.encoding],
                         )
-    def convert_tables(self) -> Graph:
-        g=Graph()
-        g.bind("csvw", CSVW)
-        table_group=BNode()
-        g.add((table_group,RDF.type,CSVW.TableGroup))
-        table=BNode()
-        for key, data in self.tables.items():
-            print(key)
-            print("table: {}, about_url: {}".format(key,data['about_url']))
-            g.add((table_group,CSVW.table, key))
+    def add_table_data(self, g: Graph) -> Graph:
+        for table, data in self.tables.items():
+            print("table: {}, about_url: {}".format(table,data['about_url']))
+            #g.add((table_group,CSVW.table, table))
             g.add((table,RDF.type,CSVW.Table))
             if data['about_url']:
                 row_uri=data['about_url']
@@ -195,7 +191,8 @@ class CSVWtoRDF:
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
-        graph=self.convert_tables()
+        graph=parse_graph(self.metadata_url,graph=Graph())
+        graph=self.add_table_data(graph)
         if self.api_url:
             graph=csvwtordf_prov(graph, self.api_url, self.csv_url, self.metadata_url)
         
