@@ -317,7 +317,19 @@ class CSV_Annotator():
                     if all_text:
                         #seams it has at least on header row
                         value['type']='data'
-        return parts
+                        
+        result={}
+        table_num=1
+        meta_num=1    
+        for value in parts.values():
+            if value['type']=='data':
+                result['table-'+str(table_num)]=value
+                table_num+=1
+            if value['type']=='meta':
+                result['meta-'+str(meta_num)]=value
+                meta_num+=1
+        
+        return result
     
     @staticmethod 
     def __get_data_meta_part(file_data: str, start: int , end: int , col_count: int, separator: str) -> pd.DataFrame: 
@@ -543,6 +555,7 @@ class CSV_Annotator():
             url_string = self.file_name
         metadata["url"]=url_string
         #try to find all table like segments in the file
+        print(self.parts)
         for key, value in self.parts.items():
             if value['type']=='meta':
                 meta_data=self.__get_data_meta_part(self.file_string, start=value['start'], end=value['end'], col_count=value['count']+1,separator=value['sep'])
@@ -554,6 +567,7 @@ class CSV_Annotator():
                 header_lines, table_data = self.__get_data_table_part(self.file_string, start=value['start'], end=value['end'], separator=value['sep'])
                 if not table_data.empty:
                     table={
+                        "@id": key,
                         "url": url_string,
                         "dialect": {
                         "delimiter": value['sep'],

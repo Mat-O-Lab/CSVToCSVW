@@ -159,6 +159,7 @@ class CSVWtoRDF:
         g.add((table_group,RDF.type,CSVW.TableGroup))
         table=BNode()
         for key, data in self.tables.items():
+            print(key)
             print("table: {}, about_url: {}".format(key,data['about_url']))
             g.add((table_group,CSVW.table, key))
             g.add((table,RDF.type,CSVW.Table))
