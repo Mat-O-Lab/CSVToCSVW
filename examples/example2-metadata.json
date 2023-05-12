@@ -64,6 +64,7 @@
   ],
   "tables": [
     {
+      "@id": "table-1",
       "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
       "dialect": {
         "delimiter": "\\t",
@@ -74,7 +75,7 @@
       "tableSchema": {
         "columns": [
           {
-            "@id": "1-GID",
+            "@id": "table-1-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -90,7 +91,7 @@
               "Maschine [mm]",
               "MaschineMm"
             ],
-            "@id": "1-MaschineMm",
+            "@id": "table-1-MaschineMm",
             "name": "MaschineMm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -108,7 +109,7 @@
               "Kraft [kN]",
               "KraftKn"
             ],
-            "@id": "1-KraftKn",
+            "@id": "table-1-KraftKn",
             "name": "KraftKn",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -126,7 +127,7 @@
               "Clip-Gauge [mm]",
               "ClipGaugeMm"
             ],
-            "@id": "1-ClipGaugeMm",
+            "@id": "table-1-ClipGaugeMm",
             "name": "ClipGaugeMm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -144,7 +145,7 @@
               "Drehmoment [Nm]",
               "DrehmomentNm"
             ],
-            "@id": "1-DrehmomentNm",
+            "@id": "table-1-DrehmomentNm",
             "name": "DrehmomentNm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/N-M",
@@ -162,7 +163,7 @@
               "MX840A_0_CH 5 [°C]",
               "Mx840A0Ch5C"
             ],
-            "@id": "1-Mx840A0Ch5C",
+            "@id": "table-1-Mx840A0Ch5C",
             "name": "Mx840A0Ch5C",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/DEG_C",
@@ -180,7 +181,7 @@
               "MX840A_0_CH 6 [mm]",
               "Mx840A0Ch6Mm"
             ],
-            "@id": "1-Mx840A0Ch6Mm",
+            "@id": "table-1-Mx840A0Ch6Mm",
             "name": "Mx840A0Ch6Mm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -198,7 +199,7 @@
               "MX840A_0_CH 7 [V]",
               "Mx840A0Ch7V"
             ],
-            "@id": "1-Mx840A0Ch7V",
+            "@id": "table-1-Mx840A0Ch7V",
             "name": "Mx840A0Ch7V",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/V",
@@ -216,7 +217,7 @@
               "MX840A_0_CH 8 [°C]",
               "Mx840A0Ch8C"
             ],
-            "@id": "1-Mx840A0Ch8C",
+            "@id": "table-1-Mx840A0Ch8C",
             "name": "Mx840A0Ch8C",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/DEG_C",
@@ -234,7 +235,7 @@
               "Zeit [s]",
               "ZeitS"
             ],
-            "@id": "1-ZeitS",
+            "@id": "table-1-ZeitS",
             "name": "ZeitS",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/SEC",
@@ -252,7 +253,7 @@
               "Kanal 10",
               "Kanal10"
             ],
-            "@id": "1-Kanal10",
+            "@id": "table-1-Kanal10",
             "name": "Kanal10",
             "@type": [
               "Column"
@@ -266,7 +267,7 @@
               "Kanal 11",
               "Kanal11"
             ],
-            "@id": "1-Kanal11",
+            "@id": "table-1-Kanal11",
             "name": "Kanal11",
             "@type": [
               "Column"
@@ -280,7 +281,7 @@
               "Kanal 12",
               "Kanal12"
             ],
-            "@id": "1-Kanal12",
+            "@id": "table-1-Kanal12",
             "name": "Kanal12",
             "@type": [
               "Column"
@@ -294,7 +295,7 @@
               "Kanal 13",
               "Kanal13"
             ],
-            "@id": "1-Kanal13",
+            "@id": "table-1-Kanal13",
             "name": "Kanal13",
             "@type": [
               "Column"
@@ -308,7 +309,7 @@
               "Kanal 14",
               "Kanal14"
             ],
-            "@id": "1-Kanal14",
+            "@id": "table-1-Kanal14",
             "name": "Kanal14",
             "@type": [
               "Column"
@@ -322,7 +323,7 @@
               "Kanal 15",
               "Kanal15"
             ],
-            "@id": "1-Kanal15",
+            "@id": "table-1-Kanal15",
             "name": "Kanal15",
             "@type": [
               "Column"
@@ -333,7 +334,7 @@
           }
         ],
         "primaryKey": "GID",
-        "aboutUrl": "#1-gid-{GID}"
+        "aboutUrl": "#table-1-gid-{GID}"
       }
     }
   ],
@@ -349,7 +350,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T12:25:15.726093",
+    "@value": "2023-05-12T07:45:01.496294",
     "@type": "xsd:dateTime"
   }
 }

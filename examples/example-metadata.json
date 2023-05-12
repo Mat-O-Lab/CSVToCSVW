@@ -175,6 +175,7 @@
   ],
   "tables": [
     {
+      "@id": "table-1",
       "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
       "dialect": {
         "delimiter": "\\t",
@@ -185,7 +186,7 @@
       "tableSchema": {
         "columns": [
           {
-            "@id": "9-GID",
+            "@id": "table-1-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -202,7 +203,7 @@
               "s",
               "Pruefzeit"
             ],
-            "@id": "9-Pruefzeit",
+            "@id": "table-1-Pruefzeit",
             "name": "Pruefzeit",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/SEC",
@@ -221,7 +222,7 @@
               "mm",
               "Standardweg"
             ],
-            "@id": "9-Standardweg",
+            "@id": "table-1-Standardweg",
             "name": "Standardweg",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -240,7 +241,7 @@
               "N",
               "Standardkraft"
             ],
-            "@id": "9-Standardkraft",
+            "@id": "table-1-Standardkraft",
             "name": "Standardkraft",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/N",
@@ -259,7 +260,7 @@
               "%",
               "Dehnung"
             ],
-            "@id": "9-Dehnung",
+            "@id": "table-1-Dehnung",
             "name": "Dehnung",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/PERCENT",
@@ -278,7 +279,7 @@
               "mm",
               "TraverseAbs"
             ],
-            "@id": "9-TraverseAbs",
+            "@id": "table-1-TraverseAbs",
             "name": "TraverseAbs",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -293,7 +294,7 @@
           }
         ],
         "primaryKey": "GID",
-        "aboutUrl": "#9-gid-{GID}"
+        "aboutUrl": "#table-1-gid-{GID}"
       }
     }
   ],
@@ -309,7 +310,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-11T12:25:14.001846",
+    "@value": "2023-05-12T07:44:59.922226",
     "@type": "xsd:dateTime"
   }
 }
