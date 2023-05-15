@@ -13,6 +13,15 @@ import io
 
 
 def get_columns_from_schema(schema: URIRef ,graph: Graph)->OrderedDict:
+    """_summary_
+
+    Args:
+        schema (URIRef): csvw.TableSchema to get columns objects from
+        graph (Graph): Graph which includes the TableSchema
+
+    Returns:
+        OrderedDict: Dictionary with all Clumn informations attacked
+    """
     column_collection_node=next(graph[ schema : CSVW.column : ],None)
     #collection must be queried in another way
     column_collection=Collection(graph,column_collection_node)
@@ -155,6 +164,14 @@ class CSVWtoRDF:
                         encoding=data['dialect'][CSVW.encoding],
                         )
     def add_table_data(self, g: Graph) -> Graph:
+        """_summary_
+
+        Args:
+            g (Graph): Grapg to add the table data tripells to
+
+        Returns:
+            Graph: Input Graph return with triples of table added
+        """
         for table, data in self.tables.items():
             print("table: {}, about_url: {}".format(table,data['about_url']))
             #g.add((table_group,CSVW.table, table))
@@ -176,7 +193,10 @@ class CSVWtoRDF:
                 for cell_index, cell in enumerate(row):
                     #print(self.columns[cell_index])
                     column_data=columns[cell_index][1]
-                    format=column_data.get('format', XSD.string)
+                    format=column_data.get(CSVW.format, XSD.string)
+                    if format==XSD.double and isinstance(cell,str):
+                        cell= cell.replace('.','')
+                        cell = cell[::-1].replace(',', ".", 1)[::-1]
                     if column_data[CSVW.name]==Literal('GID'):
                         continue
                     else:
@@ -191,6 +211,14 @@ class CSVWtoRDF:
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
+        """_summary_
+
+        Args:
+            format (str, optional): serialization format to output the graph 
+
+        Returns:
+            str: serialize graph as string
+        """
         graph=parse_graph(self.metadata_url,graph=Graph())
         graph=self.add_table_data(graph)
         if self.api_url:
@@ -201,25 +229,36 @@ class CSVWtoRDF:
 from app import settings
 
 def csvwtordf_prov(graph: Graph, api_url: str, csv_url: str, metadata_url: str) -> dict:
-        graph.bind('prov',PROV)
-        tables=list(graph[:RDF.type:CSVW.Table])
-        print(tables)
-        for table in tables:
-            api_node=URIRef(api_url)
-            graph.add((table,PROV.wasGeneratedBy,api_node))
-            graph.add((api_node,RDF.type,PROV.Activity))
-            software_node=URIRef("https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/"+settings.version)
-            graph.add((api_node,PROV.wasAssociatedWith,software_node))
-            graph.add((software_node,RDF.type,PROV.SoftwareAgent))
-            graph.add((software_node,RDFS.label,Literal( settings.app_name+settings.version)))
-            graph.add((software_node,PROV.hadPrimarySource,URIRef(settings.source)))
-            graph.add((table,PROV.generatedAtTime,Literal(str(datetime.now().isoformat()),datatype=XSD.dateTime)))
-            csv_usage=URIRef(csv_url)
-            graph.add((csv_usage,RDF.type,PROV.Usage))
-            graph.add((csv_usage,PROV.hadRole,CSVW.csvEncodedTabularData))
-            graph.add((table,PROV.qualifiedUsage,csv_usage))
-            meta_usage=URIRef(metadata_url)
-            graph.add((meta_usage,RDF.type,PROV.Usage))
-            graph.add((meta_usage,PROV.hadRole,CSVW.tabularMetadata))
-            graph.add((table,PROV.qualifiedUsage,meta_usage))
-        return graph
+    """_summary_
+
+    Args:
+        graph (Graph): Graph to add prov information to
+        api_url (str): the api url 
+        csv_url (str): the url to the csv file that was annotated
+        metadata_url (str): the url to the metadata file that has annotation for a csv
+
+    Returns:
+        Graph: Input Graph with prov metadata of the api call 
+    """
+    graph.bind('prov',PROV)
+    tables=list(graph[:RDF.type:CSVW.Table])
+    print(tables)
+    for table in tables:
+        api_node=URIRef(api_url)
+        graph.add((table,PROV.wasGeneratedBy,api_node))
+        graph.add((api_node,RDF.type,PROV.Activity))
+        software_node=URIRef("https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/"+settings.version)
+        graph.add((api_node,PROV.wasAssociatedWith,software_node))
+        graph.add((software_node,RDF.type,PROV.SoftwareAgent))
+        graph.add((software_node,RDFS.label,Literal( settings.app_name+settings.version)))
+        graph.add((software_node,PROV.hadPrimarySource,URIRef(settings.source)))
+        graph.add((table,PROV.generatedAtTime,Literal(str(datetime.now().isoformat()),datatype=XSD.dateTime)))
+        csv_usage=URIRef(csv_url)
+        graph.add((csv_usage,RDF.type,PROV.Usage))
+        graph.add((csv_usage,PROV.hadRole,CSVW.csvEncodedTabularData))
+        graph.add((table,PROV.qualifiedUsage,csv_usage))
+        meta_usage=URIRef(metadata_url)
+        graph.add((meta_usage,RDF.type,PROV.Usage))
+        graph.add((meta_usage,PROV.hadRole,CSVW.tabularMetadata))
+        graph.add((table,PROV.qualifiedUsage,meta_usage))
+    return graph
