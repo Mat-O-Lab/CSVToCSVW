@@ -93,7 +93,7 @@
         <file:///src/XAchse66>,
         <file:///src/YAchse67> ;
     csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv"^^xsd:anyURI ;
-    prov:generatedAtTime "2023-05-12T07:45:02.030438"^^xsd:dateTime ;
+    prov:generatedAtTime "2023-05-12T08:37:42.143525"^^xsd:dateTime ;
     prov:wasGeneratedBy <http://localhost:5001/api/annotation> .
 
 <file:///src/Abstandsmessung50> a oa:Annotation ;
@@ -156,13 +156,13 @@
 <file:///src/BemerkungenRzB5X2522> a oa:Annotation ;
     rdfs:label "Bemerkungen: Rz B5x25" ;
     csvw:rownum 22 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:unit <http://qudt.org/vocab/unit/T> ;
-            qudt:value 1000 ],
-        [ a oa:TextualBody ;
+    oa:hasBody [ a oa:TextualBody ;
             oa:format "text/plain" ;
             oa:purpose "oa:tagging" ;
-            oa:value "46NT31-Rohling" ] .
+            oa:value "46NT31-Rohling" ],
+        [ a qudt:QuantityValue ;
+            qudt:unit <http://qudt.org/vocab/unit/T> ;
+            qudt:value 1000 ] .
 
 <file:///src/BilderAbspeichern52> a oa:Annotation ;
     rdfs:label "Bilder abspeichern" ;
