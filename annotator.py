@@ -18,10 +18,45 @@ locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
 from rdflib import Graph, URIRef, Literal, Namespace, BNode
 from rdflib.namespace import RDF, RDFS, XSD, CSVW, DC, PROV
 from rdflib.plugins.sparql import prepareQuery
+import logging
+from enum import Enum
 
 QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
 QUDT = Namespace("http://qudt.org/schema/qudt/")
 QUNIT = Namespace("http://qudt.org/vocab/unit/")
+
+class TextEncoding(str, Enum):
+    DETECT = "auto"
+    UTF8 = "utf-8"
+    ASCII = "ascii"
+    ISO88591 = "iso-8859-1"
+    ISO88592 = "iso-8859-2"
+    ISO88593 = "iso-8859-3"
+    ISO88594 = "iso-8859-4"
+    ISO88595 = "iso-8859-5"
+    ISO88596 = "iso-8859-6"
+    ISO88597 = "iso-8859-7"
+    ISO88598 = "iso-8859-8"
+    ISO88599 = "iso-8859-9"
+    ISO885910 = "iso-8859-10"
+    ISO885913 = "iso-8859-13"
+    ISO885914 = "iso-8859-14"
+    ISO885915 = "iso-8859-15"
+    ISO885916 = "iso-8859-16"
+    WINDOWS1250 = "windows-1250"
+    WINDOWS1251 = "windows-1251"
+    WINDOWS1252 = "windows-1252"
+    WINDOWS1253 = "windows-1253"
+    WINDOWS1254 = "windows-1254"
+    WINDOWS1255 = "windows-1255"
+    WINDOWS1256 = "windows-1256"
+    WINDOWS1257 = "windows-1257"
+    WINDOWS1258 = "windows-1258"
+    KOI8R = "koi8-r"
+    KOI8U = "koi8-u"
+    MACCYRILLIC = "mac-cyrillic"
+    MACROMAN = "mac-roman"
+
 
 UMLAUTE = {
             '\u00e4': 'ae',  # U+00E4	   \xc3\xa4
@@ -67,18 +102,16 @@ def get_data(uri='')-> (bytes, str):
     except:
         print('not an uri - if local file add file:// as prefix')
         return None
-    else:
+    #print(uri_parsed)
+    if uri_parsed.scheme in ['https', 'http','file']:
         filename = unquote(uri_parsed.path).rsplit('/download/upload')[0].split('/')[-1]
-        #print(uri,filename)
-        if uri_parsed.scheme in ['https', 'http']:
-            filedata = urlopen(uri).read()
-
-        elif uri_parsed.scheme == 'file':
-            filedata = open(unquote(uri_parsed.path), 'rb').read()
-        else:
-            print('unknown scheme {}'.format(uri_parsed.scheme))
-            return None
-        return filedata, filename
+        logging.debug('reading file at {} with name {}'.format(uri,filename))
+        with urlopen(uri) as f:
+            filedata = f.read()
+    else:
+        print('unknown scheme {}'.format(uri_parsed.scheme))
+        return None
+    return filedata, filename
 
 def is_date(string, fuzzy=False)->bool:
     try:

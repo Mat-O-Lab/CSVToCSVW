@@ -23,7 +23,7 @@
       <p class="col-md-12 ps-0 fs-4">
         Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at <a href="https://www.w3.org/ns/csvw">CSVW</a> to describe structure and information within. Also uses <a href="https://github.com/qudt/qudt-public-repo/tree/main/vocab/unit">QUDT units ontology </a> to lookup and describe units.
       </p>
-      <form id=input-form class='pb-3' method="post" action="{{ url_for('annotation') }}">
+      <form id=input-form class='pb-3' method="post" action="{{ url_for('annotate') }}">
         <div class="mb-3">
           {{ start_form.csrf_token }}
           {% for item in start_form if item.widget.input_type != 'hidden' %}

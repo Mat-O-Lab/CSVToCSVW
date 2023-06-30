@@ -30,7 +30,7 @@ jobs:
           for file in *.csv 
             do
               echo "$file"
-              RESULT=$(curl -X POST "http://localhost:${{env.APP_PORT}}/api/annotation" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/$file\"}")
+              RESULT=$(curl -X POST "http://localhost:${{env.APP_PORT}}/api/annotate" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"data_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/$file\"}")
               FILEDATA=$(echo $RESULT | jq -r '.filedata')
               FILENAME=$(echo $RESULT | jq -r '.filename')
               echo $FILENAME

@@ -10,20 +10,25 @@ from starlette.middleware.sessions import SessionMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, Any
 
+
+
 from pydantic import BaseSettings, BaseModel, AnyUrl, Field
 
-from fastapi import Request, FastAPI, HTTPException, Body
+from fastapi import Request, FastAPI, HTTPException, Body, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 #from fastapi.encoders import jsonable_encoder
 from fastapi.responses import HTMLResponse, Response
 
-from wtforms import URLField, SelectField
+from wtforms import URLField, SelectField, FileField
+from wtforms.validators import DataRequired
+
 from datetime import datetime
 
 import logging
 
-from annotator import CSV_Annotator
+from annotator import CSV_Annotator, TextEncoding
+from csvw_parser import CSVWtoRDF
 
 class Settings(BaseSettings):
     app_name: str = "CSVtoCSVW"
@@ -35,6 +40,8 @@ class Settings(BaseSettings):
     docs_url: str = "/api/docs"
     source: str = "https://github.com/Mat-O-Lab/CSVToCSVW"
 settings = Settings()
+
+
 
 #flash integration flike flask flash
 def flash(request: Request, message: Any, category: str = "info") -> None:
@@ -109,15 +116,30 @@ class StartForm(StarletteForm):
         'URL Data File',
         #validators=[DataRequired()],
         description='Paste URL to a data file, e.g. csv, TRA',
+        #validators=[DataRequired(message='Either URL to data file or file upload is required.')],
         render_kw={"class":"form-control", "placeholder": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"},
     )
+    # file = FileField(
+    #     'Upload a File',
+    #     description='Or Upload a file csv file.',
+    #     render_kw={"class":"form-control"}
+    #     )
     encoding = SelectField(
         'Choose Encoding, default: auto detect',
-        choices=encodings,
+        choices= [(encoding.value, encoding.name.capitalize()) for encoding in TextEncoding],
         render_kw={"class":"form-control"},
         description='select an encoding for your data manually',
         default='auto'
         )
+    def validate(self):
+        if not super().validate():
+            return False
+        if not (self.data_url.data or self.file.data):
+            #self.data_url.errors.append('Either URL Data File or Additional Field is required.')
+            flash('URL Data File and File Field empty: using placeholder value for demonstration.','info')
+            self.data_url.data = self.data_url.render_kw['placeholder']
+            return True
+        return True
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def index(request: Request):
@@ -150,15 +172,26 @@ def annotate_prov(api_url: str) -> dict:
                 }
             }
 
-@app.post("/api/annotation",response_model=AnnotateResponse)
-def annotation(annotate: AnnotateRequest, request: Request) -> dict:
+@app.post("/api/annotate",response_model=AnnotateResponse)
+def annotate(request: Request, annotate: AnnotateRequest) -> dict:
     annotator = CSV_Annotator(annotate.data_url, encoding=annotate.encoding)
-    print(annotator)
     result=annotator.annotate()
     result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
     return result
 
-from csvw_parser import CSVWtoRDF
+@app.post("/api/annotate_upload",response_model=AnnotateResponse)
+async def annotate_upload(request: Request, file: UploadFile = File(...), encoding: TextEncoding=TextEncoding.DETECT) -> dict:
+    with open(file.filename, "wb") as f:
+        f.write(await file.read())
+    annotator = CSV_Annotator("file://"+os.getcwd()+'/'+file.filename, encoding=encoding.value)
+    print(annotator)
+    result=annotator.annotate()
+    result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
+    #delete the temp csv file
+    if os.path.isfile(file.filename):
+        os.remove(file.filename)
+    return result
+
 
 @app.post("/api/rdf", response_model=RDFResponse, responses={
         200: {
