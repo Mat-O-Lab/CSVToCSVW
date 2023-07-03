@@ -10,12 +10,13 @@ from starlette.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import HTMLResponse
 #from starlette.middleware.cors import CORSMiddleware
+import fastapi
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, Any, Union
 import json
 
 
-from pydantic import BaseSettings, BaseModel, AnyUrl, Field, FileUrl
+from pydantic import BaseModel, AnyUrl, Field, FileUrl
 
 from fastapi import Request, FastAPI, Body, File, UploadFile
 from fastapi.staticfiles import StaticFiles
@@ -36,16 +37,8 @@ from csvw_parser import CSVWtoRDF
 def path2url(path):
     return urlparse(path,scheme='file').geturl()
 
-class Settings(BaseSettings):
-    app_name: str = "CSVtoCSVW"
-    admin_email: str = os.environ.get("ADMIN_MAIL") or "csvtocsvw@matolab.org"
-    items_per_user: int = 50
-    version: str = "v1.2.0"
-    config_name: str = os.environ.get("APP_MODE") or "development"
-    openapi_url: str ="/api/openapi.json"
-    docs_url: str = "/api/docs"
-    source: str = "https://github.com/Mat-O-Lab/CSVToCSVW"
-settings = Settings()
+import settings
+setting = settings.Setting()
 
 
 
@@ -69,17 +62,17 @@ middleware = [
             ),
     Middleware(uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware, trusted_hosts="*")
     ]
-app = FastAPI(
+app = fastapi.FastAPI(
     title="CSVtoCSVW",
     description="Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at CSVW to describe structure and information within. Also uses QUDT units ontology to lookup and describe units.",
-    version=settings.version,
-    contact={"name": "Thomas Hanke, Mat-O-Lab", "url": "https://github.com/Mat-O-Lab", "email": settings.admin_email},
+    version=setting.version,
+    contact={"name": "Thomas Hanke, Mat-O-Lab", "url": "https://github.com/Mat-O-Lab", "email": setting.admin_email},
     license_info={
         "name": "Apache 2.0",
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     },
-    openapi_url=settings.openapi_url,
-    docs_url=settings.docs_url,
+    openapi_url=setting.openapi_url,
+    docs_url=setting.docs_url,
     redoc_url=None,
     swagger_ui_parameters= {'syntaxHighlight': False},
     middleware=middleware
@@ -89,15 +82,13 @@ app = FastAPI(
 app.mount("/static/", StaticFiles(directory='static', html=True), name="static")
 templates= Jinja2Templates(directory="templates")
 templates.env.globals['get_flashed_messages'] = get_flashed_messages
-# bootstrap = Bootstrap(app)
+
 
 logging.basicConfig(level=logging.DEBUG)
 
-encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
-
 class AnnotateRequest(BaseModel):
     data_url: Union[AnyUrl, FileUrl] = Field('', title='Raw CSV Url', description='Url to raw csv')
-    encoding: Optional[str] = Field('auto', title='Encoding', description='Encoding of the file',omit_default=True)
+    encoding: Optional[TextEncoding] = Field('auto', title='Encoding', description='Encoding of the file',omit_default=True)
     class Config:
         schema_extra = {
             "example": {
@@ -202,9 +193,9 @@ def annotate_prov(api_url: str) -> dict:
                 "@id": api_url,
                 "@type": "prov:Activity",
                 "prov:wasAssociatedWith":  {
-                    "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/"+settings.version,
-                    "rdfs:label": settings.app_name+settings.version,
-                    "prov:hadPrimarySource": settings.source,
+                    "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/"+setting.version,
+                    "rdfs:label": setting.app_name+setting.version,
+                    "prov:hadPrimarySource": setting.source,
                     "@type": "prov:SoftwareAgent"
                 }
             },
@@ -273,9 +264,9 @@ async def rdf(request: Request, rdfrequest: RDFRequest= Body(
         return Response(filedata, headers=headers,  media_type='text/utf-8')
     
 
-@app.get("/info", response_model=Settings)
+@app.get("/info", response_model=settings.Setting)
 async def info() -> dict:
-    return settings
+    return setting
 
 #time http calls
 from time import time

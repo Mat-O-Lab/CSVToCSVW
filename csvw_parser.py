@@ -226,7 +226,8 @@ class CSVWtoRDF:
         
         return graph.serialize(format=format)
 
-from app import settings
+import settings
+setting=settings.Setting
 
 def csvwtordf_prov(graph: Graph, api_url: str, csv_url: str, metadata_url: str) -> dict:
     """_summary_
@@ -247,11 +248,11 @@ def csvwtordf_prov(graph: Graph, api_url: str, csv_url: str, metadata_url: str) 
         api_node=URIRef(api_url)
         graph.add((table,PROV.wasGeneratedBy,api_node))
         graph.add((api_node,RDF.type,PROV.Activity))
-        software_node=URIRef("https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/"+settings.version)
+        software_node=URIRef("https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/"+setting.version)
         graph.add((api_node,PROV.wasAssociatedWith,software_node))
         graph.add((software_node,RDF.type,PROV.SoftwareAgent))
-        graph.add((software_node,RDFS.label,Literal( settings.app_name+settings.version)))
-        graph.add((software_node,PROV.hadPrimarySource,URIRef(settings.source)))
+        graph.add((software_node,RDFS.label,Literal( setting.app_name+setting.version)))
+        graph.add((software_node,PROV.hadPrimarySource,URIRef(setting.source)))
         graph.add((table,PROV.generatedAtTime,Literal(str(datetime.now().isoformat()),datatype=XSD.dateTime)))
         csv_usage=URIRef(csv_url)
         graph.add((csv_usage,RDF.type,PROV.Usage))
