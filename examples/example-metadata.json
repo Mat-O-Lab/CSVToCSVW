@@ -298,19 +298,18 @@
       }
     }
   ],
-  "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
   "prov:wasGeneratedBy": {
-    "@id": "http://localhost:5001/api/annotation",
+    "@id": "http://localhost:5001/api/annotate",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.1.9",
-      "rdfs:label": "CSVtoCSVWv1.1.9",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0",
+      "rdfs:label": "CSVtoCSVWv1.2.0",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-05-15T09:40:28.303874",
+    "@value": "2023-07-03T12:35:36.799405",
     "@type": "xsd:dateTime"
   }
 }
