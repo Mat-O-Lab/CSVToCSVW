@@ -1,27 +1,28 @@
 # app.py
 import os
+import base64
 
 import uvicorn
-from starlette_wtf import StarletteForm
-from starlette.responses import HTMLResponse
+from starlette_wtf import StarletteForm, CSRFProtectMiddleware, csrf_protect
 from starlette.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
+from starlette.responses import HTMLResponse
 #from starlette.middleware.cors import CORSMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, Any
-
+import json
 
 
 from pydantic import BaseSettings, BaseModel, AnyUrl, Field
 
-from fastapi import Request, FastAPI, HTTPException, Body, File, UploadFile
+from fastapi import Request, FastAPI, Body, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 #from fastapi.encoders import jsonable_encoder
-from fastapi.responses import HTMLResponse, Response
+from fastapi.responses import Response
 
 from wtforms import URLField, SelectField, FileField
-from wtforms.validators import DataRequired
+#from wtforms.validators import DataRequired
 
 from datetime import datetime
 
@@ -53,7 +54,16 @@ def get_flashed_messages(request: Request):
     print(request.session)
     return request.session.pop("_messages") if "_messages" in request.session else []
 
-middleware = [Middleware(SessionMiddleware, secret_key=os.environ.get('APP_SECRET','1nji79hb10009'))]
+middleware = [
+    Middleware(SessionMiddleware, secret_key=os.environ.get('APP_SECRET','1nji79hb10009')),
+    Middleware(CSRFProtectMiddleware, csrf_secret='1nji79hb10009'),
+    Middleware(CORSMiddleware, 
+            allow_origins=["*"], # Allows all origins
+            allow_methods=["*"], # Allows all methods
+            allow_headers=["*"] # Allows all headers
+            ),
+    Middleware(uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware, trusted_hosts="*")
+    ]
 app = FastAPI(
     title="CSVtoCSVW",
     description="Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at CSVW to describe structure and information within. Also uses QUDT units ontology to lookup and describe units.",
@@ -69,14 +79,7 @@ app = FastAPI(
     swagger_ui_parameters= {'syntaxHighlight': False},
     middleware=middleware
 )
-app.add_middleware(
-CORSMiddleware,
-allow_origins=["*"], # Allows all origins
-allow_credentials=True,
-allow_methods=["*"], # Allows all methods
-allow_headers=["*"], # Allows all headers
-)
-app.add_middleware(uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware, trusted_hosts="*")
+
 
 app.mount("/static/", StaticFiles(directory='static', html=True), name="static")
 templates= Jinja2Templates(directory="templates")
@@ -111,7 +114,7 @@ class RDFResponse(BaseModel):
     filename:  str = Field('example.ttl', title='Resulting File Name', description='Suggested filename of the generated rdf.')
     filedata: str = Field( title='Generated RDF', description='The generated rdf for the given meta data file as string in utf-8.')
 
-class StartForm(StarletteForm):
+class StartFormUri(StarletteForm):
     data_url = URLField(
         'URL Data File',
         #validators=[DataRequired()],
@@ -119,11 +122,6 @@ class StartForm(StarletteForm):
         #validators=[DataRequired(message='Either URL to data file or file upload is required.')],
         render_kw={"class":"form-control", "placeholder": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"},
     )
-    # file = FileField(
-    #     'Upload a File',
-    #     description='Or Upload a file csv file.',
-    #     render_kw={"class":"form-control"}
-    #     )
     encoding = SelectField(
         'Choose Encoding, default: auto detect',
         choices= [(encoding.value, encoding.name.capitalize()) for encoding in TextEncoding],
@@ -131,26 +129,60 @@ class StartForm(StarletteForm):
         description='select an encoding for your data manually',
         default='auto'
         )
-    def validate(self):
-        if not super().validate():
+    async def validate(self, extra_validators=None):
+        if not await super().validate():
             return False
-        if not (self.data_url.data or self.file.data):
-            #self.data_url.errors.append('Either URL Data File or Additional Field is required.')
-            flash('URL Data File and File Field empty: using placeholder value for demonstration.','info')
+        if not (self.data_url.data):
             self.data_url.data = self.data_url.render_kw['placeholder']
             return True
         return True
 
-@app.get("/", response_class=HTMLResponse, include_in_schema=False)
-async def index(request: Request):
+
+
+@app.get('/', response_class=HTMLResponse, include_in_schema=False)
+@csrf_protect
+async def get_index(request: Request):
     """GET /: form handler
     """
-    start_form = await StartForm.from_formdata(request)
+    template="index.html"
+    form = await StartFormUri.from_formdata(request)
+    return templates.TemplateResponse(template, {"request": request,
+        "form": form,
+        "result": ''
+        }
+    )
+
+
+@app.post('/result', response_class=HTMLResponse, include_in_schema=False)
+@csrf_protect
+async def post_index(request: Request):
+    """POST /: form handler
+    """
+    template="index.html"
+    form = await StartFormUri.from_formdata(request)
     result = ''
-    return templates.TemplateResponse("index.html",
-        {"request": request,
-        "start_form": start_form,
-        "result": result
+    filename = ''
+    payload= ''
+    if not form.data_url.data:
+        msg='URL Data File empty: using placeholder value for demonstration.'
+        logging.debug('URL Data File empty: using placeholder value for demonstration.')
+        form.data_url.data=form.data_url.render_kw['placeholder']
+        flash(request,msg,'info')
+    if await form.validate_on_submit():
+        
+        data_url = form.data_url.data
+        request.session['data_url']=data_url
+        result= await annotate(request=request,annotate=AnnotateRequest(data_url=form.data['data_url'], encoding=form.data['encoding']))
+        filename=result["filename"]
+        result=json.dumps(result["filedata"],indent=4)
+        b64 = base64.b64encode(result.encode())
+        payload = b64.decode()
+    # return response
+    return templates.TemplateResponse(template, {"request": request,
+        "form": form,
+        "result": result,
+        "filename": filename,
+        "payload": payload
         }
     )
 
@@ -173,7 +205,7 @@ def annotate_prov(api_url: str) -> dict:
             }
 
 @app.post("/api/annotate",response_model=AnnotateResponse)
-def annotate(request: Request, annotate: AnnotateRequest) -> dict:
+async def annotate(request: Request, annotate: AnnotateRequest) -> dict:
     annotator = CSV_Annotator(annotate.data_url, encoding=annotate.encoding)
     result=annotator.annotate()
     result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
