@@ -1,6 +1,8 @@
 # app.py
 import os
 import base64
+from urllib.parse import urlparse
+
 
 import uvicorn
 from starlette_wtf import StarletteForm, CSRFProtectMiddleware, csrf_protect
@@ -9,11 +11,11 @@ from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import HTMLResponse
 #from starlette.middleware.cors import CORSMiddleware
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Optional, Any
+from typing import Optional, Any, Union
 import json
 
 
-from pydantic import BaseSettings, BaseModel, AnyUrl, Field
+from pydantic import BaseSettings, BaseModel, AnyUrl, Field, FileUrl
 
 from fastapi import Request, FastAPI, Body, File, UploadFile
 from fastapi.staticfiles import StaticFiles
@@ -31,11 +33,14 @@ import logging
 from annotator import CSV_Annotator, TextEncoding
 from csvw_parser import CSVWtoRDF
 
+def path2url(path):
+    return urlparse(path,scheme='file').geturl()
+
 class Settings(BaseSettings):
     app_name: str = "CSVtoCSVW"
     admin_email: str = os.environ.get("ADMIN_MAIL") or "csvtocsvw@matolab.org"
     items_per_user: int = 50
-    version: str = "v1.1.9"
+    version: str = "v1.2.0"
     config_name: str = os.environ.get("APP_MODE") or "development"
     openapi_url: str ="/api/openapi.json"
     docs_url: str = "/api/docs"
@@ -91,7 +96,7 @@ logging.basicConfig(level=logging.DEBUG)
 encodings = ['auto', 'ISO-8859-1', 'UTF-8', 'ascii', 'latin-1', 'cp273']
 
 class AnnotateRequest(BaseModel):
-    data_url: AnyUrl = Field('', title='Raw CSV Url', description='Url to raw csv')
+    data_url: Union[AnyUrl, FileUrl] = Field('', title='Raw CSV Url', description='Url to raw csv')
     encoding: Optional[str] = Field('auto', title='Encoding', description='Encoding of the file',omit_default=True)
     class Config:
         schema_extra = {
@@ -122,6 +127,11 @@ class StartFormUri(StarletteForm):
         #validators=[DataRequired(message='Either URL to data file or file upload is required.')],
         render_kw={"class":"form-control", "placeholder": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"},
     )
+    file=FileField(
+        'Upload CSV File',
+        description='Upload your CSV File here.',
+        render_kw={"class":"form-control", "placeholder": "Your CSV File"},
+    )
     encoding = SelectField(
         'Choose Encoding, default: auto detect',
         choices= [(encoding.value, encoding.name.capitalize()) for encoding in TextEncoding],
@@ -129,13 +139,6 @@ class StartFormUri(StarletteForm):
         description='select an encoding for your data manually',
         default='auto'
         )
-    async def validate(self, extra_validators=None):
-        if not await super().validate():
-            return False
-        if not (self.data_url.data):
-            self.data_url.data = self.data_url.render_kw['placeholder']
-            return True
-        return True
 
 
 
@@ -153,7 +156,7 @@ async def get_index(request: Request):
     )
 
 
-@app.post('/result', response_class=HTMLResponse, include_in_schema=False)
+@app.post('/', response_class=HTMLResponse, include_in_schema=False)
 @csrf_protect
 async def post_index(request: Request):
     """POST /: form handler
@@ -163,20 +166,27 @@ async def post_index(request: Request):
     result = ''
     filename = ''
     payload= ''
-    if not form.data_url.data:
+    if not (form.data_url.data or form.file.data.filename):
         msg='URL Data File empty: using placeholder value for demonstration.'
         logging.debug('URL Data File empty: using placeholder value for demonstration.')
         form.data_url.data=form.data_url.render_kw['placeholder']
         flash(request,msg,'info')
     if await form.validate_on_submit():
-        
-        data_url = form.data_url.data
-        request.session['data_url']=data_url
-        result= await annotate(request=request,annotate=AnnotateRequest(data_url=form.data['data_url'], encoding=form.data['encoding']))
+        if form.file.data.filename:
+            with open(form.file.data.filename, mode="wb") as f:
+                f.write(await form.file.data.read())
+                file_path=os.path.realpath(f.name)
+                data_url=path2url(file_path)
+        elif form.data_url.data:
+            data_url=form.data_url.data
+        result= await annotate(request=request,annotate=AnnotateRequest(data_url= data_url, encoding=form.data['encoding']))
         filename=result["filename"]
         result=json.dumps(result["filedata"],indent=4)
         b64 = base64.b64encode(result.encode())
         payload = b64.decode()
+        #remove temp file
+        if form.file.data.filename:
+            os.remove(file_path)
     # return response
     return templates.TemplateResponse(template, {"request": request,
         "form": form,

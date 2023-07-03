@@ -586,9 +586,11 @@ class CSV_Annotator():
             url_string = self.url
         else:
             url_string = self.file_name
-        metadata["url"]=url_string
+        # for file schema output filename as url, metadata file should be placed in same directory
+        if url_string[:4]=='file':
+            url_string=self.file_name
         #try to find all table like segments in the file
-        print(self.parts)
+        #print(self.parts)
         for key, value in self.parts.items():
             if value['type']=='meta':
                 meta_data=self.__get_data_meta_part(self.file_string, start=value['start'], end=value['end'], col_count=value['count']+1,separator=value['sep'])
