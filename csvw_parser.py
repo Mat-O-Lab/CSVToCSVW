@@ -227,7 +227,7 @@ class CSVWtoRDF:
         return graph.serialize(format=format)
 
 import settings
-setting=settings.Setting
+setting=settings.Setting()
 
 def csvwtordf_prov(graph: Graph, api_url: str, csv_url: str, metadata_url: str) -> dict:
     """_summary_
