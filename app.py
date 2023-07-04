@@ -3,7 +3,6 @@ import os
 import base64
 from urllib.parse import urlparse
 
-
 import uvicorn
 from starlette_wtf import StarletteForm, CSRFProtectMiddleware, csrf_protect
 from starlette.middleware import Middleware
@@ -15,17 +14,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, Any, Union
 import json
 
-
 from pydantic import BaseModel, AnyUrl, Field, FileUrl
 
-from fastapi import Request, FastAPI, Body, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 #from fastapi.encoders import jsonable_encoder
-from fastapi.responses import Response
+from fastapi.responses import StreamingResponse
 
 from wtforms import URLField, SelectField, FileField
-#from wtforms.validators import DataRequired
 
 from datetime import datetime
 
@@ -33,6 +29,7 @@ import logging
 
 from annotator import CSV_Annotator, TextEncoding
 from csvw_parser import CSVWtoRDF
+from io import BytesIO
 
 def path2url(path):
     return urlparse(path,scheme='file').geturl()
@@ -40,16 +37,31 @@ def path2url(path):
 import settings
 setting = settings.Setting()
 
+from enum import Enum
+
+
+class ReturnType(str, Enum):
+    jsonld="json-ld"
+    n3="n3"
+    #nquads="nquads" #only makes sense for context-aware stores
+    nt="nt"
+    hext="hext"
+    #prettyxml="pretty-xml" #only makes sense for context-aware stores
+    trig="trig"
+    #trix="trix" #only makes sense for context-aware stores
+    turtle="turtle"
+    longturtle="longturtle"
+    xml="xml"
+
 
 
 #flash integration flike flask flash
-def flash(request: Request, message: Any, category: str = "info") -> None:
+def flash(request: fastapi.Request, message: Any, category: str = "info") -> None:
     if "_messages" not in request.session:
         request.session["_messages"] = []
     request.session["_messages"].append({"message": message, "category": category})
 
-def get_flashed_messages(request: Request):
-    print(request.session)
+def get_flashed_messages(request: fastapi.Request):
     return request.session.pop("_messages") if "_messages" in request.session else []
 
 middleware = [
@@ -101,11 +113,23 @@ class AnnotateResponse(BaseModel):
     filedata: dict = Field( title='Generated JSON-LD', description='The generated jdon-ld for the given raw csv file as string in utf-8.')
 
 class RDFRequest(BaseModel):
-    metadata_url: AnyUrl = Field('', title='Graph Url', description='Url to csvw metadata to use.')
-    csv_url: Optional[AnyUrl] = Field('', title='CSV Url', description='Url to csvw file to use or else the mentioned url in metadata will be used.')
-    format: Optional[str] = Field('turtle', title='Serialization Format', description='The format to use to serialize the rdf.')
-    as_json: Optional[bool] = Field(False, title='Return JSON response', description='If to return the response as JSON.')
-
+    metadata_url: Union[AnyUrl, FileUrl] = Field('', title='Graph Url', description='Url to csvw metadata to use.')
+    csv_url: Optional[Union[AnyUrl, FileUrl]] = Field(None, title='CSV Url', description='Url to csvw file to use or else the mentioned url in metadata will be used.')
+    format: Optional[ReturnType] = Field(ReturnType.jsonld, title='Serialization Format', description='The format to use to serialize the rdf.')
+    class Config:
+        schema_extra = {
+            "examples": [
+                {
+                        "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2-metadata.json",
+                        "format": "json-ld"
+                },
+                {
+                        "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2-metadata.json",
+                        "csv_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
+                        "format": "turtle"
+                },
+            ]
+        }
 class RDFResponse(BaseModel):
     filename:  str = Field('example.ttl', title='Resulting File Name', description='Suggested filename of the generated rdf.')
     filedata: str = Field( title='Generated RDF', description='The generated rdf for the given meta data file as string in utf-8.')
@@ -135,7 +159,7 @@ class StartFormUri(StarletteForm):
 
 @app.get('/', response_class=HTMLResponse, include_in_schema=False)
 @csrf_protect
-async def get_index(request: Request):
+async def get_index(request: fastapi.Request):
     """GET /: form handler
     """
     template="index.html"
@@ -149,7 +173,7 @@ async def get_index(request: Request):
 
 @app.post('/', response_class=HTMLResponse, include_in_schema=False)
 @csrf_protect
-async def post_index(request: Request):
+async def post_index(request: fastapi.Request):
     """POST /: form handler
     """
     template="index.html"
@@ -206,18 +230,17 @@ def annotate_prov(api_url: str) -> dict:
             }
 
 @app.post("/api/annotate",response_model=AnnotateResponse)
-async def annotate(request: Request, annotate: AnnotateRequest) -> dict:
+async def annotate(request: fastapi.Request, annotate: AnnotateRequest) -> dict:
     annotator = CSV_Annotator(annotate.data_url, encoding=annotate.encoding)
     result=annotator.annotate()
     result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
     return result
 
 @app.post("/api/annotate_upload",response_model=AnnotateResponse)
-async def annotate_upload(request: Request, file: UploadFile = File(...), encoding: TextEncoding=TextEncoding.DETECT) -> dict:
+async def annotate_upload(request: fastapi.Request, file: fastapi.UploadFile = fastapi.File(...), encoding: TextEncoding=TextEncoding.DETECT) -> dict:
     with open(file.filename, "wb") as f:
         f.write(await file.read())
     annotator = CSV_Annotator("file://"+os.getcwd()+'/'+file.filename, encoding=encoding.value)
-    print(annotator)
     result=annotator.annotate()
     result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
     #delete the temp csv file
@@ -226,42 +249,26 @@ async def annotate_upload(request: Request, file: UploadFile = File(...), encodi
     return result
 
 
-@app.post("/api/rdf", response_model=RDFResponse, responses={
-        200: {
-            "content": {"text/utf-8": {}},
-            "description": "Return serialized rdf as file download.",
-        }
-    })
-async def rdf(request: Request, rdfrequest: RDFRequest= Body(
-        examples={
-            "as download": {
-                "summary": "A rdf example, returned as download",
-                "description": "Creates rdf from csv file and csvw metadata description.",
-                "value": {
-                    "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json",
-                    },
-            },
-            "as json": {
-                "summary": "Return directly as json",
-                "description": "Creates rdf from csv file and csvw metadata description.",
-                "value": {
-                    "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example-metadata.json",
-                    "as_json": True
-                    },
-            },
-        }
-    )) -> Response:
+@app.post("/api/rdf")
+async def rdf(request: fastapi.Request, rdfrequest: RDFRequest) -> StreamingResponse:
     converter=CSVWtoRDF(rdfrequest.metadata_url,rdfrequest.csv_url, request.url._url)
-    filename=converter.file_url.rsplit('/',1)[-1]
+    filedata=converter.convert(rdfrequest.format.value)
+    data_bytes=BytesIO(filedata.encode())
+    filename=converter.filename
     headers = {
-        'Content-Disposition': 'attachment; filename={}'.format(filename)
+        'Content-Disposition': 'attachment; filename={}'.format(filename),
+        'Access-Control-Expose-Headers': 'Content-Disposition'
     }
-    filedata=converter.convert()
-    #print(converter.metadata['tables'][0])
-    if rdfrequest.as_json:
-        return {"filename": filename, "filedata": filedata}
+    if rdfrequest.format==ReturnType.jsonld:
+        media_type='application/json'
+    elif rdfrequest.format==ReturnType.xml:
+        media_type='application/xml'
+    elif rdfrequest.format in [ReturnType.turtle, ReturnType.longturtle]:
+        media_type='text/turtle'
     else:
-        return Response(filedata, headers=headers,  media_type='text/utf-8')
+        media_type='text/utf-8'
+    return StreamingResponse(content=data_bytes, media_type=media_type, headers=headers)
+
     
 
 @app.get("/info", response_model=settings.Setting)
@@ -271,7 +278,7 @@ async def info() -> dict:
 #time http calls
 from time import time
 @app.middleware("http")
-async def add_process_time_header(request: Request, call_next):
+async def add_process_time_header(request: fastapi.Request, call_next):
     start_time = time()
     response = await call_next(request)
     process_time = time() - start_time

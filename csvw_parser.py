@@ -137,7 +137,7 @@ class CSVWtoRDF:
         if csv_url:
             self.csv_url=csv_url
         print(self.metadata_url,self.csv_url)
-        self.file_url=self.csv_url.rsplit('/download/upload')[0].rsplit('.',1)[0]+".ttl"
+        self.filename=self.csv_url.rsplit('/',1)[-1].rsplit('.',1)[0]
         self.tables={table_node: {} for file, table_node in self.metagraph[: CSVW.table: ]}
         print('tables: {}'.format(self.tables))
         self.table_data=list()
@@ -219,6 +219,12 @@ class CSVWtoRDF:
         Returns:
             str: serialize graph as string
         """
+        if format in ['turtle','longturtle']:
+            self.filename+='.ttl'
+        elif format=='json-ld':
+            self.filename+='.json'
+        else:
+            self.filename+='.'+format
         graph=parse_graph(self.metadata_url,graph=Graph())
         graph=self.add_table_data(graph)
         if self.api_url:
