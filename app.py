@@ -65,8 +65,8 @@ def get_flashed_messages(request: fastapi.Request):
     return request.session.pop("_messages") if "_messages" in request.session else []
 
 middleware = [
-    Middleware(SessionMiddleware, secret_key=os.environ.get('APP_SECRET','1nji79hb10009')),
-    Middleware(CSRFProtectMiddleware, csrf_secret='1nji79hb10009'),
+    Middleware(SessionMiddleware, secret_key=os.environ.get('APP_SECRET','changemeNOW')),
+    Middleware(CSRFProtectMiddleware, csrf_secret=os.environ.get('APP_SECRET','changemeNOW')),
     Middleware(CORSMiddleware, 
             allow_origins=["*"], # Allows all origins
             allow_methods=["*"], # Allows all methods
