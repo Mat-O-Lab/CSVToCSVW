@@ -47,7 +47,7 @@ jobs:
           for file in *-metadata.json 
             do
               echo "$file"
-              curl -X POST "http://localhost:${{env.APP_PORT}}/api/rdf" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"metadata_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/$file\", \"format\"=\"turtle\"}" -O -J
+              curl -X POST "http://localhost:${{env.APP_PORT}}/api/rdf" -H  "accept: application/json" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"metadata_url\":\"https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/$file\", \"format\":\"turtle\"}" -O -J
             done
       - name: Commit files # commit the output folder
         uses: EndBug/add-and-commit@v9
