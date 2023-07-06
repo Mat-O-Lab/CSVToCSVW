@@ -337,19 +337,41 @@ class CSV_Annotator():
             #test lenght of segments and first line of parts to be all text to categorize to meta or data table part
             parts={key: value for key,value in parts.items() if value['sep']}
             for key, value in parts.items():
+                logging.debug("{} {}".format(key,value))
                 f.seek(0)
                 if value['end']-value['start']==1 or value['sep']==':+\\s+\\s*':
                     value['type']='meta'
-                #test for header line but not if sep ':+\\s+\\s*' should be config style data which is meta
+                # #test for header line but not if sep ':+\\s+\\s*' should be config style data which is meta
+                # elif value['sep']!=':+\\s+\\s*' and value['end']-value['start']>=1:
+                #     for i, line in enumerate(f):
+                #         if i==value['start']:
+                #             types=[get_value_type(string)[0] for string in re.split(value['sep'],line)]
+                #             tests=[typ in ['BLANK', 'TEXT', 'INT'] for typ in types]
+                #             all_text = all(tests)
+                #             break
+                #     if all_text:
+                #         #seams it has at least on header row
+                #         value['type']='data'
+                #test lines in segment if the lines differ from each other in type
                 elif value['sep']!=':+\\s+\\s*' and value['end']-value['start']>=1:
+                    types_list=list()
                     for i, line in enumerate(f):
-                        if i==value['start']:
-                            tests=[get_value_type(string)[0] in ['BLANK', 'TEXT', 'INT'] for string in re.split(value['sep'],line)]
-                            all_text = all(tests)
-                            break
-                    if all_text:
-                        #seams it has at least on header row
+                        if i in range(value['start'],value['end']):
+                            types=[get_value_type(string)[0] for string in re.split(value['sep'],line)]
+                            types=['NUMBER' if typ in ['INT', 'FLOAT'] else typ for typ in types]
+                            logging.debug(types)
+                            types_list.append(types)
+                            #stop after reading 5 lines in part, should be enough
+                            if len(types_list)>=5:
+                                break
+                    #test if all lines have same combination of types
+                    same_types_as_first=[types==types_list[0] for types in types_list ]
+                    logging.debug(same_types_as_first)
+                    if all(same_types_as_first):
+                            value['type']='meta'
+                    else:
                         value['type']='data'
+                
                         
         result={}
         table_num=1
@@ -592,6 +614,7 @@ class CSV_Annotator():
         #try to find all table like segments in the file
         #print(self.parts)
         for key, value in self.parts.items():
+            logging.debug("{} {}".format(key,value))
             if value['type']=='meta':
                 meta_data=self.__get_data_meta_part(self.file_string, start=value['start'], end=value['end'], col_count=value['count']+1,separator=value['sep'])
                 if not meta_data.empty:

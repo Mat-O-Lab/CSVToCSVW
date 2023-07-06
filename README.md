@@ -2,7 +2,8 @@
 [![Publish Docker image](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml/badge.svg)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml)
 [![TestExamples](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/TestExamples.yml/badge.svg?branch=main)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/TestExamples.yml)
 
-Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at [CSVW](https://www.w3.org/ns/csvw) to describe structure and information within. Also uses [QUDT units ontology](https://github.com/qudt/qudt-public-repo/tree/main/vocab/unit) to lookup and describe units.
+Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at [CSVW](https://www.w3.org/ns/csvw) to describe structure and information within. Also uses [QUDT units ontology](https://github.com/qudt/qudt-public-repo/tree/main/vocab/unit) to lookup and describe units. 
+Can segment complex csv files with multiple tables and annotation without further input. Has also an option to output complete serialized content of the csv in csvw standard output format through rdf api endpoint.
 # how to use
 
 ## create a .env file with
