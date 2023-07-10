@@ -470,7 +470,7 @@
           }
         ],
         "primaryKey": "GID",
-        "aboutUrl": "#table-1-gid-{GID}"
+        "aboutUrl": "table-1-gid-{GID}"
       }
     }
   ],
@@ -485,7 +485,7 @@
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-07-06T08:35:00.535725",
+    "@value": "2023-07-10T11:32:57.702999",
     "@type": "xsd:dateTime"
   }
 }
