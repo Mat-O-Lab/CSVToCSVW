@@ -179,7 +179,7 @@ class CSVWtoRDF:
             if data['about_url']:
                 row_uri=data['about_url']
             else:
-                row_uri='#gid-{GID}'
+                row_uri='table-{TABLE}-gid-{GID}'.format(table)
             columns=list(data['columns'].items())
             for index,row in enumerate(data['lines']):
                 #print(index, row)
