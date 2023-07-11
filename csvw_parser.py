@@ -10,6 +10,7 @@ from datetime import datetime
 from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 import io
+import logging
 
 QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
 QUDT = Namespace("http://qudt.org/schema/qudt/")
@@ -103,10 +104,10 @@ def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
     Returns:
         Graph: Rdflib graph Object
     """
+    logging.debug('parsing graph from {}'.format(url))
     parsed_url=urlparse(url)
     DATA = Namespace(url+"/")
-    graph.bind('data',DATA)
-    print(parsed_url)
+    #print(parsed_url)
     if not format:
         format=guess_format(parsed_url.path)
     if parsed_url.scheme in ['https', 'http']:
@@ -115,6 +116,9 @@ def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
     elif parsed_url.scheme == 'file':
         print(parsed_url.path)
         graph.parse(parsed_url.path, format=format)
+    graph.bind('data',DATA)
+    
+    print(parsed_url)
     return graph
 
 
@@ -125,13 +129,14 @@ class CSVWtoRDF:
         self.metadata_url=metadata_url
         self.api_url=api_url
         # get metadata graph
-        self.metagraph=parse_graph(metadata_url,Graph(base=self.metadata_url),format=metaformat)
+        self.metagraph=parse_graph(metadata_url,Graph(),format=metaformat)
         #self.metagraph.serialize('test.ttl',format='turtle')
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
+        self.metagraph.serialize('metagraph.ttl')
         #print('meta_root: '+self.meta_root)
         #print('csv_url: '+url)
-        self.graph=Graph()
         self.base_url="{}/".format(str(self.meta_root).rsplit('/download/upload')[0].rsplit('/',1)[0])
+        self.graph=Graph()
         parsed_url=urlparse(url)
         if parsed_url.scheme in ['https', 'http', 'file']:
             self.csv_url=url
@@ -152,7 +157,7 @@ class CSVWtoRDF:
                 #print(data['dialect'])
                 data['schema']=next(self.metagraph[ key: CSVW.tableSchema: ],None)
                 data['columns']=get_columns_from_schema(data['schema'],self.metagraph)
-                print(data['columns'])
+                #print(data['columns'])
                 # get table form csv_url
                 if data['schema']:
                     data['about_url']=next(self.metagraph[data['schema'] : CSVW.aboutUrl],None)
@@ -240,6 +245,8 @@ class CSVWtoRDF:
         else:
             self.filename+='.'+format
         graph=parse_graph(self.metadata_url,graph=Graph())
+        #print(list(graph.namespaces()))
+    
         graph=self.add_table_data(graph)
         if self.api_url:
             graph=csvwtordf_prov(graph, self.api_url, self.csv_url, self.metadata_url)

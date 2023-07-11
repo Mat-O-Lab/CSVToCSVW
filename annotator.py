@@ -243,6 +243,16 @@ class CSV_Annotator():
     def __init__(self, url: str, encoding: str='auto') -> (str, json) : 
         self.url=url
         self.encoding = encoding
+        
+        self.parts = list()
+        self.file_name=''
+        self.file_domain=''
+        self.file_string=''
+        
+        self.file_name, self.encoding, self.file_string=self.read_data(self.url, self.encoding)
+        self.file_domain=self.url.rsplit(self.file_name,1)[0]
+        self.meta_file_name = self.file_name.split(sep='.')[0] + '-metadata.json'
+        self.csv_namespace = self.file_domain+self.file_name+'#'
         self.context = [
             "http://www.w3.org/ns/csvw", {
                 #"mseo": "https://purl.matolab.org/mseo/mid/",
@@ -252,17 +262,9 @@ class CSV_Annotator():
                 "qudt": "http://qudt.org/schema/qudt/",
                 "dc": str(DC),
                 "prov": str(PROV),
+                "csv": self.csv_namespace
                 }
         ]
-        self.parts = list()
-        self.file_name=''
-        self.file_domain=''
-        self.file_string=''
-        
-        self.file_name, self.encoding, self.file_string=self.read_data(self.url, self.encoding)
-        self.file_domain=self.url.rsplit(self.file_name,1)[0]
-        self.meta_file_name = self.file_name.split(sep='.')[0] + '-metadata.json'
-        
         self.parts=self.__segment_csv(self.file_string)
 
     @staticmethod
@@ -477,7 +479,7 @@ class CSV_Annotator():
                 unit_json = {}
             if unit_json:
                 parm_name=parm_name.rsplit(' ', 1)[0]
-            para_dict = {'@id': make_id(parm_name,filename)+str(
+            para_dict = {'@id': 'csv:'+make_id(parm_name,filename)+str(
                 data['row']+row_offset), 'label': parm_name.strip('"'), '@type': info_line_iri}
             for col_name, value in data.items():
                 value=str(value).strip('"')
@@ -625,7 +627,7 @@ class CSV_Annotator():
                 header_lines, table_data = self.__get_data_table_part(self.file_string, start=value['start'], end=value['end'], separator=value['sep'])
                 if not table_data.empty:
                     table={
-                        "@id": key,
+                        "@id": 'csv:'+str(key),
                         "url": url_string,
                         "dialect": {
                         "delimiter": value['sep'],
@@ -633,7 +635,7 @@ class CSV_Annotator():
                         "headerRowCount": header_lines,
                         "encoding": self.encoding
                         },
-                        'tableSchema': self.__describe_table(table_data, str(key))
+                        'tableSchema': self.__describe_table(table_data, 'csv:'+str(key))
                     }
                     metadata["tables"].append((table.copy()))
 
