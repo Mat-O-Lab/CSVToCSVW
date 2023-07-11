@@ -11,6 +11,10 @@ from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 import io
 
+QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
+QUDT = Namespace("http://qudt.org/schema/qudt/")
+QUNIT = Namespace("http://qudt.org/vocab/unit/")
+
 
 def get_columns_from_schema(schema: URIRef ,graph: Graph)->OrderedDict:
     """_summary_
@@ -184,30 +188,40 @@ class CSVWtoRDF:
             for index,row in enumerate(data['lines']):
                 #print(index, row)
                 row_node=BNode()
-                value_node=URIRef(row_uri.format(GID=index))
+                values_node=URIRef(row_uri.format(GID=index))
                 g.add((table,CSVW.row,row_node))
                 g.add((row_node, RDF.type, CSVW.Row))
-                g.add((row_node, CSVW.describes, value_node))
+                g.add((row_node, CSVW.describes, values_node))
                 row_num=index+data['dialect'][CSVW.skipRows]+data['dialect'][CSVW.headerRowCount]
                 g.add((row_node, CSVW.url, URIRef('{}/row={}'.format(self.csv_url,row_num))))
                 for cell_index, cell in enumerate(row):
                     #print(self.columns[cell_index])
                     column_data=columns[cell_index][1]
                     format=column_data.get(CSVW.format, XSD.string)
+                    unit=column_data.get(QUDT.unit, None)
                     if format==XSD.double and isinstance(cell,str):
                         cell= cell.replace('.','')
                         cell = cell[::-1].replace(',', ".", 1)[::-1]
+                    if unit:
+                        value_node=BNode()
+                        g.add((value_node, RDF.type, QUDT.QuantityValue))
+                        g.add((value_node, QUDT.value, Literal(cell)))
+                        g.add((value_node, QUDT.unit, unit))
+                    else:
+                        value_node=Literal(cell, datatype=format)
+
                     if column_data[CSVW.name]==Literal('GID'):
                         continue
                     else:
                         # if isinstance(column,URIRef) and str(self.meta_root)!='file:///src/': #has proper uri
                         #     g.add((value_node, column, Literal(cell)))
+
                         if CSVW.aboutUrl in column_data.keys():
                             aboutUrl=column_data[CSVW.aboutUrl]
-                            g.add((value_node, URIRef(aboutUrl.format(GID=index)), Literal(cell, datatype=format)))
+                            g.add((values_node, URIRef(aboutUrl.format(GID=index)), value_node))
                         else:
-                            url=column_data[CSVW.name]
-                            g.add((value_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/download/upload')[0],url)), Literal(cell, datatype=format)))
+                            name=column_data[CSVW.name]
+                            g.add((values_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/download/upload')[0],name)), value_node))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
