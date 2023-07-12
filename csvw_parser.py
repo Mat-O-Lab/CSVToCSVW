@@ -203,6 +203,8 @@ class CSVWtoRDF:
                 for cell_index, cell in enumerate(row):
                     #print(self.columns[cell_index])
                     column_data=columns[cell_index][1]
+                    if column_data[CSVW.name]==Literal('GID'):
+                        continue
                     format=column_data.get(CSVW.format, XSD.string)
                     unit=column_data.get(QUDT.unit, None)
                     if format==XSD.double and isinstance(cell,str):
@@ -226,18 +228,16 @@ class CSVWtoRDF:
                         g.add((body_node, OA['format'], Literal("text/plain")))
                         g.add((body_node, OA.value, Literal(cell, datatype=format)))
 
-                    if column_data[CSVW.name]==Literal('GID'):
-                        continue
-                    else:
-                        # if isinstance(column,URIRef) and str(self.meta_root)!='file:///src/': #has proper uri
-                        #     g.add((value_node, column, Literal(cell)))
+                    
+                    # if isinstance(column,URIRef) and str(self.meta_root)!='file:///src/': #has proper uri
+                    #     g.add((value_node, column, Literal(cell)))
 
-                        if CSVW.aboutUrl in column_data.keys():
-                            aboutUrl=column_data[CSVW.aboutUrl]
-                            g.add((values_node, URIRef(aboutUrl.format(GID=index)), value_node))
-                        else:
-                            name=column_data[CSVW.name]
-                            g.add((values_node, URIRef(name), value_node))
+                    if CSVW.aboutUrl in column_data.keys():
+                        aboutUrl=column_data[CSVW.aboutUrl]
+                        g.add((values_node, URIRef(aboutUrl.format(GID=index)), value_node))
+                    else:
+                        name=column_data[CSVW.name]
+                        g.add((values_node, URIRef(name), value_node))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
