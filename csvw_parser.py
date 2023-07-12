@@ -15,7 +15,8 @@ import logging
 QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
 QUDT = Namespace("http://qudt.org/schema/qudt/")
 QUNIT = Namespace("http://qudt.org/vocab/unit/")
-
+OA = Namespace("http://www.w3.org/ns/oa#")
+XSD_NUMERIC = [XSD.float, XSD.decimal, XSD.integer, XSD.double]
 
 def get_columns_from_schema(schema: URIRef ,graph: Graph)->OrderedDict:
     """_summary_
@@ -106,7 +107,7 @@ def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
     """
     logging.debug('parsing graph from {}'.format(url))
     parsed_url=urlparse(url)
-    DATA = Namespace(url+"/")
+    META = Namespace(url+"/")
     #print(parsed_url)
     if not format:
         format=guess_format(parsed_url.path)
@@ -116,7 +117,7 @@ def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
     elif parsed_url.scheme == 'file':
         print(parsed_url.path)
         graph.parse(parsed_url.path, format=format)
-    graph.bind('data',DATA)
+    graph.bind('meta',META)
     
     print(parsed_url)
     return graph
@@ -132,11 +133,10 @@ class CSVWtoRDF:
         self.metagraph=parse_graph(metadata_url,Graph(),format=metaformat)
         #self.metagraph.serialize('test.ttl',format='turtle')
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
-        self.metagraph.serialize('metagraph.ttl')
+        #self.metagraph.serialize('metagraph.ttl')
         #print('meta_root: '+self.meta_root)
         #print('csv_url: '+url)
         self.base_url="{}/".format(str(self.meta_root).rsplit('/download/upload')[0].rsplit('/',1)[0])
-        self.graph=Graph()
         parsed_url=urlparse(url)
         if parsed_url.scheme in ['https', 'http', 'file']:
             self.csv_url=url
@@ -145,6 +145,7 @@ class CSVWtoRDF:
         # replace if set in request
         if csv_url:
             self.csv_url=csv_url
+        self.graph=Graph(base=self.csv_url+'/')
         print(self.metadata_url,self.csv_url)
         self.filename=self.csv_url.rsplit('/',1)[-1].rsplit('.',1)[0]
         self.tables={table_node: {} for file, table_node in self.metagraph[: CSVW.table: ]}
@@ -207,13 +208,23 @@ class CSVWtoRDF:
                     if format==XSD.double and isinstance(cell,str):
                         cell= cell.replace('.','')
                         cell = cell[::-1].replace(',', ".", 1)[::-1]
-                    if unit:
+
+                    if format in XSD_NUMERIC:
                         value_node=BNode()
                         g.add((value_node, RDF.type, QUDT.QuantityValue))
                         g.add((value_node, QUDT.value, Literal(cell)))
-                        g.add((value_node, QUDT.unit, unit))
+                        if unit:
+                            g.add((value_node, QUDT.unit, unit))
+                    elif format==XSD.anyURI:
+                        value_node=URIRef(cell)
                     else:
-                        value_node=Literal(cell, datatype=format)
+                        value_node=BNode()
+                        body_node=BNode()
+                        g.add((value_node, RDF.type, OA.Annotation))
+                        g.add((value_node, OA.hasBody, body_node))
+                        g.add((body_node, RDF.type, OA.TextualBody))
+                        g.add((body_node, OA['format'], Literal("text/plain")))
+                        g.add((body_node, OA.value, Literal(cell, datatype=format)))
 
                     if column_data[CSVW.name]==Literal('GID'):
                         continue
@@ -226,7 +237,7 @@ class CSVWtoRDF:
                             g.add((values_node, URIRef(aboutUrl.format(GID=index)), value_node))
                         else:
                             name=column_data[CSVW.name]
-                            g.add((values_node, URIRef("{}/{}".format(self.metadata_url.rsplit('/download/upload')[0],name)), value_node))
+                            g.add((values_node, URIRef(name), value_node))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
@@ -244,14 +255,14 @@ class CSVWtoRDF:
             self.filename+='.json'
         else:
             self.filename+='.'+format
-        graph=parse_graph(self.metadata_url,graph=Graph())
+        self.graph=parse_graph(self.metadata_url,graph=self.graph)
         #print(list(graph.namespaces()))
     
-        graph=self.add_table_data(graph)
+        self.graph=self.add_table_data(self.graph)
         if self.api_url:
-            graph=csvwtordf_prov(graph, self.api_url, self.csv_url, self.metadata_url)
+            self.graph=csvwtordf_prov(self.graph, self.api_url, self.csv_url, self.metadata_url)
         
-        return graph.serialize(format=format)
+        return self.graph.serialize(format=format)
 
 import settings
 setting=settings.Setting()

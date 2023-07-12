@@ -68,7 +68,7 @@ UMLAUTE = {
             '\u00df': 'ss',  # U+00DF	   \xc3\x9f
         }
 REPLACE_SUPERSCRIPTS = {
-            #'\u2070':°,
+            '\u00c2':'',
             '\u00b9':'',
             '\u00b2':'2',
             '\u00b3':'3',
@@ -121,6 +121,13 @@ def is_date(string, fuzzy=False)->bool:
     except ValueError:
         return False
 
+def is_valid_uri(url):
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
+
 def make_id(string, filename=None)-> str:
     for k in UMLAUTE.keys():
         string = string.replace(k, UMLAUTE[k])
@@ -142,6 +149,8 @@ def get_value_type(string: str)-> Tuple:
     except SyntaxError:
         if is_date(string):
             return 'DATE', XSD.dateTime
+        elif is_valid_uri(string):
+            return 'URI', XSD.anyURI
         else:
             return 'TEXT', XSD.string
     else:
@@ -229,6 +238,8 @@ def describe_value(value_string: str)-> dict:
         return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': float(value_string), '@type': str(val_type[1])}}
     elif val_type[0] == 'DATE':
         return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': str(date_parse(value_string).isoformat()), '@type': str(val_type[1])}}
+    elif val_type[0] == 'URI':
+        return {urlparse(value_string).geturl()}
     else:
         return {
             "@type": "oa:TextualBody",
@@ -252,7 +263,7 @@ class CSV_Annotator():
         self.file_name, self.encoding, self.file_string=self.read_data(self.url, self.encoding)
         self.file_domain=self.url.rsplit(self.file_name,1)[0]
         self.meta_file_name = self.file_name.split(sep='.')[0] + '-metadata.json'
-        self.csv_namespace = self.file_domain+self.file_name+'#'
+        self.csv_namespace = self.file_domain+self.file_name+'/'
         self.context = [
             "http://www.w3.org/ns/csvw", {
                 #"mseo": "https://purl.matolab.org/mseo/mid/",
@@ -462,7 +473,7 @@ class CSV_Annotator():
         return num_header_rows, table_data
     
     @staticmethod
-    def __serialize_meta(header_data, row_offset: int=0, filename=None):
+    def __serialize_meta(header_data, row_offset: int=0, filename=None, namespace=''):
         params = list()
         info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
@@ -479,7 +490,7 @@ class CSV_Annotator():
                 unit_json = {}
             if unit_json:
                 parm_name=parm_name.rsplit(' ', 1)[0]
-            para_dict = {'@id': 'csv:'+make_id(parm_name,filename)+str(
+            para_dict = {'@id': namespace+make_id(parm_name,filename)+str(
                 data['row']+row_offset), 'label': parm_name.strip('"'), '@type': info_line_iri}
             for col_name, value in data.items():
                 value=str(value).strip('"')
@@ -571,6 +582,8 @@ class CSV_Annotator():
                 xsd_format=get_value_type(table_data.iloc[1][colnum])[1]
                 if xsd_format:
                     json_str['format'] = {'@id': xsd_format}
+                print(colnum, titles)
+                print(json_str)
                 column_json.append(json_str)
             table_schema = {"columns": column_json}
             table_schema["primaryKey"] = column_json[0]['name']
@@ -598,13 +611,9 @@ class CSV_Annotator():
         #data_root_url = "https://github.com/Mat-O-Lab/resources/"
 
         metadata = dict()
-        metadata["@context"] = self.context        
         meta_file_name = self.meta_file_name
         #metadata_csvw["@id"]=metadata_url
-        metadata["@id"]=''
-        metadata['@type']=CSVW.TableGroup
-        metadata["notes"]=list()
-        metadata["tables"]=list()
+        metadata["@context"] = self.context        
         
         if self.url:
             url_string = self.url
@@ -613,6 +622,12 @@ class CSV_Annotator():
         # for file schema output filename as url, metadata file should be placed in same directory
         if url_string[:4]=='file':
             url_string=self.file_name
+        
+        metadata["@id"]=url_string
+        metadata['@type']=CSVW.TableGroup
+        metadata["notes"]=list()
+        metadata["tables"]=list()
+        
         #try to find all table like segments in the file
         #print(self.parts)
         for key, value in self.parts.items():
@@ -620,14 +635,14 @@ class CSV_Annotator():
             if value['type']=='meta':
                 meta_data=self.__get_data_meta_part(self.file_string, start=value['start'], end=value['end'], col_count=value['count']+1,separator=value['sep'])
                 if not meta_data.empty:
-                    metadata["notes"].extend(self.__serialize_meta(meta_data, row_offset=value['start'],filename=None))
+                    metadata["notes"].extend(self.__serialize_meta(meta_data, row_offset=value['start'],filename=None,namespace=self.csv_namespace))
             if value['type']=='data':
                 # read tabular data structure, and determine number of header lines for column description used
                 # table_data=self.get_meta_data(file_data, start=value['start'], end=value['end'], col_count=value['count']+1,header_separator=value['sep'], encoding=encoding)
                 header_lines, table_data = self.__get_data_table_part(self.file_string, start=value['start'], end=value['end'], separator=value['sep'])
                 if not table_data.empty:
                     table={
-                        "@id": 'csv:'+str(key),
+                        "@id": self.csv_namespace+str(key),
                         "url": url_string,
                         "dialect": {
                         "delimiter": value['sep'],
@@ -635,7 +650,7 @@ class CSV_Annotator():
                         "headerRowCount": header_lines,
                         "encoding": self.encoding
                         },
-                        'tableSchema': self.__describe_table(table_data, 'csv:'+str(key))
+                        'tableSchema': self.__describe_table(table_data, self.csv_namespace+str(key))
                     }
                     metadata["tables"].append((table.copy()))
 

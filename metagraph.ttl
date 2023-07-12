@@ -1,67 +1,82 @@
+@prefix csv: <https://github.com/Mat-O-Lab/resources/raw/main/rdfconverter/tests/detection_runs.csv/> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
-@prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<file:///src/> a csvw:TableGroup ;
-    csvw:note <file:///src/Probe0> ;
-    csvw:table <file:///src/table-1> ;
-    prov:generatedAtTime "2023-07-10T11:32:59.360308"^^xsd:dateTime ;
-    prov:wasGeneratedBy <http://localhost:5001/api/annotate> .
+<https://github.com/Mat-O-Lab/resources/raw/main/rdfconverter/tests/detection_runs.csv> a csvw:TableGroup ;
+    csvw:table csv:table-1 ;
+    prov:generatedAtTime "2023-07-12T13:28:34.365604"^^xsd:dateTime ;
+    prov:wasGeneratedBy <http://docker-dev.iwm.fraunhofer.de:5001/api/annotate_upload?encoding=auto> .
 
-<file:///src/Probe0> a oa:Annotation ;
-    rdfs:label "Probe" ;
-    csvw:rownum 0 ;
-    oa:hasBody [ a qudt:QuantityValue ;
-            qudt:value 840749 ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "INSTRON 8852TT" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "46NTA5-1-1-2" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "1605F" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "AWA_3_03_Rz" ],
-        [ a oa:TextualBody ;
-            oa:format "text/plain" ;
-            oa:purpose "oa:tagging" ;
-            oa:value "PMD" ] .
+<http://docker-dev.iwm.fraunhofer.de:5001/api/annotate_upload?encoding=auto> a prov:Activity ;
+    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0> .
 
-<file:///src/table-1> csvw:dialect [ csvw:delimiter "\\t" ;
-            csvw:encoding "utf-8" ;
+<http://qudt.org/vocab/unit/DEG_C> a qudt:DerivedUnit .
+
+<http://qudt.org/vocab/unit/HR> a qudt:Unit .
+
+<http://qudt.org/vocab/unit/MegaPA> a qudt:Unit .
+
+<https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0> a prov:SoftwareAgent ;
+    rdfs:label "CSVtoCSVWv1.2.0" ;
+    prov:hadPrimarySource "https://github.com/Mat-O-Lab/CSVToCSVW" .
+
+csv:table-1 csvw:dialect [ csvw:delimiter "," ;
+            csvw:encoding "latin-1" ;
             csvw:headerRowCount "1"^^xsd:nonNegativeInteger ;
-            csvw:skipRows "1"^^xsd:nonNegativeInteger ] ;
-    csvw:tableSchema [ csvw:aboutUrl "table-1-gid-{GID}"^^csvw:uriTemplate ;
-            csvw:column ( <file:///src/table-1-GID> <file:///src/table-1-MaschineMm> <file:///src/table-1-KraftKn> <file:///src/table-1-ClipGaugeMm> <file:///src/table-1-DrehmomentNm> <file:///src/table-1-Mx840A0Ch5C> <file:///src/table-1-Mx840A0Ch6Mm> <file:///src/table-1-Mx840A0Ch7V> <file:///src/table-1-Mx840A0Ch8C> <file:///src/table-1-ZeitS> <file:///src/table-1-Kanal10> <file:///src/table-1-Kanal11> <file:///src/table-1-Kanal12> <file:///src/table-1-Kanal13> <file:///src/table-1-Kanal14> <file:///src/table-1-Kanal15> ) ;
+            csvw:skipRows "0"^^xsd:nonNegativeInteger ] ;
+    csvw:tableSchema [ csvw:aboutUrl "https://github.com/Mat-O-Lab/resources/raw/main/rdfconverter/tests/detection_runs.csv/table-1-gid-{GID}"^^csvw:uriTemplate ;
+            csvw:column ( csv:table-1-GID csv:table-1-Unnamed0 csv:table-1-Specimenname csv:table-1-AgingTempC csv:table-1-AgingTimeH csv:table-1-CreepStressMpa csv:table-1-Dataset csv:table-1-PositionId csv:table-1-Image csv:table-1-Rois csv:table-1-DiskradiusvaluePx csv:table-1-ThresholdMethod csv:table-1-DilationKernelSizePx csv:table-1-Date ) ;
             csvw:primaryKey "GID" ] ;
-    csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv"^^xsd:anyURI .
+    csvw:url "https://github.com/Mat-O-Lab/resources/raw/main/rdfconverter/tests/detection_runs.csv"^^xsd:anyURI .
 
-<file:///src/table-1-ClipGaugeMm> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
+csv:table-1-AgingTempC a csvw:Column ;
+    qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
     csvw:format xsd:double ;
-    csvw:name "ClipGaugeMm" ;
-    csvw:title "Clip-Gauge [mm]",
-        "ClipGaugeMm" .
+    csvw:name "AgingTempC" ;
+    csvw:title "Aging Temp [Â°C]",
+        "AgingTempC" .
 
-<file:///src/table-1-DrehmomentNm> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/N-M> ;
-    csvw:format xsd:boolean ;
-    csvw:name "DrehmomentNm" ;
-    csvw:title "Drehmoment [Nm]",
-        "DrehmomentNm" .
+csv:table-1-AgingTimeH a csvw:Column ;
+    qudt:unit <http://qudt.org/vocab/unit/HR> ;
+    csvw:format xsd:double ;
+    csvw:name "AgingTimeH" ;
+    csvw:title "Aging Time [h]",
+        "AgingTimeH" .
 
-<file:///src/table-1-GID> a csvw:Column ;
+csv:table-1-CreepStressMpa a csvw:Column ;
+    qudt:unit <http://qudt.org/vocab/unit/MegaPA> ;
+    csvw:format xsd:integer ;
+    csvw:name "CreepStressMpa" ;
+    csvw:title "Creep Stress [MPa]",
+        "CreepStressMpa" .
+
+csv:table-1-Dataset a csvw:Column ;
+    csvw:format xsd:anyURI ;
+    csvw:name "Dataset" ;
+    csvw:title "Dataset" .
+
+csv:table-1-Date a csvw:Column ;
+    csvw:format xsd:dateTime ;
+    csvw:name "Date" ;
+    csvw:title "Date" .
+
+csv:table-1-DilationKernelSizePx a csvw:Column ;
+    csvw:format xsd:integer ;
+    csvw:name "DilationKernelSizePx" ;
+    csvw:title "Dilation Kernel Size [px]",
+        "DilationKernelSizePx" .
+
+csv:table-1-DiskradiusvaluePx a csvw:Column ;
+    csvw:format xsd:integer ;
+    csvw:name "DiskradiusvaluePx" ;
+    csvw:title "DiskRadiusValue [px]",
+        "DiskradiusvaluePx" .
+
+csv:table-1-GID a csvw:Column ;
     csvw:datatype xsd:string ;
     csvw:name "GID" ;
     csvw:required true ;
@@ -69,107 +84,38 @@
     csvw:title "GID",
         "Generic Identifier" .
 
-<file:///src/table-1-Kanal10> a csvw:Column ;
-    csvw:format xsd:boolean ;
-    csvw:name "Kanal10" ;
-    csvw:title "Kanal 10",
-        "Kanal10" .
+csv:table-1-Image a csvw:Column ;
+    csvw:format xsd:anyURI ;
+    csvw:name "Image" ;
+    csvw:title "Image" .
 
-<file:///src/table-1-Kanal11> a csvw:Column ;
-    csvw:format xsd:boolean ;
-    csvw:name "Kanal11" ;
-    csvw:title "Kanal 11",
-        "Kanal11" .
+csv:table-1-PositionId a csvw:Column ;
+    csvw:format xsd:string ;
+    csvw:name "PositionId" ;
+    csvw:title "PositionId",
+        "Position_Id" .
 
-<file:///src/table-1-Kanal12> a csvw:Column ;
-    csvw:format xsd:boolean ;
-    csvw:name "Kanal12" ;
-    csvw:title "Kanal 12",
-        "Kanal12" .
+csv:table-1-Rois a csvw:Column ;
+    csvw:format xsd:anyURI ;
+    csvw:name "Rois" ;
+    csvw:title "ROIs",
+        "Rois" .
 
-<file:///src/table-1-Kanal13> a csvw:Column ;
-    csvw:format xsd:boolean ;
-    csvw:name "Kanal13" ;
-    csvw:title "Kanal 13",
-        "Kanal13" .
+csv:table-1-Specimenname a csvw:Column ;
+    csvw:format xsd:string ;
+    csvw:name "Specimenname" ;
+    csvw:title "SpecimenName",
+        "Specimenname" .
 
-<file:///src/table-1-Kanal14> a csvw:Column ;
-    csvw:format xsd:boolean ;
-    csvw:name "Kanal14" ;
-    csvw:title "Kanal 14",
-        "Kanal14" .
+csv:table-1-ThresholdMethod a csvw:Column ;
+    csvw:format xsd:string ;
+    csvw:name "ThresholdMethod" ;
+    csvw:title "Threshold Method",
+        "ThresholdMethod" .
 
-<file:///src/table-1-Kanal15> a csvw:Column ;
-    csvw:format xsd:boolean ;
-    csvw:name "Kanal15" ;
-    csvw:title "Kanal 15",
-        "Kanal15" .
-
-<file:///src/table-1-KraftKn> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/KiloN> ;
-    csvw:format xsd:double ;
-    csvw:name "KraftKn" ;
-    csvw:title "Kraft [kN]",
-        "KraftKn" .
-
-<file:///src/table-1-MaschineMm> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
-    csvw:format xsd:double ;
-    csvw:name "MaschineMm" ;
-    csvw:title "Maschine [mm]",
-        "MaschineMm" .
-
-<file:///src/table-1-Mx840A0Ch5C> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
-    csvw:format xsd:boolean ;
-    csvw:name "Mx840A0Ch5C" ;
-    csvw:title "MX840A_0_CH 5 [°C]",
-        "Mx840A0Ch5C" .
-
-<file:///src/table-1-Mx840A0Ch6Mm> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/MilliM> ;
-    csvw:format xsd:boolean ;
-    csvw:name "Mx840A0Ch6Mm" ;
-    csvw:title "MX840A_0_CH 6 [mm]",
-        "Mx840A0Ch6Mm" .
-
-<file:///src/table-1-Mx840A0Ch7V> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/V> ;
-    csvw:format xsd:boolean ;
-    csvw:name "Mx840A0Ch7V" ;
-    csvw:title "MX840A_0_CH 7 [V]",
-        "Mx840A0Ch7V" .
-
-<file:///src/table-1-Mx840A0Ch8C> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
-    csvw:format xsd:boolean ;
-    csvw:name "Mx840A0Ch8C" ;
-    csvw:title "MX840A_0_CH 8 [°C]",
-        "Mx840A0Ch8C" .
-
-<file:///src/table-1-ZeitS> a csvw:Column ;
-    qudt:unit <http://qudt.org/vocab/unit/SEC> ;
-    csvw:format xsd:double ;
-    csvw:name "ZeitS" ;
-    csvw:title "Zeit [s]",
-        "ZeitS" .
-
-<http://localhost:5001/api/annotate> a prov:Activity ;
-    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0> .
-
-<http://qudt.org/vocab/unit/KiloN> a qudt:Unit .
-
-<http://qudt.org/vocab/unit/N-M> a qudt:DerivedUnit .
-
-<http://qudt.org/vocab/unit/SEC> a qudt:Unit .
-
-<http://qudt.org/vocab/unit/V> a qudt:Unit .
-
-<https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0> a prov:SoftwareAgent ;
-    rdfs:label "CSVtoCSVWv1.2.0" ;
-    prov:hadPrimarySource "https://github.com/Mat-O-Lab/CSVToCSVW" .
-
-<http://qudt.org/vocab/unit/DEG_C> a qudt:DerivedUnit .
-
-<http://qudt.org/vocab/unit/MilliM> a qudt:DerivedUnit .
+csv:table-1-Unnamed0 a csvw:Column ;
+    csvw:format xsd:integer ;
+    csvw:name "Unnamed0" ;
+    csvw:title "Unnamed0",
+        "Unnamed: 0" .
 
