@@ -218,7 +218,13 @@ class CSVWtoRDF:
                         if unit:
                             g.add((value_node, QUDT.unit, unit))
                     elif format==XSD.anyURI:
-                        value_node=URIRef(cell)
+                        #see if its a list of uris
+                        if len(cell.split(' '))>=1:
+                            value_node=BNode()
+                            uris=list(map(URIRef, cell.split(' ')))
+                            Collection(g,value_node,uris)
+                        else:
+                            value_node=URIRef(cell)
                     else:
                         value_node=BNode()
                         body_node=BNode()
