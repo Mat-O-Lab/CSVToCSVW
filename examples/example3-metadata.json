@@ -7,14 +7,15 @@
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "qudt": "http://qudt.org/schema/qudt/",
       "dc": "http://purl.org/dc/elements/1.1/",
-      "prov": "http://www.w3.org/ns/prov#"
+      "prov": "http://www.w3.org/ns/prov#",
+      "csv": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/"
     }
   ],
-  "@id": "",
+  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv",
   "@type": "http://www.w3.org/ns/csvw#TableGroup",
   "notes": [
     {
-      "@id": "Datalogger40Version40Revision70",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Datalogger40Version40Revision70",
       "label": "DataLogger 4.0 Version 4.0 Revision 7",
       "@type": "oa:Annotation",
       "rownum": {
@@ -44,7 +45,7 @@
       ]
     },
     {
-      "@id": "ProjektName5",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/ProjektName5",
       "label": "Projekt Name",
       "@type": "oa:Annotation",
       "rownum": {
@@ -61,7 +62,7 @@
       ]
     },
     {
-      "@id": "ProjektNummer6",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/ProjektNummer6",
       "label": "Projekt Nummer",
       "@type": "oa:Annotation",
       "rownum": {
@@ -79,7 +80,7 @@
       ]
     },
     {
-      "@id": "Dateiname8",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Dateiname8",
       "label": "Dateiname",
       "@type": "oa:Annotation",
       "rownum": {
@@ -96,7 +97,7 @@
       ]
     },
     {
-      "@id": "BackupErstellen9",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/BackupErstellen9",
       "label": "Backup erstellen",
       "@type": "oa:Annotation",
       "rownum": {
@@ -118,7 +119,7 @@
       ]
     },
     {
-      "@id": "Probenname16",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Probenname16",
       "label": "Probenname",
       "@type": "oa:Annotation",
       "rownum": {
@@ -135,7 +136,7 @@
       ]
     },
     {
-      "@id": "Probentyp17",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Probentyp17",
       "label": "Probentyp",
       "@type": "oa:Annotation",
       "rownum": {
@@ -157,7 +158,7 @@
       ]
     },
     {
-      "@id": "Probendurchmesser18",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Probendurchmesser18",
       "label": "Probendurchmesser",
       "@type": "oa:Annotation",
       "rownum": {
@@ -179,7 +180,7 @@
       ]
     },
     {
-      "@id": "Probendicke19",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Probendicke19",
       "label": "Probendicke",
       "@type": "oa:Annotation",
       "rownum": {
@@ -201,7 +202,7 @@
       ]
     },
     {
-      "@id": "Probenbreite20",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Probenbreite20",
       "label": "Probenbreite",
       "@type": "oa:Annotation",
       "rownum": {
@@ -223,7 +224,7 @@
       ]
     },
     {
-      "@id": "MesslNge21",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/MesslNge21",
       "label": "Messl�nge",
       "@type": "oa:Annotation",
       "rownum": {
@@ -245,7 +246,7 @@
       ]
     },
     {
-      "@id": "BemerkungenRzB5X2522",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/BemerkungenRzB5X2522",
       "label": "Bemerkungen: Rz B5x25",
       "@type": "oa:Annotation",
       "rownum": {
@@ -273,7 +274,7 @@
       ]
     },
     {
-      "@id": "ProbenId24",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/ProbenId24",
       "label": "Proben ID",
       "@type": "oa:Annotation",
       "rownum": {
@@ -290,7 +291,7 @@
       ]
     },
     {
-      "@id": "PrFtemperaturC30",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/PrFtemperaturC30",
       "label": "Pr�ftemperatur [�C]",
       "@type": "oa:Annotation",
       "rownum": {
@@ -308,7 +309,7 @@
       ]
     },
     {
-      "@id": "PrFmaschineInstron8852Tt37",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/PrFmaschineInstron8852Tt37",
       "label": "Pr�fmaschine: INSTRON 8852TT",
       "@type": "oa:Annotation",
       "rownum": {
@@ -325,7 +326,7 @@
       ]
     },
     {
-      "@id": "PrFgeschwindigkeit40",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/PrFgeschwindigkeit40",
       "label": "Pr�fgeschwindigkeit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -347,7 +348,7 @@
       ]
     },
     {
-      "@id": "Kamera47",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Kamera47",
       "label": "Kamera",
       "@type": "oa:Annotation",
       "rownum": {
@@ -369,7 +370,7 @@
       ]
     },
     {
-      "@id": "Durchmessermessung48",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Durchmessermessung48",
       "label": "Durchmessermessung",
       "@type": "oa:Annotation",
       "rownum": {
@@ -387,7 +388,7 @@
       ]
     },
     {
-      "@id": "DurchmessermessungMinmax49",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/DurchmessermessungMinmax49",
       "label": "Durchmessermessung MinMax",
       "@type": "oa:Annotation",
       "rownum": {
@@ -405,7 +406,7 @@
       ]
     },
     {
-      "@id": "Abstandsmessung50",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Abstandsmessung50",
       "label": "Abstandsmessung",
       "@type": "oa:Annotation",
       "rownum": {
@@ -423,7 +424,7 @@
       ]
     },
     {
-      "@id": "AbstandsmessungMinmax51",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/AbstandsmessungMinmax51",
       "label": "Abstandsmessung MinMax",
       "@type": "oa:Annotation",
       "rownum": {
@@ -441,7 +442,7 @@
       ]
     },
     {
-      "@id": "BilderAbspeichern52",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/BilderAbspeichern52",
       "label": "Bilder abspeichern",
       "@type": "oa:Annotation",
       "rownum": {
@@ -459,7 +460,7 @@
       ]
     },
     {
-      "@id": "Kamera254",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Kamera254",
       "label": "Kamera 2",
       "@type": "oa:Annotation",
       "rownum": {
@@ -477,7 +478,7 @@
       ]
     },
     {
-      "@id": "Durchmessermessung55",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Durchmessermessung55",
       "label": "Durchmessermessung",
       "@type": "oa:Annotation",
       "rownum": {
@@ -495,7 +496,7 @@
       ]
     },
     {
-      "@id": "DurchmessermessungMinmax56",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/DurchmessermessungMinmax56",
       "label": "Durchmessermessung MinMax",
       "@type": "oa:Annotation",
       "rownum": {
@@ -513,7 +514,7 @@
       ]
     },
     {
-      "@id": "Abstandsmessung57",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Abstandsmessung57",
       "label": "Abstandsmessung",
       "@type": "oa:Annotation",
       "rownum": {
@@ -531,7 +532,7 @@
       ]
     },
     {
-      "@id": "AbstandsmessungMinmax58",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/AbstandsmessungMinmax58",
       "label": "Abstandsmessung MinMax",
       "@type": "oa:Annotation",
       "rownum": {
@@ -549,7 +550,7 @@
       ]
     },
     {
-      "@id": "BilderAbspeichern59",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/BilderAbspeichern59",
       "label": "Bilder abspeichern",
       "@type": "oa:Annotation",
       "rownum": {
@@ -567,7 +568,7 @@
       ]
     },
     {
-      "@id": "Darstellung65",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Darstellung65",
       "label": "Darstellung",
       "@type": "oa:Annotation",
       "rownum": {
@@ -585,7 +586,7 @@
       ]
     },
     {
-      "@id": "XAchse66",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/XAchse66",
       "label": "X-Achse",
       "@type": "oa:Annotation",
       "rownum": {
@@ -607,7 +608,7 @@
       ]
     },
     {
-      "@id": "YAchse67",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/YAchse67",
       "label": "y-Achse",
       "@type": "oa:Annotation",
       "rownum": {
@@ -625,7 +626,7 @@
       ]
     },
     {
-      "@id": "Anzeige70",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Anzeige70",
       "label": "Anzeige",
       "@type": "oa:Annotation",
       "rownum": {
@@ -647,7 +648,7 @@
       ]
     },
     {
-      "@id": "Anzeige271",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Anzeige271",
       "label": "Anzeige 2",
       "@type": "oa:Annotation",
       "rownum": {
@@ -669,7 +670,7 @@
       ]
     },
     {
-      "@id": "Anzeige372",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Anzeige372",
       "label": "Anzeige 3",
       "@type": "oa:Annotation",
       "rownum": {
@@ -687,7 +688,7 @@
       ]
     },
     {
-      "@id": "Anzeige473",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Anzeige473",
       "label": "Anzeige 4",
       "@type": "oa:Annotation",
       "rownum": {
@@ -705,7 +706,7 @@
       ]
     },
     {
-      "@id": "Messkanal1Label80",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal1Label80",
       "label": "Messkanal 1 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -722,7 +723,7 @@
       ]
     },
     {
-      "@id": "Messkanal1Unit81",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal1Unit81",
       "label": "Messkanal 1 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -732,7 +733,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal2Label82",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal2Label82",
       "label": "Messkanal 2 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -749,7 +750,7 @@
       ]
     },
     {
-      "@id": "Messkanal2Unit83",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal2Unit83",
       "label": "Messkanal 2 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -759,7 +760,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal3Label84",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal3Label84",
       "label": "Messkanal 3 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -776,7 +777,7 @@
       ]
     },
     {
-      "@id": "Messkanal3Unit85",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal3Unit85",
       "label": "Messkanal 3 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -786,7 +787,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal4Label86",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal4Label86",
       "label": "Messkanal 4 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -803,7 +804,7 @@
       ]
     },
     {
-      "@id": "Messkanal4Unit87",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal4Unit87",
       "label": "Messkanal 4 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -813,7 +814,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal5Label88",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal5Label88",
       "label": "Messkanal 5 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -830,7 +831,7 @@
       ]
     },
     {
-      "@id": "Messkanal5Unit89",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal5Unit89",
       "label": "Messkanal 5 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -847,7 +848,7 @@
       ]
     },
     {
-      "@id": "Messkanal6Label90",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal6Label90",
       "label": "Messkanal 6 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -864,7 +865,7 @@
       ]
     },
     {
-      "@id": "Messkanal6Unit91",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal6Unit91",
       "label": "Messkanal 6 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -874,7 +875,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal7Label92",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal7Label92",
       "label": "Messkanal 7 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -891,7 +892,7 @@
       ]
     },
     {
-      "@id": "Messkanal7Unit93",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal7Unit93",
       "label": "Messkanal 7 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -901,7 +902,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal8Label94",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal8Label94",
       "label": "Messkanal 8 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -918,7 +919,7 @@
       ]
     },
     {
-      "@id": "Messkanal8Unit95",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal8Unit95",
       "label": "Messkanal 8 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -935,7 +936,7 @@
       ]
     },
     {
-      "@id": "Messkanal9Label96",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal9Label96",
       "label": "Messkanal 9 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -952,7 +953,7 @@
       ]
     },
     {
-      "@id": "Messkanal9Unit97",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal9Unit97",
       "label": "Messkanal 9 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -962,7 +963,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal10Label98",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal10Label98",
       "label": "Messkanal 10 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -979,7 +980,7 @@
       ]
     },
     {
-      "@id": "Messkanal10Unit99",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal10Unit99",
       "label": "Messkanal 10 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -989,7 +990,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal11Label100",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal11Label100",
       "label": "Messkanal 11 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1006,7 +1007,7 @@
       ]
     },
     {
-      "@id": "Messkanal11Unit101",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal11Unit101",
       "label": "Messkanal 11 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1016,7 +1017,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal12Label102",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal12Label102",
       "label": "Messkanal 12 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1033,7 +1034,7 @@
       ]
     },
     {
-      "@id": "Messkanal12Unit103",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal12Unit103",
       "label": "Messkanal 12 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1043,7 +1044,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal13Label104",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal13Label104",
       "label": "Messkanal 13 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1060,7 +1061,7 @@
       ]
     },
     {
-      "@id": "Messkanal13Unit105",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal13Unit105",
       "label": "Messkanal 13 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1070,7 +1071,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal14Label106",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal14Label106",
       "label": "Messkanal 14 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1087,7 +1088,7 @@
       ]
     },
     {
-      "@id": "Messkanal14Unit107",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal14Unit107",
       "label": "Messkanal 14 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1097,7 +1098,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Messkanal15Label108",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal15Label108",
       "label": "Messkanal 15 Label",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1114,7 +1115,7 @@
       ]
     },
     {
-      "@id": "Messkanal15Unit109",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal15Unit109",
       "label": "Messkanal 15 Unit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1124,7 +1125,7 @@
       "oa:hasBody": []
     },
     {
-      "@id": "Verstaerkertyp110",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Verstaerkertyp110",
       "label": "VerstaerkerTyp",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1141,7 +1142,7 @@
       ]
     },
     {
-      "@id": "Kameratyp111",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Kameratyp111",
       "label": "KameraTyp",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1158,7 +1159,7 @@
       ]
     },
     {
-      "@id": "Comport112",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Comport112",
       "label": "ComPort",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1176,7 +1177,7 @@
       ]
     },
     {
-      "@id": "QuantumIp113",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/QuantumIp113",
       "label": "Quantum IP",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1193,7 +1194,7 @@
       ]
     },
     {
-      "@id": "QuantumNameMx840BInstron8852Tt114",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/QuantumNameMx840BInstron8852Tt114",
       "label": "Quantum Name: MX840B INSTRON 8852TT",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1210,7 +1211,7 @@
       ]
     },
     {
-      "@id": "Messkanal1Tara116",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal1Tara116",
       "label": "Messkanal 1 Tara",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1232,7 +1233,7 @@
       ]
     },
     {
-      "@id": "Messkanal1Invert117",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal1Invert117",
       "label": "Messkanal 1 Invert",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1250,7 +1251,7 @@
       ]
     },
     {
-      "@id": "Messkanal2Tara118",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal2Tara118",
       "label": "Messkanal 2 Tara",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1268,7 +1269,7 @@
       ]
     },
     {
-      "@id": "Messkanal2Invert119",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal2Invert119",
       "label": "Messkanal 2 Invert",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1286,7 +1287,7 @@
       ]
     },
     {
-      "@id": "Messkanal3Tara120",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal3Tara120",
       "label": "Messkanal 3 Tara",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1308,7 +1309,7 @@
       ]
     },
     {
-      "@id": "Messkanal3Invert121",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal3Invert121",
       "label": "Messkanal 3 Invert",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1326,7 +1327,7 @@
       ]
     },
     {
-      "@id": "Messkanal4Tara122",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal4Tara122",
       "label": "Messkanal 4 Tara",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1344,7 +1345,7 @@
       ]
     },
     {
-      "@id": "Messkanal4Invert123",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal4Invert123",
       "label": "Messkanal 4 Invert",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1362,7 +1363,7 @@
       ]
     },
     {
-      "@id": "Messkanal5Tara124",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal5Tara124",
       "label": "Messkanal 5 Tara",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1380,7 +1381,7 @@
       ]
     },
     {
-      "@id": "Messkanal5Invert125",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal5Invert125",
       "label": "Messkanal 5 Invert",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1398,7 +1399,7 @@
       ]
     },
     {
-      "@id": "Messkanal6Tara126",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal6Tara126",
       "label": "Messkanal 6 Tara",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1416,7 +1417,7 @@
       ]
     },
     {
-      "@id": "Messkanal6Invert127",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal6Invert127",
       "label": "Messkanal 6 Invert",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1434,7 +1435,7 @@
       ]
     },
     {
-      "@id": "Messkanal7Tara128",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal7Tara128",
       "label": "Messkanal 7 Tara",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1452,7 +1453,7 @@
       ]
     },
     {
-      "@id": "Messkanal7Invert129",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal7Invert129",
       "label": "Messkanal 7 Invert",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1470,7 +1471,7 @@
       ]
     },
     {
-      "@id": "Messkanal8Tara130",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal8Tara130",
       "label": "Messkanal 8 Tara",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1488,7 +1489,7 @@
       ]
     },
     {
-      "@id": "Messkanal8Invert131",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example3.csv/Messkanal8Invert131",
       "label": "Messkanal 8 Invert",
       "@type": "oa:Annotation",
       "rownum": {
@@ -1511,14 +1512,14 @@
     "@id": "http://localhost:5001/api/annotate",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0",
-      "rdfs:label": "CSVtoCSVWv1.2.0",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.1",
+      "rdfs:label": "CSVtoCSVWv1.2.1",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-07-10T11:32:59.791498",
+    "@value": "2023-08-15T13:42:40.962790",
     "@type": "xsd:dateTime"
   }
 }

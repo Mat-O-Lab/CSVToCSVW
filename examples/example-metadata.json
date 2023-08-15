@@ -7,14 +7,15 @@
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "qudt": "http://qudt.org/schema/qudt/",
       "dc": "http://purl.org/dc/elements/1.1/",
-      "prov": "http://www.w3.org/ns/prov#"
+      "prov": "http://www.w3.org/ns/prov#",
+      "csv": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/"
     }
   ],
-  "@id": "",
+  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
   "@type": "http://www.w3.org/ns/csvw#TableGroup",
   "notes": [
     {
-      "@id": "AktuelleProbe0",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/AktuelleProbe0",
       "label": "aktuelle Probe",
       "@type": "oa:Annotation",
       "rownum": {
@@ -32,7 +33,7 @@
       ]
     },
     {
-      "@id": "Einspannlaenge1",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/Einspannlaenge1",
       "label": "Einspannlänge",
       "@type": "oa:Annotation",
       "rownum": {
@@ -54,7 +55,7 @@
       ]
     },
     {
-      "@id": "Messlaenge2",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/Messlaenge2",
       "label": "Messlänge",
       "@type": "oa:Annotation",
       "rownum": {
@@ -71,7 +72,7 @@
       ]
     },
     {
-      "@id": "ProbenbreiteB03",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/ProbenbreiteB03",
       "label": "Probenbreite b0",
       "@type": "oa:Annotation",
       "rownum": {
@@ -93,7 +94,7 @@
       ]
     },
     {
-      "@id": "ProbendickeA04",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/ProbendickeA04",
       "label": "Probendicke a0",
       "@type": "oa:Annotation",
       "rownum": {
@@ -115,7 +116,7 @@
       ]
     },
     {
-      "@id": "Pruefgeschwindigkeit5",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/Pruefgeschwindigkeit5",
       "label": "Prüfgeschwindigkeit",
       "@type": "oa:Annotation",
       "rownum": {
@@ -137,7 +138,7 @@
       ]
     },
     {
-      "@id": "Vorkraft6",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/Vorkraft6",
       "label": "Vorkraft",
       "@type": "oa:Annotation",
       "rownum": {
@@ -159,7 +160,7 @@
       ]
     },
     {
-      "@id": "WegNachBruch7",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/WegNachBruch7",
       "label": "Weg nach Bruch",
       "@type": "oa:Annotation",
       "rownum": {
@@ -181,7 +182,7 @@
       ]
     },
     {
-      "@id": "EModul8",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/EModul8",
       "label": "E-Modul",
       "@type": "oa:Annotation",
       "rownum": {
@@ -203,7 +204,7 @@
       ]
     },
     {
-      "@id": "DehnungBeiFmax9",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/DehnungBeiFmax9",
       "label": "Dehnung bei Fmax",
       "@type": "oa:Annotation",
       "rownum": {
@@ -225,7 +226,7 @@
       ]
     },
     {
-      "@id": "DehnungBeiBruch10",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/DehnungBeiBruch10",
       "label": "Dehnung bei Bruch",
       "@type": "oa:Annotation",
       "rownum": {
@@ -247,7 +248,7 @@
       ]
     },
     {
-      "@id": "ObereStreckgrenze11",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/ObereStreckgrenze11",
       "label": "obere Streckgrenze",
       "@type": "oa:Annotation",
       "rownum": {
@@ -264,7 +265,7 @@
       ]
     },
     {
-      "@id": "Kraftmaximum12",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/Kraftmaximum12",
       "label": "Kraftmaximum",
       "@type": "oa:Annotation",
       "rownum": {
@@ -286,7 +287,7 @@
       ]
     },
     {
-      "@id": "Bruchkraft13",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/Bruchkraft13",
       "label": "Bruchkraft",
       "@type": "oa:Annotation",
       "rownum": {
@@ -303,7 +304,7 @@
       ]
     },
     {
-      "@id": "GeschwindigkeitEModul14",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/GeschwindigkeitEModul14",
       "label": "Geschwindigkeit E-Modul",
       "@type": "oa:Annotation",
       "rownum": {
@@ -331,7 +332,7 @@
       ]
     },
     {
-      "@id": "Datum15",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/Datum15",
       "label": "Datum",
       "@type": "oa:Annotation",
       "rownum": {
@@ -351,7 +352,7 @@
   ],
   "tables": [
     {
-      "@id": "table-1",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/table-1",
       "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv",
       "dialect": {
         "delimiter": "\\t",
@@ -362,7 +363,7 @@
       "tableSchema": {
         "columns": [
           {
-            "@id": "table-1-GID",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/table-1-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -379,7 +380,7 @@
               "s",
               "Pruefzeit"
             ],
-            "@id": "table-1-Pruefzeit",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/table-1-Pruefzeit",
             "name": "Pruefzeit",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/SEC",
@@ -398,7 +399,7 @@
               "mm",
               "Standardweg"
             ],
-            "@id": "table-1-Standardweg",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/table-1-Standardweg",
             "name": "Standardweg",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -417,7 +418,7 @@
               "N",
               "Standardkraft"
             ],
-            "@id": "table-1-Standardkraft",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/table-1-Standardkraft",
             "name": "Standardkraft",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/N",
@@ -436,7 +437,7 @@
               "%",
               "Dehnung"
             ],
-            "@id": "table-1-Dehnung",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/table-1-Dehnung",
             "name": "Dehnung",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/PERCENT",
@@ -455,7 +456,7 @@
               "mm",
               "TraverseAbs"
             ],
-            "@id": "table-1-TraverseAbs",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/table-1-TraverseAbs",
             "name": "TraverseAbs",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -470,7 +471,7 @@
           }
         ],
         "primaryKey": "GID",
-        "aboutUrl": "table-1-gid-{GID}"
+        "aboutUrl": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv/table-1-gid-{GID}"
       }
     }
   ],
@@ -478,14 +479,14 @@
     "@id": "http://localhost:5001/api/annotate",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0",
-      "rdfs:label": "CSVtoCSVWv1.2.0",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.1",
+      "rdfs:label": "CSVtoCSVWv1.2.1",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-07-10T11:32:57.702999",
+    "@value": "2023-08-15T13:42:38.576615",
     "@type": "xsd:dateTime"
   }
 }

@@ -7,14 +7,15 @@
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "qudt": "http://qudt.org/schema/qudt/",
       "dc": "http://purl.org/dc/elements/1.1/",
-      "prov": "http://www.w3.org/ns/prov#"
+      "prov": "http://www.w3.org/ns/prov#",
+      "csv": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/"
     }
   ],
-  "@id": "",
+  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv",
   "@type": "http://www.w3.org/ns/csvw#TableGroup",
   "notes": [
     {
-      "@id": "Mts7930",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/Mts7930",
       "label": "MTS793",
       "@type": "oa:Annotation",
       "rownum": {
@@ -100,7 +101,7 @@
       ]
     },
     {
-      "@id": "BedienerInformation2",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/BedienerInformation2",
       "label": "Bediener Information",
       "@type": "oa:Annotation",
       "rownum": {
@@ -139,7 +140,7 @@
       ]
     },
     {
-      "@id": "Datum3",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/Datum3",
       "label": "Datum ",
       "@type": "oa:Annotation",
       "rownum": {
@@ -157,7 +158,7 @@
       ]
     },
     {
-      "@id": "PrFer4",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/PrFer4",
       "label": "Pr�fer ",
       "@type": "oa:Annotation",
       "rownum": {
@@ -174,7 +175,7 @@
       ]
     },
     {
-      "@id": "Probenbezeichnung5",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/Probenbezeichnung5",
       "label": "Probenbezeichnung ",
       "@type": "oa:Annotation",
       "rownum": {
@@ -191,7 +192,7 @@
       ]
     },
     {
-      "@id": "Bemerkungen6",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/Bemerkungen6",
       "label": "Bemerkungen",
       "@type": "oa:Annotation",
       "rownum": {
@@ -208,7 +209,7 @@
       ]
     },
     {
-      "@id": "Masse7",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/Masse7",
       "label": "Masse ",
       "@type": "oa:Annotation",
       "rownum": {
@@ -226,7 +227,7 @@
       ]
     },
     {
-      "@id": "Durchmesser8",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/Durchmesser8",
       "label": "Durchmesser ",
       "@type": "oa:Annotation",
       "rownum": {
@@ -244,7 +245,7 @@
       ]
     },
     {
-      "@id": "LNge9",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/LNge9",
       "label": "L�nge ",
       "@type": "oa:Annotation",
       "rownum": {
@@ -262,7 +263,7 @@
       ]
     },
     {
-      "@id": "Datenerfassung12",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/Datenerfassung12",
       "label": "Datenerfassung",
       "@type": "oa:Annotation",
       "rownum": {
@@ -301,7 +302,7 @@
       ]
     },
     {
-      "@id": "Datenerfassung947",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/Datenerfassung947",
       "label": "Datenerfassung",
       "@type": "oa:Annotation",
       "rownum": {
@@ -342,7 +343,7 @@
   ],
   "tables": [
     {
-      "@id": "table-1",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1",
       "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv",
       "dialect": {
         "delimiter": "\\t",
@@ -353,7 +354,7 @@
       "tableSchema": {
         "columns": [
           {
-            "@id": "table-1-GID",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -370,7 +371,7 @@
               "d",
               "Datum"
             ],
-            "@id": "table-1-Datum",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-Datum",
             "name": "Datum",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/DAY",
@@ -389,7 +390,7 @@
               "s",
               "Laufzeit"
             ],
-            "@id": "table-1-Laufzeit",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-Laufzeit",
             "name": "Laufzeit",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/SEC",
@@ -408,7 +409,7 @@
               "kN",
               "Ch1KraftSollwert"
             ],
-            "@id": "table-1-Ch1KraftSollwert",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-Ch1KraftSollwert",
             "name": "Ch1KraftSollwert",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -427,7 +428,7 @@
               "kN",
               "Ch1Kraft"
             ],
-            "@id": "table-1-Ch1Kraft",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-Ch1Kraft",
             "name": "Ch1Kraft",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -446,7 +447,7 @@
               "mm",
               "Ch1Weg"
             ],
-            "@id": "table-1-Ch1Weg",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-Ch1Weg",
             "name": "Ch1Weg",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -465,7 +466,7 @@
               "mm",
               "1944B"
             ],
-            "@id": "table-1-1944B",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-1944B",
             "name": "1944B",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -484,7 +485,7 @@
               "mm",
               "1281068"
             ],
-            "@id": "table-1-1281068",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-1281068",
             "name": "1281068",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -503,7 +504,7 @@
               "mm",
               "2157"
             ],
-            "@id": "table-1-2157",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-2157",
             "name": "2157",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -518,11 +519,11 @@
           }
         ],
         "primaryKey": "GID",
-        "aboutUrl": "table-1-gid-{GID}"
+        "aboutUrl": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-1-gid-{GID}"
       }
     },
     {
-      "@id": "table-2",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-2",
       "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv",
       "dialect": {
         "delimiter": "\\t",
@@ -533,7 +534,7 @@
       "tableSchema": {
         "columns": [
           {
-            "@id": "table-2-GID",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-2-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -550,7 +551,7 @@
               "kN",
               "Ch1Kraft"
             ],
-            "@id": "table-2-Ch1Kraft",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-2-Ch1Kraft",
             "name": "Ch1Kraft",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -569,7 +570,7 @@
               "mm",
               "Ch1W2TkMittel"
             ],
-            "@id": "table-2-Ch1W2TkMittel",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-2-Ch1W2TkMittel",
             "name": "Ch1W2TkMittel",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -588,7 +589,7 @@
               "mm",
               "1944A"
             ],
-            "@id": "table-2-1944A",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-2-1944A",
             "name": "1944A",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -607,7 +608,7 @@
               "mm",
               "1944B"
             ],
-            "@id": "table-2-1944B",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-2-1944B",
             "name": "1944B",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -626,7 +627,7 @@
               "mm",
               "1281068"
             ],
-            "@id": "table-2-1281068",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-2-1281068",
             "name": "1281068",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -641,7 +642,7 @@
           }
         ],
         "primaryKey": "GID",
-        "aboutUrl": "table-2-gid-{GID}"
+        "aboutUrl": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example4.csv/table-2-gid-{GID}"
       }
     }
   ],
@@ -649,14 +650,14 @@
     "@id": "http://localhost:5001/api/annotate",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0",
-      "rdfs:label": "CSVtoCSVWv1.2.0",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.1",
+      "rdfs:label": "CSVtoCSVWv1.2.1",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-07-10T11:33:00.703557",
+    "@value": "2023-08-15T13:42:41.964878",
     "@type": "xsd:dateTime"
   }
 }
