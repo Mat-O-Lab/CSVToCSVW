@@ -127,7 +127,7 @@ class CSVWtoRDF:
     """Class for Converting CSV data to RDF with help of CSVW Annotations
     """
     def __init__(self,metadata_url: str, csv_url: str, api_url: None, metaformat: str="json-ld") -> None:
-        self.metadata_url=metadata_url
+        self.metadata_url=str(metadata_url)
         self.api_url=api_url
         # get metadata graph
         self.metagraph=parse_graph(metadata_url,Graph(),format=metaformat)
