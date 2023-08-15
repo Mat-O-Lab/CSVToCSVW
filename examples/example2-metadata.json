@@ -7,14 +7,15 @@
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "qudt": "http://qudt.org/schema/qudt/",
       "dc": "http://purl.org/dc/elements/1.1/",
-      "prov": "http://www.w3.org/ns/prov#"
+      "prov": "http://www.w3.org/ns/prov#",
+      "csv": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/"
     }
   ],
-  "@id": "",
+  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
   "@type": "http://www.w3.org/ns/csvw#TableGroup",
   "notes": [
     {
-      "@id": "Probe0",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/Probe0",
       "label": "Probe",
       "@type": "oa:Annotation",
       "rownum": {
@@ -64,7 +65,7 @@
   ],
   "tables": [
     {
-      "@id": "table-1",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1",
       "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
       "dialect": {
         "delimiter": "\\t",
@@ -75,7 +76,7 @@
       "tableSchema": {
         "columns": [
           {
-            "@id": "table-1-GID",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-GID",
             "name": "GID",
             "titles": [
               "GID",
@@ -91,7 +92,7 @@
               "Maschine [mm]",
               "MaschineMm"
             ],
-            "@id": "table-1-MaschineMm",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-MaschineMm",
             "name": "MaschineMm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -109,7 +110,7 @@
               "Kraft [kN]",
               "KraftKn"
             ],
-            "@id": "table-1-KraftKn",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-KraftKn",
             "name": "KraftKn",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/KiloN",
@@ -127,7 +128,7 @@
               "Clip-Gauge [mm]",
               "ClipGaugeMm"
             ],
-            "@id": "table-1-ClipGaugeMm",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-ClipGaugeMm",
             "name": "ClipGaugeMm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -145,7 +146,7 @@
               "Drehmoment [Nm]",
               "DrehmomentNm"
             ],
-            "@id": "table-1-DrehmomentNm",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-DrehmomentNm",
             "name": "DrehmomentNm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/N-M",
@@ -163,7 +164,7 @@
               "MX840A_0_CH 5 [°C]",
               "Mx840A0Ch5C"
             ],
-            "@id": "table-1-Mx840A0Ch5C",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Mx840A0Ch5C",
             "name": "Mx840A0Ch5C",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/DEG_C",
@@ -181,7 +182,7 @@
               "MX840A_0_CH 6 [mm]",
               "Mx840A0Ch6Mm"
             ],
-            "@id": "table-1-Mx840A0Ch6Mm",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Mx840A0Ch6Mm",
             "name": "Mx840A0Ch6Mm",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/MilliM",
@@ -199,7 +200,7 @@
               "MX840A_0_CH 7 [V]",
               "Mx840A0Ch7V"
             ],
-            "@id": "table-1-Mx840A0Ch7V",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Mx840A0Ch7V",
             "name": "Mx840A0Ch7V",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/V",
@@ -217,7 +218,7 @@
               "MX840A_0_CH 8 [°C]",
               "Mx840A0Ch8C"
             ],
-            "@id": "table-1-Mx840A0Ch8C",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Mx840A0Ch8C",
             "name": "Mx840A0Ch8C",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/DEG_C",
@@ -235,7 +236,7 @@
               "Zeit [s]",
               "ZeitS"
             ],
-            "@id": "table-1-ZeitS",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-ZeitS",
             "name": "ZeitS",
             "qudt:unit": {
               "@id": "http://qudt.org/vocab/unit/SEC",
@@ -253,7 +254,7 @@
               "Kanal 10",
               "Kanal10"
             ],
-            "@id": "table-1-Kanal10",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Kanal10",
             "name": "Kanal10",
             "@type": [
               "Column"
@@ -267,7 +268,7 @@
               "Kanal 11",
               "Kanal11"
             ],
-            "@id": "table-1-Kanal11",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Kanal11",
             "name": "Kanal11",
             "@type": [
               "Column"
@@ -281,7 +282,7 @@
               "Kanal 12",
               "Kanal12"
             ],
-            "@id": "table-1-Kanal12",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Kanal12",
             "name": "Kanal12",
             "@type": [
               "Column"
@@ -295,7 +296,7 @@
               "Kanal 13",
               "Kanal13"
             ],
-            "@id": "table-1-Kanal13",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Kanal13",
             "name": "Kanal13",
             "@type": [
               "Column"
@@ -309,7 +310,7 @@
               "Kanal 14",
               "Kanal14"
             ],
-            "@id": "table-1-Kanal14",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Kanal14",
             "name": "Kanal14",
             "@type": [
               "Column"
@@ -323,7 +324,7 @@
               "Kanal 15",
               "Kanal15"
             ],
-            "@id": "table-1-Kanal15",
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-Kanal15",
             "name": "Kanal15",
             "@type": [
               "Column"
@@ -334,7 +335,7 @@
           }
         ],
         "primaryKey": "GID",
-        "aboutUrl": "table-1-gid-{GID}"
+        "aboutUrl": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv/table-1-gid-{GID}"
       }
     }
   ],
@@ -342,14 +343,14 @@
     "@id": "http://localhost:5001/api/annotate",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.0",
-      "rdfs:label": "CSVtoCSVWv1.2.0",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.1",
+      "rdfs:label": "CSVtoCSVWv1.2.1",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-07-10T11:32:59.360308",
+    "@value": "2023-08-15T13:45:02.807129",
     "@type": "xsd:dateTime"
   }
 }
