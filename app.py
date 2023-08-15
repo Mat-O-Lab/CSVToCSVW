@@ -102,7 +102,7 @@ class AnnotateRequest(BaseModel):
     data_url: Union[AnyUrl, FileUrl] = Field('', title='Raw CSV Url', description='Url to raw csv')
     encoding: Optional[TextEncoding] = Field('auto', title='Encoding', description='Encoding of the file',omit_default=True)
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "data_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example.csv"
             }
@@ -117,7 +117,7 @@ class RDFRequest(BaseModel):
     csv_url: Optional[Union[AnyUrl, FileUrl]] = Field(None, title='CSV Url', description='Url to csvw file to use or else the mentioned url in metadata will be used.')
     format: Optional[ReturnType] = Field(ReturnType.jsonld, title='Serialization Format', description='The format to use to serialize the rdf.')
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "examples": [
                 {
                         "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2-metadata.json",

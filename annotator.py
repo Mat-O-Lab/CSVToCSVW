@@ -98,19 +98,18 @@ units_graph.parse(QUDT_UNIT_URL, format='turtle')
 
 def get_data(uri='')-> (bytes, str):
     try:
-        uri_parsed = urlparse(uri)
+        uri_parsed = urlparse(str(uri))
     except:
         print('not an uri - if local file add file:// as prefix')
-        return None
-    #print(uri_parsed)
+        return None, ""
     if uri_parsed.scheme in ['https', 'http','file']:
         filename = unquote(uri_parsed.path).rsplit('/download/upload')[0].split('/')[-1]
-        logging.debug('reading file at {} with name {}'.format(uri,filename))
+        logging.info('reading file at {} with name {}'.format(uri,filename))
         with urlopen(uri) as f:
             filedata = f.read()
     else:
         print('unknown scheme {}'.format(uri_parsed.scheme))
-        return None
+        return None, ''
     return filedata, filename
 
 def is_date(string, fuzzy=False)->bool:
@@ -252,7 +251,7 @@ def describe_value(value_string: str)-> dict:
 
 class CSV_Annotator():
     def __init__(self, url: str, encoding: str='auto') -> (str, json) : 
-        self.url=url
+        self.url=str(url)
         self.encoding = encoding
         
         self.parts = list()

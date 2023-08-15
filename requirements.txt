@@ -1,8 +1,7 @@
 chardet
-rdflib
+rdflib==7.0.0
 wtforms
 pandas
-html5lib
 starlette
 starlette-wtf
 jinja2
