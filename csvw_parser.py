@@ -130,7 +130,7 @@ class CSVWtoRDF:
         self.metadata_url=str(metadata_url)
         self.api_url=api_url
         # get metadata graph
-        self.metagraph=parse_graph(metadata_url,Graph(),format=metaformat)
+        self.metagraph=parse_graph(self.metadata_url,Graph(),format=metaformat)
         #self.metagraph.serialize('test.ttl',format='turtle')
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
         #self.metagraph.serialize('metagraph.ttl')
