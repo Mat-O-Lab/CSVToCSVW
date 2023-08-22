@@ -9,6 +9,7 @@ from urllib.parse import urlparse, unquote
 from dateutil.parser import parse as date_parse
 from csv import Sniffer
 import requests
+import numpy as np
 
 import chardet
 import locale
@@ -363,7 +364,7 @@ class CSV_Annotator():
             #test lenght of segments and first line of parts to be all text to categorize to meta or data table part
             parts={key: value for key,value in parts.items() if value['sep']}
             for key, value in parts.items():
-                logging.debug("{} {}".format(key,value))
+                logging.debug("part {}: {}".format(key,value))
                 f.seek(0)
                 if value['end']-value['start']==1 or value['sep']==':+\\s+\\s*':
                     value['type']='meta'
@@ -385,18 +386,35 @@ class CSV_Annotator():
                         if i in range(value['start'],value['end']):
                             types=[get_value_type(string)[0] for string in re.split(value['sep'],line)]
                             types=['NUMBER' if typ in ['INT', 'FLOAT'] else typ for typ in types]
-                            logging.debug(types)
                             types_list.append(types)
-                            #stop after reading 5 lines in part, should be enough
-                            if len(types_list)>=5:
+                            #stop after reading 10 lines in part, should be enough
+                            if len(types_list)>=10:
                                 break
                     #test if all lines have same combination of types
-                    same_types_as_first=[types==types_list[0] for types in types_list ]
-                    logging.debug(same_types_as_first)
-                    if all(same_types_as_first):
-                            value['type']='meta'
+                    type_array=np.array(types_list)
+                    logging.debug(type_array)       
+                    same_types_as_first= np.all(type_array==type_array[0])
+                    logging.debug('all rows have same type combination: {}'.format(same_types_as_first))       
+                    first_column_type_text=np.all(type_array.T[0]=='TEXT')
+                    logging.debug('every value if first column is type TEXT: {}'.format(first_column_type_text))   
+                    data_area=type_array[2:]
+                    column_values_equal_type=np.all([np.all(column_data==column_data[0]) for column_data in data_area.T])
+                    logging.debug('all data cells in each columns have same type: {}'.format(column_values_equal_type))   
+                    
+                    if same_types_as_first:
+                        value['type']='meta'
+                    elif first_column_type_text and not column_values_equal_type:
+                        value['type']='meta'    
                     else:
+                        #test if first in each row is text and if other columns have changing types
+                        type_array=np.array(types_list)
+                        first_column_type_text=np.all(type_array.T[0]=='TEXT')
+                        print(first_column_type_text)
+                        #test columns, except one to be of same type as fist values 
+                        #print([np.all(column==column[2]) for column in type_array.T[1:] ])
                         value['type']='data'
+                    logging.debug('part {} is of type: {}'.format(key,value['type']))       
+                    
                 
                         
         result={}
