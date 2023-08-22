@@ -2,14 +2,13 @@
 from typing import Tuple
 import pandas as pd
 import io
-import os
 import re
 import ast
 import json
-from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 from dateutil.parser import parse as date_parse
 from csv import Sniffer
+import requests
 
 import chardet
 import locale
@@ -96,6 +95,17 @@ def get_entities_with_property_with_value(graph, property, value):
 units_graph = Graph()
 units_graph.parse(QUDT_UNIT_URL, format='turtle')
 
+def get_filename_from_cd(cd):
+    """
+    Get filename from content-disposition
+    """
+    if not cd:
+        return None
+    fname = re.findall('filename=(.+)', cd)
+    if len(fname) == 0:
+        return None
+    return fname[0]
+
 def get_data(uri='')-> (bytes, str):
     try:
         uri_parsed = urlparse(str(uri))
@@ -103,10 +113,14 @@ def get_data(uri='')-> (bytes, str):
         print('not an uri - if local file add file:// as prefix')
         return None, ""
     if uri_parsed.scheme in ['https', 'http','file']:
-        filename = unquote(uri_parsed.path).rsplit('/download/upload')[0].split('/')[-1]
+        r=requests.get(uri, allow_redirects=True)
+        #print(r.headers.keys())
+        filename = get_filename_from_cd(r.headers.get('content-disposition'))
+        if not filename:
+            logging.debug('no filename in content-disposition header, picking string after last occuring slash in uri as filename')
+            filename = unquote(uri_parsed.path).rsplit('/',1)[-1]
         logging.info('reading file at {} with name {}'.format(uri,filename))
-        with urlopen(uri) as f:
-            filedata = f.read()
+        filedata = r.content
     else:
         print('unknown scheme {}'.format(uri_parsed.scheme))
         return None, ''
