@@ -171,9 +171,9 @@ def get_value_type(string: str)-> Tuple:
         if type(t) in [int, float, bool]:
             if type(t) is int:
                 return 'INT', XSD.integer
-            if t in set((True, False)):
+            elif t in set((True, False)):
                 return 'BOOL', XSD.boolean
-            if type(t) is float:
+            elif type(t) is float:
                 return 'FLOAT', XSD.double
         else:
             #return 'TEXT'
@@ -610,11 +610,24 @@ class CSV_Annotator():
                     **unit_dict
                 }
                 json_str['@type']=["Column"]
-                xsd_format=get_value_type(table_data.iloc[1][colnum])[1]
+                #determine xsd_format
+                values=[table_data.iat[i, colnum] for i in range(5)]
+                #values=[value.value for value in values]
+    
+                types=[get_value_type(str(value))[0] for value in values]
+                if 'TEXT' in types:
+                    xsd_format=XSD.string
+                elif 'FLOAT' in types:
+                    xsd_format=XSD.double
+                elif 'INT' in types:
+                    xsd_format=XSD.integer
+                elif 'BOOL' in types:
+                    xsd_format=XSD.boolean
+                else:
+                    xsd_format=XSD.string
+                
                 if xsd_format:
                     json_str['format'] = {'@id': xsd_format}
-                print(colnum, titles)
-                print(json_str)
                 column_json.append(json_str)
             table_schema = {"columns": column_json}
             table_schema["primaryKey"] = column_json[0]['name']
