@@ -398,7 +398,12 @@ class CSV_Annotator():
                     first_column_type_text=np.all(type_array.T[0]=='TEXT')
                     logging.debug('every value if first column is type TEXT: {}'.format(first_column_type_text))   
                     data_area=type_array[2:]
-                    column_values_equal_type=np.all([np.all(column_data==column_data[0]) for column_data in data_area.T])
+                    logging.debug("data_area")
+                    logging.debug(data_area)
+                    if data_area.size:
+                        column_values_equal_type=np.all([np.all(column_data==column_data[0]) for column_data in data_area.T])
+                    else:
+                        column_values_equal_type=False
                     logging.debug('all data cells in each columns have same type: {}'.format(column_values_equal_type))   
                     
                     if same_types_as_first:
