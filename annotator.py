@@ -113,7 +113,7 @@ def get_data(uri='')-> (bytes, str):
     except:
         print('not an uri - if local file add file:// as prefix')
         return None, ""
-    if uri_parsed.scheme in ['https', 'http','file']:
+    if uri_parsed.scheme in ['https', 'http']:
         r=requests.get(uri, allow_redirects=True)
         #print(r.headers.keys())
         filename = get_filename_from_cd(r.headers.get('content-disposition'))
@@ -122,6 +122,10 @@ def get_data(uri='')-> (bytes, str):
             filename = unquote(uri_parsed.path).rsplit('/',1)[-1]
         logging.info('reading file at {} with name {}'.format(uri,filename))
         filedata = r.content
+    elif uri_parsed.scheme=='file':
+        filename = unquote(uri_parsed.path).rsplit('/',1)[-1]
+        with open(uri_parsed.path, 'rb') as f:
+            filedata = f.read()
     else:
         print('unknown scheme {}'.format(uri_parsed.scheme))
         return None, ''
@@ -294,6 +298,7 @@ class CSV_Annotator():
 
     @staticmethod
     def read_data(url, encoding: str)->(str,str,str):
+        print(url)
         file_data, file_name = get_data(url)
         if file_name is None or file_data is None:
             return "error", "cannot parse url"
