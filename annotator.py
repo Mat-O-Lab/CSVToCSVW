@@ -175,10 +175,10 @@ def get_value_type(string: str)-> Tuple:
         if type(t) in [int, float, bool]:
             if type(t) is int:
                 return 'INT', XSD.integer
-            elif t in set((True, False)):
-                return 'BOOL', XSD.boolean
             elif type(t) is float:
                 return 'FLOAT', XSD.double
+            elif t in set((True, False)):
+                return 'BOOL', XSD.boolean
         else:
             #return 'TEXT'
             return 'TEXT', XSD.string
@@ -280,7 +280,7 @@ class CSV_Annotator():
         
         self.file_name, self.encoding, self.file_string=self.read_data(self.url, self.encoding)
         self.file_domain=self.url.rsplit(self.file_name,1)[0]
-        self.meta_file_name = self.file_name.split(sep='.')[0] + '-metadata.json'
+        self.meta_file_name = self.file_name.rsplit('.',1)[0] + '-metadata.json'
         self.csv_namespace = self.file_domain+self.file_name+'/'
         self.context = [
             "http://www.w3.org/ns/csvw", {
@@ -401,7 +401,7 @@ class CSV_Annotator():
                     same_types_as_first= np.all(type_array==type_array[0])
                     logging.debug('all rows have same type combination: {}'.format(same_types_as_first))       
                     first_column_type_text=np.all(type_array.T[0]=='TEXT')
-                    logging.debug('every value if first column is type TEXT: {}'.format(first_column_type_text))   
+                    logging.debug('every value in first column is type TEXT: {}'.format(first_column_type_text))   
                     data_area=type_array[2:]
                     logging.debug("data_area")
                     logging.debug(data_area)
@@ -621,10 +621,12 @@ class CSV_Annotator():
                 }
                 json_str['@type']=["Column"]
                 #determine xsd_format
-                values=[table_data.iat[i, colnum] for i in range(5)]
+                values=[table_data.iat[i, colnum] for i in range(20)]
                 #values=[value.value for value in values]
     
                 types=[get_value_type(str(value))[0] for value in values]
+                print(titles)
+                print(types)
                 if 'TEXT' in types:
                     xsd_format=XSD.string
                 elif 'FLOAT' in types:
