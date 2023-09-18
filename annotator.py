@@ -627,19 +627,13 @@ class CSV_Annotator():
                 types=[get_value_type(str(value))[0] for value in values]
                 print(titles)
                 print(types)
-                if 'TEXT' in types:
-                    xsd_format=XSD.string
-                elif 'FLOAT' in types:
-                    xsd_format=XSD.double
-                elif 'INT' in types:
-                    xsd_format=XSD.integer
-                elif 'BOOL' in types:
-                    xsd_format=XSD.boolean
-                else:
-                    xsd_format=XSD.string
-                
-                if xsd_format:
+                column_values_equal_type=np.all([np.all(type==types[0]) for type in types])
+                print(column_values_equal_type)
+                if column_values_equal_type:    
+                    xsd_format=get_value_type(str(values[0]))[1]
                     json_str['format'] = {'@id': xsd_format}
+                else:
+                    json_str['format'] = {'@id': XSD.string}
                 column_json.append(json_str)
             table_schema = {"columns": column_json}
             table_schema["primaryKey"] = column_json[0]['name']
