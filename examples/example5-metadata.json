@@ -1,0 +1,269 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "oa": "http://www.w3.org/ns/oa#",
+      "label": "http://www.w3.org/2000/01/rdf-schema#label",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "qudt": "http://qudt.org/schema/qudt/",
+      "dc": "http://purl.org/dc/elements/1.1/",
+      "prov": "http://www.w3.org/ns/prov#",
+      "csv": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/"
+    }
+  ],
+  "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv",
+  "@type": "http://www.w3.org/ns/csvw#TableGroup",
+  "notes": [],
+  "tables": [
+    {
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1",
+      "url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv",
+      "dialect": {
+        "delimiter": ",",
+        "skipRows": 0,
+        "headerRowCount": 1,
+        "encoding": "latin-1"
+      },
+      "tableSchema": {
+        "columns": [
+          {
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-GID",
+            "name": "GID",
+            "titles": [
+              "GID",
+              "Generic Identifier"
+            ],
+            "datatype": "string",
+            "required": true,
+            "suppressOutput": true,
+            "@type": "Column"
+          },
+          {
+            "titles": [
+              "Unnamed: 0",
+              "Unnamed0"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-Unnamed0",
+            "name": "Unnamed0",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          },
+          {
+            "titles": [
+              "SpecimenName",
+              "Specimenname"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-Specimenname",
+            "name": "Specimenname",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "titles": [
+              "Aging Temp [Â°C]",
+              "AgingTempC"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-AgingTempC",
+            "name": "AgingTempC",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/DEG_C",
+              "@type": "http://qudt.org/schema/qudt/DerivedUnit"
+            },
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Aging Time [h]",
+              "AgingTimeH"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-AgingTimeH",
+            "name": "AgingTimeH",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/HR",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          },
+          {
+            "titles": [
+              "Creep Stress [MPa]",
+              "CreepStressMpa"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-CreepStressMpa",
+            "name": "CreepStressMpa",
+            "qudt:unit": {
+              "@id": "http://qudt.org/vocab/unit/MegaPA",
+              "@type": "http://qudt.org/schema/qudt/Unit"
+            },
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          },
+          {
+            "titles": [
+              "Dataset",
+              "Dataset"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-Dataset",
+            "name": "Dataset",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+            }
+          },
+          {
+            "titles": [
+              "Position_Id",
+              "PositionId"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-PositionId",
+            "name": "PositionId",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "titles": [
+              "Image",
+              "Image"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-Image",
+            "name": "Image",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+            }
+          },
+          {
+            "titles": [
+              "ROIs",
+              "Rois"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-Rois",
+            "name": "Rois",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+            }
+          },
+          {
+            "titles": [
+              "DiskRadiusValue [px]",
+              "DiskradiusvaluePx"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-DiskradiusvaluePx",
+            "name": "DiskradiusvaluePx",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          },
+          {
+            "titles": [
+              "Threshold Method",
+              "ThresholdMethod"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-ThresholdMethod",
+            "name": "ThresholdMethod",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "titles": [
+              "Threshold Size",
+              "ThresholdSize"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-ThresholdSize",
+            "name": "ThresholdSize",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          },
+          {
+            "titles": [
+              "Dilation Kernel Size [px]",
+              "DilationKernelSizePx"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-DilationKernelSizePx",
+            "name": "DilationKernelSizePx",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          },
+          {
+            "titles": [
+              "Date",
+              "Date"
+            ],
+            "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-Date",
+            "name": "Date",
+            "@type": [
+              "Column"
+            ],
+            "format": {
+              "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+            }
+          }
+        ],
+        "primaryKey": "GID",
+        "aboutUrl": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-gid-{GID}"
+      }
+    }
+  ],
+  "prov:wasGeneratedBy": {
+    "@id": "http://localhost:5001/api/annotate",
+    "@type": "prov:Activity",
+    "prov:wasAssociatedWith": {
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.2",
+      "rdfs:label": "CSVtoCSVWv1.2.2",
+      "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
+      "@type": "prov:SoftwareAgent"
+    }
+  },
+  "prov:generatedAtTime": {
+    "@value": "2023-09-18T09:55:03.533362",
+    "@type": "xsd:dateTime"
+  }
+}

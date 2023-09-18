@@ -479,14 +479,14 @@
     "@id": "http://localhost:5001/api/annotate",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.1",
-      "rdfs:label": "CSVtoCSVWv1.2.1",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.2",
+      "rdfs:label": "CSVtoCSVWv1.2.2",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-08-16T06:46:01.024021",
+    "@value": "2023-09-18T09:54:59.765814",
     "@type": "xsd:dateTime"
   }
 }
