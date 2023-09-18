@@ -621,7 +621,11 @@ class CSV_Annotator():
                 }
                 json_str['@type']=["Column"]
                 #determine xsd_format
-                values=[table_data.iat[i, colnum] for i in range(20)]
+                num_values_to_test=20
+                if len(table_data)<num_values_to_test:
+                    num_values_to_test=len(table_data)
+                
+                values=[table_data.iat[i, colnum] for i in range(num_values_to_test)]
                 #values=[value.value for value in values]
     
                 types=[get_value_type(str(value))[0] for value in values]
