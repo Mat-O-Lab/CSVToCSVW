@@ -86,7 +86,7 @@ def open_csv(uri: str) -> Tuple[str,str]:
         print('not an uri - if local file add file:// as prefix')
         return None
     else:
-        filename = unquote(uri_parsed.path).rsplit('/download/upload')[0].split('/')[-1]
+        filename = unquote(uri_parsed.path).split('/')[-1]
         if uri_parsed.scheme in ['https', 'http']:
             filedata = urlopen(uri).read()
 
@@ -137,15 +137,19 @@ class CSVWtoRDF:
         #self.metagraph.serialize('metagraph.ttl')
         #print('meta_root: '+self.meta_root)
         #print('csv_url: '+url)
-        self.base_url="{}/".format(str(self.meta_root).rsplit('/download/upload')[0].rsplit('/',1)[0])
+        self.base_url="{}/".format(str(self.meta_root).rsplit('/',1)[0])
         parsed_url=urlparse(url)
         if parsed_url.scheme in ['https', 'http', 'file']:
             self.csv_url=url
         else:
-            self.csv_url=self.base_url+url
+            if self.base_url.endswith(url+'/'):
+                self.csv_url=self.base_url[:-1]
+            else:
+                self.csv_url=self.base_url+url
         # replace if set in request
         if csv_url:
             self.csv_url=csv_url
+        print(url,self.base_url,csv_url,self.csv_url)
         self.graph=Graph(base=self.csv_url+'/')
         print(self.metadata_url,self.csv_url)
         self.filename=self.csv_url.rsplit('/',1)[-1].rsplit('.',1)[0]
