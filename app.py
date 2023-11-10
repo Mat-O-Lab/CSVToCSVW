@@ -251,7 +251,8 @@ async def annotate_upload(request: fastapi.Request, file: fastapi.UploadFile = f
 
 @app.post("/api/rdf")
 async def rdf(request: fastapi.Request, rdfrequest: RDFRequest) -> StreamingResponse:
-    converter=CSVWtoRDF(rdfrequest.metadata_url,rdfrequest.csv_url, request.url._url)
+    authorization=request.headers.get('Authorization',None)
+    converter=CSVWtoRDF(rdfrequest.metadata_url,rdfrequest.csv_url, request.url._url,authorization=authorization)
     filedata=converter.convert(rdfrequest.format.value)
     data_bytes=BytesIO(filedata.encode())
     filename=converter.filename

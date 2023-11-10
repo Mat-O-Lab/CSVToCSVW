@@ -11,6 +11,8 @@ from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
 import io
 import logging
+import requests
+from fastapi import HTTPException
 
 QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
 QUDT = Namespace("http://qudt.org/schema/qudt/")
@@ -35,7 +37,7 @@ def get_columns_from_schema(schema: URIRef ,graph: Graph)->OrderedDict:
     return OrderedDict([ (column,{ k: v for (k,v) in graph[column:]}) for column in columns])
                 
 
-def parse_csv_from_url_to_list(csv_url, num_cols: int, delimiter: str=',', skiprows:int =0, num_header_rows: int=2, encoding: str='utf-8') -> List[List]:
+def parse_csv_from_url_to_list(csv_url, num_cols: int, delimiter: str=',', skiprows:int =0, num_header_rows: int=2, encoding: str='utf-8', authorization=None) -> List[List]:
     """Parses a csv file using the dialect given, to a list containing the content of every row as list.
 
     Args:
@@ -48,7 +50,7 @@ def parse_csv_from_url_to_list(csv_url, num_cols: int, delimiter: str=',', skipr
     Returns:
         List[List]: List of Lists with entrys for each row. Content of header rows are not included
     """
-    file_data, file_name = open_csv(csv_url)
+    file_data, file_name = open_file(csv_url, authorization=authorization)
     file_string = io.StringIO(file_data.decode(encoding))
     print(delimiter,num_header_rows+skiprows)
     table_data = pd.read_csv(file_string, 
@@ -70,32 +72,36 @@ def parse_csv_from_url_to_list(csv_url, num_cols: int, delimiter: str=',', skipr
     line_list=[ [index,]+line for index, line in enumerate(line_list)]
     return line_list
 
-def open_csv(uri: str) -> Tuple[str,str]:
-    """Open a csv file for reading, returns filedata and filename in a Tuple.
-
-    Args:
-        uri (str): Uri to the file to read
-
-    Returns:
-        Tuple[str,str]: Tuple of filedata and filename
-    """
-    print('try to open: {}'.format(uri))
+def open_file(uri: str, authorization= None) -> Tuple["filedata": str, "filename": str]:
     try:
         uri_parsed = urlparse(uri)
-    except:
-        print('not an uri - if local file add file:// as prefix')
-        return None
-    else:
-        filename = unquote(uri_parsed.path).split('/')[-1]
-        if uri_parsed.scheme in ['https', 'http']:
-            filedata = urlopen(uri).read()
+        # print(uri_parsed)
 
-        elif uri_parsed.scheme == 'file':
-            filedata = open(unquote(uri_parsed.path), 'rb').read()
+    except:
+        raise HTTPException(status_code=400, detail=uri + " is not an uri - if local file add file:// as prefix")
+    else:
+        filename = unquote(uri_parsed.path).rsplit("/download/upload")[0].split("/")[-1]
+        if uri_parsed.scheme in ["https", "http"]:
+            # r = urlopen(uri)
+            s= requests.Session()
+            s.headers.update({"Authorization": authorization})
+            r = s.get(uri, allow_redirects=True, stream=True)
+            
+            #r.raise_for_status()
+            if r.status_code!=200:
+                #logging.debug(r.content)
+                raise HTTPException(status_code=r.status_code, detail="cant get file at {}".format(uri))
+            filedata = r.content
+            # charset=r.info().get_content_charset()
+            # if not charset:
+            #     charset='utf-8'
+            # filedata = r.read().decode(charset)
+        elif uri_parsed.scheme == "file":
+            filedata = open(unquote(uri_parsed.path), "rb").read()
         else:
-            print('unknown scheme {}'.format(uri_parsed.scheme))
-            return None
+            raise  HTTPException(status_code=400,detail="unknown scheme {}".format(uri_parsed.scheme))
         return filedata, filename
+
 
 def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
     """Parse a Graph from web url to rdflib graph object
@@ -126,11 +132,14 @@ def parse_graph(url: str, graph: Graph, format: str = '') -> Graph:
 class CSVWtoRDF:
     """Class for Converting CSV data to RDF with help of CSVW Annotations
     """
-    def __init__(self,metadata_url: str, csv_url: str, api_url: None, metaformat: str="json-ld") -> None:
+    def __init__(self,metadata_url: str, csv_url: str, api_url: None, metaformat: str="json-ld", authorization=None) -> None:
         self.metadata_url=str(metadata_url)
         self.api_url=api_url
         # get metadata graph
-        self.metagraph=parse_graph(self.metadata_url,Graph(),format=metaformat)
+        metadata_data, metadata_filename=open_file(self.metadata_url,authorization=authorization)
+        self.metagraph=Graph()
+        self.metagraph.parse(data=metadata_data,format=guess_format(metadata_filename))
+        #self.metagraph=parse_graph(self.metadata_url,Graph(),format=metaformat)
         #self.metagraph.serialize('test.ttl',format='turtle')
         print(list(self.metagraph[:CSVW.url]))
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
@@ -177,6 +186,7 @@ class CSVWtoRDF:
                         num_cols=len(data['columns'].keys())-1,
                         num_header_rows=data['dialect'][CSVW.headerRowCount],
                         encoding=data['dialect'][CSVW.encoding],
+                        authorization=authorization
                         )
     def add_table_data(self, g: Graph) -> Graph:
         """_summary_

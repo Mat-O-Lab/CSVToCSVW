@@ -20,6 +20,8 @@ from rdflib.namespace import RDF, RDFS, XSD, CSVW, DC, PROV
 from rdflib.plugins.sparql import prepareQuery
 import logging
 from enum import Enum
+from fastapi import HTTPException
+
 
 QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
 QUDT = Namespace("http://qudt.org/schema/qudt/")
@@ -107,29 +109,36 @@ def get_filename_from_cd(cd):
         return None
     return fname[0]
 
-def get_data(uri='')-> (bytes, str):
+def open_file(uri: str, authorization= None) -> Tuple["filedata": str, "filename": str]:
     try:
-        uri_parsed = urlparse(str(uri))
+        uri_parsed = urlparse(uri)
+        # print(uri_parsed)
+
     except:
-        print('not an uri - if local file add file:// as prefix')
-        return None, ""
-    if uri_parsed.scheme in ['https', 'http']:
-        r=requests.get(uri, allow_redirects=True)
-        #print(r.headers.keys())
-        filename = get_filename_from_cd(r.headers.get('content-disposition'))
-        if not filename:
-            logging.debug('no filename in content-disposition header, picking string after last occuring slash in uri as filename')
-            filename = unquote(uri_parsed.path).rsplit('/',1)[-1]
-        logging.info('reading file at {} with name {}'.format(uri,filename))
-        filedata = r.content
-    elif uri_parsed.scheme=='file':
-        filename = unquote(uri_parsed.path).rsplit('/',1)[-1]
-        with open(uri_parsed.path, 'rb') as f:
-            filedata = f.read()
+        raise HTTPException(status_code=400, detail=uri + " is not an uri - if local file add file:// as prefix")
     else:
-        print('unknown scheme {}'.format(uri_parsed.scheme))
-        return None, ''
-    return filedata, filename
+        filename = unquote(uri_parsed.path).rsplit("/download/upload")[0].split("/")[-1]
+        if uri_parsed.scheme in ["https", "http"]:
+            # r = urlopen(uri)
+            s= requests.Session()
+            s.headers.update({"Authorization": authorization})
+            r = s.get(uri, allow_redirects=True, stream=True)
+            
+            #r.raise_for_status()
+            if r.status_code!=200:
+                #logging.debug(r.content)
+                raise HTTPException(status_code=r.status_code, detail="cant get file at {}".format(uri))
+            filedata = r.content
+            # charset=r.info().get_content_charset()
+            # if not charset:
+            #     charset='utf-8'
+            # filedata = r.read().decode(charset)
+        elif uri_parsed.scheme == "file":
+            filedata = open(unquote(uri_parsed.path), "rb").read()
+        else:
+            raise  HTTPException(status_code=400,detail="unknown scheme {}".format(uri_parsed.scheme))
+        return filedata, filename
+
 
 def is_date(string, fuzzy=False)->bool:
     try:
@@ -269,16 +278,17 @@ def describe_value(value_string: str)-> dict:
 
 
 class CSV_Annotator():
-    def __init__(self, url: str, encoding: str='auto') -> (str, json) : 
+    def __init__(self, url: str, encoding: str='auto',authorization=None) -> (str, json) : 
         self.url=str(url)
         self.encoding = encoding
+        self.authorization=authorization
         
         self.parts = list()
         self.file_name=''
         self.file_domain=''
         self.file_string=''
         
-        self.file_name, self.encoding, self.file_string=self.read_data(self.url, self.encoding)
+        self.file_name, self.encoding, self.file_string=self.read_data(self.url, self.encoding,self.authorization)
         self.file_domain=self.url.rsplit(self.file_name,1)[0]
         self.meta_file_name = self.file_name.rsplit('.',1)[0] + '-metadata.json'
         self.csv_namespace = self.file_domain+self.file_name+'/'
@@ -297,9 +307,9 @@ class CSV_Annotator():
         self.parts=self.__segment_csv(self.file_string)
 
     @staticmethod
-    def read_data(url, encoding: str)->(str,str,str):
+    def read_data(url, encoding: str, authorization=None)->(str,str,str):
         print(url)
-        file_data, file_name = get_data(url)
+        file_data, file_name = open_file(url,authorization=authorization)
         if file_name is None or file_data is None:
             return "error", "cannot parse url"
 
