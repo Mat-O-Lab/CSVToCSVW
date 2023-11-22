@@ -483,15 +483,15 @@ class CSV_Annotator():
         """
 
         :param file_data: content of the file we want to parse
+        :param start_int: row number to start with
+        :param end-int: row number to end with
         :param separator_string: csv-delimiter
-        :param header_length: rows of the header
-        :param encoding: csv-encoding
         :return: 2-tuple (num_header_rows, table_data)
                       where
                           num_header_rows : number of header rows
                           table_data : pandas DataFrame object containing the tabular information
         """
-        #print(separator_string, header_length, encoding)
+        #print(start, end, separator)
         file_string = io.StringIO(file_data)
         #skip lines already processed
         num_header_rows=0
@@ -501,7 +501,8 @@ class CSV_Annotator():
                 if i==(start-1):
                     break
         for line in file_string:
-            tests=[get_value_type(string)[0] in ['BLANK', 'TEXT', 'INT'] for string in re.split(separator ,line)]
+            tests=[get_value_type(string)[0] in ['BLANK', 'TEXT'] for string in re.split(separator ,line)]
+            #print(tests)
             all_text = all(tests)
             if all_text:
                 counter += 1
@@ -515,13 +516,19 @@ class CSV_Annotator():
             for i,line in enumerate(file_string):
                 if i==(start-1):
                     break
-        table_data = pd.read_csv(file_string,
-                                 header= list(range(num_header_rows)),
-                                 sep=separator,
-                                 nrows=end-start-num_header_rows,
-                                 #encoding=encoding,
-                                 engine='python')
-        return num_header_rows, table_data
+        print(num_header_rows,end-start-num_header_rows)
+        try:
+            table_data = pd.read_csv(file_string,
+                                    header= list(range(num_header_rows)),
+                                    sep=separator,
+                                    nrows=end-start-num_header_rows,
+                                    #encoding=encoding,
+                                    engine='python')
+        except:
+            logging.error('could not read table part, possibly cannot identify header row')
+            return None, pd.DataFrame()
+        else:
+            return num_header_rows, table_data
     
     @staticmethod
     def __serialize_meta(header_data, row_offset: int=0, filename=None, namespace=''):
