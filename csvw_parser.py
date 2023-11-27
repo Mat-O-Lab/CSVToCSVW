@@ -87,7 +87,7 @@ def open_file(uri: str, authorization= None) -> Tuple["filedata": str, "filename
             s.headers.update({"Authorization": authorization})
             r = s.get(uri, allow_redirects=True, stream=True)
             
-            #r.raise_for_status()
+            r.raise_for_status()
             if r.status_code!=200:
                 #logging.debug(r.content)
                 raise HTTPException(status_code=r.status_code, detail="cant get file at {}".format(uri))
@@ -144,14 +144,14 @@ class CSVWtoRDF:
         print(list(self.metagraph[:CSVW.url]))
         self.meta_root, url=list(self.metagraph[:CSVW.url])[0]
         #self.metagraph.serialize('metagraph.ttl')
-        #print('meta_root: '+self.meta_root)
+        print('meta_root: '+self.meta_root)
         #print('csv_url: '+url)
         self.base_url="{}/".format(str(self.meta_root).rsplit('/',1)[0])
         parsed_url=urlparse(url)
         if parsed_url.scheme in ['https', 'http', 'file']:
             self.csv_url=url
         else:
-            if self.base_url.endswith(url+'/'):
+            if self.base_url.lower().endswith(url.lower()+'/'):
                 self.csv_url=self.base_url[:-1]
             else:
                 self.csv_url=self.base_url+url
