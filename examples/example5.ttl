@@ -1,4 +1,3 @@
-@base <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/> .
 @prefix csv: <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
@@ -12,109 +11,109 @@
     prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.2> .
 
 <http://localhost:5001/api/rdf> a prov:Activity ;
-    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.2> .
+    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.6> .
 
 <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5-metadata.json> a prov:Usage ;
     prov:hadRole csvw:tabularMetadata .
 
 <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv> a csvw:TableGroup,
         prov:Usage ;
-    csvw:table <table-1> ;
-    prov:generatedAtTime "2023-11-22T07:44:46.918475"^^xsd:dateTime ;
+    csvw:table csv:table-1 ;
+    prov:generatedAtTime "2023-11-27T11:05:36.511669"^^xsd:dateTime ;
     prov:hadRole csvw:csvEncodedTabularData ;
     prov:wasGeneratedBy <http://localhost:5001/api/annotate> .
 
-<table-1> a csvw:Table ;
+csv:table-1 a csvw:Table ;
     csvw:dialect [ csvw:delimiter "," ;
             csvw:encoding "latin-1" ;
             csvw:headerRowCount "1"^^xsd:nonNegativeInteger ;
             csvw:skipRows "0"^^xsd:nonNegativeInteger ] ;
     csvw:row [ a csvw:Row ;
-            csvw:describes <table-1-gid-5> ;
-            csvw:url <row=6> ],
+            csvw:describes csv:table-1-gid-3 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=4> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-0> ;
-            csvw:url <row=1> ],
+            csvw:describes csv:table-1-gid-10 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=11> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-1> ;
-            csvw:url <row=2> ],
+            csvw:describes csv:table-1-gid-7 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=8> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-3> ;
-            csvw:url <row=4> ],
+            csvw:describes csv:table-1-gid-0 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=1> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-7> ;
-            csvw:url <row=8> ],
+            csvw:describes csv:table-1-gid-5 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=6> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-2> ;
-            csvw:url <row=3> ],
+            csvw:describes csv:table-1-gid-8 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=9> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-8> ;
-            csvw:url <row=9> ],
+            csvw:describes csv:table-1-gid-2 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=3> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-4> ;
-            csvw:url <row=5> ],
+            csvw:describes csv:table-1-gid-4 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=5> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-10> ;
-            csvw:url <row=11> ],
+            csvw:describes csv:table-1-gid-1 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=2> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-9> ;
-            csvw:url <row=10> ],
+            csvw:describes csv:table-1-gid-9 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=10> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-6> ;
-            csvw:url <row=7> ] ;
+            csvw:describes csv:table-1-gid-6 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=7> ] ;
     csvw:tableSchema [ csvw:aboutUrl "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-gid-{GID}"^^csvw:uriTemplate ;
-            csvw:column ( <table-1-GID> <table-1-Unnamed0> <table-1-Specimenname> <table-1-AgingTempC> <table-1-AgingTimeH> <table-1-CreepStressMpa> <table-1-Dataset> <table-1-PositionId> <table-1-Image> <table-1-Rois> <table-1-DiskradiusvaluePx> <table-1-ThresholdMethod> <table-1-ThresholdSize> <table-1-DilationKernelSizePx> <table-1-Date> ) ;
+            csvw:column ( csv:table-1-GID csv:table-1-Unnamed0 csv:table-1-Specimenname csv:table-1-AgingTempC csv:table-1-AgingTimeH csv:table-1-CreepStressMpa csv:table-1-Dataset csv:table-1-PositionId csv:table-1-Image csv:table-1-Rois csv:table-1-DiskradiusvaluePx csv:table-1-ThresholdMethod csv:table-1-ThresholdSize csv:table-1-DilationKernelSizePx csv:table-1-Date ) ;
             csvw:primaryKey "GID" ] ;
     csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv"^^xsd:anyURI ;
-    prov:generatedAtTime "2023-11-27T11:07:26.925131"^^xsd:dateTime ;
+    prov:generatedAtTime "2023-11-29T11:43:55.020976"^^xsd:dateTime ;
     prov:qualifiedUsage <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5-metadata.json>,
         <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv> ;
     prov:wasGeneratedBy <http://localhost:5001/api/rdf> .
 
-<table-1-AgingTempC> a csvw:Column ;
+csv:table-1-AgingTempC a csvw:Column ;
     qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
     csvw:format xsd:double ;
     csvw:name "AgingTempC" ;
     csvw:title "Aging Temp [Â°C]",
         "AgingTempC" .
 
-<table-1-AgingTimeH> a csvw:Column ;
+csv:table-1-AgingTimeH a csvw:Column ;
     qudt:unit <http://qudt.org/vocab/unit/HR> ;
     csvw:format xsd:double ;
     csvw:name "AgingTimeH" ;
     csvw:title "Aging Time [h]",
         "AgingTimeH" .
 
-<table-1-CreepStressMpa> a csvw:Column ;
+csv:table-1-CreepStressMpa a csvw:Column ;
     qudt:unit <http://qudt.org/vocab/unit/MegaPA> ;
     csvw:format xsd:integer ;
     csvw:name "CreepStressMpa" ;
     csvw:title "Creep Stress [MPa]",
         "CreepStressMpa" .
 
-<table-1-Dataset> a csvw:Column ;
+csv:table-1-Dataset a csvw:Column ;
     csvw:format xsd:anyURI ;
     csvw:name "Dataset" ;
     csvw:title "Dataset" .
 
-<table-1-Date> a csvw:Column ;
+csv:table-1-Date a csvw:Column ;
     csvw:format xsd:dateTime ;
     csvw:name "Date" ;
     csvw:title "Date" .
 
-<table-1-DilationKernelSizePx> a csvw:Column ;
+csv:table-1-DilationKernelSizePx a csvw:Column ;
     csvw:format xsd:integer ;
     csvw:name "DilationKernelSizePx" ;
     csvw:title "Dilation Kernel Size [px]",
         "DilationKernelSizePx" .
 
-<table-1-DiskradiusvaluePx> a csvw:Column ;
+csv:table-1-DiskradiusvaluePx a csvw:Column ;
     csvw:format xsd:integer ;
     csvw:name "DiskradiusvaluePx" ;
     csvw:title "DiskRadiusValue [px]",
         "DiskradiusvaluePx" .
 
-<table-1-GID> a csvw:Column ;
+csv:table-1-GID a csvw:Column ;
     csvw:datatype xsd:string ;
     csvw:name "GID" ;
     csvw:required true ;
@@ -122,48 +121,48 @@
     csvw:title "GID",
         "Generic Identifier" .
 
-<table-1-Image> a csvw:Column ;
+csv:table-1-Image a csvw:Column ;
     csvw:format xsd:anyURI ;
     csvw:name "Image" ;
     csvw:title "Image" .
 
-<table-1-PositionId> a csvw:Column ;
+csv:table-1-PositionId a csvw:Column ;
     csvw:format xsd:string ;
     csvw:name "PositionId" ;
     csvw:title "PositionId",
         "Position_Id" .
 
-<table-1-Rois> a csvw:Column ;
+csv:table-1-Rois a csvw:Column ;
     csvw:format xsd:anyURI ;
     csvw:name "Rois" ;
     csvw:title "ROIs",
         "Rois" .
 
-<table-1-Specimenname> a csvw:Column ;
+csv:table-1-Specimenname a csvw:Column ;
     csvw:format xsd:string ;
     csvw:name "Specimenname" ;
     csvw:title "SpecimenName",
         "Specimenname" .
 
-<table-1-ThresholdMethod> a csvw:Column ;
+csv:table-1-ThresholdMethod a csvw:Column ;
     csvw:format xsd:string ;
     csvw:name "ThresholdMethod" ;
     csvw:title "Threshold Method",
         "ThresholdMethod" .
 
-<table-1-ThresholdSize> a csvw:Column ;
+csv:table-1-ThresholdSize a csvw:Column ;
     csvw:format xsd:integer ;
     csvw:name "ThresholdSize" ;
     csvw:title "Threshold Size",
         "ThresholdSize" .
 
-<table-1-Unnamed0> a csvw:Column ;
+csv:table-1-Unnamed0 a csvw:Column ;
     csvw:format xsd:integer ;
     csvw:name "Unnamed0" ;
     csvw:title "Unnamed0",
         "Unnamed: 0" .
 
-<table-1-gid-0> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-0 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -200,7 +199,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 0 ] .
 
-<table-1-gid-1> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-1 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -237,7 +236,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 1 ] .
 
-<table-1-gid-10> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-10 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -274,7 +273,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 10 ] .
 
-<table-1-gid-2> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-2 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -311,7 +310,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 2 ] .
 
-<table-1-gid-3> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-3 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -348,7 +347,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 3 ] .
 
-<table-1-gid-4> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-4 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -385,7 +384,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 4 ] .
 
-<table-1-gid-5> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-5 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -422,7 +421,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 5 ] .
 
-<table-1-gid-6> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-6 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -459,7 +458,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 6 ] .
 
-<table-1-gid-7> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-7 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -496,7 +495,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 7 ] .
 
-<table-1-gid-8> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-8 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -533,7 +532,7 @@
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 8 ] .
 
-<table-1-gid-9> <AgingTempC> [ a qudt:QuantityValue ;
+csv:table-1-gid-9 <AgingTempC> [ a qudt:QuantityValue ;
             qudt:unit <http://qudt.org/vocab/unit/DEG_C> ;
             qudt:value 1.9e+02 ] ;
     <AgingTimeH> [ a qudt:QuantityValue ;
@@ -572,8 +571,11 @@
 
 <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.2> a prov:SoftwareAgent ;
     rdfs:label "CSVtoCSVWv1.2.2" ;
-    prov:hadPrimarySource <https://github.com/Mat-O-Lab/CSVToCSVW>,
-        "https://github.com/Mat-O-Lab/CSVToCSVW" .
+    prov:hadPrimarySource "https://github.com/Mat-O-Lab/CSVToCSVW" .
+
+<https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.6> a prov:SoftwareAgent ;
+    rdfs:label "CSVtoCSVWv1.2.6" ;
+    prov:hadPrimarySource <https://github.com/Mat-O-Lab/CSVToCSVW> .
 
 <http://qudt.org/vocab/unit/DEG_C> a qudt:DerivedUnit .
 

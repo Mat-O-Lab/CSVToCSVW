@@ -343,14 +343,14 @@
     "@id": "http://localhost:5001/api/annotate",
     "@type": "prov:Activity",
     "prov:wasAssociatedWith": {
-      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.2",
-      "rdfs:label": "CSVtoCSVWv1.2.2",
+      "@id": "https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.6",
+      "rdfs:label": "CSVtoCSVWv1.2.6",
       "prov:hadPrimarySource": "https://github.com/Mat-O-Lab/CSVToCSVW",
       "@type": "prov:SoftwareAgent"
     }
   },
   "prov:generatedAtTime": {
-    "@value": "2023-11-27T11:05:35.182844",
+    "@value": "2023-11-29T11:42:01.000137",
     "@type": "xsd:dateTime"
   }
 }
