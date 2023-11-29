@@ -20,7 +20,7 @@
 <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv> a csvw:TableGroup,
         prov:Usage ;
     csvw:table <table-1> ;
-    prov:generatedAtTime "2023-11-10T15:38:37.268979"^^xsd:dateTime ;
+    prov:generatedAtTime "2023-11-22T07:44:46.918475"^^xsd:dateTime ;
     prov:hadRole csvw:csvEncodedTabularData ;
     prov:wasGeneratedBy <http://localhost:5001/api/annotate> .
 
@@ -30,26 +30,23 @@
             csvw:headerRowCount "1"^^xsd:nonNegativeInteger ;
             csvw:skipRows "0"^^xsd:nonNegativeInteger ] ;
     csvw:row [ a csvw:Row ;
+            csvw:describes <table-1-gid-5> ;
+            csvw:url <row=6> ],
+        [ a csvw:Row ;
             csvw:describes <table-1-gid-0> ;
             csvw:url <row=1> ],
-        [ a csvw:Row ;
-            csvw:describes <table-1-gid-2> ;
-            csvw:url <row=3> ],
-        [ a csvw:Row ;
-            csvw:describes <table-1-gid-6> ;
-            csvw:url <row=7> ],
         [ a csvw:Row ;
             csvw:describes <table-1-gid-1> ;
             csvw:url <row=2> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-9> ;
-            csvw:url <row=10> ],
+            csvw:describes <table-1-gid-3> ;
+            csvw:url <row=4> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-5> ;
-            csvw:url <row=6> ],
+            csvw:describes <table-1-gid-7> ;
+            csvw:url <row=8> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-10> ;
-            csvw:url <row=11> ],
+            csvw:describes <table-1-gid-2> ;
+            csvw:url <row=3> ],
         [ a csvw:Row ;
             csvw:describes <table-1-gid-8> ;
             csvw:url <row=9> ],
@@ -57,16 +54,19 @@
             csvw:describes <table-1-gid-4> ;
             csvw:url <row=5> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-3> ;
-            csvw:url <row=4> ],
+            csvw:describes <table-1-gid-10> ;
+            csvw:url <row=11> ],
         [ a csvw:Row ;
-            csvw:describes <table-1-gid-7> ;
-            csvw:url <row=8> ] ;
+            csvw:describes <table-1-gid-9> ;
+            csvw:url <row=10> ],
+        [ a csvw:Row ;
+            csvw:describes <table-1-gid-6> ;
+            csvw:url <row=7> ] ;
     csvw:tableSchema [ csvw:aboutUrl "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-gid-{GID}"^^csvw:uriTemplate ;
             csvw:column ( <table-1-GID> <table-1-Unnamed0> <table-1-Specimenname> <table-1-AgingTempC> <table-1-AgingTimeH> <table-1-CreepStressMpa> <table-1-Dataset> <table-1-PositionId> <table-1-Image> <table-1-Rois> <table-1-DiskradiusvaluePx> <table-1-ThresholdMethod> <table-1-ThresholdSize> <table-1-DilationKernelSizePx> <table-1-Date> ) ;
             csvw:primaryKey "GID" ] ;
     csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv"^^xsd:anyURI ;
-    prov:generatedAtTime "2023-11-22T07:46:50.378051"^^xsd:dateTime ;
+    prov:generatedAtTime "2023-11-27T11:07:26.925131"^^xsd:dateTime ;
     prov:qualifiedUsage <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5-metadata.json>,
         <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv> ;
     prov:wasGeneratedBy <http://localhost:5001/api/rdf> .
