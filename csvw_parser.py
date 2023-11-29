@@ -276,7 +276,7 @@ class CSVWtoRDF:
             self.filename+='.json'
         else:
             self.filename+='.'+format
-        self.graph=parse_graph(self.metadata_url,graph=self.graph)
+        self.graph=self.graph+self.metagraph
         #print(list(graph.namespaces()))
     
         self.graph=self.add_table_data(self.graph)
