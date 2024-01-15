@@ -231,7 +231,8 @@ def annotate_prov(api_url: str) -> dict:
 
 @app.post("/api/annotate",response_model=AnnotateResponse)
 async def annotate(request: fastapi.Request, annotate: AnnotateRequest) -> dict:
-    annotator = CSV_Annotator(annotate.data_url, encoding=annotate.encoding)
+    authorization=request.headers.get('Authorization',None)
+    annotator = CSV_Annotator(annotate.data_url, encoding=annotate.encoding,authorization=authorization)
     result=annotator.annotate()
     result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
     return result
