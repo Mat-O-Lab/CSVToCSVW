@@ -16,8 +16,6 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 ADD . /src
 WORKDIR /src
 
-COPY ./static /src/static
-
 # get qudt_units ontology
 #RUN curl https://raw.githubusercontent.com/qudt/qudt-public-repo/main/vocab/unit/VOCAB_QUDT-UNITS-ALL-v2.1.ttl > ./ontologies/qudt_unit.ttl
 COPY ./ontologies/qudt_unit.ttl ./ontologies/qudt_unit.ttl
