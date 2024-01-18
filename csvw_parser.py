@@ -205,6 +205,7 @@ class CSVWtoRDF:
                 row_uri=data['about_url']
             else:
                 row_uri='table-{TABLE}-gid-{GID}'.format(table)
+            
             columns=list(data['columns'].items())
             for index,row in enumerate(data['lines']):
                 #print(index, row)
@@ -258,7 +259,7 @@ class CSVWtoRDF:
                         g.add((values_node, URIRef(aboutUrl.format(GID=index)), value_node))
                     else:
                         name=column_data[CSVW.name]
-                        g.add((values_node, URIRef(name), value_node))
+                        g.add((values_node, URIRef(name,base=self.base_url), value_node))
         return g
         #self.atdm, self.metadata =converter.convert_to_atdm('standard')
     def convert(self,format: str='turtle') -> str:
@@ -282,7 +283,7 @@ class CSVWtoRDF:
         self.graph=self.add_table_data(self.graph)
         if self.api_url:
             self.graph=csvwtordf_prov(self.graph, self.api_url, self.csv_url, self.metadata_url)
-        
+        print(self.filename,format)
         return self.graph.serialize(format=format)
 
 import settings

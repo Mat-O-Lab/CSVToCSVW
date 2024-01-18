@@ -8,10 +8,12 @@ from starlette_wtf import StarletteForm, CSRFProtectMiddleware, csrf_protect
 from starlette.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import HTMLResponse
+from starlette.background import BackgroundTask
+
 #from starlette.middleware.cors import CORSMiddleware
 import fastapi
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Optional, Any, Union
+from typing import Optional, Any, Union, Mapping
 import json
 
 from pydantic import BaseModel, AnyUrl, Field, FileUrl
@@ -30,6 +32,7 @@ import logging
 from annotator import CSV_Annotator, TextEncoding
 from csvw_parser import CSVWtoRDF
 from io import BytesIO
+from rdflib.util import guess_format
 
 def path2url(path):
     return urlparse(path,scheme='file').geturl()
@@ -52,6 +55,25 @@ class ReturnType(str, Enum):
     turtle="turtle"
     longturtle="longturtle"
     xml="xml"
+    @classmethod
+    def get(cls, format):
+        for member in cls:
+            if format.lower() == member.value.lower():
+                return member
+        raise ValueError(f"Invalid Return type: {format}")
+
+class RDFMimeType(str, Enum):
+    xml="application/rdf+xml"
+    turtle="text/turtle"
+    n3="application/n-triples"
+    nquads="application/n-quads"
+    jsonld="application/ld+json"
+    @classmethod
+    def get(cls, format):
+        for member in cls:
+            if format.lower() == member.value.lower():
+                return member
+        raise ValueError(f"Invalid Return type: {format}")
 
 
 
@@ -108,31 +130,31 @@ class AnnotateRequest(BaseModel):
             }
         }
 
-class AnnotateResponse(BaseModel):
-    filename:  str = Field('example-metadata.json', title='Resulting File Name', description='Suggested filename of the generated json-ld')
-    filedata: dict = Field( title='Generated JSON-LD', description='The generated jdon-ld for the given raw csv file as string in utf-8.')
 
 class RDFRequest(BaseModel):
     metadata_url: Union[AnyUrl, FileUrl] = Field('', title='Graph Url', description='Url to csvw metadata to use.')
     csv_url: Optional[Union[AnyUrl, FileUrl]] = Field(None, title='CSV Url', description='Url to csvw file to use or else the mentioned url in metadata will be used.')
-    format: Optional[ReturnType] = Field(ReturnType.jsonld, title='Serialization Format', description='The format to use to serialize the rdf.')
     class Config:
         json_schema_extra = {
             "examples": [
                 {
                         "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2-metadata.json",
-                        "format": "json-ld"
                 },
                 {
                         "metadata_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2-metadata.json",
                         "csv_url": "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example2.csv",
-                        "format": "turtle"
                 },
             ]
         }
-class RDFResponse(BaseModel):
-    filename:  str = Field('example.ttl', title='Resulting File Name', description='Suggested filename of the generated rdf.')
-    filedata: str = Field( title='Generated RDF', description='The generated rdf for the given meta data file as string in utf-8.')
+
+class RDFStreamingResponse(StreamingResponse):
+    def __init__(self, content, filename: str, status_code: int = 200, background: Optional[BackgroundTask] = None):
+        headers = {
+        'Content-Disposition': 'attachment; filename={}'.format(filename),
+        'Access-Control-Expose-Headers': 'Content-Disposition'
+        }
+        media_type=RDFMimeType[ReturnType.get(guess_format(filename)).name].value
+        super(RDFStreamingResponse, self).__init__(content, status_code, headers, media_type)
 
 class StartFormUri(StarletteForm):
     data_url = URLField(
@@ -229,47 +251,43 @@ def annotate_prov(api_url: str) -> dict:
                 }
             }
 
-@app.post("/api/annotate",response_model=AnnotateResponse)
-async def annotate(request: fastapi.Request, annotate: AnnotateRequest) -> dict:
+@app.post("/api/annotate", response_class=RDFStreamingResponse)
+async def annotate(request: fastapi.Request, annotate: AnnotateRequest, return_type: ReturnType = ReturnType.jsonld) -> dict:
     authorization=request.headers.get('Authorization',None)
     annotator = CSV_Annotator(annotate.data_url, encoding=annotate.encoding,authorization=authorization)
     result=annotator.annotate()
-    result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
-    return result
+    # add prov o documentation
+    result={**result,**annotate_prov(request.url._url)}
+    data=annotator.convert(format=return_type.value)
+    data_bytes=BytesIO(data.encode())
+    filename=annotator.meta_file_name
+    return RDFStreamingResponse(content=data_bytes, filename=filename)
 
-@app.post("/api/annotate_upload",response_model=AnnotateResponse)
-async def annotate_upload(request: fastapi.Request, file: fastapi.UploadFile = fastapi.File(...), encoding: TextEncoding=TextEncoding.DETECT) -> dict:
+@app.post("/api/annotate_upload", response_class=RDFStreamingResponse)
+async def annotate_upload(request: fastapi.Request, file: fastapi.UploadFile = fastapi.File(...), encoding: TextEncoding=TextEncoding.DETECT, return_type: ReturnType = ReturnType.jsonld) -> dict:
     with open(file.filename, "wb") as f:
         f.write(await file.read())
     annotator = CSV_Annotator("file://"+os.getcwd()+'/'+file.filename, encoding=encoding.value)
     result=annotator.annotate()
-    result["filedata"]={**result["filedata"],**annotate_prov(request.url._url)}
+    # add prov o documentation
+    result={**result,**annotate_prov(request.url._url)}
+    data=annotator.convert(format=return_type.value)
+    data_bytes=BytesIO(data.encode())
+    filename=annotator.meta_file_name
     #delete the temp csv file
     if os.path.isfile(file.filename):
         os.remove(file.filename)
-    return result
+    return RDFStreamingResponse(content=data_bytes, filename=filename)
 
 
-@app.post("/api/rdf")
-async def rdf(request: fastapi.Request, rdfrequest: RDFRequest) -> StreamingResponse:
+@app.post("/api/rdf", response_class=RDFStreamingResponse)
+async def rdf(request: fastapi.Request, rdfrequest: RDFRequest, return_type: ReturnType = ReturnType.turtle) -> RDFStreamingResponse:
     authorization=request.headers.get('Authorization',None)
     converter=CSVWtoRDF(rdfrequest.metadata_url,rdfrequest.csv_url, request.url._url,authorization=authorization)
-    filedata=converter.convert(rdfrequest.format.value)
+    filedata=converter.convert(return_type.value)
     data_bytes=BytesIO(filedata.encode())
     filename=converter.filename
-    headers = {
-        'Content-Disposition': 'attachment; filename={}'.format(filename),
-        'Access-Control-Expose-Headers': 'Content-Disposition'
-    }
-    if rdfrequest.format==ReturnType.jsonld:
-        media_type='application/json'
-    elif rdfrequest.format==ReturnType.xml:
-        media_type='application/xml'
-    elif rdfrequest.format in [ReturnType.turtle, ReturnType.longturtle]:
-        media_type='text/turtle'
-    else:
-        media_type='text/utf-8'
-    return StreamingResponse(content=data_bytes, media_type=media_type, headers=headers)
+    return RDFStreamingResponse(content=data_bytes, filename=filename)
 
     
 

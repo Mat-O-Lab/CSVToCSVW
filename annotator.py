@@ -324,8 +324,19 @@ class CSV_Annotator():
         :return: returns a filename and content(json string dump) of a metafile in the json format.
         '''
         #print(url,self.separator, self.header_separator, self.encoding, self.include_table_data)
-        result = self.process_data()
-        return result
+        self.result_dict = self.process_data()
+        return self.result_dict
+    def convert(self, format: str) -> str:
+        g=Graph()
+        g.parse(data=json.dumps(self.result_dict),format='json-ld')
+        self.meta_file_name=self.meta_file_name.rsplit('.',1)[0]
+        if format in ['turtle','longturtle']:
+            self.meta_file_name+='.ttl'
+        elif format=='json-ld':
+            self.meta_file_name+='.json'
+        else:
+            self.meta_file_name+='.'+format
+        return g.serialize(format=format)
     
     def __str__(self):
         attrs = dict(vars(self))
@@ -725,7 +736,7 @@ class CSV_Annotator():
                     }
                     metadata["tables"].append((table.copy()))
 
-        return {'filename':meta_file_name, 'filedata': metadata}
+        return metadata
     
     def set_encoding(self, new_encoding: str):
         self.encoding = new_encoding
