@@ -8,10 +8,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://localhost:5001/api/annotate> a prov:Activity ;
-    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.6> .
+    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.7> .
 
 <http://localhost:5001/api/rdf> a prov:Activity ;
-    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.7> .
+    prov:wasAssociatedWith <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.8> .
 
 <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5-metadata.json> a prov:Usage ;
     prov:hadRole csvw:tabularMetadata .
@@ -19,7 +19,7 @@
 <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv> a csvw:TableGroup,
         prov:Usage ;
     csvw:table csv:table-1 ;
-    prov:generatedAtTime "2023-11-29T11:42:03.151072"^^xsd:dateTime ;
+    prov:generatedAtTime "2024-01-15T11:32:06.133346"^^xsd:dateTime ;
     prov:hadRole csvw:csvEncodedTabularData ;
     prov:wasGeneratedBy <http://localhost:5001/api/annotate> .
 
@@ -29,43 +29,43 @@ csv:table-1 a csvw:Table ;
             csvw:headerRowCount "1"^^xsd:nonNegativeInteger ;
             csvw:skipRows "0"^^xsd:nonNegativeInteger ] ;
     csvw:row [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-9 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=10> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-1 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=2> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-10 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=11> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-4 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=5> ],
-        [ a csvw:Row ;
             csvw:describes csv:table-1-gid-6 ;
             csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=7> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-8 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=9> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-5 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=6> ],
         [ a csvw:Row ;
             csvw:describes csv:table-1-gid-7 ;
             csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=8> ],
         [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-3 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=4> ],
-        [ a csvw:Row ;
             csvw:describes csv:table-1-gid-2 ;
             csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=3> ],
         [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-3 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=4> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-10 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=11> ],
+        [ a csvw:Row ;
             csvw:describes csv:table-1-gid-0 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=1> ] ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=1> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-5 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=6> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-1 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=2> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-8 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=9> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-9 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=10> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-4 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=5> ] ;
     csvw:tableSchema [ csvw:aboutUrl "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-gid-{GID}"^^csvw:uriTemplate ;
             csvw:column ( csv:table-1-GID csv:table-1-Unnamed0 csv:table-1-Specimenname csv:table-1-AgingTempC csv:table-1-AgingTimeH csv:table-1-CreepStressMpa csv:table-1-Dataset csv:table-1-PositionId csv:table-1-Image csv:table-1-Rois csv:table-1-DiskradiusvaluePx csv:table-1-ThresholdMethod csv:table-1-ThresholdSize csv:table-1-DilationKernelSizePx csv:table-1-Date ) ;
             csvw:primaryKey "GID" ] ;
     csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv"^^xsd:anyURI ;
-    prov:generatedAtTime "2023-12-01T11:05:01.426842"^^xsd:dateTime ;
+    prov:generatedAtTime "2024-01-15T11:36:33.680732"^^xsd:dateTime ;
     prov:qualifiedUsage <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5-metadata.json>,
         <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv> ;
     prov:wasGeneratedBy <http://localhost:5001/api/rdf> .
@@ -569,12 +569,12 @@ csv:table-1-gid-9 <AgingTempC> [ a qudt:QuantityValue ;
     <Unnamed0> [ a qudt:QuantityValue ;
             qudt:value 9 ] .
 
-<https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.6> a prov:SoftwareAgent ;
-    rdfs:label "CSVtoCSVWv1.2.6" ;
-    prov:hadPrimarySource "https://github.com/Mat-O-Lab/CSVToCSVW" .
-
 <https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.7> a prov:SoftwareAgent ;
     rdfs:label "CSVtoCSVWv1.2.7" ;
+    prov:hadPrimarySource "https://github.com/Mat-O-Lab/CSVToCSVW" .
+
+<https://github.com/Mat-O-Lab/CSVToCSVW/releases/tag/v1.2.8> a prov:SoftwareAgent ;
+    rdfs:label "CSVtoCSVWv1.2.8" ;
     prov:hadPrimarySource <https://github.com/Mat-O-Lab/CSVToCSVW> .
 
 <http://qudt.org/vocab/unit/DEG_C> a qudt:DerivedUnit .
