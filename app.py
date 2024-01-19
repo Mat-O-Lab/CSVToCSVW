@@ -192,6 +192,11 @@ async def get_index(request: fastapi.Request):
         }
     )
 
+async def fetch_streaming_data(response: RDFStreamingResponse):
+    data = b""
+    async for chunk in response.body_iterator:
+        data += chunk
+    return data.decode("utf-8")
 
 @app.post('/', response_class=HTMLResponse, include_in_schema=False)
 @csrf_protect
@@ -217,9 +222,12 @@ async def post_index(request: fastapi.Request):
         elif form.data_url.data:
             data_url=form.data_url.data
         result= await annotate(request=request,annotate=AnnotateRequest(data_url= data_url, encoding=form.data['encoding']))
-        filename=result["filename"]
-        result=json.dumps(result["filedata"],indent=4)
-        b64 = base64.b64encode(result.encode())
+        #print(result.__dir__())
+        filename=result.headers['content-disposition'].rsplit('filename=',1)[-1]
+        data=await fetch_streaming_data(result)
+        print(data)
+        #result=json.dumps(data,indent=4)
+        b64 = base64.b64encode(data.encode())
         payload = b64.decode()
         #remove temp file
         if form.file.data.filename:
@@ -227,7 +235,7 @@ async def post_index(request: fastapi.Request):
     # return response
     return templates.TemplateResponse(template, {"request": request,
         "form": form,
-        "result": result,
+        "result": data,
         "filename": filename,
         "payload": payload
         }
@@ -258,7 +266,10 @@ async def annotate(request: fastapi.Request, annotate: AnnotateRequest, return_t
     result=annotator.annotate()
     # add prov o documentation
     result={**result,**annotate_prov(request.url._url)}
-    data=annotator.convert(format=return_type.value)
+    if return_type is not ReturnType.jsonld:
+        data=annotator.convert(format=return_type.value)
+    else:
+        data=json.dumps(result, indent=4)
     data_bytes=BytesIO(data.encode())
     filename=annotator.meta_file_name
     return RDFStreamingResponse(content=data_bytes, filename=filename)
