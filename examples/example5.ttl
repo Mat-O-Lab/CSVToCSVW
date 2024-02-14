@@ -29,43 +29,43 @@ csv:table-1 a csvw:Table ;
             csvw:headerRowCount "1"^^xsd:nonNegativeInteger ;
             csvw:skipRows "0"^^xsd:nonNegativeInteger ] ;
     csvw:row [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-2 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=3> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-10 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=11> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-7 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=8> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-6 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=7> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-9 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=10> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-1 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=2> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-0 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=1> ],
+            csvw:describes csv:table-1-gid-5 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=6> ],
         [ a csvw:Row ;
             csvw:describes csv:table-1-gid-8 ;
             csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=9> ],
         [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-5 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=6> ],
-        [ a csvw:Row ;
-            csvw:describes csv:table-1-gid-3 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=4> ],
+            csvw:describes csv:table-1-gid-1 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=2> ],
         [ a csvw:Row ;
             csvw:describes csv:table-1-gid-4 ;
-            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=5> ] ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=5> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-10 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=11> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-9 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=10> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-6 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=7> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-0 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=1> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-2 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=3> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-7 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=8> ],
+        [ a csvw:Row ;
+            csvw:describes csv:table-1-gid-3 ;
+            csvw:url <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/row=4> ] ;
     csvw:tableSchema [ csvw:aboutUrl "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv/table-1-gid-{GID}"^^csvw:uriTemplate ;
             csvw:column ( csv:table-1-GID csv:table-1-Unnamed0 csv:table-1-Specimenname csv:table-1-AgingTempC csv:table-1-AgingTimeH csv:table-1-CreepStressMpa csv:table-1-Dataset csv:table-1-PositionId csv:table-1-Image csv:table-1-Rois csv:table-1-DiskradiusvaluePx csv:table-1-ThresholdMethod csv:table-1-ThresholdSize csv:table-1-DilationKernelSizePx csv:table-1-Date ) ;
             csvw:primaryKey "GID" ] ;
     csvw:url "https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv"^^xsd:anyURI ;
-    prov:generatedAtTime "2024-01-19T07:57:43.573299"^^xsd:dateTime ;
+    prov:generatedAtTime "2024-02-14T13:40:35.298285"^^xsd:dateTime ;
     prov:qualifiedUsage <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5-metadata.json>,
         <https://github.com/Mat-O-Lab/CSVToCSVW/raw/main/examples/example5.csv> ;
     prov:wasGeneratedBy <http://localhost:5001/api/rdf> .
