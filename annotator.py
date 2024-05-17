@@ -131,7 +131,6 @@ def open_file(uri: str, authorization=None) -> Tuple["filedata":str, "filename":
             # r = urlopen(uri)
             s = requests.Session()
             s.verify = SSL_VERIFY
-            print(SSL_VERIFY)
             s.headers.update({"Authorization": authorization})
             r = s.get(uri, allow_redirects=True, stream=True)
 
