@@ -121,6 +121,7 @@ def open_file(uri: str, authorization= None) -> Tuple["filedata": str, "filename
         if uri_parsed.scheme in ["https", "http"]:
             # r = urlopen(uri)
             s= requests.Session()
+            s.verify=False
             s.headers.update({"Authorization": authorization})
             r = s.get(uri, allow_redirects=True, stream=True)
             
