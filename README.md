@@ -15,6 +15,7 @@ Situations in which the annotation will fail!
 ```bash
 APP_PORT=<80>
 ADMIN_MAIL=<email_of_admin>
+SSL_VERIFY=<True or False> #default is True
 ```
 
 ## docker

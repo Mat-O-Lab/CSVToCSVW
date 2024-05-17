@@ -2,7 +2,7 @@
 from typing import Tuple
 import pandas as pd
 import io
-import re
+import re, os
 import ast
 import json
 from urllib.parse import urlparse, unquote
@@ -13,7 +13,8 @@ import numpy as np
 
 import chardet
 import locale
-locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
+
+locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
 
 from rdflib import Graph, URIRef, Literal, Namespace, BNode
 from rdflib.namespace import RDF, RDFS, XSD, CSVW, DC, PROV
@@ -22,10 +23,15 @@ import logging
 from enum import Enum
 from fastapi import HTTPException
 
+SSL_VERIFY = os.getenv("SSL_VERIFY", "True").lower() in ("true", "1", "t")
+if not SSL_VERIFY:
+    requests.packages.urllib3.disable_warnings()
 
-QUDT_UNIT_URL = './ontologies/qudt_unit.ttl'
+
+QUDT_UNIT_URL = "./ontologies/qudt_unit.ttl"
 QUDT = Namespace("http://qudt.org/schema/qudt/")
 QUNIT = Namespace("http://qudt.org/vocab/unit/")
+
 
 class TextEncoding(str, Enum):
     DETECT = "auto"
@@ -61,42 +67,41 @@ class TextEncoding(str, Enum):
 
 
 UMLAUTE = {
-            '\u00e4': 'ae',  # U+00E4	   \xc3\xa4
-            '\u00f6': 'oe',  # U+00F6	   \xc3\xb6
-            '\u00fc': 'ue',  # U+00FC	   \xc3\xbc
-            '\u00c4': 'Ae',  # U+00C4	   \xc3\x84
-            '\u00d6': 'Oe',  # U+00D6	   \xc3\x96
-            '\u00dc': 'Ue',  # U+00DC	   \xc3\x9c
-            '\u00df': 'ss',  # U+00DF	   \xc3\x9f
-        }
+    "\u00e4": "ae",  # U+00E4	   \xc3\xa4
+    "\u00f6": "oe",  # U+00F6	   \xc3\xb6
+    "\u00fc": "ue",  # U+00FC	   \xc3\xbc
+    "\u00c4": "Ae",  # U+00C4	   \xc3\x84
+    "\u00d6": "Oe",  # U+00D6	   \xc3\x96
+    "\u00dc": "Ue",  # U+00DC	   \xc3\x9c
+    "\u00df": "ss",  # U+00DF	   \xc3\x9f
+}
 REPLACE_SUPERSCRIPTS = {
-            '\u00c2':'',
-            '\u00b9':'',
-            '\u00b2':'2',
-            '\u00b3':'3',
-            '\u2074':'4',
-            '\u2075':'5',
-            '\u2076':'6',
-            '\u2077':'7',
-            '\u2078':'8',
-            '\u2079':'9',
-            '\u00b0C':'Cel', #for °C
-        }
+    "\u00c2": "",
+    "\u00b9": "",
+    "\u00b2": "2",
+    "\u00b3": "3",
+    "\u2074": "4",
+    "\u2075": "5",
+    "\u2076": "6",
+    "\u2077": "7",
+    "\u2078": "8",
+    "\u2079": "9",
+    "\u00b0C": "Cel",  # for °C
+}
 
 # the order is importent
-SEPARATORS_REGEX = [ r";", r"\|", r":+\s+\s*", r"\t", r","]
+SEPARATORS_REGEX = [r";", r"\|", r":+\s+\s*", r"\t", r","]
 
-sub_classes = prepareQuery(
-    "SELECT ?entity WHERE {?entity rdfs:subClassOf* ?parent}"
-    )
+sub_classes = prepareQuery("SELECT ?entity WHERE {?entity rdfs:subClassOf* ?parent}")
 
 
 def get_entities_with_property_with_value(graph, property, value):
-    return [s for s, p, o in graph.triples((None,  property, value))]
+    return [s for s, p, o in graph.triples((None, property, value))]
 
 
 units_graph = Graph()
-units_graph.parse(QUDT_UNIT_URL, format='turtle')
+units_graph.parse(QUDT_UNIT_URL, format="turtle")
+
 
 def get_filename_from_cd(cd):
     """
@@ -104,31 +109,38 @@ def get_filename_from_cd(cd):
     """
     if not cd:
         return None
-    fname = re.findall('filename=(.+)', cd)
+    fname = re.findall("filename=(.+)", cd)
     if len(fname) == 0:
         return None
     return fname[0]
 
-def open_file(uri: str, authorization= None) -> Tuple["filedata": str, "filename": str]:
+
+def open_file(uri: str, authorization=None) -> Tuple["filedata":str, "filename":str]:
     try:
         uri_parsed = urlparse(uri)
         # print(uri_parsed)
 
     except:
-        raise HTTPException(status_code=400, detail=uri + " is not an uri - if local file add file:// as prefix")
+        raise HTTPException(
+            status_code=400,
+            detail=uri + " is not an uri - if local file add file:// as prefix",
+        )
     else:
         filename = unquote(uri_parsed.path).rsplit("/download/upload")[0].split("/")[-1]
         if uri_parsed.scheme in ["https", "http"]:
             # r = urlopen(uri)
-            s= requests.Session()
-            s.verify=False
+            s = requests.Session()
+            s.verify = SSL_VERIFY
+            print(SSL_VERIFY)
             s.headers.update({"Authorization": authorization})
             r = s.get(uri, allow_redirects=True, stream=True)
-            
-            #r.raise_for_status()
-            if r.status_code!=200:
-                #logging.debug(r.content)
-                raise HTTPException(status_code=r.status_code, detail="cant get file at {}".format(uri))
+
+            # r.raise_for_status()
+            if r.status_code != 200:
+                # logging.debug(r.content)
+                raise HTTPException(
+                    status_code=r.status_code, detail="cant get file at {}".format(uri)
+                )
             filedata = r.content
             # charset=r.info().get_content_charset()
             # if not charset:
@@ -137,17 +149,20 @@ def open_file(uri: str, authorization= None) -> Tuple["filedata": str, "filename
         elif uri_parsed.scheme == "file":
             filedata = open(unquote(uri_parsed.path), "rb").read()
         else:
-            raise  HTTPException(status_code=400,detail="unknown scheme {}".format(uri_parsed.scheme))
+            raise HTTPException(
+                status_code=400, detail="unknown scheme {}".format(uri_parsed.scheme)
+            )
         return filedata, filename
 
 
-def is_date(string, fuzzy=False)->bool:
+def is_date(string, fuzzy=False) -> bool:
     try:
         date_parse(string, fuzzy=fuzzy)
         return True
 
     except ValueError:
         return False
+
 
 def is_valid_uri(url):
     try:
@@ -156,76 +171,88 @@ def is_valid_uri(url):
     except ValueError:
         return False
 
-def make_id(string, filename=None)-> str:
+
+def make_id(string, filename=None) -> str:
     for k in UMLAUTE.keys():
         string = string.replace(k, UMLAUTE[k])
     if filename:
-        return filename + '/' + re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
+        return (
+            filename
+            + "/"
+            + re.sub("[^A-ZÜÖÄa-z0-9]+", "", string.title().replace(" ", ""))
+        )
     else:
-        return re.sub('[^A-ZÜÖÄa-z0-9]+', '', string.title().replace(" ", ""))
+        return re.sub("[^A-ZÜÖÄa-z0-9]+", "", string.title().replace(" ", ""))
 
-def get_value_type(string: str)-> Tuple:
+
+def get_value_type(string: str) -> Tuple:
     string = str(string)
     # remove spaces and replace , with . and
-    string = string.strip().replace(',', '.')
+    string = string.strip().replace(",", ".")
     if len(string) == 0:
-        return 'BLANK', None
+        return "BLANK", None
     try:
         t = ast.literal_eval(string)
     except ValueError:
-        return 'TEXT', XSD.string
+        return "TEXT", XSD.string
     except SyntaxError:
         if is_date(string):
-            return 'DATE', XSD.dateTime
+            return "DATE", XSD.dateTime
         elif is_valid_uri(string):
-            return 'URI', XSD.anyURI
+            return "URI", XSD.anyURI
         else:
-            return 'TEXT', XSD.string
+            return "TEXT", XSD.string
     else:
         if type(t) in [int, float, bool]:
             if type(t) is int:
-                return 'INT', XSD.integer
+                return "INT", XSD.integer
             elif type(t) is float:
-                return 'FLOAT', XSD.double
+                return "FLOAT", XSD.double
             elif t in set((True, False)):
-                return 'BOOL', XSD.boolean
+                return "BOOL", XSD.boolean
         else:
-            #return 'TEXT'
-            return 'TEXT', XSD.string
+            # return 'TEXT'
+            return "TEXT", XSD.string
 
-def get_encoding(file_data: bytes)-> str:
+
+def get_encoding(file_data: bytes) -> str:
     """
 
     :param file_data:   content of the file we want to parse
     :return:            encoding of the specified file content e.g. utf-8, ascii..
     """
     result = chardet.detect(file_data)
-    return result['encoding']
+    return result["encoding"]
+
 
 def get_unit(string) -> dict:
     # remove possible braces
-    string=string.strip(" []():")
-    #get rid of superscripts
+    string = string.strip(" []():")
+    # get rid of superscripts
     for k in REPLACE_SUPERSCRIPTS.keys():
         string = string.replace(k, REPLACE_SUPERSCRIPTS[k])
-    string=string.replace('N/mm2','MPa')
-    string=string.replace('Nm','N.m')
-    string=string.replace('sec','s')
-    
+    string = string.replace("N/mm2", "MPa")
+    string = string.replace("Nm", "N.m")
+    string = string.replace("sec", "s")
+
     found = get_entities_with_property_with_value(
-            units_graph, QUDT.symbol, Literal(string)) \
-            + get_entities_with_property_with_value(
-                units_graph, QUDT.ucumCode,
-                Literal(string, datatype=QUDT.UCUMcs)
-                )
+        units_graph, QUDT.symbol, Literal(string)
+    ) + get_entities_with_property_with_value(
+        units_graph, QUDT.ucumCode, Literal(string, datatype=QUDT.UCUMcs)
+    )
     # will only look up qudt now, seams more mature
     if found:
-        return {"qudt:unit": {"@id": str(found[0]), "@type": units_graph.value(found[0], RDF.type)}}
+        return {
+            "qudt:unit": {
+                "@id": str(found[0]),
+                "@type": units_graph.value(found[0], RDF.type),
+            }
+        }
     else:
         return {}
 
 
-def get_column_separator(regex_list: list,line: str)-> (str, int):
+def get_column_separator(regex_list: list, line: str) -> (str, int):
     del_counts = {}
     # count the number of occurrences of each delimiter regex in the line
     for regex in regex_list:
@@ -235,166 +262,208 @@ def get_column_separator(regex_list: list,line: str)-> (str, int):
     # choose the delimiter regex with the highest count
     mvp_del_regex = max(del_counts, key=del_counts.get)
     # extract the delimiter character from the regex
-    search=re.search(mvp_del_regex, line)
-    #mvp_del = re.search(mvp_del_regex, line).group()
+    search = re.search(mvp_del_regex, line)
+    # mvp_del = re.search(mvp_del_regex, line).group()
     if not search:
         return None, None
-    results, count=mvp_del_regex, del_counts[mvp_del_regex]
-    #cover case that all in line are float of german notation (,), select the second best of only one occurency less
-    if mvp_del_regex==',':
-        #find second best
-        del_counts.pop(',')
-        second_best_regex=max(del_counts, key=del_counts.get)
-        if del_counts[second_best_regex]>=count-1:
-            results=second_best_regex
-            count=del_counts[second_best_regex]
+    results, count = mvp_del_regex, del_counts[mvp_del_regex]
+    # cover case that all in line are float of german notation (,), select the second best of only one occurency less
+    if mvp_del_regex == ",":
+        # find second best
+        del_counts.pop(",")
+        second_best_regex = max(del_counts, key=del_counts.get)
+        if del_counts[second_best_regex] >= count - 1:
+            results = second_best_regex
+            count = del_counts[second_best_regex]
     return results, count
 
-def describe_value(value_string: str)-> dict:
-    #remove leading and trailing white spaces
+
+def describe_value(value_string: str) -> dict:
+    # remove leading and trailing white spaces
     if pd.isna(value_string):
         return {}
-    val_type=get_value_type(value_string)
-    if val_type[0] == 'INT':
-        return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': int(value_string), '@type': str(val_type[1])}}
-    elif val_type[0] == 'BOOL':
-        return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': bool(value_string), '@type': str(val_type[1])}}
-    elif val_type[0] == 'FLOAT':
-        if isinstance(value_string,str):
-            #replace , with . as decimal separator
-            value_string = value_string.strip().replace(',', '.')
-        return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': float(value_string), '@type': str(val_type[1])}}
-    elif val_type[0] == 'DATE':
-        return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': str(date_parse(value_string).isoformat()), '@type': str(val_type[1])}}
-    elif val_type[0] == 'URI':
+    val_type = get_value_type(value_string)
+    if val_type[0] == "INT":
+        return {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {"@value": int(value_string), "@type": str(val_type[1])},
+        }
+    elif val_type[0] == "BOOL":
+        return {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {"@value": bool(value_string), "@type": str(val_type[1])},
+        }
+    elif val_type[0] == "FLOAT":
+        if isinstance(value_string, str):
+            # replace , with . as decimal separator
+            value_string = value_string.strip().replace(",", ".")
+        return {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {"@value": float(value_string), "@type": str(val_type[1])},
+        }
+    elif val_type[0] == "DATE":
+        return {
+            "@type": "qudt:QuantityValue",
+            "qudt:value": {
+                "@value": str(date_parse(value_string).isoformat()),
+                "@type": str(val_type[1]),
+            },
+        }
+    elif val_type[0] == "URI":
         return {urlparse(value_string).geturl()}
     else:
         return {
             "@type": "oa:TextualBody",
             "oa:purpose": "oa:tagging",
             "oa:format": "text/plain",
-            "oa:value": value_string.strip()
+            "oa:value": value_string.strip(),
         }
-            #return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
+        # return {"@type": "qudt:QuantityValue",'qudt:value': {'@value': value_string, '@type': 'xsd:string'}}
 
 
-class CSV_Annotator():
-    def __init__(self, url: str, encoding: str='auto',authorization=None) -> (str, json) : 
-        self.url=str(url)
+class CSV_Annotator:
+    def __init__(
+        self, url: str, encoding: str = "auto", authorization=None
+    ) -> (str, json):
+        self.url = str(url)
         self.encoding = encoding
-        self.authorization=authorization
-        
+        self.authorization = authorization
+
         self.parts = list()
-        self.file_name=''
-        self.file_domain=''
-        self.file_string=''
-        
-        self.file_name, self.encoding, self.file_string=self.read_data(self.url, self.encoding,self.authorization)
-        self.file_domain=self.url.rsplit(self.file_name,1)[0]
-        self.meta_file_name = self.file_name.rsplit('.',1)[0] + '-metadata.json'
-        self.csv_namespace = self.file_domain+self.file_name+'/'
+        self.file_name = ""
+        self.file_domain = ""
+        self.file_string = ""
+
+        self.file_name, self.encoding, self.file_string = self.read_data(
+            self.url, self.encoding, self.authorization
+        )
+        self.file_domain = self.url.rsplit(self.file_name, 1)[0]
+        self.meta_file_name = self.file_name.rsplit(".", 1)[0] + "-metadata.json"
+        self.csv_namespace = self.file_domain + self.file_name + "/"
         self.context = [
-            "http://www.w3.org/ns/csvw", {
-                #"mseo": "https://purl.matolab.org/mseo/mid/",
+            "http://www.w3.org/ns/csvw",
+            {
+                # "mseo": "https://purl.matolab.org/mseo/mid/",
                 "oa": "http://www.w3.org/ns/oa#",
                 "label": "http://www.w3.org/2000/01/rdf-schema#label",
                 "xsd": "http://www.w3.org/2001/XMLSchema#",
                 "qudt": "http://qudt.org/schema/qudt/",
                 "dc": str(DC),
                 "prov": str(PROV),
-                "csv": self.csv_namespace
-                }
+                "csv": self.csv_namespace,
+            },
         ]
-        self.parts=self.__segment_csv(self.file_string)
+        self.parts = self.__segment_csv(self.file_string)
 
     @staticmethod
-    def read_data(url, encoding: str, authorization=None)->(str,str,str):
+    def read_data(url, encoding: str, authorization=None) -> (str, str, str):
         print(url)
-        file_data, file_name = open_file(url,authorization=authorization)
+        file_data, file_name = open_file(url, authorization=authorization)
         if file_name is None or file_data is None:
             return "error", "cannot parse url"
 
-        if encoding == 'auto':
+        if encoding == "auto":
             encoding = get_encoding(file_data)
-            if encoding=='ISO-8859-1':
-                encoding='latin-1'
-        file_string=file_data.decode(encoding)
+            if encoding == "ISO-8859-1":
+                encoding = "latin-1"
+        file_string = file_data.decode(encoding)
         return file_name, encoding, file_string
+
     def annotate(self) -> dict:
-        '''
+        """
         :return: returns a filename and content(json string dump) of a metafile in the json format.
-        '''
-        #print(url,self.separator, self.header_separator, self.encoding, self.include_table_data)
+        """
+        # print(url,self.separator, self.header_separator, self.encoding, self.include_table_data)
         self.result_dict = self.process_data()
         return self.result_dict
+
     def convert(self, format: str) -> str:
-        g=Graph()
-        g.parse(data=json.dumps(self.result_dict),format='json-ld')
-        self.meta_file_name=self.meta_file_name.rsplit('.',1)[0]
-        if format in ['turtle','longturtle']:
-            self.meta_file_name+='.ttl'
-        elif format=='json-ld':
-            self.meta_file_name+='.json'
+        g = Graph()
+        g.parse(data=json.dumps(self.result_dict), format="json-ld")
+        self.meta_file_name = self.meta_file_name.rsplit(".", 1)[0]
+        if format in ["turtle", "longturtle"]:
+            self.meta_file_name += ".ttl"
+        elif format == "json-ld":
+            self.meta_file_name += ".json"
         else:
-            self.meta_file_name+='.'+format
+            self.meta_file_name += "." + format
         return g.serialize(format=format)
-    
+
     def __str__(self):
         attrs = dict(vars(self))
-        attrs.pop('file_string', None)
+        attrs.pop("file_string", None)
         return str(attrs)
-    
+
     @staticmethod
-    def __segment_csv(file_string: str)->dict:
+    def __segment_csv(file_string: str) -> dict:
         segments = []
-        parts={0:{}}
-        i=0
-        s_start=0
-        s_end=0
-        prev=None
+        parts = {0: {}}
+        i = 0
+        s_start = 0
+        s_end = 0
+        prev = None
         with io.StringIO(file_string) as f:
             for line in f:
-                current=get_column_separator(SEPARATORS_REGEX,line)
+                current = get_column_separator(SEPARATORS_REGEX, line)
                 if prev is not None and current and current != prev:
-                    segments.append({'start': s_start, 'end': i, 'sep': prev[0], 'count': prev[1]})
-                    s_start=i
+                    segments.append(
+                        {"start": s_start, "end": i, "sep": prev[0], "count": prev[1]}
+                    )
+                    s_start = i
                 else:
-                    s_end=i
+                    s_end = i
                 prev = current
-                i+=1
-            #add last segment aswell
-            s_end=i
-            segments.append({'start': s_start, 'end': s_end, 'sep': prev[0], 'count': prev[1]})
-            #if segments have only one line and no header row mark them additional_header
-            parts={}
-            last_part=None
-            #joint segments in parts if possible
-            for segment in segments:        
+                i += 1
+            # add last segment aswell
+            s_end = i
+            segments.append(
+                {"start": s_start, "end": s_end, "sep": prev[0], "count": prev[1]}
+            )
+            # if segments have only one line and no header row mark them additional_header
+            parts = {}
+            last_part = None
+            # joint segments in parts if possible
+            for segment in segments:
                 if last_part is not None:
-                    #update last part to overlab segment
-                    if last_part['sep']==segment['sep'] and  last_part['count']==segment['count']:
-                        last_part['end']=segment['end']
+                    # update last part to overlab segment
+                    if (
+                        last_part["sep"] == segment["sep"]
+                        and last_part["count"] == segment["count"]
+                    ):
+                        last_part["end"] = segment["end"]
                     else:
                         if not parts.keys():
-                            part_num=0
+                            part_num = 0
                         else:
-                            part_num=max(parts.keys())+1
-                        parts[part_num]={'start': segment['start'], 'end': segment['end'], 'sep':segment['sep'], 'count': segment['count'], 'type': 'unknown'}
+                            part_num = max(parts.keys()) + 1
+                        parts[part_num] = {
+                            "start": segment["start"],
+                            "end": segment["end"],
+                            "sep": segment["sep"],
+                            "count": segment["count"],
+                            "type": "unknown",
+                        }
                 else:
                     if not parts.keys():
-                            part_num=0
+                        part_num = 0
                     else:
-                        part_num=max(parts.keys())+1
-                    parts[part_num]={'start': segment['start'], 'end': segment['end'], 'sep':segment['sep'], 'count': segment['count'], 'type': 'unknown'}
+                        part_num = max(parts.keys()) + 1
+                    parts[part_num] = {
+                        "start": segment["start"],
+                        "end": segment["end"],
+                        "sep": segment["sep"],
+                        "count": segment["count"],
+                        "type": "unknown",
+                    }
                 if parts.keys():
-                    last_part=parts[max(parts.keys())]
-            #test lenght of segments and first line of parts to be all text to categorize to meta or data table part
-            parts={key: value for key,value in parts.items() if value['sep']}
+                    last_part = parts[max(parts.keys())]
+            # test lenght of segments and first line of parts to be all text to categorize to meta or data table part
+            parts = {key: value for key, value in parts.items() if value["sep"]}
             for key, value in parts.items():
-                logging.debug("part {}: {}".format(key,value))
+                logging.debug("part {}: {}".format(key, value))
                 f.seek(0)
-                if value['end']-value['start']==1 or value['sep']==':+\\s+\\s*':
-                    value['type']='meta'
+                if value["end"] - value["start"] == 1 or value["sep"] == ":+\\s+\\s*":
+                    value["type"] = "meta"
                 # #test for header line but not if sep ':+\\s+\\s*' should be config style data which is meta
                 # elif value['sep']!=':+\\s+\\s*' and value['end']-value['start']>=1:
                 #     for i, line in enumerate(f):
@@ -406,64 +475,89 @@ class CSV_Annotator():
                 #     if all_text:
                 #         #seams it has at least on header row
                 #         value['type']='data'
-                #test lines in segment if the lines differ from each other in type
-                elif value['sep']!=':+\\s+\\s*' and value['end']-value['start']>=1:
-                    types_list=list()
+                # test lines in segment if the lines differ from each other in type
+                elif (
+                    value["sep"] != ":+\\s+\\s*" and value["end"] - value["start"] >= 1
+                ):
+                    types_list = list()
                     for i, line in enumerate(f):
-                        if i in range(value['start'],value['end']):
-                            types=[get_value_type(string)[0] for string in re.split(value['sep'],line)]
-                            types=['NUMBER' if typ in ['INT', 'FLOAT'] else typ for typ in types]
+                        if i in range(value["start"], value["end"]):
+                            types = [
+                                get_value_type(string)[0]
+                                for string in re.split(value["sep"], line)
+                            ]
+                            types = [
+                                "NUMBER" if typ in ["INT", "FLOAT"] else typ
+                                for typ in types
+                            ]
                             types_list.append(types)
-                            #stop after reading 10 lines in part, should be enough
-                            if len(types_list)>=10:
+                            # stop after reading 10 lines in part, should be enough
+                            if len(types_list) >= 10:
                                 break
-                    #test if all lines have same combination of types
-                    type_array=np.array(types_list)
-                    logging.debug(type_array)       
-                    same_types_as_first= np.all(type_array==type_array[0])
-                    logging.debug('all rows have same type combination: {}'.format(same_types_as_first))       
-                    first_column_type_text=np.all(type_array.T[0]=='TEXT')
-                    logging.debug('every value in first column is type TEXT: {}'.format(first_column_type_text))   
-                    data_area=type_array[2:]
+                    # test if all lines have same combination of types
+                    type_array = np.array(types_list)
+                    logging.debug(type_array)
+                    same_types_as_first = np.all(type_array == type_array[0])
+                    logging.debug(
+                        "all rows have same type combination: {}".format(
+                            same_types_as_first
+                        )
+                    )
+                    first_column_type_text = np.all(type_array.T[0] == "TEXT")
+                    logging.debug(
+                        "every value in first column is type TEXT: {}".format(
+                            first_column_type_text
+                        )
+                    )
+                    data_area = type_array[2:]
                     logging.debug("data_area")
                     logging.debug(data_area)
                     if data_area.size:
-                        column_values_equal_type=np.all([np.all(column_data==column_data[0]) for column_data in data_area.T])
+                        column_values_equal_type = np.all(
+                            [
+                                np.all(column_data == column_data[0])
+                                for column_data in data_area.T
+                            ]
+                        )
                     else:
-                        column_values_equal_type=False
-                    logging.debug('all data cells in each columns have same type: {}'.format(column_values_equal_type))   
-                    
+                        column_values_equal_type = False
+                    logging.debug(
+                        "all data cells in each columns have same type: {}".format(
+                            column_values_equal_type
+                        )
+                    )
+
                     if same_types_as_first:
-                        value['type']='meta'
+                        value["type"] = "meta"
                     elif first_column_type_text and not column_values_equal_type:
-                        value['type']='meta'    
+                        value["type"] = "meta"
                     else:
-                        #test if first in each row is text and if other columns have changing types
-                        type_array=np.array(types_list)
-                        first_column_type_text=np.all(type_array.T[0]=='TEXT')
+                        # test if first in each row is text and if other columns have changing types
+                        type_array = np.array(types_list)
+                        first_column_type_text = np.all(type_array.T[0] == "TEXT")
                         print(first_column_type_text)
-                        #test columns, except one to be of same type as fist values 
-                        #print([np.all(column==column[2]) for column in type_array.T[1:] ])
-                        value['type']='data'
-                    logging.debug('part {} is of type: {}'.format(key,value['type']))       
-                    
-                
-                        
-        result={}
-        table_num=1
-        meta_num=1    
+                        # test columns, except one to be of same type as fist values
+                        # print([np.all(column==column[2]) for column in type_array.T[1:] ])
+                        value["type"] = "data"
+                    logging.debug("part {} is of type: {}".format(key, value["type"]))
+
+        result = {}
+        table_num = 1
+        meta_num = 1
         for value in parts.values():
-            if value['type']=='data':
-                result['table-'+str(table_num)]=value
-                table_num+=1
-            if value['type']=='meta':
-                result['meta-'+str(meta_num)]=value
-                meta_num+=1
-        
+            if value["type"] == "data":
+                result["table-" + str(table_num)] = value
+                table_num += 1
+            if value["type"] == "meta":
+                result["meta-" + str(meta_num)] = value
+                meta_num += 1
+
         return result
-    
-    @staticmethod 
-    def __get_data_meta_part(file_data: str, start: int , end: int , col_count: int, separator: str) -> pd.DataFrame: 
+
+    @staticmethod
+    def __get_data_meta_part(
+        file_data: str, start: int, end: int, col_count: int, separator: str
+    ) -> pd.DataFrame:
         """
 
         :param file_data: content of the file we want to parse
@@ -472,26 +566,31 @@ class CSV_Annotator():
         :return:
         """
         file_string = io.StringIO(file_data)
-        #skip to segement start
-        if start>0: 
-            for i,line in enumerate(file_string):
-                if i==(start-1):
+        # skip to segement start
+        if start > 0:
+            for i, line in enumerate(file_string):
+                if i == (start - 1):
                     break
-        
-        header_df = pd.read_csv(file_string, header=None, sep=separator, nrows=end-start,
-                                    names=range(col_count),
-                                    #encoding=encoding,
-                                    skip_blank_lines=False,
-                                    engine='python')
-        header_df['row'] = header_df.index
-        header_df.rename(columns={0: 'param'}, inplace=True)
-        header_df.set_index('param', inplace=True)
+
+        header_df = pd.read_csv(
+            file_string,
+            header=None,
+            sep=separator,
+            nrows=end - start,
+            names=range(col_count),
+            # encoding=encoding,
+            skip_blank_lines=False,
+            engine="python",
+        )
+        header_df["row"] = header_df.index
+        header_df.rename(columns={0: "param"}, inplace=True)
+        header_df.set_index("param", inplace=True)
         header_df = header_df[~header_df.index.duplicated()]
         header_df.dropna(thresh=2, inplace=True)
         return header_df
-    
+
     @staticmethod
-    def __get_data_table_part(file_data, start: int , end: int , separator: str):
+    def __get_data_table_part(file_data, start: int, end: int, separator: str):
         """
 
         :param file_data: content of the file we want to parse
@@ -503,175 +602,196 @@ class CSV_Annotator():
                           num_header_rows : number of header rows
                           table_data : pandas DataFrame object containing the tabular information
         """
-        #print(start, end, separator)
+        # print(start, end, separator)
         file_string = io.StringIO(file_data)
-        #skip lines already processed
-        num_header_rows=0
-        counter=0
-        if start>0: 
-            for i,line in enumerate(file_string):
-                if i==(start-1):
+        # skip lines already processed
+        num_header_rows = 0
+        counter = 0
+        if start > 0:
+            for i, line in enumerate(file_string):
+                if i == (start - 1):
                     break
         for line in file_string:
-            tests=[get_value_type(string)[0] in ['BLANK', 'TEXT'] for string in re.split(separator ,line)]
-            #print(tests)
+            tests = [
+                get_value_type(string)[0] in ["BLANK", "TEXT"]
+                for string in re.split(separator, line)
+            ]
+            # print(tests)
             all_text = all(tests)
             if all_text:
                 counter += 1
                 continue
             else:
-                num_header_rows=counter
+                num_header_rows = counter
                 break
         file_string.seek(0)
         # skip to start of part
-        if start>0: 
-            for i,line in enumerate(file_string):
-                if i==(start-1):
+        if start > 0:
+            for i, line in enumerate(file_string):
+                if i == (start - 1):
                     break
-        print(num_header_rows,end-start-num_header_rows)
+        print(num_header_rows, end - start - num_header_rows)
         try:
-            table_data = pd.read_csv(file_string,
-                                    header= list(range(num_header_rows)),
-                                    sep=separator,
-                                    nrows=end-start-num_header_rows,
-                                    #encoding=encoding,
-                                    engine='python')
+            table_data = pd.read_csv(
+                file_string,
+                header=list(range(num_header_rows)),
+                sep=separator,
+                nrows=end - start - num_header_rows,
+                # encoding=encoding,
+                engine="python",
+            )
         except:
-            logging.error('could not read table part, possibly cannot identify header row')
+            logging.error(
+                "could not read table part, possibly cannot identify header row"
+            )
             return None, pd.DataFrame()
         else:
             return num_header_rows, table_data
-    
+
     @staticmethod
-    def __serialize_meta(header_data, row_offset: int=0, filename=None, namespace=''):
+    def __serialize_meta(header_data, row_offset: int = 0, filename=None, namespace=""):
         params = list()
         info_line_iri = "oa:Annotation"
-        for parm_name, data in header_data.to_dict(orient='index').items():
-            print(parm_name,data)
+        for parm_name, data in header_data.to_dict(orient="index").items():
+            print(parm_name, data)
             # describe_value(data['value'])
             # try to find unit if its last part and separated by space in label
-            body=list()
-            #remove : if any at end
-            if parm_name[-1]==":":
-                parm_name=parm_name[:-1]
-            #see if there is a unitstring in the param name
-            if len(parm_name.split(' ')) > 1:
-                unit_json = get_unit(parm_name.rsplit(' ',1)[-1])
+            body = list()
+            # remove : if any at end
+            if parm_name[-1] == ":":
+                parm_name = parm_name[:-1]
+            # see if there is a unitstring in the param name
+            if len(parm_name.split(" ")) > 1:
+                unit_json = get_unit(parm_name.rsplit(" ", 1)[-1])
             else:
                 unit_json = {}
             if unit_json:
-                parm_name=parm_name.rsplit(' ', 1)[0]
-            para_dict = {'@id': namespace+make_id(parm_name,filename)+str(
-                data['row']+row_offset), 'label': parm_name.strip('"'), '@type': info_line_iri}
+                parm_name = parm_name.rsplit(" ", 1)[0]
+            para_dict = {
+                "@id": namespace
+                + make_id(parm_name, filename)
+                + str(data["row"] + row_offset),
+                "label": parm_name.strip('"'),
+                "@type": info_line_iri,
+            }
             for col_name, value in data.items():
-                value=str(value).strip('"')
-                if col_name == 'row':
-                    para_dict['rownum'] = {
-                        "@value": data['row']+row_offset, "@type": "xsd:integer"}
+                value = str(value).strip('"')
+                if col_name == "row":
+                    para_dict["rownum"] = {
+                        "@value": data["row"] + row_offset,
+                        "@type": "xsd:integer",
+                    }
                 else:
-                    to_test=value
-                    #test space separated parts for beeing unit strings
-                    for part in to_test.split(' '):
+                    to_test = value
+                    # test space separated parts for beeing unit strings
+                    for part in to_test.split(" "):
                         unit_dict = get_unit(part.strip())
                         if unit_dict:
-                            unit_json=unit_dict
-                            #if string is a number unit will be NUM, then dont strip unit of string
-                            if unit_dict['qudt:unit']['@id']!='http://qudt.org/vocab/unit/NUM':
-                                to_test=to_test.replace(part,'').strip()
+                            unit_json = unit_dict
+                            # if string is a number unit will be NUM, then dont strip unit of string
+                            if (
+                                unit_dict["qudt:unit"]["@id"]
+                                != "http://qudt.org/vocab/unit/NUM"
+                            ):
+                                to_test = to_test.replace(part, "").strip()
                             if not to_test:
-                                #empty string -> add unit if there was aquantity value detected in the row before
-                                if any(entry.get('@type') == 'qudt:QuantityValue' for entry in body):
+                                # empty string -> add unit if there was aquantity value detected in the row before
+                                if any(
+                                    entry.get("@type") == "qudt:QuantityValue"
+                                    for entry in body
+                                ):
                                     for entry in body:
-                                        #print('updating entry')
-                                        if entry.get('@type') == 'qudt:QuantityValue':
-                                            entry.update({**entry,**unit_dict})
-                                            toadd={}
+                                        # print('updating entry')
+                                        if entry.get("@type") == "qudt:QuantityValue":
+                                            entry.update({**entry, **unit_dict})
+                                            toadd = {}
                             break
-                    if value in ['nan','None']:
+                    if value in ["nan", "None"]:
                         continue
-                    #first test rest of to_test for beeing a value, if add a quantity value - not add textual body
+                    # first test rest of to_test for beeing a value, if add a quantity value - not add textual body
                     if to_test:
-                        toadd=describe_value(to_test)
-                        if toadd.get('@type') == 'qudt:QuantityValue':
-                            toadd={**toadd,**unit_json}
+                        toadd = describe_value(to_test)
+                        if toadd.get("@type") == "qudt:QuantityValue":
+                            toadd = {**toadd, **unit_json}
                         else:
                             # should result in textual body
-                            toadd=describe_value(value)
+                            toadd = describe_value(value)
                 if toadd:
-                        body.append(toadd)
-                        toadd={}
-            para_dict['oa:hasBody']=body
+                    body.append(toadd)
+                    toadd = {}
+            para_dict["oa:hasBody"] = body
             params.append(para_dict)
         return params
 
     @staticmethod
-    def __describe_table(table_data: pd.DataFrame, about_prefix: str='')-> dict:
-        table_schema=dict()
+    def __describe_table(table_data: pd.DataFrame, about_prefix: str = "") -> dict:
+        table_schema = dict()
         if not table_data.empty:
             column_json = list()
-            #adding an index identifier
-            json_str={
-                "@id": about_prefix+"-GID",
+            # adding an index identifier
+            json_str = {
+                "@id": about_prefix + "-GID",
                 "name": "GID",
-                "titles": [
-                    "GID",
-                    "Generic Identifier"
-                ],
-                #"dc:description": "An identifier as index of a table.",
+                "titles": ["GID", "Generic Identifier"],
+                # "dc:description": "An identifier as index of a table.",
                 "datatype": "string",
                 "required": True,
                 "suppressOutput": True,
                 # "propertyUrl": "schema:url",
                 # "valueUrl": "gid-{GID}"
-                "@type": "Column"
+                "@type": "Column",
             }
             column_json.append(json_str)
             for colnum, titles in enumerate(table_data.columns):
 
-                if isinstance(titles,Tuple):
-                    titles_list=[title.strip('"') for title in titles]
+                if isinstance(titles, Tuple):
+                    titles_list = [title.strip('"') for title in titles]
                 else:
-                    titles_list=[titles.strip('"'),]
-                name_str=make_id(titles_list[0])
+                    titles_list = [
+                        titles.strip('"'),
+                    ]
+                name_str = make_id(titles_list[0])
                 for title in titles_list:
-                    titleparts=title.split(' ')
+                    titleparts = title.split(" ")
                     for part in titleparts:
-                        unit_dict=get_unit(part)
+                        unit_dict = get_unit(part)
                         if unit_dict:
                             break
                 titles_list.append(name_str)
                 json_str = {
                     **{
-                        'titles': titles_list,
-                        '@id': about_prefix+'-'+name_str,
-                        'name': name_str,
+                        "titles": titles_list,
+                        "@id": about_prefix + "-" + name_str,
+                        "name": name_str,
                         #'aboutUrl': "#gid-{GID}-"+name_str
                     },
-                    **unit_dict
+                    **unit_dict,
                 }
-                json_str['@type']=["Column"]
-                #determine xsd_format
-                num_values_to_test=20
-                if len(table_data)<num_values_to_test:
-                    num_values_to_test=len(table_data)
-                
-                values=[table_data.iat[i, colnum] for i in range(num_values_to_test)]
-                #values=[value.value for value in values]
-    
-                types=[get_value_type(str(value))[0] for value in values]
+                json_str["@type"] = ["Column"]
+                # determine xsd_format
+                num_values_to_test = 20
+                if len(table_data) < num_values_to_test:
+                    num_values_to_test = len(table_data)
+
+                values = [table_data.iat[i, colnum] for i in range(num_values_to_test)]
+                # values=[value.value for value in values]
+
+                types = [get_value_type(str(value))[0] for value in values]
                 print(titles)
                 print(types)
-                column_values_equal_type=np.all([np.all(type==types[0]) for type in types])
+                column_values_equal_type = np.all(
+                    [np.all(type == types[0]) for type in types]
+                )
                 print(column_values_equal_type)
-                if column_values_equal_type:    
-                    xsd_format=get_value_type(str(values[0]))[1]
-                    json_str['format'] = {'@id': xsd_format}
+                if column_values_equal_type:
+                    xsd_format = get_value_type(str(values[0]))[1]
+                    json_str["format"] = {"@id": xsd_format}
                 else:
-                    json_str['format'] = {'@id': XSD.string}
+                    json_str["format"] = {"@id": XSD.string}
                 column_json.append(json_str)
             table_schema = {"columns": column_json}
-            table_schema["primaryKey"] = column_json[0]['name']
-            table_schema["aboutUrl"] = about_prefix+"-gid-{GID}"
+            table_schema["primaryKey"] = column_json[0]["name"]
+            table_schema["aboutUrl"] = about_prefix + "-gid-{GID}"
             # table_schema["propertyUrl"] = "schema:value"
         return table_schema
 
@@ -692,53 +812,73 @@ class CSV_Annotator():
         """
 
         # init results dict
-        #data_root_url = "https://github.com/Mat-O-Lab/resources/"
+        # data_root_url = "https://github.com/Mat-O-Lab/resources/"
 
         metadata = dict()
         meta_file_name = self.meta_file_name
-        #metadata_csvw["@id"]=metadata_url
-        metadata["@context"] = self.context        
-        
+        # metadata_csvw["@id"]=metadata_url
+        metadata["@context"] = self.context
+
         if self.url:
             url_string = self.url
         else:
             url_string = self.file_name
         # for file schema output filename as url, metadata file should be placed in same directory
-        if url_string[:4]=='file':
-            url_string=self.file_name
-        
-        metadata["@id"]=url_string
-        metadata['@type']=CSVW.TableGroup
-        metadata["notes"]=list()
-        metadata["tables"]=list()
-        
-        #try to find all table like segments in the file
-        #print(self.parts)
+        if url_string[:4] == "file":
+            url_string = self.file_name
+
+        metadata["@id"] = url_string
+        metadata["@type"] = CSVW.TableGroup
+        metadata["notes"] = list()
+        metadata["tables"] = list()
+
+        # try to find all table like segments in the file
+        # print(self.parts)
         for key, value in self.parts.items():
-            logging.debug("{} {}".format(key,value))
-            if value['type']=='meta':
-                meta_data=self.__get_data_meta_part(self.file_string, start=value['start'], end=value['end'], col_count=value['count']+1,separator=value['sep'])
+            logging.debug("{} {}".format(key, value))
+            if value["type"] == "meta":
+                meta_data = self.__get_data_meta_part(
+                    self.file_string,
+                    start=value["start"],
+                    end=value["end"],
+                    col_count=value["count"] + 1,
+                    separator=value["sep"],
+                )
                 if not meta_data.empty:
-                    metadata["notes"].extend(self.__serialize_meta(meta_data, row_offset=value['start'],filename=None,namespace=self.csv_namespace))
-            if value['type']=='data':
+                    metadata["notes"].extend(
+                        self.__serialize_meta(
+                            meta_data,
+                            row_offset=value["start"],
+                            filename=None,
+                            namespace=self.csv_namespace,
+                        )
+                    )
+            if value["type"] == "data":
                 # read tabular data structure, and determine number of header lines for column description used
                 # table_data=self.get_meta_data(file_data, start=value['start'], end=value['end'], col_count=value['count']+1,header_separator=value['sep'], encoding=encoding)
-                header_lines, table_data = self.__get_data_table_part(self.file_string, start=value['start'], end=value['end'], separator=value['sep'])
+                header_lines, table_data = self.__get_data_table_part(
+                    self.file_string,
+                    start=value["start"],
+                    end=value["end"],
+                    separator=value["sep"],
+                )
                 if not table_data.empty:
-                    table={
-                        "@id": self.csv_namespace+str(key),
+                    table = {
+                        "@id": self.csv_namespace + str(key),
                         "url": url_string,
                         "dialect": {
-                        "delimiter": value['sep'],
-                        "skipRows": value['start'],
-                        "headerRowCount": header_lines,
-                        "encoding": self.encoding
+                            "delimiter": value["sep"],
+                            "skipRows": value["start"],
+                            "headerRowCount": header_lines,
+                            "encoding": self.encoding,
                         },
-                        'tableSchema': self.__describe_table(table_data, self.csv_namespace+str(key))
+                        "tableSchema": self.__describe_table(
+                            table_data, self.csv_namespace + str(key)
+                        ),
                     }
                     metadata["tables"].append((table.copy()))
 
         return metadata
-    
+
     def set_encoding(self, new_encoding: str):
         self.encoding = new_encoding
