@@ -354,7 +354,7 @@ class CSV_Annotator():
         prev=None
         with io.StringIO(file_string) as f:
             for line in f:
-                current=get_column_separator(SEPARATORS_REGEX,line.rstrip())
+                current=get_column_separator(SEPARATORS_REGEX,line)
                 if prev is not None and current and current != prev:
                     segments.append({'start': s_start, 'end': i, 'sep': prev[0], 'count': prev[1]})
                     s_start=i
@@ -547,6 +547,7 @@ class CSV_Annotator():
         params = list()
         info_line_iri = "oa:Annotation"
         for parm_name, data in header_data.to_dict(orient='index').items():
+            print(parm_name,data)
             # describe_value(data['value'])
             # try to find unit if its last part and separated by space in label
             body=list()
