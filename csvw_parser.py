@@ -317,6 +317,7 @@ class CSVWtoRDF:
 
                     if CSVW.aboutUrl in column_data.keys():
                         aboutUrl = column_data[CSVW.aboutUrl]
+                        print("about url:{}".format(aboutUrl))
                         g.add(
                             (
                                 values_node,
@@ -327,7 +328,11 @@ class CSVWtoRDF:
                     else:
                         name = column_data[CSVW.name]
                         g.add(
-                            (values_node, URIRef(name, base=self.base_url), value_node)
+                            (
+                                values_node,
+                                URIRef("{}-{}".format(table, name)),
+                                value_node,
+                            )
                         )
         return g
         # self.atdm, self.metadata =converter.convert_to_atdm('standard')
