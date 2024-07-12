@@ -4,7 +4,7 @@ import pandas as pd
 from rdflib import BNode, URIRef, Literal, Graph, Namespace
 from rdflib.collection import Collection
 from rdflib.util import guess_format
-from rdflib.namespace import CSVW, RDF, XSD, PROV, RDFS
+from rdflib.namespace import CSVW, RDF, XSD, PROV, RDFS, DC
 from datetime import datetime
 from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
@@ -309,8 +309,8 @@ class CSVWtoRDF:
                         g.add((value_node, RDF.type, OA.Annotation))
                         g.add((value_node, OA.hasBody, body_node))
                         g.add((body_node, RDF.type, OA.TextualBody))
-                        g.add((body_node, OA["format"], Literal("text/plain")))
-                        g.add((body_node, OA.value, Literal(cell, datatype=format)))
+                        g.add((body_node, DC.format, Literal("text/plain")))
+                        g.add((body_node, RDF.value, Literal(cell, datatype=format)))
 
                     # if isinstance(column,URIRef) and str(self.meta_root)!='file:///src/': #has proper uri
                     #     g.add((value_node, column, Literal(cell)))
