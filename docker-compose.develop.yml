@@ -3,9 +3,6 @@ services:
   csvtocsvw:
     image: "ghcr.io/mat-o-lab/csvtocsvw:latest"
     container_name: "csvtocsvw"
-    environment:
-      APP_MODE: "production"
-      ADMIN_MAIL: ${ADMIN_MAIL}
     ports:
       - ${APP_PORT}:5000
     restart: always
@@ -13,6 +10,7 @@ services:
       - csvtocsvw_net
     environment:
       APP_MODE: "development"
+      ADMIN_MAIL: ${ADMIN_MAIL}
     volumes:
       - ./:/src
     entrypoint: "python app.py"
