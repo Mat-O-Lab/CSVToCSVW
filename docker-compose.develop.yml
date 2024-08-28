@@ -1,4 +1,3 @@
-version: "3"
 services:
   csvtocsvw:
     image: "ghcr.io/mat-o-lab/csvtocsvw:latest"
@@ -9,8 +8,11 @@ services:
     networks:
       - csvtocsvw_net
     environment:
-      APP_MODE: "development"
+      APP_PORT: 6001
+      APP_SECRET: ${APP_SECRET}
+      SERVER_URL: "http://docker-dev.iwm.fraunhofer.de:${APP_PORT}"
       ADMIN_MAIL: ${ADMIN_MAIL}
+      APP_MODE: "development"
     volumes:
       - ./:/src
     entrypoint: "python app.py"

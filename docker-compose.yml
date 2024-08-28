@@ -1,11 +1,13 @@
-version: "3"
 services:
   csvtocsvw:
     image: "ghcr.io/mat-o-lab/csvtocsvw:latest"
     container_name: "csvtocsvw"
     environment:
-      APP_MODE: "production"
+      APP_PORT: 6001
+      APP_SECRET: ${APP_SECRET}
+      SERVER_URL: "http://docker-dev.iwm.fraunhofer.de:${APP_PORT}"
       ADMIN_MAIL: ${ADMIN_MAIL}
+      APP_MODE: "production"
     ports:
       - ${APP_PORT}:5000
     restart: always

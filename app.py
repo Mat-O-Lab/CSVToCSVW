@@ -130,7 +130,7 @@ app = fastapi.FastAPI(
     swagger_ui_parameters={"syntaxHighlight": False},
     middleware=middleware,
     servers=[
-        {"url": setting.server + "/api", "description": "Production environment"},
+        {"url": setting.server, "description": "Production environment"},
     ],
     # root_path="/api/v1",
     root_path_in_servers=False,
