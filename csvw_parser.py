@@ -7,7 +7,7 @@ from rdflib.util import guess_format
 from rdflib.namespace import CSVW, RDF, XSD, PROV, RDFS, DC
 from datetime import datetime
 from urllib.request import urlopen
-from urllib.parse import urlparse, unquote
+from urllib.parse import urlparse, unquote, quote
 import io, os
 import logging
 import requests
@@ -186,7 +186,7 @@ class CSVWtoRDF:
         # self.metagraph.serialize('metagraph.ttl')
         print("meta_root: " + self.meta_root)
         # print('csv_url: '+url)
-        self.base_url = "{}/".format(str(self.meta_root).rsplit("/", 1)[0])
+        self.base_url = "{}/".format(quote(str(self.meta_root).rsplit("/", 1)[0]))
         parsed_url = urlparse(url)
         if parsed_url.scheme in ["https", "http", "file"]:
             self.csv_url = url

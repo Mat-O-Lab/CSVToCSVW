@@ -5,7 +5,7 @@ import io
 import re, os
 import ast
 import json
-from urllib.parse import urlparse, unquote
+from urllib.parse import urlparse, unquote, quote
 from dateutil.parser import parse as date_parse
 from csv import Sniffer
 import requests
@@ -337,6 +337,9 @@ class CSV_Annotator:
             self.url, self.encoding, self.authorization
         )
         self.file_domain = self.url.rsplit(self.file_name, 1)[0]
+        # use escaped name, no spaces allowed
+        self.file_name = quote(self.file_name)
+
         self.meta_file_name = self.file_name.rsplit(".", 1)[0] + "-metadata.json"
         self.csv_namespace = self.file_domain + self.file_name + "/"
         self.context = [
@@ -376,9 +379,16 @@ class CSV_Annotator:
         self.result_dict = self.process_data()
         return self.result_dict
 
-    def convert(self, format: str) -> str:
+    def graph(self) -> Graph:
         g = Graph()
         g.parse(data=json.dumps(self.result_dict), format="json-ld")
+        # with open("test.json", "w") as f:
+        #     json.dump(self.result_dict, f, indent=4)
+        return g
+
+    def convert(self, format: str) -> str:
+        g = self.graph()
+        # g.serialize("test.ttl", format="json-ld")
         self.meta_file_name = self.meta_file_name.rsplit(".", 1)[0]
         if format in ["turtle", "longturtle"]:
             self.meta_file_name += ".ttl"

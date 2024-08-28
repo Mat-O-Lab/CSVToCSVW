@@ -1,7 +1,7 @@
 # app.py
 import os
 import base64
-from urllib.parse import urlparse
+from urllib.parse import urlparse, quote
 
 import uvicorn
 from starlette_wtf import StarletteForm, CSRFProtectMiddleware, csrf_protect
@@ -355,12 +355,13 @@ async def annotate_upload(
     # add prov o documentation
     result = {**result, **annotate_prov(request.url._url)}
     data = annotator.convert(format=return_type.value)
+
     data_bytes = BytesIO(data.encode())
     filename = annotator.meta_file_name
     # delete the temp csv file
-    if os.path.isfile(file.filename):
-        os.remove(file.filename)
-    return RDFStreamingResponse(content=data_bytes, filename=filename)
+    # if os.path.isfile(file.filename):
+    #     os.remove(file.filename)
+    return RDFStreamingResponse(content=data_bytes, filename=quote(filename))
 
 
 @app.post("/api/rdf", response_class=RDFStreamingResponse)
