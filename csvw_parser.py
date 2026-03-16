@@ -181,10 +181,16 @@ class CSVWtoRDF:
         self.metagraph.parse(data=metadata_data, format=guess_format(metadata_filename))
         # self.metagraph=parse_graph(self.metadata_url,Graph(),format=metaformat)
         # self.metagraph.serialize('test.ttl',format='turtle')
-        print(list(self.metagraph[: CSVW.url]))
-        self.meta_root, url = list(self.metagraph[: CSVW.url])[0]
+        urls = list(self.metagraph[: CSVW.url])
+        logging.debug("csvw:url entries in metagraph: %s", urls)
+        if not urls:
+            raise HTTPException(
+                status_code=422,
+                detail="metadata contains no table — the source CSV may have been classified as metadata-only",
+            )
+        self.meta_root, url = urls[0]
         # self.metagraph.serialize('metagraph.ttl')
-        print("meta_root: " + self.meta_root)
+        logging.debug("meta_root: %s", self.meta_root)
         # print('csv_url: '+url)
         self.base_url = "{}/".format(quote(str(self.meta_root).rsplit("/", 1)[0]))
         parsed_url = urlparse(url)
@@ -198,14 +204,14 @@ class CSVWtoRDF:
         # replace if set in request
         if csv_url:
             self.csv_url = csv_url
-        print(url, self.base_url, csv_url, self.csv_url)
+        logging.debug("url=%s base_url=%s csv_url=%s", url, self.base_url, self.csv_url)
         self.graph = Graph(base=self.csv_url + "/")
-        print(self.metadata_url, self.csv_url)
+        logging.debug("metadata_url=%s csv_url=%s", self.metadata_url, self.csv_url)
         self.filename = self.csv_url.rsplit("/", 1)[-1].rsplit(".", 1)[0]
         self.tables = {
             table_node: {} for file, table_node in self.metagraph[: CSVW.table :]
         }
-        print("tables: {}".format(self.tables))
+        logging.debug("tables: %s", self.tables)
         self.table_data = list()
         if self.tables:
             for key, data in self.tables.items():

@@ -1,0 +1,13 @@
+Property,Value,Unit
+Actuator diameter,40,mm
+Mounting hole,22,mm
+Contact type,1 N/C,-
+Rated voltage (Ue),240,V AC
+Rated current (Ie AC-15),10,A
+Short-circuit protection (fuse),10,A gL/gG
+Mechanical endurance,1000000,operations
+Electrical endurance (AC-15),100000,operations
+IP protection,IP65,-
+Operating temp min,-25,°C
+Operating temp max,70,°C
+Weight,120,g

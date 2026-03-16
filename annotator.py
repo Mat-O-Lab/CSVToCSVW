@@ -500,8 +500,8 @@ class CSV_Annotator:
                                 for typ in types
                             ]
                             types_list.append(types)
-                            # stop after reading 10 lines in part, should be enough
-                            if len(types_list) >= 10:
+                            # stop after reading 30 lines in part, should be enough
+                            if len(types_list) >= 30:
                                 break
                     # test if all lines have same combination of types
                     type_array = np.array(types_list)
@@ -518,8 +518,16 @@ class CSV_Annotator:
                             first_column_type_text
                         )
                     )
-                    data_area = type_array[2:]
-                    logging.debug("data_area")
+                    # Dynamically skip header rows (leading all-TEXT rows) —
+                    # consistent with __get_data_table_part which uses the same logic.
+                    num_sample_header_rows = 0
+                    for row in types_list:
+                        if all(t == "TEXT" for t in row):
+                            num_sample_header_rows += 1
+                        else:
+                            break
+                    data_area = type_array[num_sample_header_rows:]
+                    logging.debug("data_area (skipped %d header rows)", num_sample_header_rows)
                     logging.debug(data_area)
                     if data_area.size:
                         column_values_equal_type = np.all(
@@ -536,19 +544,39 @@ class CSV_Annotator:
                         )
                     )
 
-                    if same_types_as_first:
+                    # A header row exists when: row 0 is all-TEXT labels AND any
+                    # value column (col 1+) in the remaining rows contains a non-TEXT
+                    # value. Scanning all rows (not just row 1) handles the case where
+                    # the first data row happens to be all-TEXT.
+                    has_header_row = (
+                        len(type_array) >= 2
+                        and np.all(type_array[0] == "TEXT")
+                        and type_array.shape[1] > 1
+                        and np.any(type_array[1:, 1:] != "TEXT")
+                    )
+                    value["has_header_row"] = has_header_row
+
+                    # Only classify as meta on uniform rows when the first column is
+                    # TEXT (i.e. key names). A uniform all-NUMBER block is a headerless
+                    # data table, not metadata.
+                    if same_types_as_first and first_column_type_text:
                         value["type"] = "meta"
-                    elif first_column_type_text and not column_values_equal_type:
+                    elif first_column_type_text and not column_values_equal_type and not has_header_row:
                         value["type"] = "meta"
                     else:
-                        # test if first in each row is text and if other columns have changing types
-                        type_array = np.array(types_list)
-                        first_column_type_text = np.all(type_array.T[0] == "TEXT")
-                        print(first_column_type_text)
-                        # test columns, except one to be of same type as fist values
-                        # print([np.all(column==column[2]) for column in type_array.T[1:] ])
                         value["type"] = "data"
-                    logging.debug("part {} is of type: {}".format(key, value["type"]))
+                    logging.debug("part {} is of type: {} (has_header_row={})".format(key, value["type"], has_header_row))
+
+        # Fallback: if no data tables were found in the entire file, reclassify
+        # any meta block that has a detectable header row as a data table.
+        # This handles key-value tables (e.g. Property/Value/Unit) that still
+        # slipped through the heuristics above.
+        has_any_data = any(v["type"] == "data" for v in parts.values())
+        if not has_any_data:
+            for v in parts.values():
+                if v.get("has_header_row"):
+                    v["type"] = "data"
+                    logging.debug("reclassified meta→data (fallback: no data tables found in file)")
 
         result = {}
         table_num = 1
@@ -639,20 +667,22 @@ class CSV_Annotator:
             for i, line in enumerate(file_string):
                 if i == (start - 1):
                     break
-        print(num_header_rows, end - start - num_header_rows)
+        logging.debug("header rows: %d, data rows: %d", num_header_rows, end - start - num_header_rows)
         try:
             table_data = pd.read_csv(
                 file_string,
-                header=list(range(num_header_rows)),
+                header=list(range(num_header_rows)) if num_header_rows > 0 else None,
                 sep=separator,
                 nrows=end - start - num_header_rows,
                 # encoding=encoding,
                 engine="python",
             )
-        except:
-            logging.error(
-                "could not read table part, possibly cannot identify header row"
-            )
+            # Ensure column names are always strings (integer names arise when
+            # header=None is used for headerless tables).
+            if num_header_rows == 0:
+                table_data.columns = [str(c) for c in table_data.columns]
+        except Exception as e:
+            logging.error("could not read table part (start=%d, end=%d): %s", start, end, e)
             return None, pd.DataFrame()
         else:
             return num_header_rows, table_data
