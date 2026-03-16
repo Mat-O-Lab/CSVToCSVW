@@ -23,4 +23,8 @@ COPY ./ontologies/qudt_unit.ttl ./ontologies/qudt_unit.ttl
 ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
+
+# Bake the git release tag into the image so the app can report its version
+ARG APP_VERSION=dev
+ENV APP_VERSION=${APP_VERSION}
 ENTRYPOINT ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000", "--workers", "6","--proxy-headers"]
