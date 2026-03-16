@@ -1,54 +1,168 @@
 # CSVToCSVW
+
 [![Publish Docker image](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml/badge.svg)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml)
 [![TestExamples](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/TestExamples.yml/badge.svg?branch=main)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/TestExamples.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.19053064)
 
-Generates JSON-LD for various types of CSVs, it adopts the Vocabulary provided by w3c at [CSVW](https://www.w3.org/ns/csvw) to describe structure and information within. Also uses [QUDT units ontology](https://github.com/qudt/qudt-public-repo/tree/main/vocab/unit) to lookup and describe units. 
-Can segment complex csv files with multiple tables and annotation without further input. Has also an option to output complete serialized content of the csv in csvw standard output format through rdf api endpoint.
+> Automatically convert CSV files into [W3C CSVW](https://www.w3.org/ns/csvw)-compliant JSON-LD metadata and RDF — no manual annotation required.
 
-# restrictions
-Situations in which the annotation will fail!
-- If Numbers are used as column names 
+---
 
-# how to use
+## What it does
 
-## create a .env file with
-```bash
-APP_PORT=<80>
-ADMIN_MAIL=<email_of_admin>
-SSL_VERIFY=<True or False> #default is True
+Raw CSV files from experiments and engineering workflows carry structure and meaning that is invisible to machines. CSVToCSVW analyses a CSV file and produces:
+
+- **CSVW JSON-LD metadata** describing table structure, column types, and units
+- **RDF output** (Turtle, JSON-LD, N-Triples, …) serialising the full content as Linked Data
+- **QUDT unit annotations** — physical units like `mm`, `°C`, `N·m` are resolved to their canonical [QUDT](https://qudt.org/) ontology terms
+- **Open Annotation metadata** for key-value property blocks (sample metadata, instrument settings, etc.)
+- **Provenance triples** (PROV-O) recording which software version generated the output
+
+### Multi-block CSV support
+
+Many real-world scientific CSV files contain a metadata header followed by one or more data tables — separated by blank lines, different delimiters, or a change in column count. CSVToCSVW detects and handles all blocks independently:
+
+```csv
+Sample name:   AWA_3_03           ← key-value metadata block
+Machine:       INSTRON 8852TT
+Temperature:   23 °C
+
+Time,Force,Displacement           ← tabular data block
+s,kN,mm
+0.0,0.00,0.000
+0.5,1.23,0.012
 ```
 
-## docker
-Just pull the docker container from the github container registry
+---
+
+## Quick start
+
+### Docker
+
 ```bash
-docker pull ghcr.io/mat-o-lab/csvtocsvw:latest
+docker run -p 5000:5000 ghcr.io/mat-o-lab/csvtocsvw:latest
 ```
 
-## docker-compose
-Clone the repo with 
+Open [http://localhost:5000](http://localhost:5000) for the UI, or [http://localhost:5000/api/docs](http://localhost:5000/api/docs) for the interactive API.
+
+### Docker Compose
+
 ```bash
 git clone https://github.com/Mat-O-Lab/CSVToCSVW
-```
-cd into the cloned folder
-```bash
 cd CSVToCSVW
+cp .env.example .env   # edit as needed
+docker compose up
 ```
-Build and start the container.
+
+### Environment variables
+
+| Variable | Description | Default |
+| --- | --- | --- |
+| `APP_PORT` | Host port to expose | `5000` |
+| `APP_SECRET` | Secret key for session/CSRF | `changemeNOW` |
+| `SERVER_URL` | Public base URL of the service | `https://csvtocsvw.matolab.org` |
+| `ADMIN_MAIL` | Contact email shown in API docs | `csvtocsvw@matolab.org` |
+| `APP_VERSION` | Version string injected at build time | from `settings.py` |
+| `SSL_VERIFY` | Verify SSL certificates on outbound requests | `True` |
+
+---
+
+## API
+
+### `POST /api/annotate`
+
+Fetch a CSV by URL and return CSVW JSON-LD metadata.
+
 ```bash
-docker-compose up
+curl -X POST "https://csvtocsvw.matolab.org/api/annotate" \
+  -H "Content-Type: application/json" \
+  -d '{"data_url": "https://example.org/mydata.csv"}'
 ```
 
-A simple UI can be found at at the index page '/'
-The API documentation at 'api/docs'
+### `POST /api/annotate_upload`
 
-## jupyter notebook
-1. Open the notebook in or any other jupyter instance.[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Mat-O-Lab/CSVToCSVW/blob/main/csv_parser.ipynb)
-2. Run the first cell of the notebook. It will install the necesary python packages and definitions.
-3. Run the second cell
-4. Upload a csv file or paste in a url pointing at one in the provided widgets.
-5. Click the process button, it will try to determine encoding and column seperator automatically. If that fails, choose appropiate values from the drop downs in the widgets and press the process button again. 
-6. If successful the json-ld created will be printed to the cell as output. Click the download button to download the code in the proper filename acoording to https://www.w3.org/ns/csvw.
-7. Place the file in the same folder then the csv it describes.
+Upload a CSV file directly.
 
-# Acknowledgments
-The authors would like to thank the Federal Government and the Heads of Government of the Länder for their funding and support within the framework of the [Platform Material Digital](https://www.materialdigital.de) consortium. Funded by the German [Federal Ministry of Education and Research (BMBF)](https://www.bmbf.de/bmbf/en/) through the [MaterialDigital](https://www.bmbf.de/SharedDocs/Publikationen/de/bmbf/5/31701_MaterialDigital.pdf?__blob=publicationFile&v=5) Call in Project [KupferDigital](https://www.materialdigital.de/project/1) - project id 13XP5119.
+```bash
+curl -X POST "https://csvtocsvw.matolab.org/api/annotate_upload" \
+  -F "file=@mydata.csv"
+```
+
+### `POST /api/rdf`
+
+Convert a CSVW metadata file (by URL) to RDF.
+
+```bash
+curl -X POST "https://csvtocsvw.matolab.org/api/rdf" \
+  -H "Content-Type: application/json" \
+  -d '{"metadata_url": "https://example.org/mydata-metadata.json", "format": "turtle"}'
+```
+
+Full interactive docs: [https://csvtocsvw.matolab.org/api/docs](https://csvtocsvw.matolab.org/api/docs)
+
+---
+
+## Jupyter notebook
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Mat-O-Lab/CSVToCSVW/blob/main/csv_parser.ipynb)
+
+Run the notebook to process a CSV interactively — paste a URL or upload a file and download the resulting JSON-LD metadata.
+
+---
+
+## Example output
+
+Given a simple property table:
+
+```csv
+Property,Value,Unit
+Actuator diameter,40,mm
+Rated voltage,240,V AC
+Operating temp min,-25,°C
+Weight,120,g
+```
+
+CSVToCSVW produces a CSVW table with QUDT-annotated columns:
+
+```json
+{
+  "@type": "csvw:TableGroup",
+  "tables": [{
+    "url": "mydata.csv",
+    "tableSchema": {
+      "columns": [
+        { "titles": "Property", "datatype": "string" },
+        { "titles": "Value",    "datatype": "string" },
+        { "titles": "Unit",     "datatype": "string" }
+      ]
+    }
+  }]
+}
+```
+
+See [`examples/`](examples/) for real input/output pairs including multi-block files.
+
+---
+
+## Known limitations
+
+- All-text tables (every cell is a string) are ambiguous with key-value metadata blocks and may be classified as metadata. Columns with numeric-looking names (e.g. sensor IDs `1281068`) will be treated as headerless.
+
+---
+
+## Cite this software
+
+If you use CSVToCSVW in your research, please cite it:
+
+```text
+Hanke, T., Kröcker, B., & Fechner, R. (2024). CSVToCSVW (v1.3.5).
+GitHub. https://github.com/Mat-O-Lab/CSVToCSVW
+```
+
+A `CITATION.cff` file is included for automatic citation in GitHub and Zenodo.
+
+---
+
+## Acknowledgments
+
+The authors would like to thank the Federal Government and the Heads of Government of the Länder for their funding and support within the framework of the [Platform Material Digital](https://www.materialdigital.de) consortium. Funded by the German [Federal Ministry of Education and Research (BMBF)](https://www.bmbf.de/bmbf/en/) through the [MaterialDigital](https://www.bmbf.de/SharedDocs/Publikationen/de/bmbf/5/31701_MaterialDigital.pdf?__blob=publicationFile&v=5) Call in Project [KupferDigital](https://www.materialdigital.de/project/1) — project id 13XP5119.

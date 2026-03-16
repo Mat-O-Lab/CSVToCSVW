@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "CSVToCSVW"
+abstract: >
+  CSVToCSVW is a web service and API that automatically converts CSV files into
+  W3C CSVW-compliant JSON-LD metadata and RDF. It segments multi-block CSV files,
+  classifies blocks as tabular data or key-value metadata, resolves units using
+  the QUDT ontology, and produces provenance-annotated Linked Data output —
+  enabling FAIR data practices for experimental and engineering datasets without
+  manual annotation.
+authors:
+  - family-names: Hanke
+    given-names: Thomas
+    email: thomas.hanke@iwm.fraunhofer.de
+    affiliation: "Fraunhofer Institute for Mechanics of Materials IWM"
+  - family-names: Kröcker
+    given-names: Benjamin
+    email: benjamin.kroecker@imws.fraunhofer.de
+    affiliation: "Fraunhofer Institute for Mechanics of Materials IWM"
+  - family-names: Fechner
+    given-names: Richard
+    email: richard.fechner.nr@gmail.com
+version: "v1.3.5"
+date-released: "2026-03-16"
+license: Apache-2.0
+repository-code: "https://github.com/Mat-O-Lab/CSVToCSVW"
+url: "https://github.com/Mat-O-Lab/CSVToCSVW"
+keywords:
+  - csvw
+  - rdf
+  - linked-data
+  - materials-science
+  - fair-data
+  - json-ld
+  - qudt
+  - metadata
+  - open-annotation
