@@ -2,7 +2,7 @@
 
 [![Publish Docker image](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml/badge.svg)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/PublishContainer.yml)
 [![TestExamples](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/TestExamples.yml/badge.svg?branch=main)](https://github.com/Mat-O-Lab/CSVToCSVW/actions/workflows/TestExamples.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.19053064)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19053064.svg)](https://doi.org/10.5281/zenodo.19053064)
 
 > Automatically convert CSV files into [W3C CSVW](https://www.w3.org/ns/csvw)-compliant JSON-LD metadata and RDF — no manual annotation required.
 
