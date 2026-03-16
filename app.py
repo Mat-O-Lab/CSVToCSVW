@@ -96,10 +96,10 @@ def get_flashed_messages(request: fastapi.Request):
 
 middleware = [
     Middleware(
-        SessionMiddleware, secret_key=os.environ.get("APP_SECRET", "changemeNOW")
+        SessionMiddleware, secret_key=os.environ.get("APP_SECRET") or "changemeNOW"
     ),
     Middleware(
-        CSRFProtectMiddleware, csrf_secret=os.environ.get("APP_SECRET", "changemeNOW")
+        CSRFProtectMiddleware, csrf_secret=os.environ.get("APP_SECRET") or "changemeNOW"
     ),
     Middleware(
         CORSMiddleware,
