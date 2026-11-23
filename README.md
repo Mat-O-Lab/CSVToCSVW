@@ -45,6 +45,10 @@ docker run -p 5000:5000 ghcr.io/mat-o-lab/csvtocsvw:latest
 
 Open [http://localhost:5000](http://localhost:5000) for the UI, or [http://localhost:5000/api/docs](http://localhost:5000/api/docs) for the interactive API.
 
+The image is built on `python:3.13-alpine`, has all OS and Python packages patched at build time and scans clean with
+[Trivy](https://trivy.dev). In production pin a release tag (for example `ghcr.io/mat-o-lab/csvtocsvw:v1.3.6`) instead of `latest`
+and bump it deliberately. The image has no locale setup: the service does not depend on one.
+
 ### Docker Compose
 
 ```bash
@@ -143,6 +147,18 @@ CSVToCSVW produces a CSVW table with QUDT-annotated columns:
 See [`examples/`](examples/) for real input/output pairs including multi-block files.
 
 ---
+
+## Character encoding
+
+The encoding of the input file is detected from its content and reported as `encoding` in the CSVW `dialect`:
+
+1. A UTF-8 byte order mark gives `utf-8-sig` (the mark is dropped, it does not end up in the first header).
+2. Data that is valid UTF-8 (including plain ASCII) gives `utf-8`.
+3. Otherwise [chardet](https://github.com/chardet/chardet) (7.x) decides, but only if it is reasonably confident (score >= 0.05); this covers UTF-16 and non-western legacy encodings.
+4. Short western-european files in a legacy encoding, where statistical detection is unreliable, fall back to `cp1252` (a superset of latin-1, so `ä`, `°`, `µ`, `²`, `€` decode correctly) and, if that cannot decode the bytes, `latin-1`.
+
+Consequently files written by Windows tools show `cp1252` where older versions reported `latin-1`. `cp1252` and ISO-8859-15 differ only
+in a few characters (for example `€` vs `¤`) and cannot be told apart; `cp1252` is assumed.
 
 ## Known limitations
 
