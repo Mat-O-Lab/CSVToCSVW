@@ -45,8 +45,8 @@ docker run -p 5000:5000 ghcr.io/mat-o-lab/csvtocsvw:latest
 
 Open [http://localhost:5000](http://localhost:5000) for the UI, or [http://localhost:5000/api/docs](http://localhost:5000/api/docs) for the interactive API.
 
-The image is built on `python:3.13-alpine`, has all OS and Python packages patched at build time and scans clean with
-[Trivy](https://trivy.dev). In production pin a release tag (for example `ghcr.io/mat-o-lab/csvtocsvw:v1.3.6`) instead of `latest`
+The image is built on `python:3.13-alpine`, has all OS and Python packages patched at build time and is scanned with
+[Trivy](https://trivy.dev) before each release. In production pin a release tag (for example `ghcr.io/mat-o-lab/csvtocsvw:v1.3.6`) instead of `latest`
 and bump it deliberately. The image has no locale setup: the service does not depend on one.
 
 ### Docker Compose
