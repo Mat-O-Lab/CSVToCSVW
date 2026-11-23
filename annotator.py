@@ -12,9 +12,13 @@ import requests
 import numpy as np
 
 import chardet
+import codecs
 import locale
 
-locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
+try:
+    locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
+except locale.Error:
+    pass  # locale not installed (e.g. musl/alpine); app does not depend on it
 
 from rdflib import Graph, URIRef, Literal, Namespace, BNode
 from rdflib.namespace import RDF, RDFS, XSD, CSVW, DC, PROV
@@ -214,14 +218,41 @@ def get_value_type(string: str) -> Tuple:
             return "TEXT", XSD.string
 
 
+# chardet 7 reports low scores even for correct non-UTF-8 hits (~0.1-0.2),
+# wrong guesses on tiny files score ~0.01
+MIN_ENCODING_CONFIDENCE = 0.05
+
+
 def get_encoding(file_data: bytes) -> str:
     """
 
     :param file_data:   content of the file we want to parse
     :return:            encoding of the specified file content e.g. utf-8, ascii..
     """
-    result = chardet.detect(file_data)
-    return result["encoding"]
+    # 0. BOM: strip it on decode, otherwise it ends up in the first header
+    if file_data.startswith(codecs.BOM_UTF8):
+        return "utf-8-sig"
+    # 1. valid UTF-8 (incl. pure ASCII) is almost certainly UTF-8; statistical
+    #    detection adds nothing here and can only guess wrong on short files
+    try:
+        file_data.decode("utf-8")
+        return "utf-8"
+    except UnicodeDecodeError:
+        pass
+    # 2. trust chardet only when it is confident (BOMs, UTF-16, CJK, ...)
+    result = chardet.detect(file_data, prefer_superset=True)
+    encoding, confidence = result["encoding"], result["confidence"] or 0
+    if encoding and confidence >= MIN_ENCODING_CONFIDENCE:
+        return encoding
+    # 3. low confidence, typical for short western-european legacy files:
+    #    cp1252 (superset of latin-1), then latin-1 which decodes any byte
+    for fallback in ("cp1252", "latin-1"):
+        try:
+            file_data.decode(fallback)
+            return fallback
+        except UnicodeDecodeError:
+            continue
+    return "latin-1"
 
 
 def get_unit(string) -> dict:
